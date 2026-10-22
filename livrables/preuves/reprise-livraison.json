@@ -1,0 +1,50 @@
+{
+  "checked_at_utc": "2026-10-22T18:23:43.301301+00:00",
+  "application": "http://127.0.0.1:8070",
+  "login_ok": true,
+  "routes": [
+    {
+      "route": "planning&day=2026-10-22",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "visits&from=2026-10-22&to=2026-10-22",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "receipts&from=2026-10-22&to=2026-10-22",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "stock",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "orders",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "reports&from=2026-10-22&to=2026-10-22",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "trace&lot_id=1",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "route": "catalog&t=carrier",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "pdf_files_present": true,
+  "existing_data_preserved": true,
+  "previous_test_results_unchanged": true
+}

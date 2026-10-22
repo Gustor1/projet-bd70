@@ -1,0 +1,25 @@
+graph MCD {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+location [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Emplacements\nCode\nLargeur (m)\nProfondeur (m)\nHauteur (m)"];
+lot [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Lots\nCode\nDate limite / validité\nLot bloqué\nMotif du blocage"];
+notice_line [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Lignes attendues\nQuantité attendue"];
+receipt [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Réceptions\nRéférence\nÉtat\nValidation"];
+receipt_item [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Palettes reçues\nCode palette / fraction\nQuantité acceptée\nQuantité endommagée\nÉtat de palette"];
+receipt_line [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Lignes de réception\nQuantité attendue"];
+stock_movement [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Mouvements de stock\nOpération liée\nVariation (unités)\nNature\nMotif"];
+supplier [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Fournisseurs\nCode\nNom\nAdresse\nTéléphone"];
+supplier_notice [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Avis fournisseurs\nRéférence\nLivraison prévue"];
+truck_visit [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Passages camions\nRéférence\nOpération\nÉtat\nContrôle documentaire / observations"];
+assoc24 [shape=diamond,fontsize=10,label="annonce",color="#7693ad"];supplier -- assoc24 [taillabel="1",labeldistance=2];assoc24 -- supplier_notice [headlabel="0..N",labeldistance=2];
+assoc25 [shape=diamond,fontsize=10,label="détaille",color="#7693ad"];supplier_notice -- assoc25 [taillabel="1",labeldistance=2];assoc25 -- notice_line [headlabel="0..N",labeldistance=2];
+assoc27 [shape=diamond,fontsize=10,label="est livré partiellement",color="#7693ad"];supplier_notice -- assoc27 [taillabel="1",labeldistance=2];assoc27 -- receipt [headlabel="0..N",labeldistance=2];
+assoc28 [shape=diamond,fontsize=10,label="achemine",color="#7693ad"];truck_visit -- assoc28 [taillabel="1",labeldistance=2];assoc28 -- receipt [headlabel="0..N",labeldistance=2];
+assoc29 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];receipt -- assoc29 [taillabel="1",labeldistance=2];assoc29 -- receipt_line [headlabel="0..N",labeldistance=2];
+assoc30 [shape=diamond,fontsize=10,label="est reçu (attendu local)",color="#7693ad"];notice_line -- assoc30 [taillabel="1",labeldistance=2];assoc30 -- receipt_line [headlabel="0..N",labeldistance=2];
+assoc31 [shape=diamond,fontsize=10,label="est répartie en fractions",color="#7693ad"];receipt_line -- assoc31 [taillabel="1",labeldistance=2];assoc31 -- receipt_item [headlabel="0..N",labeldistance=2];
+assoc32 [shape=diamond,fontsize=10,label="est reçu plusieurs fois",color="#7693ad"];lot -- assoc32 [taillabel="1",labeldistance=2];assoc32 -- receipt_item [headlabel="0..N",labeldistance=2];
+assoc33 [shape=diamond,fontsize=10,label="rangement initial",color="#7693ad"];location -- assoc33 [taillabel="1",labeldistance=2];assoc33 -- receipt_item [headlabel="0..N",labeldistance=2];
+assoc34 [shape=diamond,fontsize=10,label="est déplacée (quantité)",color="#7693ad"];receipt_item -- assoc34 [taillabel="1",labeldistance=2];assoc34 -- stock_movement [headlabel="0..N",labeldistance=2];
+assoc35 [shape=diamond,fontsize=10,label="reçoit/débite",color="#7693ad"];location -- assoc35 [taillabel="1",labeldistance=2];assoc35 -- stock_movement [headlabel="0..N",labeldistance=2];
+}

@@ -1,0 +1,45 @@
+
+word/document.xml
+Démarche de conception d’un système d’information
+Identification des cas d’utilisations d’un système d’information et représentation en UML
+Construction d’un modèle conceptuel de données (diagramme entité-association) cohérent avec les cas d’utilisations identifiés
+Implémentation d’un modèle de base de données (modèle relationnel) cohérent avec le modèle conceptuel de données
+Implémentation des traitements appropriés cohérent avec les cas d’utilisation
+Ecriture d’un rapport documentant les fonctionnalités fournies
+Qualité du modèle de BDD
+Clés primaires bien définies
+Types corrects dans les tables
+Présence de plusieurs relations 
+1:N
+ et N:N, clés étrangères et tables de jointures judicieusement construites
+Erreurs communes évitées
+Redondances évitées
+Base normalisée
+Qualité (entités bien décrites) et quantité (nombre d'entités) des informations stockées
+Qualité générale des fonctionnalités
+Ajout, édition, suppression pour l'ensemble des données (sans intervention de l'utilisateur sur les tables)
+Contrôle des saisies utilisateurs
+Effectuer des recherches (notamment des recherches 
+multi-critères
+ et via des formulaires)
+Génération de différentes statistiques et affichage mis en forme (notamment sous forme de tableaux et de graphiques)
+Génération d'états
+Qualité de finition générale de l'application (présence d'un menu, id 
+internes 
+non affichés, boutons pour les actions, utilisation de VBA
+ – ou d’un langage approprié –
+ pour automatisation d'actions, etc.)
+Gestion de plusieurs utilisateurs
+Rapport
+Rendu du cahier des charges 
+et des cas d’utilisations du système
+Rendu du diagramme entité-association (modèle conceptuel de données)
+Rendu du schéma relationnel de base
+Respect de la forme générale d'un rapport de projet (introduction présentant le sujet, conclusion faisant le bilan de ce qui a été réalisé, table des matières, nom/prénom des auteurs, etc.)
+Présentation des fonctionnalités effectivement implémentées (avec captures d'écran au besoin) 
+–
+ utilisation de la forme "objectif/travail réalisé/conclusion" par fonctionnalité
+Grammaire et orthographe
+Rendu général
+Qualité relative générale de l'ensemble
+Utilisabilité, ergonomie, aspect graphique

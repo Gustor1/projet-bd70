@@ -1,0 +1,292 @@
+{
+  "date": "2026-10-22T14:40:12.125Z",
+  "passed": 71,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Connexion admin et tableau de bord",
+      "ok": true
+    },
+    {
+      "name": "Écran planning",
+      "ok": true
+    },
+    {
+      "name": "Écran visits",
+      "ok": true
+    },
+    {
+      "name": "Écran receipts",
+      "ok": true
+    },
+    {
+      "name": "Écran stock",
+      "ok": true
+    },
+    {
+      "name": "Écran orders",
+      "ok": true
+    },
+    {
+      "name": "Écran trace",
+      "ok": true
+    },
+    {
+      "name": "Écran reports",
+      "ok": true
+    },
+    {
+      "name": "Traçabilité lot multi-commandes jusqu’au camion",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste user_account",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste carrier",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste carrier_contact",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste carrier_contract",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste qualification",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste driver",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste driver_qualification",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste equipment",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste vehicle",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste vehicle_equipment",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste dock",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste dock_equipment",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste dock_vehicle_type",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste dock_downtime",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste appointment",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste truck_visit",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste visit_event",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste owner",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste supplier",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste article",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste zone",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste aisle",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste rack",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste rack_level",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste location",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste lot",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste supplier_notice",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste notice_line",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste receipt",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste receipt_line",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste receipt_item",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste customer_order",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste order_line",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste pick",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste package",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste package_pick",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste shipment",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste stock_movement",
+      "ok": true
+    },
+    {
+      "name": "Formulaire/liste audit_log",
+      "ok": true
+    },
+    {
+      "name": "Création formulaire avec apostrophe et HTML échappé",
+      "ok": true
+    },
+    {
+      "name": "Filtre et absence d’exécution HTML",
+      "ok": true
+    },
+    {
+      "name": "Modification formulaire",
+      "ok": true
+    },
+    {
+      "name": "Suppression formulaire",
+      "ok": true
+    },
+    {
+      "name": "HTTP écriture sans CSRF rejetée",
+      "ok": true
+    },
+    {
+      "name": "CSV respecte les filtres combinés",
+      "ok": true
+    },
+    {
+      "name": "Document pick",
+      "ok": true
+    },
+    {
+      "name": "Document delivery",
+      "ok": true
+    },
+    {
+      "name": "Document waybill",
+      "ok": true
+    },
+    {
+      "name": "Largeur mobile home",
+      "ok": true
+    },
+    {
+      "name": "Largeur mobile planning",
+      "ok": true
+    },
+    {
+      "name": "Largeur mobile stock",
+      "ok": true
+    },
+    {
+      "name": "Largeur mobile reports",
+      "ok": true
+    },
+    {
+      "name": "HTTP manager interdit comptes par URL",
+      "ok": true
+    },
+    {
+      "name": "HTTP manager interdit écriture comptes",
+      "ok": true
+    },
+    {
+      "name": "HTTP gate interdit comptes par URL",
+      "ok": true
+    },
+    {
+      "name": "HTTP gate interdit écriture comptes",
+      "ok": true
+    },
+    {
+      "name": "HTTP gate export protégé",
+      "ok": true
+    },
+    {
+      "name": "HTTP warehouse interdit comptes par URL",
+      "ok": true
+    },
+    {
+      "name": "HTTP warehouse interdit écriture comptes",
+      "ok": true
+    },
+    {
+      "name": "HTTP warehouse export protégé",
+      "ok": true
+    },
+    {
+      "name": "Inscription depuis formulaire en attente",
+      "ok": true
+    },
+    {
+      "name": "Aucune erreur JavaScript",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

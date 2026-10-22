@@ -1,0 +1,23 @@
+graph MCD {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+customer_order [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Commandes\nRéférence\nAdresse de livraison\nExpédition souhaitée\nÉtat"];
+location [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Emplacements\nCode\nLargeur (m)\nProfondeur (m)\nHauteur (m)"];
+order_line [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Lignes de commande\nQuantité"];
+package [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Colis et palettes de sortie\nCode\nType"];
+pick [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Prélèvements\nQuantité\nÉtat\nConfirmation"];
+receipt_item [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Palettes reçues\nCode palette / fraction\nQuantité acceptée\nQuantité endommagée\nÉtat de palette"];
+shipment [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Expéditions\nRéférence\nExpédition"];
+truck_visit [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Passages camions\nRéférence\nOpération\nÉtat\nContrôle documentaire / observations"];
+user_account [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Utilisateurs\nEmail\nNom\nProfil\nCompte actif"];
+assoc33 [shape=diamond,fontsize=10,label="rangement initial",color="#7693ad"];location -- assoc33 [taillabel="1",labeldistance=2];assoc33 -- receipt_item [headlabel="0..N",labeldistance=2];
+assoc38 [shape=diamond,fontsize=10,label="prépare",color="#7693ad"];user_account -- assoc38 [taillabel="0..1",labeldistance=2];assoc38 -- customer_order [headlabel="0..N",labeldistance=2];
+assoc39 [shape=diamond,fontsize=10,label="détaille",color="#7693ad"];customer_order -- assoc39 [taillabel="1",labeldistance=2];assoc39 -- order_line [headlabel="0..N",labeldistance=2];
+assoc41 [shape=diamond,fontsize=10,label="est servie (quantité)",color="#7693ad"];order_line -- assoc41 [taillabel="1",labeldistance=2];assoc41 -- pick [headlabel="0..N",labeldistance=2];
+assoc42 [shape=diamond,fontsize=10,label="fournit le lot reçu",color="#7693ad"];receipt_item -- assoc42 [taillabel="1",labeldistance=2];assoc42 -- pick [headlabel="0..N",labeldistance=2];
+assoc43 [shape=diamond,fontsize=10,label="est prélevé à",color="#7693ad"];location -- assoc43 [taillabel="1",labeldistance=2];assoc43 -- pick [headlabel="0..N",labeldistance=2];
+assoc44 [shape=diamond,fontsize=10,label="est conditionnée",color="#7693ad"];customer_order -- assoc44 [taillabel="1",labeldistance=2];assoc44 -- package [headlabel="0..N",labeldistance=2];
+assoc45 [shape=diamond,fontsize=10,label="contient (affectation)",color="#7693ad"];package -- assoc45 [taillabel="0..1",labeldistance=2];assoc45 -- pick [headlabel="0..N",labeldistance=2];
+assoc46 [shape=diamond,fontsize=10,label="est expédiée",color="#7693ad"];customer_order -- assoc46 [taillabel="1",labeldistance=2];assoc46 -- shipment [headlabel="0..1",labeldistance=2];
+assoc47 [shape=diamond,fontsize=10,label="charge",color="#7693ad"];truck_visit -- assoc47 [taillabel="1",labeldistance=2];assoc47 -- shipment [headlabel="0..N",labeldistance=2];
+}

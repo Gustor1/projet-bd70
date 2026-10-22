@@ -1,0 +1,25 @@
+graph MCD {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+appointment [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Rendez-vous\nRéférence\nOpération\nDébut\nFin"];
+dock [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Quais\nCode\nNom\nType"];
+dock_downtime [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Indisponibilités\nDébut\nFin\nMotif"];
+dock_vehicle_type [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Compatibilités des quais\nType de véhicule"];
+driver [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Chauffeurs\nNom\nTéléphone\nNuméro de permis"];
+equipment [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Équipements\nCode\nNom"];
+truck_visit [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Passages camions\nRéférence\nOpération\nÉtat\nContrôle documentaire / observations"];
+vehicle [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Véhicules\nImmatriculation\nType\nCapacité (kg)\nCapacité (équiv. palettes)"];
+visit_event [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Chronologie des passages\nÉtape\nHorodatage"];
+assoc5 [shape=diamond,fontsize=10,label="est équipé",color="#7693ad"];vehicle -- assoc5 [taillabel="0..N",labeldistance=2];assoc5 -- equipment [headlabel="0..N",labeldistance=2];
+assoc6 [shape=diamond,fontsize=10,label="dispose de",color="#7693ad"];dock -- assoc6 [taillabel="0..N",labeldistance=2];assoc6 -- equipment [headlabel="0..N",labeldistance=2];
+assoc7 [shape=diamond,fontsize=10,label="accepte un type",color="#7693ad"];dock -- assoc7 [taillabel="1",labeldistance=2];assoc7 -- dock_vehicle_type [headlabel="0..N",labeldistance=2];
+assoc8 [shape=diamond,fontsize=10,label="est indisponible",color="#7693ad"];dock -- assoc8 [taillabel="1",labeldistance=2];assoc8 -- dock_downtime [headlabel="0..N",labeldistance=2];
+assoc9 [shape=diamond,fontsize=10,label="accueille au planning",color="#7693ad"];dock -- assoc9 [taillabel="1",labeldistance=2];assoc9 -- appointment [headlabel="0..N",labeldistance=2];
+assoc10 [shape=diamond,fontsize=10,label="est prévu",color="#7693ad"];vehicle -- assoc10 [taillabel="1",labeldistance=2];assoc10 -- appointment [headlabel="0..N",labeldistance=2];
+assoc11 [shape=diamond,fontsize=10,label="est attendu",color="#7693ad"];driver -- assoc11 [taillabel="1",labeldistance=2];assoc11 -- appointment [headlabel="0..N",labeldistance=2];
+assoc12 [shape=diamond,fontsize=10,label="donne lieu à",color="#7693ad"];appointment -- assoc12 [taillabel="0..1",labeldistance=2];assoc12 -- truck_visit [headlabel="0..1",labeldistance=2];
+assoc13 [shape=diamond,fontsize=10,label="effectue / remorque optionnelle",color="#7693ad"];vehicle -- assoc13 [taillabel="1",labeldistance=2];assoc13 -- truck_visit [headlabel="0..N",labeldistance=2];
+assoc14 [shape=diamond,fontsize=10,label="conduit",color="#7693ad"];driver -- assoc14 [taillabel="1",labeldistance=2];assoc14 -- truck_visit [headlabel="0..N",labeldistance=2];
+assoc15 [shape=diamond,fontsize=10,label="sert effectivement",color="#7693ad"];dock -- assoc15 [taillabel="0..1",labeldistance=2];assoc15 -- truck_visit [headlabel="0..N",labeldistance=2];
+assoc16 [shape=diamond,fontsize=10,label="est horodaté",color="#7693ad"];truck_visit -- assoc16 [taillabel="1",labeldistance=2];assoc16 -- visit_event [headlabel="1..N",labeldistance=2];
+}

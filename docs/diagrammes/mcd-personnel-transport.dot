@@ -1,0 +1,18 @@
+graph MCD {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+carrier [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Transporteurs\nCode\nNom\nAdresse\nTéléphone"];
+carrier_contact [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Contacts transporteurs\nNom\nTéléphone\nEmail"];
+carrier_contract [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Contrats\nRéférence\nDate de début\nDate de fin\nConditions du contrat"];
+driver [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Chauffeurs\nNom\nTéléphone\nNuméro de permis"];
+equipment [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Équipements\nCode\nNom"];
+qualification [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Habilitations\nCode\nNom"];
+user_account [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Utilisateurs\nEmail\nNom\nProfil\nCompte actif"];
+vehicle [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Véhicules\nImmatriculation\nType\nCapacité (kg)\nCapacité (équiv. palettes)"];
+assoc0 [shape=diamond,fontsize=10,label="emploie",color="#7693ad"];carrier -- assoc0 [taillabel="1",labeldistance=2];assoc0 -- driver [headlabel="0..N",labeldistance=2];
+assoc1 [shape=diamond,fontsize=10,label="exploite",color="#7693ad"];carrier -- assoc1 [taillabel="1",labeldistance=2];assoc1 -- vehicle [headlabel="0..N",labeldistance=2];
+assoc2 [shape=diamond,fontsize=10,label="possède",color="#7693ad"];carrier -- assoc2 [taillabel="1",labeldistance=2];assoc2 -- carrier_contact [headlabel="0..N",labeldistance=2];
+assoc3 [shape=diamond,fontsize=10,label="signe",color="#7693ad"];carrier -- assoc3 [taillabel="1",labeldistance=2];assoc3 -- carrier_contract [headlabel="0..N",labeldistance=2];
+assoc4 [shape=diamond,fontsize=10,label="est habilité (validité)",color="#7693ad"];driver -- assoc4 [taillabel="0..N",labeldistance=2];assoc4 -- qualification [headlabel="0..N",labeldistance=2];
+assoc5 [shape=diamond,fontsize=10,label="est équipé",color="#7693ad"];vehicle -- assoc5 [taillabel="0..N",labeldistance=2];assoc5 -- equipment [headlabel="0..N",labeldistance=2];
+}

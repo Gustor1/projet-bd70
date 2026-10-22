@@ -1,0 +1,709 @@
+
+ppt/slides/slide1.xml
+Introduction au Web
+
+ppt/slides/slide2.xml
+Plan
+Clients et serveurs, architecture
+HTML
+PHP
+
+ppt/slides/slide3.xml
+Clients et serveurs
+
+ppt/slides/slide4.xml
+Architecture d’une application Web
+Architecture trois tiers :
+Client (ex : le navigateur de l’utilisateur)
+Serveur : une application qui reçoit les requêtes de l’utilisateur et y répond
+Base de données : stocke les informations manipulées par le serveur
+
+ppt/slides/slide5.xml
+Communication entre le client et le serveur
+Web : requêtes HTTP caractérisées entre autres par :
+Un type de requête (GET, POST, DELETE)
+Une adresse ou URL (« http://www.google.fr »)
+Divers paramètres
+
+ppt/slides/slide6.xml
+Fonctionnement des requêtes
+Le client envoi une requête au serveur (par exemple GET 
+http://www.google.fr
+)
+Le serveur reçoit la requête et l’interprète (« Le client souhaite recevoir la page d’accueil du site google.fr »)
+Il construit une réponse : la page à afficher
+Il renvoie cette page au client
+Le client affiche la page reçue 
+
+ppt/slides/slide7.xml
+Fonctionnement des requêtes
+La requête peut contenir des paramètres :
+Dans le chemin de l’URL : 
+https://fr.wikipedia.org/
+wiki/Hypertext_Transfer_Protocol
+https://www.google.com/search?
+source=hp
+&
+q=requete
+Dans le corps de la requête
+
+ppt/slides/slide8.xml
+Introduction à l'HTML
+
+ppt/slides/slide9.xml
+Page Web et HTML
+La page Web affichée par le client (le navigateur) est un fichier texte suivant un format particulier : le format HTML
+Ce format de fichier est composé de 
+balises 
+qui décrivent notamment la mise en forme de la page
+
+ppt/slides/slide10.xml
+Page Web et HTML
+<
+html 
+lang
+="
+fr
+"
+>
+<
+head
+>
+    <
+title
+>Titre de la page</
+title
+>
+</
+head
+>
+<
+body
+>
+<
+h1
+>Ceci est un titre</
+h1
+>
+<
+p
+>Ceci est un paragraphe avec un texte <
+strong
+>gras</
+strong
+> et un texte
+ en <
+em
+>italique</
+em
+></
+p
+>
+</
+body
+>
+</
+html
+>
+
+ppt/slides/slide11.xml
+HTML
+Une balise HTML est ouverte (exemple : <
+strong
+>) puis fermée (</
+strong
+>) : le texte entre la balise ouvrante et fermante possède les attributs de la balise qui le contient (
+<
+strong
+>
+ signifie que le texte doit être affiché en gras)
+Certaines balises sont simultanément ouvrantes et fermantes, avec la syntaxe <balise />, par exemple : 
+<
+img
+ src="image.jpg" />
+ (cette balise signifie que l'image 
+image.jpg
+ doit être affichée)
+Certaines balises comme 
+<
+img
+ />
+ peuvent avoir des attributs : 
+<
+img
+ />
+ possède l'attribut 
+src 
+pour indiquer l'adresse de l'image à afficher
+
+ppt/slides/slide12.xml
+HTML
+Une page web HTML se structure de la façon suivante
+Le contenu de la page est inclus dans une balise <html> (donc entre <html> et </html>)
+Les attributs de la page sont dans une balise <
+head
+> à l'intérieur de <html>
+Le corps de la page est dans une balise <body> à l'intérieur de <html>
+<
+html 
+lang
+="
+fr
+"
+>
+  <
+head
+>
+    <
+title
+>Titre de la page</
+title
+>
+  </
+head
+>
+  <
+body
+>
+    <
+h1
+>Ceci est un titre</
+h1
+>
+    <
+p
+>Ceci est un paragraphe</
+p
+>
+  </
+body
+>
+</
+html
+>
+
+ppt/slides/slide13.xml
+HTML
+Principales balises pour la mise en page du texte :
+<p> : paragraphe
+<br /> : retour à la ligne
+<h1>, <h2>, <h3>, …, <h6> : niveau de titre (<h1> est le titre principal, <h2> un titre de section, <h3> un titre de sous-section, etc.)
+<
+em
+> : mise en italique (
+<
+em
+>
+texte en italique
+</
+em
+>
+)
+<
+strong
+> : mise en gras (
+<
+strong
+>
+texte en gras
+</
+strong
+>
+)
+<
+ul
+>
+ et 
+<li>
+ : liste d'élément et item de liste
+<
+ul
+>
+  
+<li>
+Premier item
+</li>
+  
+<li>
+Second item
+</li>
+</
+ul
+>
+
+ppt/slides/slide14.xml
+HTML
+Balises pour faire des références à des éléments extérieurs
+<a> : définir un lien hypertexte (<
+a href
+=« http://www.google.fr">Lien vers google
+</a>
+)
+<
+img
+> : inclure une image (<
+img
+ src
+="image.jpg" />)
+Les valeurs pour les attributs href et src sont des URL (des liens) qui peuvent être absolus ou relatifs. Ici 
+www.google.fr
+ est un lien absolu, tandis que image.jpg est un lien relatif (image.jpg doit se trouver à côté du fichier HTML qui y fait référence)
+
+ppt/slides/slide15.xml
+HTML
+Il existe de nombreuses autres balises permettant de mettre en page un site :
+Mise en forme de tableaux avec <table>
+Création de formulaires avec <form> (sera vu en pratique)
+Inclusion de vidéos avec <
+video
+>
+Etc.
+Vous pourrez trouver des informations sur toutes les balises existantes sur 
+https://www.w3schools.com/html/
+
+ppt/slides/slide16.xml
+HTML
+Tableau :
+<table>
+	
+<tr>
+		
+<th>
+Entête colonne 1
+</th>
+		
+<th>
+Entête colonne 2
+</th>
+	
+</tr>
+	
+<tr>
+		
+<td>
+Cellule 1, ligne 1
+</td>
+		
+<td>
+Cellule 2, ligne 1
+</td>
+	
+</tr>
+	
+<tr>
+		
+<td>
+Cellule 1, ligne 2
+</td>
+		
+<td>
+Cellule 2, ligne 2
+</td>
+	
+</tr>
+</table>
+
+ppt/slides/slide17.xml
+HTML
+Formulaires :
+<
+form
+ 
+method
+=
+"
+post
+"
+ action=
+"url.html"
+>
+	
+<label>
+		Nom : 
+<input type=
+"
+text
+" 
+name
+="nom" />
+	
+</label>
+	<label>
+		Prénom : 
+<input type=
+"
+text
+" 
+name
+="
+prenom
+" />
+	
+</label>
+	<input type=
+"
+submit
+" 
+/>
+</
+form
+>
+
+ppt/slides/slide18.xml
+HTML
+A
+ noter : HTML est souvent utilisé avec deux autres langages, que nous n'étudierons pas spécifiquement :
+CSS : Ce langage permet de décrire les informations de style d'une page Web (police du texte, couleur et forme des boutons, etc.)
+JavaScript : Ce langage permet de définir des comportements dynamique côté client, de façon à pouvoir modifier le contenu d'une page en fonction d'actions de l'utilisateur
+
+ppt/slides/slide19.xml
+Introduction à PHP
+
+ppt/slides/slide20.xml
+Serveur Web
+Le serveur Web construit dynamiquement la page à afficher à partir de la requête
+La description de la façon dont doit être construire la réponse se fait via un langage de programmation capable de générer un fichier HTML
+Quasiment tous les langages de programmation sont 
+capables
+ d’interpréter une requête HTTP et de renvoyer une page Web à l’émetteur
+Dans le cadre de ce cours nous utiliserons 
+PHP
+
+ppt/slides/slide21.xml
+PHP
+PHP date de 1994 mais reste le langage le plus utilisé pour la programmation d’applications Web (~80% des sites internet)
+Langage interprété
+Le contenu des pages Web est décrit dans des fichiers .
+php
+ : le serveur interprète les pages .
+php
+ pour formuler la réponse aux clients
+Le fichier .
+php
+ est un mélange de contenu statique (écrit en HTML) et de contenu dynamique (écrit en PHP) : le contenu statique est fixe, le contenu dynamique est calculé au moment de la requête (en fonction des paramètres de la requête, en fonction de l'état de la base de données, etc.)
+
+ppt/slides/slide22.xml
+PHP
+<
+html 
+lang
+="
+fr
+"
+>
+<
+head
+><
+title
+>test</
+title
+></
+head
+>
+<
+body
+>
+<
+p
+>Ceci est un texte statique!</
+p
+>
+<?
+php
+    
+$a 
+= 
+5
+;
+    
+$b 
+= 
+6
+;
+    
+$c 
+= 
+$a 
++ 
+$b
+;
+    
+echo
+ 
+"Ceci est un texte dynamique! 
+$a $b $c
+"
+; 
+?>
+</
+body
+>
+</
+html
+>
+
+ppt/slides/slide23.xml
+PHP
+Le code PHP s'insère au milieu d'une page HTML
+Dans une page HTML/PHP, le code PHP se trouve entre 
+<?php
+ et 
+?>
+Le code PHP permet de générer du code HTML
+La syntaxe du langage PHP est très proche de la syntaxe du C
+
+ppt/slides/slide24.xml
+PHP
+L'instruction 
+echo 
+en PHP permet de générer de l'HTML
+Dans l'exemple suivant, le bloc <?php ... ?> sera remplacé par le texte 
+Ceci est un texte dynamique! 5 6 11 
+au moment où la page sera envoyée par le serveur au navigateur
+<
+html 
+lang
+="fr"
+>
+<
+head
+><
+title
+>test</
+title
+></
+head
+>
+<
+body
+>
+<
+p
+>Ceci est un texte statique!</
+p
+>
+<?
+php
+    
+$a 
+= 
+5
+;
+    
+$b 
+= 
+6
+;
+    
+$c 
+= 
+$a 
++ 
+$b
+;
+    
+echo 
+"Ceci est un texte dynamique! 
+$a $b $c
+"
+; 
+?>
+</body
+>
+</
+html
+>
+
+ppt/slides/slide25.xml
+Syntaxe PHP
+Langage procédural : suite d'instructions
+Chaque instruction se termine par un point-virgule
+Les variables commencent toujours par le caractère $
+Le typage est dynamique : il n'est pas nécessaire de préciser le type des variables (mais c'est recommandé de le faire quand c'est possible)
+Les structures alternatives et répétitives usuelles sont disponibles avec la même syntaxe qu'en C : if, while, do … while, switch, for
+L'appel d'une fonction se fait comme en C : ma_fonction($param1, $param2);
+La plupart des opérateurs sont les mêmes qu'en C :
+Affectation avec =
+Calculs avec +, -, *, /
+Comparaisons avec ==, <=, >=, <, >, !=
+Opérations booléennes avec &&, ||
+
+ppt/slides/slide26.xml
+Syntaxe PHP
+Code PHP :
+<?php
+    $i = 0;
+    
+for
+($i = 0; $i < 5; $i++) {
+        
+if
+($i == 2) {
+            echo "Deux<br />";
+        } 
+else 
+{
+            echo "$i<br />";
+        }
+    }
+    echo 
+date
+("d/m/Y");
+?>
+Affichage HTML :
+0
+1
+Deux
+3
+4
+26/08/2020 
+
+ppt/slides/slide27.xml
+Tableaux en PHP
+Tableaux simples (comme en C) :
+Déclaration :
+$villes = ["Belfort", "
+Sévenans
+", "Montbéliard"];
+Accès (l'indice commence à 0) :
+$villes[0]
+ vaut "Belfort", 
+$villes[1]
+ vaut "
+Sévenans
+", etc.
+Taille du tableau :
+count($villes);
+Parcours :
+Avec 
+for
+ (comme en C)
+Avec 
+foreach
+ : 
+foreach
+($
+array
+ as $
+element
+) { 
+echo
+  }
+
+ppt/slides/slide28.xml
+Tableaux en PHP
+Tableaux associatifs (association clé/valeur) :
+Déclaration :
+$os = ["iPad" => "
+MacOS
+", "iPhone" => "
+MacOS
+", "Galaxy Tab S4" => "Android"];
+Accès :
+$os["iPad"]
+ vaut "
+MacOS
+", 
+de même que 
+$os["iPhone"] ; 
+par contre
+ 
+$os["Galaxy Tab S4"]
+ vaut "Samsung"
+Techniquement un tableau "simple" est un tableau associatif dont la clé est un entier
+
+ppt/slides/slide29.xml
+Déclaration de fonctions en PHP
+Déclaration 
+de fonction :
+function
+ 
+mon_nom_de_fonction
+(type1 $param1, type2 $param2, …, 
+typen
+ $
+paramN
+): 
+type_de_retour
+{
+     
+echo
+ "Ceci est une fonction";
+     return $
+result
+;
+}
+La précision des types est facultative mais recommandée
+Il est facultatif de définir une fonction avant de l'utiliser, mais c'est recommandé
+Nous considérerons que les variables globales ne sont pas utilisables à l'intérieur des fonctions
+
+ppt/slides/slide30.xml
+PHP et base de données
+Connexion à une base de données :
+$
+bdd
+ = new PDO("
+mysql:host
+=
+localhost;dbname
+=
+test;charset
+=utf8", "root", "");
+Préparation d'une requête :
+$
+req
+ = 
+$
+bdd
+->
+prepare
+("SELECT 
+customer_id
+ FROM 
+customer
+ WHERE user = ?");
+Exécution d'une requête :
+$
+req
+->
+execute
+([$_POST["
+username
+"]]);
+Récupération de la prochaine ligne des résultats :
+$
+donnees
+ = 
+$
+req
+->
+fetch
+(); 
+$
+donnees
+["
+customer_id
+"]
+Paramètres de connexion
+Nom utilisateur
+Mot de passe
+Requête SQL paramétrée ('?' sera précisé à l'exécution)
+Tableau contenant les valeurs devant remplacer les '?' dans la requête
+
+ppt/slides/slide31.xml
+PHP et HTML
+Accéder aux variables de l’URL : 
+$_GET["
+nom_variable
+"]
+Accéder aux variables du formulaire : 
+$_POST["
+nom_variable
+"]
+Rediriger l’utilisateur vers une autre page :
+header(
+"
+Location: 
+nouvelle_url.php
+"
+);

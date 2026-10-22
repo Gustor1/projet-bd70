@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1770" viewBox="0 0 1800 1770">
+<defs><marker id="open" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L13 7 L1 13" fill="none" stroke="#20354b" stroke-width="2"/></marker><marker id="triangle" markerWidth="21" markerHeight="20" refX="20" refY="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L20 10 L1 19 Z" fill="white" stroke="#20354b" stroke-width="2"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/>
+<rect x="340" y="185" width="1120" height="1245" fill="white" stroke="#a5b2be" stroke-width="2"/>
+<polyline points="194,365 400,365" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="194,620 280,620 280,545 400,545" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="194,620 280,620 280,725 400,725" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="194,1040 280,1040 280,955 400,955" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="194,1040 280,1040 280,1135 400,1135" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="1605,725 1515,725 1515,365 1400,365" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="1605,725 1515,725 1515,605 1400,605" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="1605,725 1515,725 1515,845 1400,845" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="1605,725 1515,725 1515,1085 1400,1085" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="900,1500 900,1465 530,1465 530,1385" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="900,1500 900,1465 900,1465 900,1385" fill="none" stroke="#20354b" stroke-width="2"/>
+<polyline points="900,1500 900,1465 1270,1465 1270,1385" fill="none" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="34" text-anchor="start" font-weight="bold"><tspan x="60" y="71.9">TRANSIT · Diagramme de cas d’utilisation</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="60" y="126.65">Projet BD70 — Entrepôt logistique · Vue fonctionnelle de l’application réalisée</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start" font-weight="bold"><tspan x="362" y="224.85">Système Transit — gestion de l’entrepôt</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="18" text-anchor="start" font-weight="bold"><tspan x="375" y="268.8">ADMINISTRATION &amp; FLUX CAMIONS</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="18" text-anchor="start" font-weight="bold"><tspan x="960" y="268.8">MARCHANDISES &amp; COMMANDES</tspan></text>
+<ellipse cx="610.0" cy="365.0" rx="210.0" ry="55.0" fill="#f4effa" stroke="#8c72aa" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="610.0" y="358.91">UC11 · Administrer les comptes</tspan><tspan x="610.0" y="385.79">Activer, attribuer un rôle, désactiver</tspan></text>
+<ellipse cx="610.0" cy="545.0" rx="210.0" ry="55.0" fill="#f4effa" stroke="#8c72aa" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="610.0" y="538.91">UC02 · Gérer les référentiels</tspan><tspan x="610.0" y="565.79">Transport, articles, propriétaires, stockage</tspan></text>
+<ellipse cx="610.0" cy="725.0" rx="210.0" ry="55.0" fill="#f4effa" stroke="#8c72aa" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="610.0" y="718.91">UC10 · Piloter l’activité</tspan><tspan x="610.0" y="745.79">Indicateurs, rapports et exports</tspan></text>
+<ellipse cx="610.0" cy="955.0" rx="210.0" ry="55.0" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="610.0" y="948.91">UC03 · Planifier les quais</tspan><tspan x="610.0" y="975.79">Créer, déplacer, annuler un rendez-vous</tspan></text>
+<ellipse cx="610.0" cy="1135.0" rx="210.0" ry="55.0" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="610.0" y="1128.9099999999999">UC04 · Suivre les camions</tspan><tspan x="610.0" y="1155.79">De l’arrivée au départ du site</tspan></text>
+<ellipse cx="1190.0" cy="365.0" rx="210.0" ry="55.0" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1190.0" y="358.91">UC05 · Réceptionner et ranger</tspan><tspan x="1190.0" y="385.79">Avis, lots, palettes, écarts et réserves</tspan></text>
+<ellipse cx="1190.0" cy="605.0" rx="210.0" ry="55.0" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1190.0" y="598.91">UC06 · Gérer les stocks</tspan><tspan x="1190.0" y="625.79">Rechercher, transférer, ajuster</tspan></text>
+<ellipse cx="1190.0" cy="845.0" rx="210.0" ry="55.0" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1190.0" y="838.91">UC07 · Préparer les commandes</tspan><tspan x="1190.0" y="865.79">Lignes, affectation et prélèvements FEFO</tspan></text>
+<ellipse cx="1190.0" cy="1085.0" rx="210.0" ry="55.0" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1190.0" y="1078.9099999999999">UC08 · Charger et expédier</tspan><tspan x="1190.0" y="1105.79">Colis, palettes et documents de transport</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="162.0" cy="329" r="14"/><path d="M162.0 343 V380 M130 358 H194 M162.0 380 L130 415 M162.0 380 L194 415" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="162.0" y="441.0">Administrateur</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="162.0" cy="584" r="14"/><path d="M162.0 598 V635 M130 613 H194 M162.0 635 L130 670 M162.0 635 L194 670" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="162.0" y="695.56">Responsable</tspan><tspan x="162.0" y="722.4399999999999">d’exploitation</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="162.0" cy="1004" r="14"/><path d="M162.0 1018 V1055 M130 1033 H194 M162.0 1055 L130 1090 M162.0 1055 L194 1090" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="162.0" y="1116.0">Agent d’accueil</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="1637.0" cy="689" r="14"/><path d="M1637.0 703 V740 M1605 718 H1669 M1637.0 740 L1605 775 M1637.0 740 L1669 775" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1637.0" y="800.56">Magasinier /</tspan><tspan x="1637.0" y="827.4399999999999">préparateur</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="18" text-anchor="start" font-weight="bold"><tspan x="450" y="1243.8">FONCTIONS COMMUNES AU PERSONNEL</tspan></text>
+<ellipse cx="530.0" cy="1337.5" rx="145.0" ry="47.5" fill="#eef5fc" stroke="#537ea6" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="530.0" y="1331.99">UC01 · Se connecter</tspan><tspan x="530.0" y="1356.31">et se déconnecter</tspan></text>
+<ellipse cx="900.0" cy="1337.5" rx="145.0" ry="47.5" fill="#eef5fc" stroke="#537ea6" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="900.0" y="1331.99">UC09 · Tracer un lot</tspan><tspan x="900.0" y="1356.31">De la réception à l’expédition</tspan></text>
+<ellipse cx="1270.0" cy="1337.5" rx="145.0" ry="47.5" fill="#eef5fc" stroke="#537ea6" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="1270.0" y="1331.99">Consulter le planning</tspan><tspan x="1270.0" y="1356.31">et l’état des quais</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="900.0" cy="1514" r="14"/><path d="M900.0 1528 V1565 M868 1543 H932 M900.0 1565 L868 1600 M900.0 1565 L932 1600" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="900.0" y="1625.56">Personnel</tspan><tspan x="900.0" y="1652.44">(acteur général)</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="90" y="1691.99">Lecture : les associations propres à chaque profil sont affichées ici ; les droits hérités sont détaillés page 2.</tspan><tspan x="90" y="1716.31">Session active et rôle autorisé requis pour les cas métier. Les relations « include / extend » figurent page 3.</tspan></text>
+</svg>

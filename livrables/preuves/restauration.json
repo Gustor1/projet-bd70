@@ -1,0 +1,296 @@
+{
+  "date": "2026-10-22T15:08:03.162444+00:00",
+  "source": "bd70_demo_final",
+  "target": "bd70_restore_finale",
+  "tables": [
+    {
+      "table": "aisle",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "appointment",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "article",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "audit_log",
+      "source_count": 191,
+      "restored_count": 191,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "carrier",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "carrier_contact",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "carrier_contract",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "customer_order",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "dock",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "dock_downtime",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "dock_equipment",
+      "source_count": 9,
+      "restored_count": 9,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "dock_vehicle_type",
+      "source_count": 12,
+      "restored_count": 12,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "driver",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "driver_qualification",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "equipment",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "location",
+      "source_count": 6,
+      "restored_count": 6,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "lot",
+      "source_count": 6,
+      "restored_count": 6,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "notice_line",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "order_line",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "owner",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "package",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "package_pick",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "pick",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "qualification",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "rack",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "rack_level",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "receipt",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "receipt_item",
+      "source_count": 7,
+      "restored_count": 7,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "receipt_line",
+      "source_count": 4,
+      "restored_count": 4,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "shipment",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "site_lock",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "stock_movement",
+      "source_count": 11,
+      "restored_count": 11,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "supplier",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "supplier_notice",
+      "source_count": 2,
+      "restored_count": 2,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "truck_visit",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "user_account",
+      "source_count": 7,
+      "restored_count": 7,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "vehicle",
+      "source_count": 4,
+      "restored_count": 4,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "vehicle_equipment",
+      "source_count": 1,
+      "restored_count": 1,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "visit_event",
+      "source_count": 19,
+      "restored_count": 19,
+      "checksum_identical": true,
+      "ok": true
+    },
+    {
+      "table": "zone",
+      "source_count": 3,
+      "restored_count": 3,
+      "checksum_identical": true,
+      "ok": true
+    }
+  ],
+  "triggers": 116,
+  "procedures": 2,
+  "checks": {
+    "data": true,
+    "triggers_restored": true,
+    "procedures_restored": true,
+    "historisation_after_restore": true
+  },
+  "backup_bytes": 214386
+}

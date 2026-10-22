@@ -1,0 +1,18 @@
+graph MCD {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+aisle [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Allées\nCode"];
+article [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Articles\nRéférence article\nNom\nCondition de stockage\nConditionnement"];
+location [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Emplacements\nCode\nLargeur (m)\nProfondeur (m)\nHauteur (m)"];
+lot [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Lots\nCode\nDate limite / validité\nLot bloqué\nMotif du blocage"];
+owner [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Clients propriétaires\nCode\nNom\nAdresse\nEmail"];
+rack [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Racks\nCode"];
+rack_level [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Niveaux\nCode"];
+zone [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Zones\nCode\nNom\nCondition de stockage"];
+assoc18 [shape=diamond,fontsize=10,label="possède",color="#7693ad"];owner -- assoc18 [taillabel="1",labeldistance=2];assoc18 -- article [headlabel="0..N",labeldistance=2];
+assoc19 [shape=diamond,fontsize=10,label="identifie",color="#7693ad"];article -- assoc19 [taillabel="1",labeldistance=2];assoc19 -- lot [headlabel="0..N",labeldistance=2];
+assoc20 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];zone -- assoc20 [taillabel="1",labeldistance=2];assoc20 -- aisle [headlabel="0..N",labeldistance=2];
+assoc21 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];aisle -- assoc21 [taillabel="1",labeldistance=2];assoc21 -- rack [headlabel="0..N",labeldistance=2];
+assoc22 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack -- assoc22 [taillabel="1",labeldistance=2];assoc22 -- rack_level [headlabel="0..N",labeldistance=2];
+assoc23 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack_level -- assoc23 [taillabel="1",labeldistance=2];assoc23 -- location [headlabel="0..N",labeldistance=2];
+}

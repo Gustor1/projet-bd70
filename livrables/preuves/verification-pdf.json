@@ -1,0 +1,107 @@
+{
+  "report_layout": [
+    {
+      "page": 3,
+      "title": "Contexte et cahier des charges",
+      "remaining_points": 309.9
+    },
+    {
+      "page": 4,
+      "title": "Acteurs et cas d’utilisation",
+      "remaining_points": 284.9
+    },
+    {
+      "page": 5,
+      "title": "Règles et hypothèses",
+      "remaining_points": 389.9
+    },
+    {
+      "page": 6,
+      "title": "MCD et chemin de traçabilité",
+      "remaining_points": 234.9
+    },
+    {
+      "page": 7,
+      "title": "MLD, dictionnaire et normalisation",
+      "remaining_points": 244.9
+    },
+    {
+      "page": 8,
+      "title": "Architecture et sécurité",
+      "remaining_points": 404.9
+    },
+    {
+      "page": 9,
+      "title": "F01 et F02 - Personnel et transport",
+      "remaining_points": 73.8
+    },
+    {
+      "page": 10,
+      "title": "F03 et F04 - Quais et flux camions",
+      "remaining_points": 103.8
+    },
+    {
+      "page": 11,
+      "title": "F05 et F06 - Réception, rangement et stocks",
+      "remaining_points": 88.8
+    },
+    {
+      "page": 12,
+      "title": "F07 et F08 - Sorties, trace et pilotage",
+      "remaining_points": 103.8
+    },
+    {
+      "page": 13,
+      "title": "SQL, automatismes et transactions",
+      "remaining_points": 389.9
+    },
+    {
+      "page": 14,
+      "title": "Données et résultats attendus",
+      "remaining_points": 404.9
+    },
+    {
+      "page": 15,
+      "title": "Recette et restauration",
+      "remaining_points": 404.9
+    },
+    {
+      "page": 16,
+      "title": "Performances mesurées",
+      "remaining_points": 224.9
+    },
+    {
+      "page": 17,
+      "title": "Indicateurs et états imprimables",
+      "remaining_points": 43.8
+    },
+    {
+      "page": 18,
+      "title": "Conclusion et limites",
+      "remaining_points": 244.9
+    }
+  ],
+  "files": [
+    {
+      "file": "livrables\\rapport\\RAPPORT-PROJET-BD70.pdf",
+      "pages": 18
+    },
+    {
+      "file": "livrables\\preuves\\document-delivery.pdf",
+      "pages": 1
+    },
+    {
+      "file": "livrables\\preuves\\document-pick.pdf",
+      "pages": 1
+    },
+    {
+      "file": "livrables\\preuves\\document-waybill.pdf",
+      "pages": 1
+    },
+    {
+      "file": "livrables\\preuves\\etat-indicateurs.pdf",
+      "pages": 3
+    }
+  ],
+  "text_bounds_ok": true
+}

@@ -1,0 +1,4858 @@
+
+ppt/slides/slide1.xml
+BD70 – 
+Conception et Administration des Bases de Données
+Alexandre Lombard – alexandre.lombard@utbm.fr
+
+ppt/slides/slide2.xml
+Objectifs de l’UV
+A la fin de cette UV, vous devez :
+Connaître les principes généraux des systèmes d'information (SI)
+Savoir ce qu'est une base de données relationnelles et l’administrer
+Pouvoir concevoir un système d'information pour répondre à une problématique
+Être capable d’interroger un SI pour en extraire des informations
+2
+
+ppt/slides/slide3.xml
+Objectifs de l’UV
+UV orientée pratique :
+L’accent est mis sur la conception, l'utilisation et la manipulation des systèmes d'information dans un 
+cadre pratique
+On s'attache à mettre en œuvre concrètement les outils techniques et méthodologiques permettant la réalisation logicielle d'un système d'information
+Cours avec exercices + application pratique en TP
+3
+
+ppt/slides/slide4.xml
+Plan de l’UV
+4
+
+ppt/slides/slide5.xml
+Modalités d'évaluation
+5
+
+ppt/slides/slide6.xml
+Projets
+Un sujet au choix parmi :
+Système de gestion d’agence de voyage
+Système de recommandation de recettes de cuisine
+Possibilité de suggérer un sujet personnel :
+Accord requis (si le sujet n’a pas été validé, le projet ne sera pas évalué)
+Envoyer un email à « alexandre.lombard@utbm.fr » avec la description du projet pour validation
+6
+
+ppt/slides/slide7.xml
+Projets
+Fonctions attendues (a minima) :
+Ajouter, éditer ou supprimer des données
+Rechercher des données
+Obtenir des statistiques sur les données, générer des rapports (interface d'administration)
+Interface graphique permettant de manipuler les différentes fonctions (formulaires)
+Projet à réaliser avec une base SQL (MySQL)
+7
+
+ppt/slides/slide8.xml
+Projets
+Projet par groupe de 2 ou 3
+Livrables au terme du projet :
+Ensemble des pages Web réalisées, script d’installation de la base de données
+Un rapport présentant le projet et le modèle de la base de données
+Soutenance de présentation du projet (10 minutes par projet)
+La qualité de la base de données, ainsi que la quantité et la qualité des fonctions implémentées impacteront la note
+8
+
+ppt/slides/slide9.xml
+Projets
+La base de donnée devra impérativement :
+Être normalisée
+Être optimisée
+Mettre en place des stratégies de mise à jour automatique des données
+Mettre en place des mécanismes d’historisation
+Afin d’évaluer la qualité de la base, elle devra être alimentée en quantité par des données factices
+9
+
+ppt/slides/slide10.xml
+Projet «
+ Agence 
+de voyage »
+10
+
+ppt/slides/slide11.xml
+Projet « Recommandation de recettes »
+11
+
+ppt/slides/slide12.xml
+Introduction aux systèmes d'information
+Qu’est-ce qu’un système d'information ?
+12
+
+ppt/slides/slide13.xml
+Définitions
+Le système d’information (SI) est l’ensemble des ressources de l’entreprise qui permettent la gestion de l’information
+Ensemble des ressources pour collecter, stocker, traiter et communiquer les informations
+13
+
+ppt/slides/slide14.xml
+Définitions
+Collecter
+ : c’est à partir de là que naît la donnée, qu’on acquière les informations provenant de l’environnement interne ou externe à l’entreprise.
+Stocker
+ : dès que l’information est acquise, le système d’information la conserve. Elle doit pouvoir être disponible et doit pouvoir être conservée dans le temps.
+Transformer/traiter
+ : cette phase permet de transformer l’information et choisir le support adapté pour traiter l’information. Ici ont construit de nouvelles informations en modifiant le fond ou la forme.
+Diffuser : 
+le SI transmet ensuite l’information dans son environnement interne ou externe.
+14
+
+ppt/slides/slide15.xml
+Définitions
+Le SI est un outil de communication entre les différents services d’une entreprise et a un rôle opérationnel et stratégique (notamment en simplifiant le pilotage de l'entreprise)
+Le système d'information comporte plusieurs composantes ou ressources (personnel, logiciels, matériels, données, processus, etc.) mais dans cette UV nous aborderons plus spécifiquement la dimension logicielle
+15
+
+ppt/slides/slide16.xml
+Définitions
+Le progiciel de gestion intégrée (PGI) ou Enterprise Resource Planning (ERP) est la principale composante logicielle du SI
+Il s'agit du logiciel qui permet de gérer l'ensemble des processus d'une entreprise en intégrant l'ensemble de ses fonctions, dont la gestion des ressources humaines, la gestion comptable et financière, l'aide à la décision, mais aussi la production, la vente, la distribution, l'approvisionnement et le commerce électronique
+Un ERP est adapté à une entreprise, leur conception nécessite une bonne intégration avec l'ensemble du système d'information d'une entreprise et une bonne compréhension des processus de celle-ci
+16
+
+ppt/slides/slide17.xml
+Définitions
+Un PGI permet le stockage des données de l'entreprise, via une 
+base de données
+Il inclut également l'ensemble des formulaires (permettant la saisie et la récupération des données), des requêtes, des états et des tableaux de bords (utiles au pilotage de l'entreprise)
+Il est également accompagné d'une documentation utilisateur
+17
+
+ppt/slides/slide18.xml
+Définitions
+La conception d'un ERP nécessite de stocker l'ensemble des données métiers utiles
+Ces données sont stockées dans des bases de données
+La conception d'une base de données nécessite de définir les entités et leurs relations
+18
+
+ppt/slides/slide19.xml
+Introduction aux bases de données
+Qu’est-ce qu’une base de données ?
+19
+
+ppt/slides/slide20.xml
+Introduction
+20
+
+ppt/slides/slide21.xml
+Introduction
+Exemples de cas d’utilisation d’une base données :
+Gérer le système d’information d’une entreprise : inventaire, factures, clients, employés
+Stockage des comptes utilisateurs et de leurs messages sur un site internet
+Planning et suivi d’un projet et des tâches associées
+Sauvegarder et exploiter des données issues de systèmes mécaniques ou électroniques
+21
+
+ppt/slides/slide22.xml
+Introduction
+La base de données hiérarchiques (
+obsolète
+)
+Les données sont organisées selon une structure arborescente : par exemple dans des dossiers avec des sous-dossiers, avec eux-mêmes des sous-dossiers, etc.
+La structure est vite limitée, exemple :
+Hiérarchie 
+Musique/Artiste/Album
+, mais comment récupérer rapidement la liste des albums correspondant à un style musical ?
+Changer la hiérarchie en Musique/Style/Artiste/Album, mais que se passe-t-il si un groupe a composé des albums dans plusieurs styles ? Et si plusieurs artistes ont participé à un même album ?
+22
+
+ppt/slides/slide23.xml
+Introduction
+Le classeur Excel (
+à éviter
+)
+Très utilisé en entreprise, car c’est un outil que maîtrisent les ingénieurs, le classeur Excel permet de stocker de grandes quantités de données et d’effectuer des recherches
+Recherche multicritère excessivement complexe
+Performances faibles face à une grande quantité de données et quantité de données limitée
+23
+
+ppt/slides/slide24.xml
+Introduction
+La 
+base de données relationnelle
+Données organisées via des 
+tables
+ représentant des 
+entités
+ et des 
+relations
+ entre ces entités
+Capable de gérer de grandes quantités de données
+Possibilité de formuler des requêtes complexes permettant d’extraire des données selon de nombreux critères
+Repose sur un Système de Gestion de Base de Données Relationnelle (SGBDR) : Microsoft Access, 
+MySQL
+, PostgreSQL, Oracle, SQLite, H2, etc.
+24
+
+ppt/slides/slide25.xml
+Introduction
+Orienté agrégats
+Données souvent représentées sous la forme d’associations clé/valeur (comme un dictionnaire)
+Gèrent un très gros volume de données (Big Data)
+Facilement distribuables sur plusieurs serveurs
+Mais pas de relations entre différentes entités
+Exemple : MongoDB (base orientée document)
+Orienté graphes
+Données représentées sous la forme d’un graphe
+Gèrent plus efficacement les relations entre les entités
+Capable de gérer des gros volumes de données
+Les agrégations et les opérations sont moins performantes (exemple : extraire d’une base la somme des factures)
+25
+
+ppt/slides/slide26.xml
+Principes des bases de données relationnelles
+Comment sont organisées les données dans les bases relationnelles ?
+26
+
+ppt/slides/slide27.xml
+Base de données relationnelles
+Le système de gestion de base de données relationnelle (SGBDR)
+Gère les bases de données
+Stocke les informations dans les bases de données
+Fournit une interface et un langage de requête pour accéder aux données de la base
+Peut fonctionner sur le schéma Client-Serveur (les données sont mises à disposition de plusieurs applications, exemple MySQL), en local (les données sont stockées pour une application, exemple SQLite), en mémoire (les données sont stockées dans la RAM, exemple H2)
+27
+
+ppt/slides/slide28.xml
+Base de données relationnelles
+Dans une base de données relationnelles, les données sont structurées dans 
+tables
+ composées de 
+colonnes
+28
+ID
+Nom
+Prénom
+Date de naissance
+1
+Jean
+Marc
+01/01/1980
+2
+Paul
+Lucas
+01/01/1990
+Une table correspond généralement à une 
+entité
+ du système à modéliser (un client, une facture, etc.)
+Une colonne correspond à un 
+attribut
+ de cette entité
+
+ppt/slides/slide29.xml
+Base de données relationnelles
+Une 
+table 
+est composée de 
+colonnes
+, chaque colonne correspond à une catégorie d'information
+Chaque 
+ligne 
+contient les informations, on parle d'
+enregistrements
+ ou d'entrées
+L'intersection d'une ligne et d'une colonne s'appelle un 
+champ
+29
+
+ppt/slides/slide30.xml
+Base de données relationnelles
+Chaque colonne correspond à une donnée différente (par exemple "nom", "adresse", etc.)
+Chaque colonne est associée à un type de donnée (nombre, date, chaîne de caractères, etc.)
+Un champ est la valeur d’une colonne pour un enregistrement donné
+Un champ peut être vide (NULL)
+30
+
+ppt/slides/slide31.xml
+Base de données relationnelles
+Types d’attributs usuels :
+Booléen (vrai/faux)
+Nombre
+Entier
+Chaîne de caractères, chaîne de caractères longue
+Date, Temps, Date/Temps
+Etc.
+31
+
+ppt/slides/slide32.xml
+Base de données relationnelles
+Jusqu'ici une base de données n'est pas très différente d'un tableur
+La particularité d'une base de données relationnelle est de pouvoir définir des relations entre les enregistrements de différentes tables
+Pour ce faire, un champ doit pouvoir être identifié de façon unique et doit pouvoir référencer un champ d'une autre table de façon unique
+32
+
+ppt/slides/slide33.xml
+Base de données relationnelles
+Une 
+clé 
+est un attribut ou un identifiant 
+unique 
+associé à un enregistrement (deux enregistrements ne peuvent pas avoir la même valeur pour la clé)
+Elle peut être composée d'une ou plusieurs colonnes
+Une clé doit être minimale
+Parmi les clés possibles (ou clés candidate), on définit une 
+clé primaire
+Le champ correspondant à la clé primaire ne peut pas être laissé vide
+33
+
+ppt/slides/slide34.xml
+Base de données relationnelles
+Exercice : quelles sont les clés candidates de la table suivante ?
+34
+immatriculation
+pays_immatriculation
+couleur
+nombre_places
+propriétaire
+prop_num_secu
+prop_num_voiture
+2983-AA
+France
+bleue
+5
+Luc
+1134212
+1
+1923-BD
+France
+verte
+7
+Lucia
+2021726
+1
+PLT-28-190
+Portugal
+bleue
+7
+Gaël
+1012612
+1
+2383-ZN
+France
+noire
+9
+Leïla
+2125312
+2
+1209-NQ
+France
+noire
+5
+Leïla
+2125312
+1
+2634-OS
+France
+bleue
+5
+Gaël
+1162732
+1
+
+ppt/slides/slide35.xml
+Base de données relationnelles
+(immatriculation, 
+pays_immatriculation
+) est une clé
+35
+immatriculation
+pays_immatriculation
+couleur
+nombre_places
+propriétaire
+prop_num_secu
+prop_num_voiture
+2983-AA
+France
+bleue
+5
+Luc
+1134212
+1
+1923-BD
+France
+verte
+7
+Lucia
+2021726
+1
+PLT-28-190
+Portugal
+bleue
+7
+Gaël
+1012612
+1
+2383-ZN
+France
+noire
+9
+Leïla
+2125312
+2
+1209-NQ
+France
+noire
+5
+Leïla
+2125312
+1
+2634-OS
+France
+bleue
+5
+Gaël
+1162732
+1
+
+ppt/slides/slide36.xml
+Base de données relationnelles
+(immatriculation, prop_num_secu) peut aussi être une clé
+36
+immatriculation
+pays_immatriculation
+couleur
+nombre_places
+propriétaire
+prop_num_secu
+prop_num_voiture
+2983-AA
+France
+bleue
+5
+Luc
+1134212
+1
+1923-BD
+France
+verte
+7
+Lucia
+2021726
+1
+PLT-28-190
+Portugal
+bleue
+7
+Gaël
+1012612
+1
+2383-ZN
+France
+noire
+9
+Leïla
+2125312
+2
+1209-NQ
+France
+noire
+5
+Leïla
+2125312
+1
+2634-OS
+France
+bleue
+5
+Gaël
+1162732
+1
+
+ppt/slides/slide37.xml
+Base de données relationnelles
+Remarque : on peut toujours créer une 
+clé artificielle 
+(nécessaire s’il n’y a pas de clé candidate naturelle)
+L’utilisation d’une clé artificielle est souvent préférée (pour éviter de se rendre compte trop tard qu’une clé n’en était pas vraiment une)
+37
+ID
+immatriculation
+pays_immatriculation
+couleur
+nombre_places
+propriétaire
+prop_num_secu
+prop_num_voiture
+1
+2983-AA
+France
+bleue
+5
+Luc
+1134212
+1
+2
+1923-BD
+France
+verte
+7
+Lucia
+2021726
+1
+3
+PLT-28-190
+Portugal
+bleue
+7
+Gaël
+1012612
+1
+4
+2383-ZN
+France
+noire
+9
+Leïla
+2125312
+2
+5
+1209-NQ
+France
+noire
+5
+Leïla
+2125312
+1
+6
+2634-OS
+France
+bleue
+5
+Gaël
+1162732
+1
+
+ppt/slides/slide38.xml
+Base de données relationnelles
+Par convention la clé primaire est soulignée dans la table
+38
+immatriculation
+pays_immatriculation
+couleur
+nombre_places
+propriétaire
+prop_num_secu
+prop_num_voiture
+2983-AA
+France
+bleue
+5
+Luc
+1134212
+1
+1923-BD
+France
+verte
+7
+Lucia
+2021726
+1
+PLT-28-190
+Portugal
+bleue
+7
+Gaël
+1012612
+1
+2383-ZN
+France
+noire
+9
+Leïla
+2125312
+2
+1209-NQ
+France
+noire
+5
+Leïla
+2125312
+1
+2634-OS
+France
+bleue
+5
+Gaël
+1162732
+1
+
+ppt/slides/slide39.xml
+Base de données relationnelles
+Les 
+clés étrangères
+ sont des références aux clés primaires d'autres tables
+Elles représentent une relation entre deux tables
+39
+ID
+Nom
+Prénom
+Date de naissance
+1
+Jean
+Marc
+01/01/1980
+2
+Paul
+Lucas
+01/01/1990
+ID
+Facture
+Prix
+ID_Client
+1
+Achat tablette
+250,00
+1
+2
+Achat PC
+500,00
+1
+3
+Achat téléphone
+600,00
+2
+Clé étrangère
+
+ppt/slides/slide40.xml
+Base de données relationnelles
+On lit ici : 
+« le client 1 (c’est-à-dire Jean MARC) possède deux factures 
+Achat tablette (1) 
+et 
+Achat PC (2)
+ »
+« le client 2 (c’est-à-dire Lucas PAUL) possède une facture 
+Achat téléphone (3)
+  »
+40
+ID
+Nom
+Prénom
+Date de naissance
+1
+Jean
+Marc
+01/01/1980
+2
+Paul
+Lucas
+01/01/1990
+ID
+Facture
+Prix
+ID_Client
+1
+Achat tablette
+250,00
+1
+2
+Achat PC
+500,00
+1
+3
+Achat téléphone
+600,00
+2
+
+ppt/slides/slide41.xml
+Base de données relationnelles
+Types de relation :
+1:1 : un élément de la table A est relié à un seul élément de la table B
+1:N : un élément de la table A peut se rapporter à plusieurs éléments de la table B (cf. exemple précédent)
+N:M : un élément de la table A peut se rapporter à plusieurs éléments de la table B et un élément de la table B peut se rapport à plusieurs éléments de la table A (nécessite l'utilisation d'une table de jointure)
+41
+
+ppt/slides/slide42.xml
+Base de données relationnelles
+Exemple de relation 1:1 : un compte est associé à un joueur (usage peu courant)
+Exemple de relation 1:N : plusieurs commandes sont associées à un client (usage très courant)
+Exemple de relation N:M : un étudiant est inscrit à plusieurs UV, une UV est associée à plusieurs étudiants
+42
+
+ppt/slides/slide43.xml
+Base de données relationnelles
+Quelques exercices :
+Ecrire la/les table(s) pour enregistrer les résultats de matchs de foots (équipes participantes, score de chaque équipe)
+Ecrire la/les tables(s) pour enregistrer des 
+posts
+ (titre et contenu) sur un blog et les commentaires 
+(contenu) 
+associés
+43
+
+ppt/slides/slide44.xml
+Base de données relationnelles
+Pour les résultats des matchs de foot, plusieurs approches
+Approche avec une seule table :
+44
+ID
+Equipe 1
+Equipe 2
+Score équipe 1
+Score équipe 2
+1
+Bourg Palette
+Jadielle
+1
+3
+2
+Azuria
+Lavanville
+1
+2
+3
+Lavanville
+Bourg Palette
+2
+1
+
+ppt/slides/slide45.xml
+Base de données relationnelles
+Approche avec deux tables :
+45
+ID
+Equipe 1
+Equipe 2
+Score équipe 1
+Score équipe 2
+1
+1
+4
+1
+3
+2
+2
+3
+1
+2
+3
+3
+1
+2
+1
+ID
+Nom Equipe
+1
+Bourg Palette
+2
+Azuria
+3
+Lavanville
+4
+Jadielle
+
+ppt/slides/slide46.xml
+Base de données relationnelles
+L’approche avec deux tables (et une relation) est préférable
+Evite la redondance des données (le nom de l’équipe n’est pas réécrit plusieurs fois)
+Permet de rajouter facilement des attributs (par exemple rajouter le nom du stade dans la table des équipes sans modifier la table des scores)
+46
+
+ppt/slides/slide47.xml
+Base de données relationnelles
+Pour les 
+posts
+ de blog avec commentaire :
+Deux entités : Post et Commentaire
+Relation 1:N entre les deux (1 post possède N commentaires)
+47
+ID
+Titre
+Contenu
+Date
+1
+Post 1
+Blabla
+…
+01/02/19
+2
+Post 2
+Bleble
+…
+05/03/19
+3
+Post 3
+Blibli
+…
+10/04/19
+4
+Post 4
+Bloblo
+…
+15/05/19
+ID
+Commentaire
+Date
+ID Post
+1
+First
+05/02/19
+1
+2
+C’est nul
+06/02/19
+1
+3
+Up
+06/02/19
+1
+4
+First
+06/03/19
+2
+
+ppt/slides/slide48.xml
+Base de données relationnelles
+Exercice : écrire les tables pour représenter la relation N:M suivante « Un étudiant suit une ou plusieurs UV, une UV est suivie par un ou plusieurs étudiants »
+48
+
+ppt/slides/slide49.xml
+Base de données relationnelles
+49
+ID_UV
+ID_Etudiant
+1
+1
+1
+2
+1
+3
+2
+1
+2
+3
+2
+4
+4
+1
+ID
+UV
+Description
+1
+IFD1
+Base de données
+2
+IFD2
+Arduino
+3
+LP24
+OOP
+4
+LO27
+Algorithmic
+ID
+Nom
+Date de naissance
+1
+JOHN
+05/05/1999
+2
+SMITH
+06/05/1999
+3
+BILL
+05/06/1999
+4
+JOE
+05/05/2001
+
+ppt/slides/slide50.xml
+Base de données relationnelles
+Exercice : un site internet d’e-commerce possède des clients, un client peut avoir un parrain qui est lui-même un client, écrire les tables nécessaires
+50
+
+ppt/slides/slide51.xml
+Base de données relationnelles
+51
+ID
+Nom
+Email
+ID_Parrain
+1
+JOHN
+john@gmail.com
+2
+SMITH
+smith@hotmail.com
+1
+3
+JOHNSON
+johnson@gmail.com
+1
+4
+JOE
+joe@live.com
+2
+
+ppt/slides/slide52.xml
+Base de données relationnelles
+Il s’agit d’une relation 1:N (un parrain peut avoir un ou plusieurs filleuls)
+Une table peut se référencer elle-même
+52
+
+ppt/slides/slide53.xml
+Architecture d’un SGBDR
+Quels sont les modules d’un système de gestion de base de données relationnelles ?
+53
+
+ppt/slides/slide54.xml
+Description
+Le SGBDR sert à stocker des données de façon relationnelle (cf. la section précédente)
+Il offre également des fonctionnalités de requêtage, d’optimisation, de gestion des transactions, de sécurité, de redondance, etc.
+Ces différentes fonctionnalités sont assurées par différents modules composants le SGBDR
+54
+
+ppt/slides/slide55.xml
+Gestionnaire de données
+Le 
+gestionnaire de données
+ assure la 
+persistence
+ des données
+Il gère également la structure de la base de données, la gestion de la cohérence et de l’intégrité de la BDD
+55
+
+ppt/slides/slide56.xml
+Analyseur de requêtes
+L’
+analyseur de requêtes
+ convertit une requête en langage informatique (généralement SQL) en une séquence d’instruction capable de répondre à la demande
+Analyse lexicale : découpage de la requête en 
+tokens
+Analyse syntaxique : vérification de la syntaxe
+Analyse sémantique : validation de la cohérence de la requête et de la structure BDD
+Vérification des autorisations
+Construction du plan d’exécution
+56
+
+ppt/slides/slide57.xml
+Optimiseur de requêtes
+L’
+optimiseur de requêtes 
+permet d’améliorer la rapidité d’exécution d’une requête, il repose sur les mécanismes suivants :
+Sélection parmi les plans d’exécution possibles
+Ré-écriture
+ de requête
+Utilisation d’index
+Sélection d’algorithme de jointure
+Gestion de la concurrence (limitation du blocage des ressources)
+57
+
+ppt/slides/slide58.xml
+Plan d’exécution
+Le 
+plan d’exécution
+ issu de l’analyseur et de l’optimiseur de requête décrit comment les données seront accédées, notamment : 
+Dans quel ordre les données seront récupérées (si elles proviennent de plusieurs tables)
+Comment les liens entre les données seront réalisés, sur la base de quels index
+La plupart des SGBDR proposent des fonctionnalités de visualisation du plan d’exécution, cela permet au développeur d’identifier d’éventuels problèmes d’optimisation des requêtes
+58
+
+ppt/slides/slide59.xml
+Gestionnaire de transactions
+Une 
+transaction
+ est une unité d’exécution composée d’une ou plusieurs opérations d’accès à la BDD (consultation ou mise à jour) devant être exécutées solidairement (soit toutes les requêtes de la transaction sont exécutées, soit elles sont toutes annulées) – elles sont notamment utilisées pour gérer les accès concurrent à la base
+Le 
+gestionnaire de transactions 
+intervient après l’optimiseur de requête pour exécuter les requêtes sous la forme d’une transaction
+59
+
+ppt/slides/slide60.xml
+Transaction
+Une 
+transaction
+ est une unité d’exécution composée d’une ou plusieurs opérations d’accès à la BDD (consultation ou mise à jour) devant être exécutées solidairement/atomiquement (soit toutes les requêtes de la transaction sont exécutées, soit elles sont toutes annulées) – elles sont notamment utilisées pour gérer les accès concurrent à la base
+60
+
+ppt/slides/slide61.xml
+Exécuteur
+L’
+exécuteur
+ réalise le plan d’exécution, il contrôle notamment l’atomicité des transactions et gère les accès concurrents
+61
+
+ppt/slides/slide62.xml
+Langage SQL
+Comment interroger et manipuler une base de données ?
+62
+
+ppt/slides/slide63.xml
+Langage SQL
+63
+
+ppt/slides/slide64.xml
+Langage SQL
+64
+
+ppt/slides/slide65.xml
+Langage SQL
+Ce cours n’est pas exhaustif sur le langage SQL :
+Nombreuses normes différentes : on présente ici ce qui est commun à l’ensemble
+Plus de 800 mots réservés [1] selon les normes
+Au besoin, consulter la référence de la base concernée
+[1] https://www.drupal.org/docs/develop/coding-standards/list-of-sql-reserved-words
+65
+
+ppt/slides/slide66.xml
+Data Manipulation Language
+Manipuler
+ les 
+données
+ de la base
+66
+
+ppt/slides/slide67.xml
+Data Manipulation Language (DML)
+67
+
+ppt/slides/slide68.xml
+Langage SQL (SELECT)
+Instruction 
+SELECT
+ : 3 parties principales :
+clause (obligatoire) 
+SELECT 
+: précise les valeurs qui constituent chaque ligne du résultat
+clause 
+FROM 
+: indique les tables desquelles le résultat tire ses valeurs  
+clause 
+WHERE
+ : donne la condition de sélection que doivent satisfaire les lignes qui fournissent le résultat
+SELECT  schéma FROM table WHERE condition ;
+68
+
+ppt/slides/slide69.xml
+Langage SQL (SELECT)
+La clause 
+WHERE 
+est une condition booléenne
+La plupart des opérateurs de comparaison classique sont utilisables : =, <>, <, >, <=, >=
+Il est possible de chaîner les conditions avec les opérateurs 
+AND
+ et 
+OR
+SELECT * FROM 
+clients
+ WHERE 
+nom
+ = ‘
+Martin
+’ AND 
+prenom
+ = ‘
+Jean
+’
+En plus des opérateurs de comparaison usuels d’autres sont disponibles :
+SELECT
+ * 
+FROM
+ clients 
+WHERE
+ nom 
+LIKE
+ ‘Mar%’
+SELECT
+ * 
+FROM
+ clients 
+WHERE
+ nom 
+BETWEEN
+ ‘Dupont’ 
+AND
+ ‘Martin’
+69
+
+ppt/slides/slide70.xml
+Langage SQL (SELECT)
+Exemples
+Récupérer le nom et le prénom des employés du service RH
+SELECT
+ nom, 
+prenom
+ 
+FROM
+ 
+employe
+ 
+WHERE
+ service = ‘RH’;
+Récupérer toutes les infos des albums du genre 
+Metal
+ :
+SELECT *
+ 
+FROM
+ albums 
+WHERE
+ genre = ‘
+Metal
+’;
+Récupérer tous les étudiants dont le nom est Martin et dont l’année de naissance est entre 1990 et 1999 :
+SELECT
+ * 
+FROM
+ 
+etudiants
+ 
+WHERE
+ nom = ‘Martin’ 
+AND
+ 
+annee_naissance
+ 
+BETWEEN
+ 1990 
+AND
+ 1999
+70
+
+ppt/slides/slide71.xml
+Langage SQL (SELECT)
+Application :
+71
+ID
+Nom
+Prénom
+Date de naissance
+Service
+1
+Smith
+John
+01/02/1995
+RH
+2
+Doe
+John
+01/03/1994
+RH
+3
+Daniels
+Jack
+05/04/2003
+Informatique
+4
+Neige
+Jean
+01/01/2001
+Informatique
+SELECT
+ nom, 
+prenom
+ 
+FROM
+ 
+employe
+ 
+WHERE
+ service = ‘RH’;
+nom
+prenom
+Smith
+John
+Doe
+John
+
+ppt/slides/slide72.xml
+Langage SQL (SELECT)
+SELECT DISTINCT
+ permet de récupérer des valeurs distinctes (suppression des doublons dans les résultats)
+Exemple :
+SELECT DISTINCT
+ nom 
+FROM
+ 
+employe
+72
+
+ppt/slides/slide73.xml
+Langage SQL (SELECT)
+LIKE 
+permet de faire des tests sur des chaînes de caractères
+Exemple (retourne les employés dont le nom commence par « LO ») :
+SELECT
+ * 
+FROM
+ 
+employees
+ 
+WHERE
+ nom 
+LIKE
+ ‘LO%’
+Avec 
+LIKE
+, le symbole % signifie « n’importe quelle succession de caractères »
+Le symbole _ signifie « n’importe quel caractère, une seule fois »
+73
+
+ppt/slides/slide74.xml
+Langage SQL (SELECT)
+ORDER BY 
+permet de trier les résultats
+Exemple (retourne les employés triés par nom décroissant) :
+SELECT
+ * 
+FROM
+ 
+employees
+ 
+ORDER BY
+ nom 
+DESC
+ASC 
+(ou rien du tout) pour trier par ordre croissant
+, DESC 
+pour trier par ordre décroissant
+74
+
+ppt/slides/slide75.xml
+Langage SQL (SELECT)
+Opérateurs d'agrégation : permettent d'appliquer des opérations sur l'ensemble des résultats retournés par une requête de sélection
+Principaux opérateurs :
+COUNT(A) ou COUNT(*) : nombre de valeurs ou n-uplets,
+SUM(A) : somme des valeurs,
+MAX(A) : valeur maximale,
+MIN(A) : valeur minimale,
+AVG(A) : moyenne des valeurs 
+75
+
+ppt/slides/slide76.xml
+Langage SQL (SELECT)
+Exemples de requête avec opérateur d'agrégation :
+SELECT COUNT
+(*) 
+FROM 
+factures : Retourne le nombre total d'enregistrements de la table factures
+SELECT SUM
+(prix) 
+FROM
+ factures : Retourne la somme de tous les prix de toutes les factures
+SELECT AVG
+(note) 
+FROM 
+etudiants
+ 
+WHERE 
+note >= 10 : retourne la moyenne des notes des étudiants ayant une note supérieure à 10
+76
+
+ppt/slides/slide77.xml
+Langage SQL (SELECT)
+77
+ID
+Nom
+Prénom
+Note
+1
+Smith
+John
+15
+2
+Doe
+John
+5
+3
+Daniels
+Jack
+10
+4
+Neige
+Jean
+20
+SELECT
+ AVG(note) 
+AS
+ moyenne 
+FROM
+ 
+etudiants
+;
+moyenne
+10
+Facultatif : permet de préciser le nom à donner au résultat de l’opérateur
+
+ppt/slides/slide78.xml
+Langage SQL (SELECT)
+Possibilité de grouper des lignes dans les résultats avec 
+GROUP BY
+SELECT
+ <liste de colonnes> 
+FROM
+ <liste de tables> [
+WHERE
+ <critère de jointure> 
+AND
+ <critère de sélection>] [
+GROUP BY
+ <attributs de partitionnement>] [
+HAVING
+ <critère de restriction>]
+Exemple : 
+SELECT 
+nom, 
+AVG
+(note) 
+FROM 
+etudiants
+ 
+GROUP BY 
+nom 
+HAVING
+ 
+AVG
+(note) > 10
+78
+
+ppt/slides/slide79.xml
+Langage SQL (SELECT)
+Il est possible de remplacer :
+SELECT 
+nom, 
+AVG
+(note) 
+FROM 
+etudiants
+ 
+GROUP BY 
+nom 
+HAVING
+ 
+AVG
+(note) > 10
+Par :
+SELECT 
+nom, 
+AVG
+(note) AS moyenne 
+FROM 
+etudiants
+ 
+GROUP BY 
+nom 
+HAVING
+ 
+moyenne
+ > 10
+La seconde approche est préférable
+79
+
+ppt/slides/slide80.xml
+Langage SQL (SELECT)
+80
+ID
+Nom
+Prénom
+Note
+1
+Smith
+John
+15
+2
+Smith
+John
+5
+3
+Neige
+Jean
+10
+4
+Neige
+Jean
+20
+SELECT 
+nom, 
+AVG
+(note) 
+AS
+ moyenne 
+FROM 
+etudiants
+ 
+GROUP BY 
+nom 
+HAVING
+ moyenne > 10
+nom
+moyenne
+Neige
+15
+
+ppt/slides/slide81.xml
+Langage SQL (SELECT)
+Sous-requêtes SQL : possibilité d’utiliser le résultat d’une requête SELECT dans une autre requête SELECT
+Cas d’applications :
+Sélection d’enregistrements dans un résultat de requête : SELECT nom, 
+prenom
+ FROM (SELECT * FROM 
+employes
+)
+Sélection d’enregistrements selon un critère défini par une requête : SELECT nom, 
+prenom
+ FROM 
+etudiants
+ WHERE note >= (SELECT AVG(note) FROM 
+etudiants
+)
+81
+
+ppt/slides/slide82.xml
+Langage SQL (SELECT)
+Les cas d’applications d’une sous-requête dépendent de la nature des résultats renvoyés
+Une sous-requête peut renvoyer :
+Une seule valeur
+Une liste de valeur
+Une table
+Par exemple, la requête 
+SELECT nom, 
+prenom
+ FROM 
+etudiants
+ WHERE note >= (SELECT AVG(note) FROM 
+etudiants
+) 
+n’est valide que parce que la sous-requête ne renvoie qu’un seul résultat : on ne peut pas comparer « note » avec une liste ou une table
+82
+
+ppt/slides/slide83.xml
+Langage SQL (INSERT)
+Requête d’ajout : permet d’insérer des enregistrements dans une table
+Insérer une ligne en spécifiant toutes les colonnes :
+INSERT INTO 
+table 
+VALUES
+ (‘valeur 1’, ‘valeur 2’, …)
+Remarque : toutes les colonnes doivent être remplies dans le bon ordre
+83
+
+ppt/slides/slide84.xml
+Langage SQL (INSERT)
+Insérer une ligne en spécifiant uniquement les colonnes souhaitées :
+INSERT INTO 
+table (nom_colonne_1, nom_colonne_2, …) 
+VALUES
+ (‘valeur 1’, ‘valeur 2’, …)
+Remarque : certaines colonnes peuvent ne pas être renseignées, les valeurs seront associées à la colonne correspondante (ici ‘valeur 1’ sera placé dans la colonne dont le nom est ‘nom_colonne_1’)
+84
+
+ppt/slides/slide85.xml
+Langage SQL (INSERT)
+Insérer plusieurs lignes à la fois :
+INSERT INTO 
+client (
+prenom
+, nom, ville, 
+age
+)
+VALUES
+ 
+('Rébecca', 'Armand', 'Saint-Didier-des-Bois', 24),
+ ('Aimée', 'Hebert', 'Marigny-le-Châtel', 36),
+ ('Marielle', 'Ribeiro', 'Maillères', 27),
+ ('Hilaire', 'Savary', 'Conie-Molitard', 58);
+Remarque : les champs textes doivent être entre 
+quotes
+ (ou guillemets simples), mais pas les nombres
+85
+
+ppt/slides/slide86.xml
+Langage SQL (UPDATE)
+Requête de mise à jour : modifier les champs d’une ligne existante
+Syntaxe :
+UPDATE
+ table
+SET
+ colonne_1 = 'valeur 1', colonne_2 = 'valeur 2', colonne_3 = 'valeur 3'
+WHERE
+ condition
+Exemple :
+UPDATE
+ client
+SET
+ rue = '49 Rue Ameline',
+  ville = 'Saint-Eustache-la-Forêt',
+  
+code_postal
+ = '76210'
+WHERE
+ id = 2
+86
+
+ppt/slides/slide87.xml
+Langage SQL (UPDATE)
+Remarque : s’il n’y a pas de condition, la colonne sera mise à jour pour toute la table
+Exemple :
+UPDATE
+ client 
+SET
+ pays = 'FRANCE'
+87
+
+ppt/slides/slide88.xml
+Langage SQL (DELETE)
+Requête de suppression : supprimer une ou plusieurs lignes existantes
+Syntaxe :
+DELETE FROM 
+`table` 
+WHERE
+ condition
+Attention : 
+s’il
+ 
+n’y
+ a pas de condition WHERE, 
+toutes
+ les 
+lignes
+ de la table 
+seront
+ 
+supprimées
+88
+
+ppt/slides/slide89.xml
+Langage SQL (fonctions)
+L’ensemble des SGBDR propose diverses fonctions utilisables au sein des requêtes
+Nous avons déjà vu les fonctions d’agrégation qui composent un résultat à partir d’une liste de valeurs
+Mais il existe aussi une large de gamme de fonctions pouvant être incluse dans une requête : par exemple 
+GETDATE
+() pour obtenir la date du jour, 
+NOW
+() pour l’instant présent, 
+LENGTH
+(
+str
+) connaître la longueur d’une chaîne de caractères, 
+UPPER
+(
+str
+) pour convertir une chaîne de caractères en majuscules, etc.
+Beaucoup de ces fonctions sont spécifiques à une SGBDR, il faut consulter la documentation du SGBDR utilisé pour savoir comment manipuler ces fonctions
+89
+
+ppt/slides/slide90.xml
+Langage SQL (fonctions)
+Exemple :
+SELECT
+ 
+UPPER
+(nom), 
+LOWER
+(
+prenom
+) 
+FROM
+ personnes 
+WHERE
+ 
+MONTH
+(
+date_naissance
+) = 
+MONTH
+(
+NOW
+()) 
+AND
+ 
+DAY
+(
+date_naissance
+) = 
+DAY
+(
+NOW
+())
+90
+
+ppt/slides/slide91.xml
+Langage SQL (fonctions)
+Références pour les fonctions SQL :
+MS Access : https://www.w3schools.com/sql/sql_ref_msaccess.asp
+MySQL : https://www.w3schools.com/sql/sql_ref_mysql.asp
+91
+
+ppt/slides/slide92.xml
+Langage SQL (jointures)
+92
+
+ppt/slides/slide93.xml
+Langage SQL (jointures)
+Principaux types de jointures :
+INNER JOIN
+ (ou jointure interne, intersection de deux tables)
+LEFT JOIN
+ (éléments de la table de gauche même s’il n’y a pas de valeur associée dans la table de droite)
+RIGHT JOIN
+ (éléments de la table de droit même s’il n’y a pas de valeur associée dans la table de gauche)
+93
+
+ppt/slides/slide94.xml
+Langage SQL (jointures)
+Exemple : deux tables Client et Facture, la table Facture possède une clé étrangère 
+Client_ID
+ faisant référence à la table Client ; on veut récupérer l’ensemble des clients et les factures associées
+SELECT
+ * 
+FROM
+ Client 
+INNER JOIN
+ Facture 
+ON
+ Client.ID = 
+Facture.Client_ID
+Remarque : Pour désigner une colonne d’une table en particulier, on utilise la syntaxe 
+Table.Colonne
+94
+
+ppt/slides/slide95.xml
+Langage SQL (jointures)
+Application de la requête :
+95
+ID
+Nom
+Email
+1
+JOHN
+john@gmail.com
+2
+SMITH
+smith@hotmail.com
+3
+JOHNSON
+johnson@gmail.com
+ID
+Facture
+Prix
+Client_ID
+1
+TV
+500
+1
+2
+Tablette
+400
+1
+3
+TV
+300
+2
+4
+Téléphone
+600
+1
+Client.ID
+Nom
+Email
+Facture.ID
+Facture
+Prix
+Client_ID
+1
+JOHN
+john@gmail.com
+1
+TV
+500
+1
+1
+JOHN
+john@gmail.com
+2
+Tablette
+400
+1
+1
+JOHN
+john@gmail.com
+4
+Téléphone
+600
+1
+2
+SMITH
+smith@hotmail.com
+3
+TV
+300
+2
+
+ppt/slides/slide96.xml
+Langage SQL (jointures)
+Cas d’application d’une jointure : on veut récupérer la somme totale des factures de chaque client, mais le montant des factures et le nom des clients sont dans deux tables différentes
+Requête :
+SELECT
+ Client.ID, Nom, 
+SUM
+(Prix) 
+FROM
+ Client 
+INNER JOIN
+ Facture 
+ON
+ Client.ID = 
+Facture.Client_ID
+ 
+GROUP BY
+ Client.ID
+Résultat (cf. exemple précédent) :
+96
+Client.ID
+Nom
+SUM(Prix)
+1
+JOHN
+1500
+2
+SMITH
+300
+
+ppt/slides/slide97.xml
+Langage SQL (jointures)
+97
+
+ppt/slides/slide98.xml
+Langage SQL (jointures)
+Autres jointures :
+CROSS JOIN
+ : Produit cartésien des deux tables (nombre de résultats égal à N x M où N est le nombre de lignes de la 1
+ère
+ table et M le nombre de lignes de la 2
+nde
+ table)
+FULL JOIN
+ : Union des deux tables
+98
+
+ppt/slides/slide99.xml
+Exercices DML
+Pour chacun des énoncés suivants, écrire les requêtes SQL correspondantes
+99
+
+ppt/slides/slide100.xml
+Exercices DML
+Le nom de la table est « étudiants »
+Récupérer les noms et prénoms des étudiants de la table
+Compter le nombre d’étudiants de la table
+Récupérer l’ensemble des étudiants qui s’appellent Thomas (prénom)
+Compter le nombre de Thomas (prénom)
+Calculer l’âge moyen des étudiants
+100
+ID
+Nom
+Prénom
+DateDeNaissance
+
+ppt/slides/slide101.xml
+Exercices DML
+SELECT
+ Nom, Prénom 
+FROM
+ Étudiants
+SELECT
+ 
+COUNT
+(*) 
+FROM
+ Étudiants
+SELECT
+ * 
+FROM
+ Étudiants 
+WHERE
+ Prénom = ‘Thomas’
+SELECT
+ 
+COUNT
+(*) 
+FROM
+ Étudiants 
+WHERE
+ Prénom = ‘Thomas’
+SELECT
+ 
+AVG
+(
+YEAR
+(
+DATEDIFF
+(
+NOW
+(), 
+DateDeNaissance
+))) 
+FROM
+ Étudiants
+101
+ID
+Nom
+Prénom
+DateDeNaissance
+Les fonctions sur les dates seront étudiées en TD
+
+ppt/slides/slide102.xml
+Exercices DML
+Récupérer tous les titres des films réalisés par Michael Bay
+Récupérer le nom de tous les réalisateurs dont la note moyenne des films est supérieur à 10
+102
+ID
+TitreFilm
+Note
+ID_Réalisateur
+ID
+Nom
+Prénom
+Table Film
+Table Réalisateur
+
+ppt/slides/slide103.xml
+Exercices DML
+SELECT
+ 
+TitreFilm
+ 
+FROM
+ Film 
+INNER JOIN 
+Réalisateur 
+ON
+ 
+Film.ID_Réalisateur
+ = Réalisateur.ID 
+WHERE
+ Nom = ‘BAY’ 
+AND
+ Prénom = ‘MICKAEL’
+SELECT
+ Nom, 
+AVG
+(Note) 
+FROM
+ Film 
+INNER JOIN 
+Réalisateur 
+ON
+ 
+Film.ID_Réalisateur
+ = Réalisateur.ID 
+GROUP BY 
+Réalisateur.ID 
+HAVING
+ 
+AVG
+(Note) > 10
+103
+ID
+TitreFilm
+Note
+ID_Réalisateur
+ID
+Nom
+Prénom
+Table Film
+Table Réalisateur
+
+ppt/slides/slide104.xml
+Data Definition Language
+Manipuler
+ la structure de la base de 
+données
+104
+
+ppt/slides/slide105.xml
+Data 
+Definition
+ 
+Language
+ (DDL)
+105
+
+ppt/slides/slide106.xml
+Data 
+Definition
+ 
+Language
+ (DDL)
+Remarque : la plupart des instructions permettant du DDL dépendent du SGBD
+Les exemples donnés ici sont notamment valides pour MySQL et 
+MariaDB
+106
+
+ppt/slides/slide107.xml
+Langage SQL (CREATE)
+107
+
+ppt/slides/slide108.xml
+Langage SQL (ALTER)
+ALTER
+ permet de rajouter, supprimer des colonnes, de modifier leur type ou de les renommer
+Ajout de colonne : 
+ALTER TABLE 
+nom_table
+ 
+ADD
+ 
+nom_colonne
+ 
+type_donnees
+;
+Suppression : 
+ALTER TABLE 
+nom_table
+ 
+DROP COLUMN
+ 
+nom_colonne
+;
+Modification : 
+ALTER TABLE
+ 
+nom_table
+ 
+ALTER COLUMN
+ 
+nom_colonne
+ 
+nouveau_type
+; 
+Renommer
+ : 
+ALTER TABLE 
+employe
+ 
+RENAME COLUMN
+ 
+salaire
+ 
+TO
+ 
+montant_salaire
+;
+Renommer
+ table : 
+ALTER TABLE 
+employe
+ 
+RENAME TO
+ 
+salarie
+;
+108
+
+ppt/slides/slide109.xml
+Langage SQL (DROP)
+DROP permet de supprimer des éléments
+Supprimer une table : 
+DROP TABLE
+ 
+nom_table
+ 
+[IF EXISTS];
+109
+
+ppt/slides/slide110.xml
+Data 
+Definition
+ 
+Language
+ (DDL)
+110
+
+ppt/slides/slide111.xml
+Pour manipuler les bases
+Création : 
+CREATE DATABASE 
+nom_base
+ 
+[IF NOT EXISTS] 
+; 
+Suppression : 
+DROP DATABASE
+ 
+nom_base
+ 
+[IF EXISTS
+]
+; 
+Activation de la base de donnée : 
+USE 
+nom_base
+;
+111
+
+ppt/slides/slide112.xml
+Création de vues
+La création de vues permet de définir des tables virtuelles (non stockées)
+Une vue correspond à une requête et est calculée lors de son affichage
+Elles peuvent constituer une « sauvegarde » de requêtes
+CREATE VIEW
+ 
+ma_vue
+ 
+AS
+ 
+ma_requete
+;
+CREATE VIEW
+ 
+old_people
+ 
+AS
+ SELECT * FROM people WHERE 
+age
+ > 60 ;
+112
+
+ppt/slides/slide113.xml
+Création de tables temporaires
+La création de tables temporaires permet de stocker des données pendant une durée limitée
+CREATE TEMPORARY TABLE 
+schéma de table 
+AS
+ requête
+;
+113
+
+ppt/slides/slide114.xml
+Contraintes d’intégrité
+Empêcher
+ les 
+erreurs
+ de 
+saisie
+ dans 
+une
+ base
+114
+
+ppt/slides/slide115.xml
+Contraintes d’intégrité
+115
+
+ppt/slides/slide116.xml
+Contraintes d’intégrité
+116
+
+ppt/slides/slide117.xml
+Contraintes d’intégrité
+117
+
+ppt/slides/slide118.xml
+Contraintes d’intégrité	
+Syntaxe SQL : 
+CREATE TABLE 
+nom_table
+ (
+ nom_colonne1 domaine1 <contraintes colonne1>,
+ nom_colonne2 domaine2 <contraintes colonne2>,
+    ...
+ 
+nom_colonneN
+ 
+domaineN
+ <contraintes 
+colonneN
+>,
+    <contraintes de table>
+);
+118
+
+ppt/slides/slide119.xml
+Contraintes d’intégrité	
+Exemple : 
+CREATE TABLE 
+Personne (
+    ID CHAR(13) PRIMARY KEY,
+    Nom VARCHAR(25) NOT NULL,
+  
+Prenom
+ VARCHAR(25) NOT NULL,
+  Age INTEGER(3) 
+CHECK
+ (Age 
+BETWEEN
+ 18 
+AND
+ 65),
+  Mariage CHAR(13) 
+REFERENCES
+ Personne(ID),
+  
+UNIQUE
+ (Nom, 
+Prenom
+)
+);
+119
+
+ppt/slides/slide120.xml
+Contraintes d’intégrité	
+Il est possible de préciser des conditions de suppression dans la contrainte d’intégrité pour gérer plus simplement la base de données : il s’agit de supprimer les références lorsque l’objet référencé est supprimé
+On rajoute « ON DELETE CASCADE » à la contrainte de clé étrangère
+120
+
+ppt/slides/slide121.xml
+Contraintes d’intégrité	
+Idem, on peut mettre à jour automatiquement les références en cas de mise à jour de la clé primaire
+On rajoute « ON UPDATE CASCADE » à la contrainte de clé étrangère
+121
+
+ppt/slides/slide122.xml
+Contraintes d’intégrité	
+Exemple (ajout d’une clé étrangère à une table avec la propagation de la suppression) :
+ALTER TABLE factures ADD  CONSTRAINT 
+FK_factures_client
+ FOREIGN KEY(
+client_id
+)
+REFERENCES client (
+client_id
+) ON DELETE CASCADE 
+Lorsqu’un
+ client sera 
+supprimé
+, les factures 
+associées
+ 
+seront
+ 
+également
+ 
+supprimées
+Avertissement
+ : 
+supprimer
+ la table client engender la suppression de 
+toutes
+ les factures
+122
+
+ppt/slides/slide123.xml
+Fonctions
+ 
+avancées
+Index, 
+optimisations
+ et 
+autres
+123
+
+ppt/slides/slide124.xml
+Index
+Dans une base de données présentant de nombreux enregistrements, la récupération d’un élément en particulier peut prendre longtemps
+En théorie, si on veut récupérer l’élément dont l’ID est X dans une table contenant 1M d’enregistrements, on devrait effectuer en moyenne 500000 comparaisons pour trouver l’enregistrement cherché (complexité en O(n))
+L’utilisation d’un 
+index
+ permet de grandement accélérer le processus
+124
+
+ppt/slides/slide125.xml
+Index
+Un index consiste en une sous-table ordonnée faisant le lien entre une colonne donnée et la clé primaire d’une table
+La clé primaire peut être considérée comme un index
+En utilisant des procédés comme la recherche dichotomique ou l’utilisation d’arbres binaires de recherches, la complexité de recherche d’un élément passe en O(log n) – en gros 15 opérations en moyenne pour trouver un élément dans une liste de 1M d’enregistrements
+125
+
+ppt/slides/slide126.xml
+Index
+Cas d’utilisation :
+L’ID est clé primaire donc récupérer un élément par son ID est rapide (la clé primaire est indexée)
+Mais la date de naissance ne l’est pas a priori : récupérer, par exemple, toutes les personnes nées après 1991 demandera de tester chaque élément
+126
+id
+nom
+date_naissance
+1
+Smith
+01/01/1990
+2
+Doe
+02/02/1991
+3
+John
+03/03/1992
+
+ppt/slides/slide127.xml
+Index
+Création d’un index :
+CREATE
+ 
+INDEX
+ `
+nom_index
+` 
+ON
+ `table` (`colonne`)
+Si on reprend l’exemple précédent, la création d’un index sur la colonne 
+date_naissance
+ 
+permettra de faire des récupérations beaucoup plus rapides par rapport à cet attribut
+L’utilisation d’un index rend également plus rapide les fonctions d’agrégation (le parcours de l’ensemble des valeurs indexées est plus rapide que le parcours de la même valeur non-indexée)
+127
+
+ppt/slides/slide128.xml
+Index
+Suppression d’un index :
+ALTER TABLE 
+`table` 
+DROP INDEX
+ `
+nom_index
+`
+Cette syntaxe (non normalisée – compatible MySQL) permet de supprimer un index existant
+128
+
+ppt/slides/slide129.xml
+Index
+Pourquoi ne pas mettre des indexes partout ?
+Un index possède un 
+coût en espace mémoire 
+(ça correspond virtuellement à la création d’une table supplémentaire contenant autant d’enregistrements que la table indexée)
+Un index introduit un 
+coût lors de l’insertion et la mise à jour des données 
+: la mise à jour de la table d’origine implique une mise à jour de tous les indexes associés
+Par défaut : les clés primaires et étrangères sont des index ; pour le reste, il faudra utiliser les index avec parcimonie pour optimiser les requêtes fréquentes
+129
+
+ppt/slides/slide130.xml
+Full-
+text
+ Index
+MySQL propose la fonctionnalité « full-
+text
+ index » pour indexer le contenu de textes, afin d’optimiser fortement la recherche d’informations dans des textes
+Il suffit de préciser la contrainte de table « FULLTEXT 
+idx
+ (
+column
+) » lors de sa création
+Les requêtes utilisant MATCH sur cette colonne seront optimisées
+130
+
+ppt/slides/slide131.xml
+Partitionnement
+Le partitionnement (horizontal) est un mécanisme proposé par les bases de données pour leur optimisation
+Il consiste à « diviser » une table en plusieurs à partir d’une clé de partitionnement (une colonne de la table) ; la division se faisant à partir des valeurs de cette clé
+Par exemple : partitionner une table par dates (avec, par exemple, une partition par mois ou par année)
+131
+
+ppt/slides/slide132.xml
+Partitionnement
+Les techniques de partitionnement sont :
+Par intervalles : les valeurs sont divisées selon des intervalles continus
+Par liste : les valeurs sont divisées selon leur valeur parmi une liste définie
+Par 
+hashage
+ : les valeurs sont divisées en un nombre de partitions défini, puis réparties de façon pseudo-aléatoire
+Composite : composition de plusieurs techniques de partitionnement
+132
+
+ppt/slides/slide133.xml
+Partitionnement
+133
+Le 
+partitionnement
+ 
+peut
+ se 
+définir
+ à la 
+création
+ (CREATE TABLE) 
+ou
+ plus tard (ALTER TABLE)
+Il 
+faut
+ 
+décrire
+ :
+La 
+méthode
+ de 
+partionnement
+La 
+clé
+ de 
+partitionnement
+Le 
+paramétrage
+ des partitions
+
+ppt/slides/slide134.xml
+Partitionnement
+Le partitionnement peut optimiser certaines requêtes (pour l’exemple précédent, celles qui manipulent la date)
+Les opérations de modifications des partitions se font via des mots clés dédiés :
+ADD PARTITION
+REORGANIZE PARTITION
+DROP PARTITION
+134
+
+ppt/slides/slide135.xml
+Automatisation
+ de la base
+Fonctions
+, procedures 
+stockées
+,
+déclencheurs
+, 
+évènements
+135
+
+ppt/slides/slide136.xml
+Typologie des fonctions
+MySQL 
+est
+ capable 
+d’executer
+ de 
+façon
+ 
+automatique
+ 
+certains
+ 
+traitement
+, on 
+en
+ distingue trois categories :
+Les 
+fonctions
+ (FUNCTION) et 
+procédures
+ (PROCEDURE) 
+stockées
+ 
+: 
+invocables
+ 
+depuis
+ des 
+commandes
+ SQL
+Les 
+déclencheurs
+ (triggers) 
+: 
+programmes
+ qui se 
+déclenchent
+ 
+avant
+ 
+ou
+ après un 
+évènement
+ 
+concernant
+ 
+une
+ table
+Les 
+évènements
+ : 
+programmes
+ 
+éxecutés
+ 
+périodiquement
+136
+
+ppt/slides/slide137.xml
+Fonctions personnalisées
+Création
+ 
+d’une
+ 
+fonction
+ avec MySQL (
+syntaxe
+ “inline”)
+CREATE FUNCTION 
+`HelloWorld`() 
+RETURNS
+ 
+VARCHAR
+(20) 
+RETURN
+ 'Hello World!’;
+Utilisation
+ de la function :
+SELECT
+ HelloWorld();
+137
+
+ppt/slides/slide138.xml
+Fonctions personnalisées
+Création
+ 
+d’une
+ 
+fonction
+ avec MySQL (
+syntaxe
+ “bloc”)
+DELIMITER $$
+CREATE FUNCTION 
+`HelloWorld`()
+RETURNS
+ 
+VARCHAR
+(20)
+BEGIN
+	RETURN
+ 'Hello World!’;
+END $$
+DELIMITER
+ ;
+Le 
+changement
+ de 
+délimiteur
+ 
+permet
+ à MySQL de ne pas 
+considérer
+ le ; qui suit RETURN ‘Hello World’ 
+comme
+ 
+étant
+ le 
+marqueur
+ de fin de declaration de la 
+fonction
+138
+
+ppt/slides/slide139.xml
+Fonctions personnalisées
+Déclaration
+DELIMITER
+ $$
+CREATE FUNCTION 
+`HelloWorld2`(_nom VARCHAR(255))
+RETURNS
+ 
+VARCHAR
+(255)
+BEGIN
+    
+RETURN
+ 
+CONCAT
+('Hello World ', _nom, '!');
+END
+ $$
+DELIMITER
+ ;
+Utilisation
+SELECT
+ HelloWorld2('monsieur’);  # Affiche "Hello World monsieur!"
+139
+
+ppt/slides/slide140.xml
+Fonctions personnalisées
+Déclaration
+ et 
+utilisation
+ 
+d’une
+ 
+procédure
+CREATE PROCEDURE `Module1` ( ) OPTIMIZE TABLE wiki1_page;
+CALL Module1();
+A 
+noter
+ : les 
+fonctions
+ 
+s’appelent
+ avec SELECT, les procedures avec CALL (et 
+une
+ procedure ne 
+retourne
+ jamais de 
+résultat
+)
+140
+
+ppt/slides/slide141.xml
+Fonctions personnalisées
+Fonctions
+ et 
+procédures
+ 
+peuvent
+ 
+être
+ 
+supprimées
+ 
+respectivement
+ par :
+DROP FUNCTION `nom`
+DROP PROCEDURE `nom`
+141
+
+ppt/slides/slide142.xml
+Déclencheurs
+Les 
+déclencheurs
+ 
+ou
+ triggers 
+permettent
+ 
+d’automatiser
+ des 
+traitements
+ 
+en
+ 
+réaction
+ à des 
+évènements
+ 
+ayant
+ lieu dans la base
+Par 
+exemple
+, 
+si
+ on 
+veut
+ effacer les 
+anciens
+ 
+enregistrements
+ 
+d’une
+ table 
+lorsque
+ de nouveaux 
+sont
+ 
+ajoutés
+ :
+CREATE TRIGGER 
+`
+effacer_ancien
+` 
+AFTER INSERT ON 
+`wiki1_page`
+     
+FOR EACH ROW
+         
+DELETE
+ 
+FROM
+ `wiki1_page
+` ORDER BY 
+`
+page_id
+` 
+ASC LIMIT 1
+142
+
+ppt/slides/slide143.xml
+Déclencheurs (syntaxe)
+CREATE
+    [DEFINER = user]
+    
+TRIGGER
+ [IF NOT EXISTS] 
+trigger_name
+    
+trigger_time
+ 
+trigger_event
+    
+ON
+ 
+tbl_name
+ 
+FOR EACH ROW
+    [
+trigger_order
+]
+    
+trigger_body
+trigger_time
+: { BEFORE | AFTER }
+trigger_event
+: { INSERT | UPDATE | DELETE }
+trigger_order
+: { FOLLOWS | PRECEDES } 
+other_trigger_name
+143
+
+ppt/slides/slide144.xml
+Déclencheurs (syntaxe)
+La suppression se fait par 
+DROP TRIGGER 
+`nom`
+144
+
+ppt/slides/slide145.xml
+Déclencheurs - Historisation
+Un cas d’utilisation des triggers est l’
+historisation des données
+Par exemple :
+Une table contient des millions d’enregistrements, mais les plus anciens ne sont plus consultés car plus pertinents, néanmoins il faut les conserver pour des raisons d’archivage
+En utilisant un trigger, on peut régulièrement déplacer les enregistrements les plus anciens dans une table « historique » afin de libérer de la place dans la table d’origine
+La table d’origine sera allégée et les requêtes seront effectuées plus rapidement (comparable au partitionnement)
+Attention : si des opérations doivent porter sur l’ensemble des valeurs (actuelles et historisées), il faudra joindre les deux tables avec 
+UNION ALL
+145
+
+ppt/slides/slide146.xml
+Évènements
+Les 
+évènements
+ 
+sont
+ des 
+déclencheurs
+ 
+temporels
+, 
+planifiés
+ pour 
+s’executer
+ 
+selon
+ 
+une
+ 
+périodicité
+ 
+donné
+ 
+ou
+ à un moment 
+donné
+Par 
+exemple
+ :
+ CREATE EVENT 
+`évènement1`
+   ON SCHEDULE AT CURRENT_TIMESTAMP 
++ 
+INTERVAL 1 DAY
+   
+DO
+     
+INSERT INTO 
+`wiki1`.`news` (`title`, `text`) 
+VALUES
+ ('Example!', 'This is not a real news')
+146
+
+ppt/slides/slide147.xml
+Évènements
+Une 
+tâche
+ 
+récurrente
+ 
+s’obtient
+ avec EVERY :
+CREATE EVENT 
+`évènement2`
+   
+ON SCHEDULE EVERY 2 DAY
+   
+DO
+     OPTIMIZE TABLE 
+`wiki1`.`news`
+147
+
+ppt/slides/slide148.xml
+Évènements (syntaxe)
+CREATE
+    [DEFINER = user]
+    
+EVENT
+    [IF NOT EXISTS]
+    
+event_name
+    
+ON SCHEDULE 
+schedule
+    [ON COMPLETION [NOT] PRESERVE]
+    [ENABLE | DISABLE | DISABLE ON SLAVE]
+    [COMMENT 'string']
+    
+DO
+ 
+event_body
+;
+148
+schedule
+: {
+    AT timestamp [+ INTERVAL 
+interval
+] ...
+  | EVERY 
+interval
+    [STARTS timestamp [+ INTERVAL 
+interval
+] ...]
+    [ENDS timestamp [+ INTERVAL 
+interval
+] ...]
+}
+interval
+:
+    
+quantity
+ {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+              WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+              DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+
+ppt/slides/slide149.xml
+Précautions
+Une 
+certaine
+ 
+parcimonie
+ 
+est
+ de rigueur 
+quand
+ 
+vous
+ 
+manipulez
+ des 
+déclencheurs
+ 
+ou
+ 
+évènements
+Le fait 
+qu’ils
+ ne 
+soient
+ pas 
+déclenchés
+ 
+manuellement
+ 
+dissimule
+ 
+leur
+ impact sur la 
+quantité
+ 
+totale
+ 
+d’opérations
+ 
+exécutées
+ par la base 
+lorsqu’une
+ 
+requête
+ 
+est
+ 
+lancée
+Leur
+ 
+utilisation
+ 
+devrait
+ se limiter à assurer la 
+cohérence
+ de la base de données et/
+où
+ 
+sa
+ performance
+149
+
+ppt/slides/slide150.xml
+Procédures, fonctions, déclencheurs
+Éléments de syntaxe :
+Déclaration de variable : 
+DECLARE
+ 
+ma_variable
+ 
+type
+ [
+DEFAULT
+ 
+valeur
+];
+Initialisation de variable : 
+SET
+ 
+ma_variable
+ = 
+ma_valeur
+;
+Variables depuis une requête :
+Condition :
+IF
+ 
+condition
+ 
+THEN
+	
+body
+END IF
+;
+150
+
+ppt/slides/slide151.xml
+Procédures, fonctions, déclencheurs
+Éléments de syntaxe :
+Boucle :
+loop_label
+: 
+LOOP
+    
+IF
+ 
+condition
+ 
+THEN
+        
+LEAVE
+ 
+loop_label
+;
+    
+END IF
+;
+   
+body
+END LOOP
+;
+151
+
+ppt/slides/slide152.xml
+Procédures, fonctions, déclencheurs
+Éléments de syntaxe :
+Boucle (avec 
+while
+) 
+:
+DECLARE
+ v1 
+INT
+ 
+DEFAULT
+ 5;
+WHILE
+ v1 > 0 
+DO
+	…
+	
+SET
+ v1 = v1 – 1
+END
+ 
+WHILE
+;
+152
+
+ppt/slides/slide153.xml
+Exercice
+Créer une table contenant une date et une valeur numérique
+Créer un évènement qui ajoute automatiquement une valeur numérique aléatoire toute les secondes pour la date actuelle
+Créer une procédure qui supprime les enregistrements les plus vieux lorsqu’il y a plus de 10 enregistrements
+Modifier l’évènement pour qu’il appelle également la procédure de suppression après l’insertion
+153
+
+ppt/slides/slide154.xml
+Exercice
+Créer une table contenant une date et une valeur numérique
+CREATE TABLE valeurs (date DATETIME, valeur FLOAT);
+Créer un évènement qui ajoute automatiquement une valeur numérique aléatoire toute les secondes pour la date actuelle
+CREATE EVENT 
+AddNewValues
+ ON SCHEDULE EVERY 1 SECOND DO INSERT INTO valeurs (date, valeur) VALUES (NOW(), RAND())
+Créer une procédure qui supprime les enregistrements les plus vieux lorsqu’il y a plus de 10 enregistrements
+CREATE PROCEDURE  
+DeleteOldValues
+()
+BEGIN
+    DECLARE 
+date_var
+ DATETIME;
+    SELECT date INTO 
+date_var
+ FROM valeurs ORDER BY date DESC LIMIT 1 OFFSET 10;
+    DELETE FROM valeurs WHERE date < 
+date_var
+;
+END
+Modifier l’évènement pour qu’il appelle également la procédure de suppression après l’insertion
+CREATE TRIGGER 
+DeleteOldTrigger
+ AFTER INSERT ON valeurs FOR EACH ROW CALL 
+DeleteOldValues
+();
+154
+
+ppt/slides/slide155.xml
+Gestion des 
+accès
+ (DCL)
+Gérer
+ les droits avec SQL
+155
+
+ppt/slides/slide156.xml
+Data Control 
+Language
+Le 
+Data Control 
+Language
+ (DCL) contient les instructions SQL permettant de piloter les droits des utilisateurs quant à une base de données
+Les instructions principales sont :
+GRANT
+ : octroie des droits à un utilisateur
+REVOKE
+ : supprime des droits à un utilisateur
+156
+
+ppt/slides/slide157.xml
+GRANT (octroi des droits)
+La syntaxe générale de la requête GRANT est :
+GRANT
+ <opération> [
+ON
+ <table>] 
+TO
+ <
+users
+>
+Exemples :
+GRANT
+ UPDATE 
+ON
+ 
+ma_table
+ 
+TO
+ ‘
+mark’@’localhost
+’
+GRANT
+ SELECT 
+TO
+ PUBLIC
+157
+
+ppt/slides/slide158.xml
+REVOKE (suppression des droits)
+La syntaxe générale de la requête REVOKE est :
+REVOKE
+ <opération> [
+ON
+ <table>] 
+FROM
+ <
+users
+>
+Exemples :
+REVOKE
+ UPDATE 
+ON
+ 
+ma_table
+ 
+FROM
+ ‘
+mark’@’localhost
+’
+REVOKE 
+SELECT 
+FROM
+ PUBLIC
+158
+
+ppt/slides/slide159.xml
+Gestion des transactions (TCL)
+Gérer
+ 
+l’intégrité
+ des 
+requêtes
+ SQL
+159
+
+ppt/slides/slide160.xml
+Transaction Control 
+Language
+Le concept de 
+transaction
+, brièvement abordé au début de ce cours, permet de garantir qu’un ensemble de requête sera exécuté en un bloc : si l’une des requête de la transaction échoue, les requêtes seront annulées
+Les transactions sont particulièrement utiles en cas d’accès concurrents à la base
+Un cas d’utilisation des transactions sont la réalisation de « migrations » : des scripts qui modifient le modèle relationnel et requièrent le déplacement de données dans différentes tables
+160
+
+ppt/slides/slide161.xml
+Propriétés des transactions
+Les transactions sont régies par le propriétés 
+ACID
+ :
+Atomicité : 
+Le résultat d'une transaction peut être soit un succès total, soit un échec total. L'ensemble de la transaction doit être annulé si l'une de ses parties échoue.
+Cohérence : 
+Les transactions maintiennent les contraintes d'intégrité en faisant passer la base de données d'un état valide à un autre.
+Isolation : 
+Les transactions simultanées sont isolées les unes des autres, ce qui garantit l'exactitude des données.
+Durabilité : 
+Une fois qu'une transaction est validée, ses modifications restent effectives même en cas de défaillance du système.
+161
+
+ppt/slides/slide162.xml
+Transaction Control 
+Language
+La définition d’une transaction repose sur plusieurs opérations :
+BEGIN
+ : Initialisation du début d’une transaction
+SET TRANSACTION 
+: paramétrage de la transaction courante
+COMMIT 
+: déclenchement des requêtes en attente
+162
+
+ppt/slides/slide163.xml
+Transaction Control 
+Language
+Exemple :
+START 
+TRANSACTION;
+SET autocommit = 0;
+CREATE TABLE 
+t_school
+(ID INT, 
+School_Name
+ VARCHAR(40), 
+Number_Of_Students
+ INT, 
+Number_Of_Teachers
+ INT, 
+Number_Of_Classrooms
+ INT, 
+EmailID
+ VARCHAR(40));
+ INSERT INTO 
+t_school
+(ID, 
+School_Name
+, 
+Number_Of_Students
+, 
+Number_Of_Teachers
+, 
+Number_Of_Classrooms
+, 
+EmailID
+) VALUES(1, "Boys Town Public 
+School
+", 1000, 80, 12, "btps15@gmail.com);  
+COMMIT;
+163
+
+ppt/slides/slide164.xml
+Transaction Control 
+Language
+Les transactions prennent tout leur intérêt lorsqu’elles ont utilisées dans des scripts
+BEGIN TRANSACTION;
+UPDATE 
+employees
+ SET 
+empname
+=’bob’ WHERE 
+empid
+=’001’;
+UPDATE 
+employees
+ SET 
+empname
+ =’bob’ WHERE city=’
+hyderabad
+’;
+IF @@ROWCOUNT=5
+   COMMIT;
+ELSE
+   ROLLBACK;
+164
+
+ppt/slides/slide165.xml
+Transaction Control 
+Language
+A noter : 
+ROLLBACK
+ permet d’annuler toutes les requêtes depuis le dernier COMMIT ou le dernier ROLLBACK.
+165
+
+ppt/slides/slide166.xml
+Règles de conception d’une base de données
+Quelles règles doit-on respecter lorsqu’on conçoit une base de données ?
+166
+
+ppt/slides/slide167.xml
+Règles de conception
+Erreurs
+ communes
+167
+
+ppt/slides/slide168.xml
+Règles de conception
+Quelques erreurs communes :
+168
+ID
+Nom
+Prénom
+Téléphone
+1
+JEAN
+Claude
+03 88 88 84 25 
+2
+CHIRAC Patrick
+0388842565
+3
+édouard
+philippe
++33 6 48 49 50 51
+Pas de consistance dans le format des noms, prénoms, numéro de téléphone
+Des champs parfois laissés vides
+
+ppt/slides/slide169.xml
+Règles de conception
+Quelques erreurs communes :
+169
+ID
+Date Facture
+Produits
+1
+01/01/2019
+1, 2, 3
+2
+02/01/2019
+2, 3, 4
+3
+03/01/2019
+5, 6, 7
+Comment récupérer la liste des factures contenant le produit ‘2’ ?
+Nécessite de séparer les valeurs de la colonne « Produits » : difficile à faire avec des requêtes SQL et peu performant
+
+ppt/slides/slide170.xml
+Règles de conception
+Quelques erreurs communes :
+170
+ID
+Nom
+Prénom
+Age
+1
+JEAN
+Claude
+35
+2
+CHIRAC
+Patrick
+48
+3
+ÉDOUARD
+Philippe
+42
+Obligation de mettre à jour la base à chaque anniversaire ?
+
+ppt/slides/slide171.xml
+Règles de conception
+Quelques erreurs communes :
+171
+ID
+Prix unitaire
+Quantité
+Prix total
+1
+1,50
+10
+15,0
+2
+25,0
+5
+100,0
+3
+12,5
+2
+25,0
+Le prix total (d’une facture, d’une commande ou autre) est égal au prix unitaire du produit multiplié par la quantité de produit acheté
+Que constatez-vous sur la deuxième ligne ?
+
+ppt/slides/slide172.xml
+Règles de conception
+Quelques erreurs communes :
+172
+ID
+Marque
+Modèle
+1
+Peugeot
+208
+2
+Peugeot
+308
+3
+Peugeot
+508
+4
+Peugeot
+2008
+5
+Renault
+Clio
+6
+Renault
+Mégane
+Redondance : donnée répétée plusieurs fois…
+
+ppt/slides/slide173.xml
+Règles
+ de conception
+Normalisation
+ et 
+formes
+ 
+normales
+173
+
+ppt/slides/slide174.xml
+Règles de conception
+Afin de structurer proprement une base de données relationnelle, un certain nombre de règles doivent être suivies
+Ces règles sont appelées « formes normales », on parle de « normalisation de la base »
+Le suivi de ces règles limite les redondances, limite les erreurs de contenu dans la base et facilite les modifications de la structure de la base
+174
+
+ppt/slides/slide175.xml
+Règles de conception
+Clé candidate : colonne (ou ensemble de colonnes) sans doublon
+Clé primaire : colonne (ou ensemble de colonnes) identifiant de façon unique un enregistrement (choisie parmi les clés candidates)
+Dépendance fonctionnelle (DF) : il y a une dépendance fonctionnelle A → B entre deux ensembles d’attributs A et B si lorsque deux lignes ont les mêmes valeurs pour A, ça implique qu’elles ont les mêmes valeurs pour B (A détermine B)
+175
+
+ppt/slides/slide176.xml
+Règles de conception
+176
+ID
+Marque
+Modèle
+1
+Peugeot
+208
+2
+Peugeot
+308
+3
+Peugeot
+508
+4
+Peugeot
+2008
+5
+Renault
+Clio
+6
+Renault
+Mégane
+Clé primaire
+Clé candidate
+Dépendance fonctionnelle Modèle → Marque (le modèle détermine la marque)
+
+ppt/slides/slide177.xml
+Règles de conception
+1NF – Première forme normale 
+: à chaque intersection de ligne et de colonne dans une table, il existe une valeur unique et jamais une liste de valeurs
+Remarque : certains attributs peuvent sembler posséder plusieurs éléments mais sont pourtant 
+sémantiquement atomiques
+ (ces éléments composent un seul et même attribut : e.g. {jour, mois, année} pour la date)
+177
+
+ppt/slides/slide178.xml
+Règles de conception
+Exemple :
+178
+ID
+Marque
+Modèle
+1
+Peugeot
+208, 308, 508, 2008
+2
+Renault
+Clio, Mégane, Twingo
+ID
+Marque
+Modèle
+1
+Peugeot
+208
+2
+Peugeot
+308
+3
+Peugeot
+508
+4
+Peugeot
+2008
+5
+Renault
+Clio
+6
+Renault
+Mégane
+
+ppt/slides/slide179.xml
+Règles de conception
+Le non-respect de la première forme normale rend difficile la récupération des données
+Cas extrême de non-respect de 1NF :
+Les données sont toutes mises dans un même champ, impossible d’écrire une requête simple pour récupérer, par exemple, les étudiants nés après 2000
+179
+ID
+Etudiant
+1
+Jean Martin né le 01/05/99
+2
+Lucas Dupont né le 03/01/00
+
+ppt/slides/slide180.xml
+Règles de conception
+2NF – Deuxième forme normale 
+: chaque colonne non clé est entièrement dépendante de toute la clé (ne concerne que les tables ayant une clé composée de plusieurs colonnes)
+Pour être en 2NF il faut être en 1NF
+Une table ne respecte pas la 2NF s’il existe une colonne non clé qui ne dépend pas de toute la clé
+Rappel : une colonne A dépend d’une autre colonne B si B détermine A (un doublon dans la valeur de B entraîne un doublon dans la valeur de A)
+180
+
+ppt/slides/slide181.xml
+Règles de conception
+Exemple :
+Note dépend de (Etudiant, UV) mais date de naissance ne dépend que de (Etudiant)
+181
+Etudiant
+UV
+Note
+Date de naissance
+MARTIN
+IFD1
+12
+01/01/99
+MARTIN
+IFD2
+13
+01/01/99
+PAUL
+IDF1
+10
+10/02/99
+Etudiant
+UV
+Note
+MARTIN
+IFD1
+12
+MARTIN
+IFD2
+13
+PAUL
+IDF1
+10
+Etudiant
+Date de naissance
+MARTIN
+01/01/99
+PAUL
+10/02/99
+
+ppt/slides/slide182.xml
+Règles de conception
+Le non-respect de 2NF provoque de la redondance et rend plus difficile la modification des données
+182
+Etudiant
+UV
+Note
+Date de naissance
+MARTIN
+IFD1
+12
+01/01/99
+MARTIN
+IFD2
+13
+01/01/99
+PAUL
+IDF1
+10
+10/02/99
+
+ppt/slides/slide183.xml
+Règles de conception
+3NF – Troisième forme normale 
+: chaque colonne non clé doit dépendre de la clé et uniquement de la clé, les colonnes non clé doivent être indépendantes
+Pour être en 3NF, il faut être en 2NF
+Une table n’est pas en 3NF s’il existe un attribut dont on peut déduire la valeur à partir d’un autre attribut non-clé
+183
+
+ppt/slides/slide184.xml
+Règles de conception
+Exemple :
+total
+ dépend de 
+quantite
+ et 
+prix_unitaire
+ (attributs non clé)
+La meilleure solution consiste à supprimer le champ total
+Remarque : si on modifie la clé pour que total dépende de la clé, on risque de ne plus être en 2NF, c’est donc à éviter
+184
+facture_id
+article_id
+quantite
+prix_unitaire
+total
+1
+1
+3
+10.5
+31.5
+1
+13
+10
+9.15
+91.50
+1
+42
+8
+4
+32.0
+2
+3
+1
+19.99
+19.99
+facture_id
+article_id
+quantite
+prix_unitaire
+1
+1
+3
+10.5
+1
+13
+10
+9.15
+1
+42
+8
+4
+2
+3
+1
+19.99
+
+ppt/slides/slide185.xml
+Règles de conception
+1NF, 2NF et 3NF sont les formes normales les plus importantes
+On considère 
+qu’une base est normalisée si elle est au moins en 3NF 
+(mais il existe d’autres formes normales que nous allons voir juste après)
+Remarque : les formes normales sont « plus une sorte de guide général qu’un véritable règlement » ; il est parfois utile de 
+dénormaliser
+ une base mais il faut une bonne raison (souvent pour des raisons de performance)
+185
+
+ppt/slides/slide186.xml
+Règles de conception
+BCNF – Forme normale de Boyce-Codd : pas de dépendance fonctionnelle entre un attribut non clé vers une partie de la clé
+La BCNF est une forme légèrement plus forte de la 3NF
+186
+
+ppt/slides/slide187.xml
+Règles de conception
+4NF – Quatrième forme normale «  Chaque dépendance non triviale et multi-valeur a une superclé »
+5NF – Cinquième forme normale «  Un composant de chaque dépendance explicite de jointure est une superclé »
+DKNF - Forme normale de domaine clé «  Chaque contrainte est une conséquence des contraintes du domaine et des contraintes clés »
+187
+
+ppt/slides/slide188.xml
+Règles de conception
+UNF
+1NF
+2NF
+3NF
+EKNF
+BCNF
+4NF
+ETNF
+5NF
+DKNF
+6NF
+Clé primaire (pas de doublons)
+Pas de répétitions de groupes
+Colonnes atomiques (les cellules ont une seule valeur)
+Pas de dépendances partielles (les valeurs dépendent de l'ensemble de chaque clé candidate)
+Pas de dépendances transitives (les valeurs dépendent uniquement des clés candidates)
+Toute dépendance fonctionnelle non triviale implique soit une superclé, soit la sous-clé d'une clé élémentaire
+Pas de redondance issue d’une dépendance fonctionnelle
+Chaque dépendance non triviale et multi-valeur a une superclé
+Un composant de chaque dépendance explicite de jointure est une superclé
+Chaque dépendance non triviale de jointure est impliquée par une clé de candidat
+Chaque contrainte est une conséquence des contraintes du domaine et des contraintes clés
+Chaque dépendance de jointure est triviale
+
+ppt/slides/slide189.xml
+Normalisation d’une base existante
+La normalisation d’une base de données non-normalisée se fait étape par étape
+On applique la première forme normale avant d’appliquer la suivante, et ainsi de suite
+De façon informelle, on considère une base « normalisée » si la 3
+ème
+ forme normale est respectée
+189
+
+ppt/slides/slide190.xml
+Exemple de normalisation
+Source : 
+https://en.wikipedia.org/wiki/Database_normalization
+190
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Format 
+Price 
+Subject 
+Pages 
+Thickness 
+Publisher 
+Publisher Country 
+Publication Type 
+Genre ID 
+Genre Name 
+Beginning Database
+Chad Russell 
+American 
+Hardcover
+ 
+49.99 
+MySQL, 
+Database
+, 
+Design 
+520 
+Thick 
+Apress
+ 
+USA 
+E-book 
+1 
+Tutorial 
+
+ppt/slides/slide191.xml
+Exemple de normalisation
+Première forme normale :
+191
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Format
+ 
+Price 
+Subject 
+Pages 
+Thickness 
+Publisher 
+Publisher Country 
+Publication Type 
+Genre ID 
+Genre Name 
+Beginning Database
+Chad Russell 
+American 
+Hardcover
+ 
+49.99 
+MySQL, 
+Database
+, 
+Design 
+520 
+Thick
+ 
+Apress
+ 
+USA 
+E-book 
+1 
+Tutorial 
+
+ppt/slides/slide192.xml
+Exemple de normalisation
+Première forme normale :
+192
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Format
+ 
+Price 
+Pages 
+Thickness 
+Publisher 
+Publisher Country 
+Publication Type 
+Genre ID 
+Genre Name 
+Beginning Database
+Chad Russell 
+American 
+Hardcover
+ 
+49.99 
+520 
+Thick
+ 
+Apress
+ 
+USA 
+E-book 
+1 
+Tutorial 
+ID Subject
+Subject Name
+1
+MySQL
+2
+Database
+3
+Design
+Title
+ID 
+Subject
+Beginning Database
+1
+Beginning Database
+2
+Beginning Database
+3
+
+ppt/slides/slide193.xml
+Exemple de normalisation
+Deuxième forme normale :
+193
+Title
+ 
+Format
+ 
+Author 
+Author 
+Nationality
+ 
+Price 
+Pages 
+Thickness 
+Genre ID 
+Genre Name 
+Publisher ID 
+Beginning Database
+Hardcover 
+Chad Russell 
+American 
+49.99 
+520 
+Thick 
+1 
+Tutorial 
+1 
+Beginning Database
+E-book 
+Chad Russell 
+American 
+22.34 
+520 
+Thick 
+1 
+Tutorial 
+1 
+Relational
+ Model
+E-book 
+E.F.Codd 
+British 
+13.88 
+538 
+Thick 
+2 
+Popular science 
+2 
+Relational
+ Model
+Paperback 
+E.F.Codd 
+British 
+39.99 
+538 
+Thick 
+2 
+Popular science 
+2
+La clé primaire est composée de 
+Title
+ et 
+Format, 
+tous les champs dépendent de 
+Title
+, mais seul Price dépend aussi de Format
+Chaque attribut doit dépendre de toute la clé primaire (2NF)
+Normalisation : définir 
+Title
+ comme clé primaire (au lieu de {
+Title
+, Format}) et déplacer Price qui dépend de 
+Title
+ et de Format dans une autre table
+
+ppt/slides/slide194.xml
+Exemple de normalisation
+Deuxième forme normale :
+194
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Pages 
+Thickness 
+Genre ID 
+Genre Name 
+Publisher ID 
+Beginning Database
+Chad Russell 
+American 
+520 
+Thick 
+1 
+Tutorial 
+1 
+Relational
+ Model
+E.F.Codd 
+British 
+538 
+Thick 
+2 
+Popular science 
+2
+Title
+ 
+Format
+ 
+Price 
+Beginning Database
+Hardcover 
+49.99 
+Beginning Database
+E-book 
+22.34 
+Relational
+ Model
+E-book 
+13.88 
+Relational
+ Model
+Paperback
+ 
+39.99 
+
+ppt/slides/slide195.xml
+Exemple de normalisation
+Troisième forme normale :
+195
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Pages 
+Thickness 
+Genre ID 
+Genre Name 
+Publisher ID 
+Beginning Database
+Chad Russell 
+American 
+520 
+Thick 
+1 
+Tutorial 
+1 
+Relational
+ Model
+E.F.Codd 
+British 
+538 
+Thick 
+2 
+Popular
+ science 
+2
+3NF : Les colonnes non clé doivent être indépendantes
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Pages 
+Thickness 
+Genre ID 
+Publisher ID 
+Beginning Database
+Chad Russell 
+American 
+520 
+Thick 
+1 
+1 
+Relational
+ Model
+E.F.Codd 
+British 
+538 
+Thick 
+2 
+2
+Genre ID
+ 
+Genre Name 
+1 
+Tutorial 
+2 
+Popular
+ science
+
+ppt/slides/slide196.xml
+Exemple de normalisation
+Forme normale de Boyce-Codd :
+196
+Chaque attribut doit caractériser seulement la clé, il y a une dépendance non-triviale entre Author et Author 
+Nationality
+ :
+Title
+ 
+Author 
+Author 
+Nationality
+ 
+Pages 
+Thickness 
+Genre ID 
+Publisher ID 
+Beginning Database
+Chad Russell 
+American 
+520 
+Thick 
+1 
+1 
+Relational
+ Model
+E.F.Codd
+ 
+British 
+538 
+Thick 
+2 
+2
+Title
+ 
+Author 
+Pages 
+Thickness 
+Genre ID 
+Publisher ID 
+Beginning Database
+Chad Russell 
+520 
+Thick 
+1 
+1 
+Relational
+ Model
+E.F.Codd 
+538 
+Thick 
+2 
+2
+Author 
+Author 
+Nationality
+ 
+Chad Russell 
+American 
+E.F.Codd
+ 
+British 
+
+ppt/slides/slide197.xml
+Méthodologie de conception d’une base de données relationnelle
+Comment construire une base de données ?
+197
+
+ppt/slides/slide198.xml
+Méthodologies de conception d'une BDD
+Les exemples étudiés jusqu'à présent en cours et en TD sont relativement simples et peuvent être appréhendés rapidement
+Mais le système d'information d'une entreprise peut facilement compter des centaines d'entités en relation
+Une erreur de conception peut bloquer l'évolution du système d'information ou coûter cher en performances (difficile de réaliser directement une base normalisée)
+198
+
+ppt/slides/slide199.xml
+Méthodologies de conception d'une BDD
+Pour éviter ce genre de désagrément, une méthodologie doit être suivie pour concevoir la base de données
+Suivre une méthodologie permet notamment de :
+Concevoir une base qui répond bien aux besoins
+Concevoir directement une base normalisée (en identifiant clairement les clés, les dépendances fonctionnelles)
+199
+
+ppt/slides/slide200.xml
+Méthodologies de conception d'une BDD
+De nombreuses méthodologies existent, nous ne les étudierons pas en détail
+Nous verrons seulement quelques principes et les outils associés
+200
+
+ppt/slides/slide201.xml
+Méthodologies de conception d'une BDD
+Analyse
+ : Déterminez la raison d’être de votre base de données
+Conception
+ : Recherchez et organisez les informations requises
+Implémentation
+ : Divisez les informations en table, transformer les attributs en colonnes, spécifier les clés primaires et les relations
+Évaluation
+ : Vérifiez votre conception, appliquez les règles de normalisation
+201
+
+ppt/slides/slide202.xml
+Méthodologies de conception d'une BDD
+202
+Approche 
+Waterfall
+ (en cascade)
+
+ppt/slides/slide203.xml
+Méthodologies de conception d'une BDD
+203
+Approche Agile : succession de cycles courts
+
+ppt/slides/slide204.xml
+Méthodologies de conception d'une BDD
+Pour chacune des phases différents outils méthodologiques existent :
+Analyse
+ : diagramme de cas d’utilisation
+Conception
+ : modélisation conceptuelle, diagramme entité-association, diagramme UML relationnel
+Implémentation
+ : traduction du modèle conceptuel en schéma de données
+Evaluation/test 
+: formes normales, tests fonctionnels et non fonctionnels
+204
+
+ppt/slides/slide205.xml
+Méthodologies de conception d'une BDD
+Analyse des cas d’utilisation :
+Identifier clairement les cas d’utilisations du système d’information
+Il est 
+a priori
+ inutile d’enregistrer des données qui ne seront pas utilisées
+205
+
+ppt/slides/slide206.xml
+Méthodologies de conception d'une BDD
+Pour l’analyse des cas d’utilisation du système, on procède par étape :
+On définit clairement les limites du système (un cadre qui regroupera les usages du système)
+On définit les acteurs interagissant avec ce système
+Pour chaque acteur on définit ses interactions avec le système
+206
+
+ppt/slides/slide207.xml
+Méthodologies de conception d'une BDD
+Outil pour l’analyse des cas d’utilisation : le diagramme de cas d’utilisation UML
+207
+
+ppt/slides/slide208.xml
+Méthodologies de conception d'une BDD
+Des relations de dépendances peuvent apparaître entre plusieurs usages du système
+Un cas d’utilisation peut en « inclure » un autre pour signifier une relation de dépendance (par exemple « acheter » sur un site va inclure le cas d’utilisation « se connecter »)
+Un cas d’utilisation peut en « étendre » un autre pour signifier qu’un cas d’utilisation peut en compléter un autre, de façon optionnelle (par exemple le cas d’utilisation « Téléphoner » peut être étendu par « Visualiser le nom de l’interlocuteur »)
+208
+
+ppt/slides/slide209.xml
+Méthodologies de conception d'une BDD
+Dans un diagramme UML, les notations seraient :
+	
+209
+Acheter
+Se connecter
+Téléphoner
+Visualiser numéro
+<<
+include
+>>
+<<
+extend
+>>
+
+ppt/slides/slide210.xml
+Méthodologies de conception d'une BDD
+Les cas d’utilisations peuvent ensuite être spécifiés de façon formelle sous forme textuelle
+Identification :
+Nom du cas : 
+Objectif :
+Acteurs :
+Date :
+Responsables :
+Version : 
+Séquencements :
+Décrire quand commence le cas
+Précondition
+Enchaînement : décrire l’enchaînement des opérations, y compris les alternatives
+Postcondition
+210
+
+ppt/slides/slide211.xml
+Méthodologies de conception d'une BDD
+Analyse du domaine :
+Identification des différentes entités
+Identifications des attributs des entités
+Identification des relations entre les entités
+211
+
+ppt/slides/slide212.xml
+Méthodologies de conception d'une BDD
+Outil de modélisation : le diagramme entités-associations (
+Entity
+ Relationship Diagram) – Equivalent du MCD (modèle conceptuel de données) de la méthodologie MERISE
+Niveau conceptuel : on représente les concepts sans accorder d’importance à la façon dont ils seront représentés en BDD sous forme de table
+Notation de Chen (une parmi tant d’autres) :
+Entités représentées par un rectangle
+Associations représentées par un losange
+Attributs représentés par des ovales (attribut souligné = clé primaire)
+212
+Artiste
+Chanson
+Chante
+Titre
+Nom
+Date de naissance
+
+ppt/slides/slide213.xml
+Méthodologies de conception d'une BDD
+Nom commun : type d’entité
+Nom propre : entité
+Verbe transitif : type de relation
+Verbe intransitif : type d’attribut
+Adjectif : attribut pour une entité
+Adverbe : attribut pour une relation
+213
+
+ppt/slides/slide214.xml
+Méthodologies de conception d'une BDD
+Cardinalités
+Un client possède plusieurs factures
+214
+Client
+Facture
+Possède
+1
+0..n
+Utilisateur
+Photo
+Commenter
+0..n
+0..n
+Un utilisateur peut commenter plusieurs photos, une photo peut être commentée par plusieurs utilisateurs
+
+ppt/slides/slide215.xml
+Méthodologies de conception d'une BDD
+Il peut exister plusieurs relations entre deux entités
+215
+Utilisateur
+Photo
+Commenter
+0..n
+0..n
+Poster
+1
+0..n
+Un utilisateur peut commenter plusieurs photos et une photo peut être commentée par plusieurs utilisateurs
+Un utilisateur peut poster plusieurs photos, une photo n’est postée que par un utilisateur
+
+ppt/slides/slide216.xml
+Méthodologies de conception d'une BDD
+Exemple de diagramme Entité-Association (location d’appartements pour une agence immobilière) :
+216
+
+ppt/slides/slide217.xml
+Méthodologies de conception d’une BDD
+217
+
+ppt/slides/slide218.xml
+Méthodologies de conception d’une BDD
+Principes de conversion du diagramme entité-association vers le schéma de la BDD :
+Une entité devient une table, un attribut devient une colonne
+Une association 1:N se traduit par la création d’une clé étrangère dans la table associée à l’entité du côté N (cette clé étrangère référence la clé primaire)
+Une association N:M se traduit par la création d’une table de jointure
+218
+
+ppt/slides/slide219.xml
+Méthodologies de conception d’une BDD
+Cas particulier des associations 1:1
+219
+Marin
+Voilier
+Pilote
+1
+1
+En général, on regroupe les attributs de ces entités dans une unique table
+Si le marin est le plus important (fonctionnellement) alors l’identifiant du marin devient la clé primaire
+Si le voilier est le plus important, alors l’identifiant du voilier devient la clé primaire
+Sinon, s’il y a une distinction fonctionnelle forte entre marin et voilier ou si on veut garder une séparation stricte entre les deux (pour pouvoir évoluer s’il devait y avoir à l’avenir plusieurs voiliers par marin)
+Création de deux tables, chacune ayant une clé étrangère référençant l’autre table
+
+ppt/slides/slide220.xml
+Méthodologies de conception d’une BDD
+Applications
+220
+Étudiant
+Promotion
+Appartenir à
+0,N
+1
+id promo
+intitulé
+id étudiant
+nom
+prénom
+id_promo
+Liaison par clé étrangère
+PROMOTION
+ÉTUDIANT
+
+ppt/slides/slide221.xml
+Méthodologies de conception d’une BDD
+Applications
+221
+Étudiant
+Promotion
+Représenter
+1
+0,1
+id promo
+intitulé
+Id représentant
+id étudiant
+nom
+prénom
+Liaison par clé étrangère
+PROMOTION
+ÉTUDIANT
+
+ppt/slides/slide222.xml
+Méthodologies de conception d’une BDD
+Applications
+222
+Étudiant
+UV
+Choisir
+0,N
+0,N
+id 
+uv
+intitulé
+id étudiant
+nom
+prénom
+Liaison par clé étrangère
+id étudiant
+id UV
+Liaison par clé étrangère
+ÉTUDIANT
+CHOIX
+UV
+
+ppt/slides/slide223.xml
+Méthodologies de conception d’une BDD
+Applications
+223
+Médecin
+Patient
+Pratiquer
+0,N
+1,N
+id patient
+nom
+id médecin
+nom
+prénom
+id acte
+desc
+Acte
+0,N
+id médecin
+id patient
+id acte
+MÉDECIN
+ACTE
+PATIENT
+PRATIQUE
+
+ppt/slides/slide224.xml
+Méthodologies de conception d'une BDD
+Remarque : le diagramme EA peut utiliser d’autres représentations que la notation de Chen
+En particulier un diagramme de classe UML (dit UML-relationnel)
+224
+
+ppt/slides/slide225.xml
+Méthodologies de conception d'une BDD
+Format UML
+225
+
+ppt/slides/slide226.xml
+Méthodologies de conception d'une BDD
+Le format UML présente les avantages suivants :
+Standardisé et universellement compris
+Expressif
+Lisible
+Moderne
+Beaucoup d’outils pour réaliser des diagrammes
+226
+
+ppt/slides/slide227.xml
+Méthodologies de conception d'une BDD
+La modélisation sous forme d’UML relationnel un élément conceptuel supplémentaire par rapport au diagramme entité-association : 
+l’héritage
+L’héritage entre deux entités implique une relation de type « est un » entre elles (exemple : les entités « Animal » et « Chien » peuvent être reliées par une relation d’héritage car un chien est un animal
+Dans cet exemple, on dira que « Animal » est la classe ou table mère (l’entité la plus générale) et « Chien » la classe ou table fille (l’entité la plus spécifique)
+227
+
+ppt/slides/slide228.xml
+Méthodologies de conception d'une BDD
+Trois possibilités existent pour représenter l’héritage en base de données :
+Par référence :
+ une table mère regroupant les attributs commun et N tables filles possédant leur propres attributs et référençant la table mère
+Par les classes filles 
+: une table par classe fille, pas de table mère, les attributs communs sont dupliqués dans chaque table fille
+Par la classe mère 
+: une table mère, pas de table filles, la table mère contient tous les attributs des classes filles même si la plupart seront laissés « 
+null
+ »
+228
+
+ppt/slides/slide229.xml
+Méthodologies de conception d’une BDD
+Exercice : Diagramme Entité Association du système d’UV de l’UTBM
+229
+
+ppt/slides/slide230.xml
+Méthodologies de conception d’une BDD
+Rappel du principe des 
+UEs
+ :
+L’UTBM propose aux étudiant de s'inscrire aux UE
+Chaque UE est identifiée par un code, un titre, une description, un nombre de crédits ECTS, son semestre d’ouverture, un nombre de places disponibles, son type (CS, TM, EC, CG), son département (TC, INFO, ENERGIE, etc.) 
+Une UE est associée à un emploi du temps, c’est-à-dire une liste de séances (CM, TD, TP) affectée à un horaire dans la semaine (jour, heure de début, heure de fin)
+Un étudiant est caractérisé par son nom, son prénom, sa date de naissance, son département et éventuellement sa filière
+Un étudiant peut s’inscrire à au plus 7 UE pour un semestre
+230
+
+ppt/slides/slide231.xml
+Méthodologies de conception d’une BDD
+Fonctionnalités attendues à l’inscription :
+L’étudiant doit pouvoir s’inscrire à ses 
+UVs
+ : l'étudiant saisit le nom de l’UV à laquelle il veut s’inscrire, puis son choix est vérifié
+Un étudiant peut également modifier un choix préalablement saisi (échanger une UV contre une autre) ou supprimer une UV
+Un étudiant peut s'inscrire à n’importe quelle UV de son département ou n’importe quelle EC/CG
+Si le nombre de places d’une UV est épuisé pour le semestre en cours, l’étudiant ne peut plus s’inscrire
+S’il y a conflit d’emploi du temps, un étudiant ne peut pas s’inscrire à une UV 
+À tout moment, l’étudiant peut choisir de consulter la liste des 
+UVs
+ auxquelles il peut s’inscrire (compte tenu des places disponibles, et des contraintes avec son emploi du temps actuel). Il peut alors directement sélectionner une UV pour l’ajouter.
+Fonctionnalités attendues après l’inscription :
+Fournir l’emploi du temps de l’étudiant pour un semestre
+Afficher l’ensemble des UV suivies par un étudiant au cours de son cursus
+Afficher le taux de remplissage pour chaque UV
+231
+
+ppt/slides/slide232.xml
+Méthodologies de conception d’une BDD
+Rappel du principe des 
+UEs
+ :
+L’UTBM propose aux 
+étudiant
+ de s'
+inscrire
+ aux 
+UE
+Chaque UE est identifiée par un 
+code
+, un 
+titre
+, une 
+description
+, un 
+nombre de crédits ECTS
+, son 
+semestre d’ouverture
+, un 
+nombre de places disponibles
+, son 
+type
+ (CS, TM, EC, CG), 
+son
+ 
+département
+ (TC, INFO, ENERGIE, etc.) 
+Une UE est 
+associée
+ à un emploi du temps, c’est-à-dire une liste de 
+séances
+ (
+CM, TD, TP
+) affectée à un horaire dans la semaine (
+jour
+, 
+heure de début
+, 
+heure de fin
+)
+Un étudiant est caractérisé par son nom, son 
+prénom
+, sa 
+date de naissance
+, 
+son
+ département et éventuellement sa 
+filière
+Un étudiant peut s’inscrire à au plus 7 UE pour un semestre
+232
+
+ppt/slides/slide233.xml
+Administration des bases de données
+Manipulation de bases, sécurité des accès, optimisation
+
+ppt/slides/slide234.xml
+Administration des bases de données
+Nous avons déjà vu comment créer, éditer et supprimer une base de données, mais l’administration d’une BDD inclus d’autres tâches :
+Installation et déploiement du serveur de BDD
+Gestion des utilisateurs et de la sécurité de la base
+Assurer la sécurité des données (sauvegarde, redondance, etc.)
+Garantir la disponibilité et les performances (équilibrage de charge, optimisation)
+Monitorer l’état de la base de données, identifier et prévenir les pannes (journalisation)
+L’administration est dépendante du SGBD qu’on utilise, nous verrons ici les règles générales à suivre ; nous verrons plus tard en pratique avec MySQL comment administrer concrètement une BDD
+234
+
+ppt/slides/slide235.xml
+Administration des bases de données
+Sécurité des accès :
+La plupart des SGBD proposent un système de gestion des utilisateurs et des rôles/privilèges
+Dans ce cas la connexion à une BDD se fait en spécifiant un nom d’utilisateur et un mot de passe, seuls les utilisateurs autorisés peuvent se connecter à la base
+Chaque utilisateur est associé à une liste de rôle ou privilèges décrivant de façon très précise les opérations que peut effectuer un utilisateur : on peut par exemple permettre la consultation, mais pas la mise à jour des données – ou bien permettre consultation et mise à jour mais pas de modifier la structure
+235
+
+ppt/slides/slide236.xml
+Sécurité des accès
+Sécurité des accès :
+La plupart des SGBD proposent un système de gestion des utilisateurs et des rôles/privilèges
+Dans ce cas la connexion à une BDD se fait en spécifiant un nom d’utilisateur et un mot de passe, seuls les utilisateurs autorisés peuvent se connecter à la base
+Chaque utilisateur est associé à une liste de rôle ou privilèges décrivant de façon très précise les opérations que peut effectuer un utilisateur : on peut par exemple permettre la consultation, mais pas la mise à jour des données – ou bien permettre consultation et mise à jour mais pas de modifier la structure
+236
+
+ppt/slides/slide237.xml
+Configuration des privilèges dans MySQL
+237
+
+ppt/slides/slide238.xml
+Sécurité des accès
+Les SGBD permettent aussi d’empêcher la connexion en fonction de l’IP source de la connexion
+Il est commun de ne permettre que les connexions provenant de localhost ou bien d’une liste prédéfinie d’IP (politique 
+white 
+list
+), cela permet de mieux contrôler les habilitations
+238
+
+ppt/slides/slide239.xml
+Sécurité des accès
+Une base de données contient généralement des informations personnelles et sensibles (notamment le nom des utilisateurs, leurs emails, leurs adresses personnelles, etc.)
+La sécurisation des accès à la base est critique : choisissez toujours la politique la plus stricte possible mais suffisante pour permettre de manipuler la base
+De manière générale :
+Seul l’administrateur de la base doit pouvoir en modifier la structure
+L’application qui se connecte à la base doit être autorisée sur la base de son IP, elle possède un nom d’utilisateur propre avec un mot de passe qu’elle est la seule à connaître (
+jamais de transmission du mot de passe de la BDD sur le réseau
+), elle doit avoir le droit de consulter et modifier les données des bases nécessaires à son fonctionnement (et uniquement de ces bases)
+Tous les autres accès à la base sont interdits
+239
+
+ppt/slides/slide240.xml
+Sécurité des accès
+Règle fondamentale n°1 : attribution du moindre privilège
+Règle n°2 : contrôle de la population
+Règle n°3 : supervision de la délégation des tâches d’administration
+Règle n°4 : contrôle physique des connexion
+Règle n°5 : limitation des ressources utilisées
+Règle n°6 : journalisation des comportements suspects
+Règle n°7 : restrictions de l’application en fonction du public
+240
+
+ppt/slides/slide241.xml
+Sauvegarde et redondance
+Sauvegarde et redondance :
+Une base de données n’est pas un système infaillible
+Les données sont stockées sur le disque et toute défaillance de la machine hôte peut causer une perte de données
+En dehors des stratégies de redondances physiques (RAID 1, 5) il faut utiliser le SGBD pour sécuriser les données
+241
+
+ppt/slides/slide242.xml
+Sauvegarde et redondance
+Sauvegarde :
+Le contenu de la base doit être sauvegardé à intervalles réguliers afin de pouvoir éventuellement consulter ou restaurer un état antérieur : il s’agit d’un export des données dans un fichier SQL (éventuellement une fois par jour, lors des périodes de creux de l’activité de la BDD)
+Redondance :
+La sauvegarde n’est pas toujours suffisante : par exemple, si un site de e-commerce perd trace des commandes passées dans les dernières 24h les conséquences peuvent être dommageables pour les clients
+Une stratégie de redondance permet de dupliquer la base sur N serveurs distincts afin de pallier les défaillances d’un des serveurs
+242
+
+ppt/slides/slide243.xml
+Performances
+La question de la performance est critique pour une base de données : lorsque le nombre d’accès et de requête augmentent, les temps de traitement et de réponse vont augmenter, ce qui peut avoir des conséquences sur la réactivité de l’application
+Optimiser la base de données est nécessaire quand la base est anormalement lente
+243
+
+ppt/slides/slide244.xml
+Performances
+Procédure d’optimisation (dans cet ordre) :
+Trouver les goulots d'étranglements (processeur, RAM, I/O, requêtes)
+Chercher à simplifier les requêtes gourmandes. Généralement on effectue les opérations suivantes dans cet ordre pour éliminer un maximum de données inutiles des résultats rapidement : projection, sélection, jointure.
+Optimiser l'application en mettant en cache 
+les résultats.
+Optimiser les requêtes (ajouter des index, des tables temporaires ou changer de jointure).
+Optimiser la base du serveur (taille du cache, etc.).
+Optimiser le système (les différents systèmes de fichier, le swap (mémoire virtuelle) et les versions du noyau).
+Optimiser le hardware.
+244
+
+ppt/slides/slide245.xml
+Performances
+Outils logiciels (pour MySQL/
+MariaDB
+) :
+vmstat
+ : monitoring de l’utilisation des ressources matérielles
+mytop
+ : identification des requêtes lourdes
+mysqlreport
+ : checklist pas à pas
+MySQL Workbench : monitoring et administration de MySQL
+245
+
+ppt/slides/slide246.xml
+Performances
+Optimisation de la base :
+La base doit être normalisée
+Les index doivent être clairement définis (clés primaires, clés étrangères, ou tout autre champ sur lequel des requêtes sont fréquemment faites)
+Les déclencheurs/triggers doivent être utilisés avec parcimonie
+Optimisation des requêtes :
+Ne récupérer que les champs nécessaires
+Limiter le nombre d’enregistrements récupérés (il n’est pas toujours nécessaire de récupérer tous les enregistrements d’une table, on peut aussi les récupérer 10 par 10 au fur et à mesure)
+Eviter les sous-requêtes, les jointures de type CROSS JOIN
+Ne pas effectuer des traitements qui enchaînent les requêtes dans des boucles
+246
+
+ppt/slides/slide247.xml
+Performances
+Équilibrage de charge (
+load
+-balancing) : lorsque la réplication d’une base de données est mise en place, il est possible de mettre en place une stratégie d’équilibrage de charge
+Dans ce cas, il n’y a pas un seul serveur pour traiter les requêtes (de lecture) : les requêtes sont réparties entre les différents serveurs appartenant à la stratégie de réplication (à tour de rôle chaque serveur prend en charge une requête) – les requêtes d’écriture quant à elle sont toujours traitées par le serveur maître
+247
+
+ppt/slides/slide248.xml
+Suivi de l’état de la base de données
+Une panne est toujours possible (panne matérielle ou logicielle)
+Une erreur humaine aussi (requête mal formulée)
+Il faut pouvoir suivre l’état de la base de données, pouvoir détecter les incidents afin d’y remédier dès que possible, et pouvoir consulter l’historique des actions effectuées sur la base afin de garder trace des problèmes étant survenus
+248
+
+ppt/slides/slide249.xml
+Suivi de l’état de la base de données
+Le monitoring et la journalisation de la base sont souvent réalisés par des outils dédiés (et généralement payant) – on peut citer 
+MySQL Enterprise Monitor 
+pour MySQL
+249
+
+ppt/slides/slide250.xml
+Suivi de l’état de la base de données
+Du côté de l’application qui manipule la base il est également nécessaire d’assurer un suivi et une journalisation
+Il ne faut jamais partir du principe qu’une requête s’est exécutée avec succès : il faut contrôler les valeurs de retour et les 
+éventuels codes d’erreur
+Toute erreur de connexion à la base doit être enregistrée (et une alerte doit être levée)
+Toute erreur lors de l’exécution d’une requête de lecture ou d’écriture également
+250
+
+ppt/slides/slide251.xml
+Frameworks
+ modernes pour les systèmes d’information
+Quels sont les outils utilisés de nos jours pour implémenter un système d’information ?
+251
+
+ppt/slides/slide252.xml
+Types de logiciels SI
+Client lourd (logiciel installé sur le poste)
+Client léger (connexion et accès via navigateur)
+252
+
+ppt/slides/slide253.xml
+Architecture du système
+Architecture 3 tiers
+253
+
+ppt/slides/slide254.xml
+Concepts de bases HTTP/HTML
+Lorsqu’on souhaite afficher une page Web, le navigateur envoie une requête HTTP au serveur
+Cette requête est de type GET et elle contient en information l’URL que l’utilisateur cherche à atteindre et éventuellement des paramètres saisis dans l’URL sous la forme « ?nomDuParam1=valeurDuParam1&nomDuParam2=valeurDuParam2 »
+Le serveur interprète cette requête et retourne la page demandée à l’utilisateur
+Lorsqu’on envoie un formulaire, le navigateur envoie (généralement) une requête de type POST avec les valeurs du formulaires en paramètre (le traitement effectué par le serveur est identique à celui de la requête GET)
+254
+
+ppt/slides/slide255.xml
+Framework Spring
+Spring (et plus particulièrement Spring Boot) est un 
+framework
+ Java couvrant l’application et fournissant les outils pour se connecter à la base de données et fournir un affichage au client
+255
+
+ppt/slides/slide256.xml
+Framework Spring
+Le framework automatise/simplifie certaines opérations de conception de la partie informatique du SI que nous avons pu voir jusqu’à présent, notamment :
+Automatisation de l’écriture des requêtes SQL 
+(abstraction de la solution SGBD utilisée)
+Système de 
+template
+ pour la génération des pages HTML (composition de la vue standardisée)
+Serveur web et/ou de BDD embarqué (déploiement facilité)
+Architecture MVC pour la réalisation de la logique application (meilleure maintenabilité et évolutivité du code)
+256
+
+ppt/slides/slide257.xml
+Framework Spring
+Principe de fonctionnement d’une application Spring
+257
+Controller
+Repository
+Base de données
+Navigateur
+Le client clique
+sur un lien
+Le navigateur
+transmet une 
+requête HTTP
+Le contrôleur traite
+et interroge le
+Repository (DAO)
+Le repository interroge
+la BDD
+La BDD fournit les
+résultats
+Le repository 
+donne les résultats
+au contrôleur
+Le contrôleur
+génère et transmet
+une page
+Web à partir des
+résultats
+Le navigateur
+affiche la page
+web
+
+ppt/slides/slide258.xml
+Framework Spring
+Le 
+framework
+ Spring (et Spring Boot) est un 
+framework
+ Java orienté objet
+Le contrôleur est une « classe »
+Le repository est une « interface »
+258
+
+ppt/slides/slide259.xml
+Framework Spring
+Les pages 
+webs
+ affichées sont des pages HTML (légèrement modifiées pour permettre au contrôleur d’injecter des données dans les pages)
+259
+
+ppt/slides/slide260.xml
+Framework Spring
+Beaucoup d’outils sont inclus permettant d’automatiser le travail du développeur
+Spring embarque un serveur web (pas besoin d’en installer un sur la machine)
+Il peut également embarquer son propre serveur de base de données
+260
+
+ppt/slides/slide261.xml
+Framework Spring
+Pour faciliter l’intégration entre Java et la base de données, des outils sont proposés
+Il est notamment possible d’inclure l’Object 
+Relationnal
+ Mapping (ORM) qui permet de convertir directement des objets Java en tables (en ajoutant l’annotation @
+Entity
+ sur les objets) – le standard Java pour l’ORM est JPA (Java 
+Persistence
+ API)*
+Ensuite les 
+Repository
+ sont capables de générer automatiquement les requêtes SQL à partir des opérations sur les objets Java
+* Les principaux framework ORM pour PHP sont Doctrine et Eloquent
+261
+
+ppt/diagrams/data1.xml
+Introduction aux bases de données
+Principes des bases de données relationnelles
+Langage SQL et principes avancés des bases de données relationnelles
+Méthodologie de conception d’une base de 
+données
+ de relationnelle
+Introduction au Web, frameworks 
+dédiés
+Administration des bases de 
+données
+ et 
+optimisations
+
+ppt/diagrams/data10.xml
+Syntaxe générale
+CREATE TABLE
+ 
+nom_de_la_table
+(
+  colonne1 
+type_donnees
+,
+  colonne2 
+type_donnees
+,
+  colonne3 
+type_donnees
+,
+  colonne4 
+type_donnees
+)
+Exemple
+CREATE TABLE 
+utilisateur
+(
+  id 
+INT PRIMARY KEY NOT NULL 
+AUTO_INCREMENT
+,
+  nom 
+VARCHAR
+(100),
+  
+prenom
+ 
+VARCHAR
+(100),
+  email 
+VARCHAR
+(255),
+  
+date_naissance
+ 
+DATE
+,
+  pays 
+VARCHAR
+(255),
+  ville 
+VARCHAR
+(255),
+  
+code_postal
+ 
+VARCHAR
+(5),
+  
+nombre_achat
+ 
+INT
+)
+
+ppt/diagrams/data11.xml
+Créer des bases de données
+Supprimer des bases
+
+ppt/diagrams/data12.xml
+Une 
+contrainte d’intégrité
+ est une règle qui définit la cohérence d’une donnée ou d’un ensemble de données de la base de données
+Les contraintes sont définies au moment de la création des tables
+
+ppt/diagrams/data13.xml
+Contraintes sur colonne unique
+Contraintes sur une table (lorsque la contrainte porte sur une ou plusieurs colonnes)
+
+ppt/diagrams/data14.xml
+PRIMARY KEY 
+: définit l’attribut comme clé primaire
+UNIQUE
+ : interdit que deux enregistrements ait la même valeur pour cet attribut
+CHECK
+ (<condition>) : la condition donnée doit être vérifiée pour chaque valeur de l’attribut
+FOREIGN KEY 
+(<
+liste
+ 
+d’attributs
+>) 
+REFERENCES
+ <table> (<
+colonnes
+>) : 
+indique
+ ques les 
+attributs
+ font reference à 
+une
+ 
+autre
+ table
+REFERENCES
+ <table> (<
+colonnes
+>) : 
+indique
+ que la 
+colonne
+ fait 
+réference
+ à 
+une
+ 
+autre
+ table et 
+contrôle
+ la 
+validité
+ de 
+cette
+ 
+référence
+
+ppt/diagrams/data15.xml
+Analyse
+Conception
+Implémentation
+Test
+Identification des fonctionnalités
+Moyens et procédures permettant de mettre à disposition la fonctionnalité
+
+ppt/diagrams/data16.xml
+Analyse
+Conception
+Implémentation
+Test
+
+ppt/diagrams/data17.xml
+La réalisation d’un diagramme entité association permet de mettre en évidence les entités présentes, leurs attributs et leurs relations
+Il donne une piste sur la conception de la base de données mais ne donne pas directement son architecture
+
+ppt/diagrams/data18.xml
+Base de données
+Application (serveur web)
+Client (navigateur)
+Traitement des données
+Stockage des données persistantes
+Affichage des données
+
+ppt/diagrams/data2.xml
+1 examen sur table (50%)
+1 projet (50%)
+
+ppt/diagrams/data3.xml
+Une base de données permet de stocker des données de façon organisée
+Un système de gestion de base de données offre le moyen d’interroger la base pour en extraire des informations utiles
+
+ppt/diagrams/data4.xml
+SQL = Structured Query Language ou langage de requête structurée
+Langage informatique normalisé servant à exploiter des bases de données relationnelles
+Permet de rechercher, ajouter, modifier ou supprimer des données dans une base (DML)
+Permet également de créer des tables, modifier la structure de la base de données (DDL)
+
+ppt/diagrams/data5.xml
+DCL (Data Control 
+Language
+) : gère les tâches administratives liées à la BDD
+TCL (Transaction Control Language) : 
+permet
+ de 
+manipuler
+ les transactions
+
+ppt/diagrams/data6.xml
+Récupérer les données
+Ajouter les données
+Mettre à jour les données
+Supprimer les données
+
+ppt/diagrams/data7.xml
+Les jointures permettent de réaliser des requêtes sur plusieurs tables en même temps quand ces tables possèdent une relation
+Par exemple, si on a deux tables 
+Client 
+et 
+Factures 
+et que 
+Factures 
+possède une clé étrangère référençant la table 
+Client 
+alors la requête "Récupérer la liste des clients et leurs factures" nécessite une jointure
+
+ppt/diagrams/data8.xml
+Les jointures sont un outil essentiel permettant d’exploiter les bases de données relationnelles
+Si une information est distribuée dans plusieurs tables, une requête avec jointure est nécessaire pour récupérer toute l’information
+
+ppt/diagrams/data9.xml
+Créer des tables
+Modifier des tables
+Supprimer des tables

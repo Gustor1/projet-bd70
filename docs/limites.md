@@ -1,0 +1,12 @@
+# Limites et choix de portée
+
+- Démonstration locale testée sur les versions indiquées, aucun déploiement public. Tests de largeur 390 px dans Edge, pas de preuve sur un téléphone physique ou tous les navigateurs.
+- Monosite, quatre rôles internes ; rôle transporteur optionnel non retenu. FEFO uniquement, commandes expédiées intégralement. Ces deux derniers choix sont autorisés par le sujet et le plan.
+- Heure civile Europe/Paris ; les jours de transition saisonnière sont refusés pour les créneaux. Une généralisation internationale demanderait UTC et une gestion explicite des ambiguïtés.
+- Verrou global d'écriture conservateur. Il garantit les invariants testés mais limite le parallélisme : pas de revendication de charge industrielle. La recherche de passages et les statistiques sur 10 000 passages agrègent encore l'historique complet dans une vue ; leur coût mesuré est publié.
+- L'intégrité entre plusieurs lignes (réservations, chronologie, capacité, allocations FEFO) est assurée par les services transactionnels. Les scripts administratifs ad hoc ne doivent pas contourner ces services. La base applique les contraintes élémentaires, l'historisation et l'immuabilité. Le générateur volumétrique insère des simulations contrôlées, distinctes d'une recette de formulaire.
+- Les référentiels structurants déjà utilisés sont protégés ; créer une nouvelle fiche si les caractéristiques changent. Les faits validés se corrigent par mouvement ou annulation autorisée. Les champs descriptifs ne sont pas des copies réglementaires figées de documents : les impressions sont pédagogiques.
+- Les listes de référence sont limitées à 2 000 propositions par sélection ; l'affinage par nom/référence permet de chercher au-delà sur un jeu volumineux. Les journaux principaux sont paginés ; la trace pagine les mouvements, mais affiche encore les réceptions et commandes liées en tableaux complets pour un lot.
+- Aucun échange EDI, plan de chargement géométrique, facturation, inventaire multi-conditionnements, suivi GPS ou signature électronique n'est demandé ni réalisé.
+- Aucun quota officiel de tables, de lignes ou de points n'est inventé. Les 40 tables résultent des concepts et des associations retenus, dont deux tables techniques. Les volumes de performances sont un jeu de travail, pas une exigence chiffrée des enseignants.
+- Auteurs réels, répartition des contributions, date de remise et modalités de soutenance A26 restent à renseigner/valider par le groupe. Les noms affichés dans les comptes de démonstration sont fictifs.

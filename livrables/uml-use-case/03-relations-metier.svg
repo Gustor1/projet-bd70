@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1610" viewBox="0 0 1800 1610">
+<defs><marker id="open" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L13 7 L1 13" fill="none" stroke="#20354b" stroke-width="2"/></marker><marker id="triangle" markerWidth="21" markerHeight="20" refX="20" refY="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L20 10 L1 19 Z" fill="white" stroke="#20354b" stroke-width="2"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/>
+<rect x="100" y="190" width="1600" height="1150" fill="white" stroke="#a5b2be" stroke-width="2"/>
+<polyline points="690,352.5 1100,352.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="324.0">«include»</tspan></text>
+<polyline points="690,532.5 1100,532.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="491.84">«extend»</tspan><tspan x="895" y="516.16">[sans rendez-vous]</tspan></text>
+<polyline points="690,712.5 1100,712.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="684.0">«include»</tspan></text>
+<polyline points="690,892.5 1100,892.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="864.0">«include»</tspan></text>
+<polyline points="690,1072.5 1100,1072.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="1044.0">«include»</tspan></text>
+<polyline points="690,1252.5 1100,1252.5" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#open)"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><tspan x="895" y="1224.0">«include»</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="34" text-anchor="start" font-weight="bold"><tspan x="60" y="71.9">Cas d’utilisation · Relations métier</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="60" y="126.65">Vue partielle : les acteurs et leurs associations sont ceux des pages 1 et 2.</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start" font-weight="bold"><tspan x="122" y="229.85">Système Transit — détails des comportements</tspan></text>
+<ellipse cx="435.0" cy="352.5" rx="255.0" ry="52.5" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="346.41">Créer / déplacer</tspan><tspan x="435.0" y="373.29">un rendez-vous (UC03)</tspan></text>
+<ellipse cx="1355.0" cy="352.5" rx="255.0" ry="52.5" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="346.41">Vérifier la disponibilité</tspan><tspan x="1355.0" y="373.29">et la compatibilité du quai</tspan></text>
+<ellipse cx="435.0" cy="532.5" rx="255.0" ry="52.5" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="526.41">Traiter une arrivée</tspan><tspan x="435.0" y="553.29">sans rendez-vous</tspan></text>
+<ellipse cx="1355.0" cy="532.5" rx="255.0" ry="52.5" fill="#fff5e9" stroke="#b6874b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="526.41">Suivre un camion (UC04)</tspan><tspan x="1355.0" y="553.29">Point d’extension : arrivée</tspan></text>
+<ellipse cx="435.0" cy="712.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="706.41">Valider une réception (UC05)</tspan><tspan x="435.0" y="733.29">avec quantités acceptées</tspan></text>
+<ellipse cx="1355.0" cy="712.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="706.41">Contrôler la compatibilité</tspan><tspan x="1355.0" y="733.29">et la capacité des emplacements</tspan></text>
+<ellipse cx="435.0" cy="892.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="899.85">Transférer du stock (UC06)</tspan></text>
+<ellipse cx="1355.0" cy="892.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="886.41">Contrôler le stock libre</tspan><tspan x="1355.0" y="913.29">et la destination</tspan></text>
+<ellipse cx="435.0" cy="1072.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="1079.85">Préparer une commande (UC07)</tspan></text>
+<ellipse cx="1355.0" cy="1072.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="1066.4099999999999">Réserver le stock disponible</tspan><tspan x="1355.0" y="1093.29">selon la règle FEFO</tspan></text>
+<ellipse cx="435.0" cy="1252.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="435.0" y="1259.85">Expédier une commande (UC08)</tspan></text>
+<ellipse cx="1355.0" cy="1252.5" rx="255.0" ry="52.5" fill="#eef8f3" stroke="#568873" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1355.0" y="1246.4099999999999">Vérifier colis, lots</tspan><tspan x="1355.0" y="1273.29">et capacité du camion</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="100" y="1415.4699999999998">« include » : comportement systématiquement exécuté par le cas source ; flèche vers le cas inclus.</tspan><tspan x="100" y="1442.35">« extend » : comportement conditionnel ajouté au cas de base ; flèche vers le cas étendu.</tspan><tspan x="100" y="1469.2299999999998">FEFO : les lots dont la date de péremption arrive en premier sont prélevés en priorité.</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="100" y="1544.15">L’authentification est une précondition de session, pas un « include » répété à chaque opération.</tspan></text>
+</svg>

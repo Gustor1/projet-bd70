@@ -1,0 +1,114 @@
+
+PAGE 1
+1 
+Système de Gestion d'un Entrepôt Logistique 
+Objectif 
+L'objectif de ce projet est de concevoir et de développer un système de base de données relationnelle 
+qui aide à gérer les opérations quotidiennes d'un entrepôt logistique. Cela inclut la gestion des flux de 
+camions entrants et sortants, des quais de chargement et de déchargement, des transporteurs et de 
+leurs chauffeurs, de la réception des marchandises, du stockage et de l'expédition des commandes. 
+Le système devra assurer une traçabilité complète des marchandises, depuis leur arrivée sur le site 
+jusqu'à leur départ, et fournir aux responsables de l'entrepôt des indicateurs leur permettant de 
+piloter l'activité (occupation des quais, temps d'attente des camions, taux de remplissage de 
+l'entrepôt, etc.). 
+Fonctionnalités clés 
+• Connexion et Authentification des Utilisateurs 
+o Permettre au personnel de l'entrepôt de s'inscrire et de se connecter. 
+o Gérer plusieurs profils aux droits distincts : administrateur, responsable d'exploitation 
+(planification des quais), agent d'accueil (poste de garde), magasinier / préparateur, et 
+éventuellement transporteur (accès limité à la prise de rendez-vous). 
+• Gestion des Transporteurs, Chauffeurs et Véhicules 
+o Maintenir un référentiel des sociétés de transport (coordonnées, contrats, contacts). 
+o Gérer les chauffeurs rattachés à chaque transporteur (identité, téléphone, permis, 
+habilitations particulières comme le transport de matières dangereuses). 
+o Gérer les véhicules (tracteur, remorque, porteur, fourgon) avec leur immatriculation, leur 
+type, leur capacité (poids, nombre de palettes) et leurs caractéristiques (frigorifique, 
+hayon, etc.). 
+• Gestion des Quais et des Rendez-vous 
+o Décrire les quais de l'entrepôt : type (réception, expédition, mixte), équipements 
+(niveleur, hayon, quai frigorifique), types de véhicules compatibles. 
+o Permettre la prise de rendez-vous sur des créneaux horaires, en garantissant l'absence de 
+chevauchement sur un même quai et la compatibilité entre le véhicule et le quai. 
+o Suivre le statut de chaque quai en temps réel (libre, réservé, occupé, hors service). 
+• Suivi des Flux de Camions 
+o Enregistrer chaque étape du passage d'un camion sur le site : arrivée au poste de garde, 
+contrôle des documents, mise en attente sur le parking, appel à quai, début et fin de 
+chargement ou de déchargement, départ du site. 
+o Horodater chaque étape afin de calculer les temps d'attente et d'immobilisation, et de 
+détecter les retards par rapport au rendez-vous prévu. 
+o Gérer les arrivées sans rendez-vous et leur affectation à un quai disponible. 
+• Réception des Marchandises 
+o Gérer les avis d'expédition des fournisseurs (liste des articles et quantités attendues). 
+o Enregistrer la réception effective : quantités reçues, numéros de lot, dates limites de 
+consommation le cas échéant, état des palettes. 
+o Détecter et enregistrer les écarts (manquants, excédents, marchandises endommagées) 
+et les réserves émises auprès du transporteur. 
+o Affecter les marchandises reçues à un emplacement de stockage. 
+• Gestion des Emplacements et des Stocks 
+
+PAGE 2
+2 
+o Décrire la structure physique de l'entrepôt : zones (ambiant, froid, produits dangereux), 
+allées, racks, niveaux et emplacements, avec leur capacité. 
+o Gérer le catalogue d'articles (référence, désignation, dimensions, poids, 
+conditionnement, conditions de stockage) et les clients propriétaires de la marchandise. 
+o Tenir à jour les quantités en stock par article, lot et emplacement, et historiser chaque 
+mouvement (entrée, transfert, sortie, ajustement d'inventaire). 
+o Respecter les règles de stockage (compatibilité produit / zone) et proposer des 
+emplacements libres adaptés. 
+• Préparation et Expédition des Commandes 
+o Gérer les commandes clients et leurs lignes (articles, quantités, date d'expédition 
+souhaitée). 
+o Générer les listes de prélèvement en appliquant une règle de sortie (premier entré – 
+premier sorti, ou premier périmé – premier sorti) et les affecter à des préparateurs. 
+o Suivre la constitution des colis et des palettes, puis leur chargement dans un camion 
+sortant. 
+o Générer les documents de transport (bon de livraison, lettre de voiture). 
+• Traçabilité et Tableaux de Bord 
+o Permettre de retrouver l'historique complet d'un lot : réception, emplacements 
+successifs, commande et camion d'expédition. 
+o Produire des indicateurs : taux d'occupation des quais, temps moyen d'attente et 
+d'immobilisation des camions par transporteur, taux de remplissage de l'entrepôt par 
+zone, taux d'écart en réception, productivité des préparateurs, articles proches de leur 
+date limite. 
+Remarque 
+Le modèle de base de données doit permettre toutes ces fonctionnalités. Cependant, la partie front-
+end (partie web) n'est requise que pour « Connexion et Authentification des Utilisateurs », « Gestion 
+des Quais et des Rendez-vous », « Suivi des Flux de Camions », « Réception des Marchandises » et « 
+Gestion des Emplacements et des Stocks » (il s’agit d’un m inimum, vous pouvez faire plus). Des 
+données factices pourront être placées manuellement en base pour simuler les fonctionnalités non 
+implémentées dans l’interface au besoin. 
+Fonctionnalités générales requises 
+En tant qu'exercice pédagogique, la conception et la mise en œuvre de ce projet doivent démontrer 
+votre capacité à concevoir une base de données et à interagir avec elle. À cette fin, vous devrez vous 
+assurer que les exigences minimales suivantes sont respectées : 
+- Ajouter, modifier, supprimer des données 
+- Rechercher des données 
+- Filtrer des données selon des critères pertinents 
+- Montrer des statistiques pertinentes à partir des données, générer des rapports 
+- Implémenter une interface utilisateur permettant la manipulation des différentes 
+fonctionnalités (formulaires) 
+- Permettre une utilisation multi-utilisateurs (inscription, connexion) 
+- Concevoir correctement la base de données, respecter la 3NF 
+La qualité globale du projet et la richesse des fonctionnalités seront également appréciées, vous êtes 
+donc fortement encouragé à aller plus loin et à réaliser un projet de qualité. 
+Livrables du Projet 
+
+PAGE 3
+3 
+- Diagramme de cas d’utilisation UML 
+- Modèle conceptuel de la base de données (schéma entité-association). 
+- Modèle logique de la base de données (schéma relationnel). 
+- Base de données implémentée avec des données factices en quantité. 
+- Interface utilisateur de gestion minimale pour ajouter, modifier et consulter les données. 
+- Documentation détaillée de la conception de la base de données et des fonctionnalités. 
+- Rapport d’analyse des performances : document listant les performances (temps d’exécution) 
+des requêtes principales. 
+Contraintes Techniques 
+- Utilisation du système de gestion de base de données (SGBD) MySQL/MariaDB ou PostgreSQL 
+- Respect des normes de sécurité et de confidentialité des données. 
+- Développement d'une interface utilisateur conviviale pour la gestion des données. 
+- Optimisation des performances de la base et des requêtes 
+- Automatisation de processus internes à la base (notamment historisation) 
+ 
+ 

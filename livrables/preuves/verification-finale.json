@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-22T15:12:04.148290+00:00",
+  "rapport_pages_revue_visuelle": 18,
+  "diagrammes_revue_visuelle": 14,
+  "etats_pages_revue_visuelle": 6,
+  "syntax_python": true,
+  "configuration_et_donnees_locales_exclues_git": true,
+  "application_http": 200,
+  "portee": "Vérification locale Windows, aucun déploiement public"
+}

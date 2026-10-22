@@ -1,0 +1,59 @@
+{
+  "planning": {
+    "raw_ms": [
+      56.957800000000134,
+      59.16660000000047,
+      48.46900000000096,
+      43.83510000000024,
+      91.33100000000195,
+      54.37259999999878,
+      65.31620000000112,
+      62.86540000000241,
+      61.38029999999708,
+      67.25030000000334
+    ],
+    "median_ms": 60.273449999998775,
+    "min_ms": 43.83510000000024,
+    "max_ms": 91.33100000000195,
+    "dataset": "démonstration, compte admin",
+    "includes": "HTTP local, rendu PHP et transfert de la réponse ; sans téléchargement des ressources"
+  },
+  "stock": {
+    "raw_ms": [
+      364.4470000000001,
+      341.7963000000018,
+      376.28199999999924,
+      332.7394000000022,
+      346.4395999999979,
+      345.34500000000116,
+      564.2338000000018,
+      382.0789999999979,
+      343.8462999999974,
+      334.64309999999386
+    ],
+    "median_ms": 345.8922999999995,
+    "min_ms": 332.7394000000022,
+    "max_ms": 564.2338000000018,
+    "dataset": "démonstration, compte admin",
+    "includes": "HTTP local, rendu PHP et transfert de la réponse ; sans téléchargement des ressources"
+  },
+  "reports": {
+    "raw_ms": [
+      360.8267000000051,
+      528.7163,
+      429.58950000000186,
+      374.6924999999974,
+      361.713800000005,
+      349.71280000000115,
+      366.5329999999958,
+      354.653999999995,
+      354.9592000000048,
+      585.3018999999986
+    ],
+    "median_ms": 364.1234000000004,
+    "min_ms": 349.71280000000115,
+    "max_ms": 585.3018999999986,
+    "dataset": "démonstration, compte admin",
+    "includes": "HTTP local, rendu PHP et transfert de la réponse ; sans téléchargement des ressources"
+  }
+}

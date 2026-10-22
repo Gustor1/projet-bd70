@@ -1,0 +1,17 @@
+# Hypothèses et décisions
+
+1. Un entrepôt, en France, horaires civils Europe/Paris. SQL DATETIME stocke les heures locales du site. Les créneaux durant une transition d'heure saisonnière sont refusés dans cette version ; pas de conversion implicite depuis le fuseau du poste.
+2. Quantités entières en unités de conditionnement d'article, kg et mètres pour les dimensions ; volume calculé. Capacité palettes en équivalents rationnels quantité/unités_par_palette, sans arrondi par opération. Pas de reconditionnement automatique.
+3. Un article appartient à un client propriétaire ; son SKU est unique chez ce propriétaire. Un lot est identifié par (article, code fabricant). Le fournisseur n'est ni le propriétaire ni le transporteur.
+4. Chaque réception peut recevoir plusieurs lots sur une ligne. Un lot peut être reçu plusieurs fois. Le stock conserve l'identité de chaque fraction de réception, même lorsqu'un lot est réparti entre emplacements. C'est le lien de provenance exact des sorties.
+5. Réceptions partielles autorisées : la quantité attendue affectée à chaque livraison ne dépasse pas le reste de l'avis. Les excédents reçus sont autorisés et signalés. Les endommagés sont décrits avec réserve, sans entrée au stock disponible.
+6. Stratégie FEFO : DLC croissante, DLC absente en dernier, puis date de réception et identifiant de fraction. Lots périmés ou bloqués exclus. Une préparation réserve intégralement la commande ; pas d'expédition partielle dans cette version. Annulation libère les réservations avant expédition.
+7. Stock calculé exclusivement par somme des mouvements immuables ; prélèvements non expédiés réservés séparément. Débit effectué une seule fois lors du chargement confirmé. Correction de stock par ajustement motivé, jamais édition du journal.
+8. Sérialisation des mutations métier par verrou transactionnel sur la ligne unique `site_lock`, puis verrou des ressources. Choix pédagogique conservateur : concurrence sûre, débit d'écriture limité ; à mesurer. PHP possède les transactions, les procédures ne COMMIT jamais.
+9. Quai hors service prioritaire sur occupé, réservé, libre. Une indisponibilité chevauchant une réservation active ou une occupation est refusée ; l'opérateur doit déplacer/annuler d'abord les réservations. Actualisation du planning toutes les 30 secondes quand aucun formulaire n'est modifié, et bouton manuel.
+10. Inscription publique = compte en attente. Activation et rôle par administrateur. Quatre rôles internes ; rôle transporteur optionnel non retenu. Aucune donnée réelle de personnel ou contrat.
+11. Les fiches métier déjà utilisées (dimensions d'article, capacités et structures de stockage, véhicules/quais opérationnels) sont protégées des changements structurels pouvant invalider des faits. Brouillons supprimables ; opérations validées annulables/corrigeables par service dédié.
+12. L'état courant est une projection des événements conservée pour piloter les transitions. Les dates et indicateurs restent calculés depuis les faits. Les documents imprimés sont pédagogiques, sans revendication de conformité réglementaire.
+13. PHP/PDO, MariaDB/InnoDB testés uniquement dans les versions indiquées. Pas d'ORM, CDN, API payante ni service extérieur nécessaire. Serveur PHP local réservé à la démonstration sur boucle locale.
+
+Sources : S (sujet A26), E (grille non pondérée), C et W (cours A25). Les modalités de groupe et de soutenance de C sont anciennes : 10 minutes préparées à titre indicatif ; date de remise inconnue.

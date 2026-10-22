@@ -1,0 +1,14 @@
+* text=auto
+
+# Conserver les documents et médias octet pour octet, y compris les PDF ASCII.
+*.pdf binary
+*.docx binary
+*.pptx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.zip binary
+
+# Préserver la mise en forme des extractions des supports d'origine.
+docs/sources/*.txt -whitespace

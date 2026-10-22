@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-22T23:07:37",
+  "database": "bd70_demo_installation_finale",
+  "new_config_generated": true,
+  "isolated_sql_account_generated": true,
+  "boolean_sql_and_server_rejections": [
+    true,
+    true,
+    true
+  ],
+  "unused_driver_qualification_crud": true,
+  "authenticated_routes": [
+    {
+      "route": "planning",
+      "ok": true
+    },
+    {
+      "route": "visits",
+      "ok": true
+    },
+    {
+      "route": "receipts",
+      "ok": true
+    },
+    {
+      "route": "stock",
+      "ok": true
+    },
+    {
+      "route": "orders",
+      "ok": true
+    },
+    {
+      "route": "reports",
+      "ok": true
+    },
+    {
+      "route": "trace&lot_id=1",
+      "ok": true
+    },
+    {
+      "route": "catalog&t=carrier",
+      "ok": true
+    }
+  ],
+  "passed": true
+}

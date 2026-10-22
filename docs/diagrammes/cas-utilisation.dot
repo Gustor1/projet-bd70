@@ -1,0 +1,41 @@
+digraph UML {
+rankdir=LR;
+graph [fontname="Arial",bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1",splines=polyline]; node [fontname="Arial",fontsize=12]; edge [fontname="Arial",fontsize=10,color="#617b94",fontcolor="#17324d"];
+admin [shape=plaintext,label="◯\n/|\\\n/ \\\nAdministrateur"];
+manager [shape=plaintext,label="◯\n/|\\\n/ \\\nResponsable"];
+gate [shape=plaintext,label="◯\n/|\\\n/ \\\nAccueil"];
+warehouse [shape=plaintext,label="◯\n/|\\\n/ \\\nMagasinier"];
+subgraph cluster_system { label="Transit - Système de gestion d’un entrepôt";color="#6c8aa4";style=rounded;
+auth [shape=ellipse,label="UC01 Accéder au système",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+refs [shape=ellipse,label="UC02 Gérer les référentiels",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+reserve [shape=ellipse,label="UC03 Planifier les quais",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+flow [shape=ellipse,label="UC04 Suivre les camions",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+receive [shape=ellipse,label="UC05 Réceptionner / ranger",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+stock [shape=ellipse,label="UC06 Déplacer / corriger le stock",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+pick [shape=ellipse,label="UC07 Préparer en FEFO",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+ship [shape=ellipse,label="UC08 Charger et expédier",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+trace [shape=ellipse,label="UC09 Tracer un lot",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+report [shape=ellipse,label="UC10 Analyser / exporter",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+rights [shape=ellipse,label="Vérifier les droits",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+availability [shape=ellipse,label="Vérifier la disponibilité",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+walkin [shape=ellipse,label="Traiter sans rendez-vous",style=filled,fillcolor="#edf4fa",color="#6b8dac"];
+}
+manager -> refs [dir=none];
+manager -> report [dir=none];
+gate -> auth [dir=none];
+gate -> reserve [dir=none];
+gate -> flow [dir=none];
+gate -> trace [dir=none];
+warehouse -> auth [dir=none];
+warehouse -> receive [dir=none];
+warehouse -> stock [dir=none];
+warehouse -> pick [dir=none];
+warehouse -> ship [dir=none];
+warehouse -> trace [dir=none];
+reserve -> availability [style=dashed,arrowhead=empty,label="«include»"];
+stock -> availability [style=dashed,arrowhead=empty,label="«include»"];
+receive -> rights [style=dashed,arrowhead=empty,label="«include»"];
+ship -> rights [style=dashed,arrowhead=empty,label="«include»"];
+walkin -> flow [style=dashed,arrowhead=empty,label="«extend»"];
+admin -> manager [arrowhead=empty,label="hérite",constraint=false];manager -> gate [arrowhead=empty,label="hérite",constraint=false];manager -> warehouse [arrowhead=empty,label="hérite",constraint=false];
+}

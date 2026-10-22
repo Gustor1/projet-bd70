@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400">
+<defs><marker id="open" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L13 7 L1 13" fill="none" stroke="#20354b" stroke-width="2"/></marker><marker id="triangle" markerWidth="21" markerHeight="20" refX="20" refY="10" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L20 10 L1 19 Z" fill="white" stroke="#20354b" stroke-width="2"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/>
+<rect x="1200" y="185" width="540" height="420" fill="white" stroke="#a5b2be" stroke-width="2"/>
+<polyline points="410,500 410,275 678,275" fill="none" stroke="#20354b" stroke-width="2" marker-end="url(#triangle)"/>
+<polyline points="1010,500 1010,275 742,275" fill="none" stroke="#20354b" stroke-width="2" marker-end="url(#triangle)"/>
+<polyline points="678,840 310,840 310,550 378,550" fill="none" stroke="#20354b" stroke-width="2" marker-end="url(#triangle)"/>
+<polyline points="742,840 1120,840 1120,550 1042,550" fill="none" stroke="#20354b" stroke-width="2" marker-end="url(#triangle)"/>
+<polyline points="742,1140 820,1140 820,845 742,845" fill="none" stroke="#20354b" stroke-width="2" marker-end="url(#triangle)"/>
+<polyline points="1544,825 1710,825 1710,340 1670,340" fill="none" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="34" text-anchor="start" font-weight="bold"><tspan x="60" y="71.9">Acteurs · Généralisation et accès</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="60" y="126.65">La pointe du triangle désigne le rôle général dont les cas d’utilisation sont hérités.</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="710.0" cy="239" r="14"/><path d="M710.0 253 V290 M678 268 H742 M710.0 290 L678 325 M710.0 290 L742 325" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="710.0" y="350.56">Personnel</tspan><tspan x="710.0" y="377.44">(acteur général)</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="410.0" cy="514" r="14"/><path d="M410.0 528 V565 M378 543 H442 M410.0 565 L378 600 M410.0 565 L442 600" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="410.0" y="626.0">Agent d’accueil</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="1010.0" cy="514" r="14"/><path d="M1010.0 528 V565 M978 543 H1042 M1010.0 565 L978 600 M1010.0 565 L1042 600" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1010.0" y="625.56">Magasinier /</tspan><tspan x="1010.0" y="652.4399999999999">préparateur</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="710.0" cy="809" r="14"/><path d="M710.0 823 V860 M678 838 H742 M710.0 860 L678 895 M710.0 860 L742 895" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="710.0" y="920.56">Responsable</tspan><tspan x="710.0" y="947.4399999999999">d’exploitation</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="710.0" cy="1104" r="14"/><path d="M710.0 1118 V1155 M678 1133 H742 M710.0 1155 L678 1190 M710.0 1155 L742 1190" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="710.0" y="1216.0">Administrateur</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="60" y="265.47">Connexion / déconnexion</tspan><tspan x="60" y="292.35">Traçabilité des lots</tspan><tspan x="60" y="319.23">Consultation du planning</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="80" y="658.91">Rendez-vous</tspan><tspan x="80" y="685.79">Passages des camions</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="850" y="693.91">Réceptions · stocks</tspan><tspan x="850" y="720.79">Préparation · expédition</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="80" y="933.91">Référentiels et pilotage</tspan><tspan x="80" y="960.79">+ fonctions Accueil et Magasinier</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start"><tspan x="80" y="1168.9099999999999">Gestion des comptes</tspan><tspan x="80" y="1195.79">+ toutes les fonctions du Responsable</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="start" font-weight="bold"><tspan x="1222" y="224.85">Transit — accès initial</tspan></text>
+<g stroke="#20354b" stroke-width="2.4" fill="white"><circle cx="1512.0" cy="789" r="14"/><path d="M1512.0 803 V840 M1480 818 H1544 M1512.0 840 L1480 875 M1512.0 840 L1544 875" fill="none"/></g>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1512.0" y="900.56">Membre du personnel</tspan><tspan x="1512.0" y="927.4399999999999">non inscrit</tspan></text>
+<ellipse cx="1470.0" cy="340.0" rx="200.0" ry="55.0" fill="#eef5fc" stroke="#537ea6" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="21" text-anchor="middle"><tspan x="1470.0" y="333.91">UC01a · S’inscrire</tspan><tspan x="1470.0" y="360.79">Demander un compte</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="1220" y="477.33">Compte créé en attente.</tspan><tspan x="1220" y="501.65">Activation par l’administrateur (UC11)</tspan><tspan x="1220" y="525.97">avant toute connexion.</tspan></text>
+<text fill="#20354b" font-family="Arial, sans-serif" font-size="19" text-anchor="start"><tspan x="60" y="1302.3300000000002">Cette généralisation exprime les capacités fonctionnelles, pas la hiérarchie des personnes.</tspan><tspan x="60" y="1326.65">Le transporteur et le chauffeur sont gérés comme données : aucun portail transporteur n’est implémenté.</tspan><tspan x="60" y="1350.9700000000003">UC01 à UC10 reprennent la documentation ; UC01a détaille l’inscription et UC11 explicite l’administration des comptes.</tspan></text>
+</svg>

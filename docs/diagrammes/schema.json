@@ -1,0 +1,4608 @@
+{
+    "user_account": {
+        "title": "Utilisateurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(190)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "password_hash",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "role",
+                "Type": "enum('pending','admin','manager','gate','warehouse')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "pending",
+                "Extra": ""
+            },
+            {
+                "Field": "active",
+                "Type": "tinyint(1)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "user_account",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "user_account",
+                "Non_unique": 0,
+                "Key_name": "email",
+                "Seq_in_index": 1,
+                "Column_name": "email",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "carrier": {
+        "title": "Transporteurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "address",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "phone",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(190)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "carrier",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "carrier",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "carrier_contact": {
+        "title": "Contacts transporteurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "carrier_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "phone",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(190)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "carrier_contact",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "carrier_contact",
+                "Non_unique": 1,
+                "Key_name": "carrier_id",
+                "Seq_in_index": 1,
+                "Column_name": "carrier_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "carrier_id",
+                "REFERENCED_TABLE_NAME": "carrier",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "carrier_contract": {
+        "title": "Contrats",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "carrier_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "starts_on",
+                "Type": "date",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ends_on",
+                "Type": "date",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "terms",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "carrier_contract",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "carrier_contract",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "carrier_contract",
+                "Non_unique": 1,
+                "Key_name": "carrier_id",
+                "Seq_in_index": 1,
+                "Column_name": "carrier_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "carrier_id",
+                "REFERENCED_TABLE_NAME": "carrier",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "qualification": {
+        "title": "Habilitations",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "qualification",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "qualification",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "driver": {
+        "title": "Chauffeurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "carrier_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "phone",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "license_number",
+                "Type": "varchar(60)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "driver",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "driver",
+                "Non_unique": 0,
+                "Key_name": "license_number",
+                "Seq_in_index": 1,
+                "Column_name": "license_number",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "driver",
+                "Non_unique": 1,
+                "Key_name": "carrier_id",
+                "Seq_in_index": 1,
+                "Column_name": "carrier_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "carrier_id",
+                "REFERENCED_TABLE_NAME": "carrier",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "driver_qualification": {
+        "title": "Habilitations des chauffeurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "driver_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "qualification_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "expires_on",
+                "Type": "date",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "driver_qualification",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "driver_qualification",
+                "Non_unique": 0,
+                "Key_name": "driver_id",
+                "Seq_in_index": 1,
+                "Column_name": "driver_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "driver_qualification",
+                "Non_unique": 0,
+                "Key_name": "driver_id",
+                "Seq_in_index": 2,
+                "Column_name": "qualification_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "driver_qualification",
+                "Non_unique": 1,
+                "Key_name": "qualification_id",
+                "Seq_in_index": 1,
+                "Column_name": "qualification_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "driver_id",
+                "REFERENCED_TABLE_NAME": "driver",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "qualification_id",
+                "REFERENCED_TABLE_NAME": "qualification",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "equipment": {
+        "title": "Équipements",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "equipment",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "equipment",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "vehicle": {
+        "title": "Véhicules",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "carrier_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "plate",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "type",
+                "Type": "enum('tracteur','remorque','porteur','fourgon')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "max_kg",
+                "Type": "decimal(12,3)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "max_pallets",
+                "Type": "decimal(10,3)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "vehicle",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "vehicle",
+                "Non_unique": 0,
+                "Key_name": "plate",
+                "Seq_in_index": 1,
+                "Column_name": "plate",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "vehicle",
+                "Non_unique": 1,
+                "Key_name": "carrier_id",
+                "Seq_in_index": 1,
+                "Column_name": "carrier_id",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "carrier_id",
+                "REFERENCED_TABLE_NAME": "carrier",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "vehicle_equipment": {
+        "title": "Équipements des véhicules",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "vehicle_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "equipment_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "vehicle_equipment",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "vehicle_equipment",
+                "Non_unique": 0,
+                "Key_name": "vehicle_id",
+                "Seq_in_index": 1,
+                "Column_name": "vehicle_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "vehicle_equipment",
+                "Non_unique": 0,
+                "Key_name": "vehicle_id",
+                "Seq_in_index": 2,
+                "Column_name": "equipment_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "vehicle_equipment",
+                "Non_unique": 1,
+                "Key_name": "equipment_id",
+                "Seq_in_index": 1,
+                "Column_name": "equipment_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "vehicle_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "equipment_id",
+                "REFERENCED_TABLE_NAME": "equipment",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "dock": {
+        "title": "Quais",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "type",
+                "Type": "enum('reception','expedition','mixte')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "dock",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "dock_equipment": {
+        "title": "Équipements des quais",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "equipment_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "dock_equipment",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_equipment",
+                "Non_unique": 0,
+                "Key_name": "dock_id",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_equipment",
+                "Non_unique": 0,
+                "Key_name": "dock_id",
+                "Seq_in_index": 2,
+                "Column_name": "equipment_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_equipment",
+                "Non_unique": 1,
+                "Key_name": "equipment_id",
+                "Seq_in_index": 1,
+                "Column_name": "equipment_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "equipment_id",
+                "REFERENCED_TABLE_NAME": "equipment",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "dock_vehicle_type": {
+        "title": "Compatibilités des quais",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "vehicle_type",
+                "Type": "enum('tracteur','remorque','porteur','fourgon')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "dock_vehicle_type",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 12,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_vehicle_type",
+                "Non_unique": 0,
+                "Key_name": "dock_id",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_vehicle_type",
+                "Non_unique": 0,
+                "Key_name": "dock_id",
+                "Seq_in_index": 2,
+                "Column_name": "vehicle_type",
+                "Collation": "A",
+                "Cardinality": 12,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "dock_downtime": {
+        "title": "Indisponibilités",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "starts_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ends_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reason",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "dock_downtime",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "dock_downtime",
+                "Non_unique": 1,
+                "Key_name": "dock_id",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "appointment": {
+        "title": "Rendez-vous",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "driver_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "vehicle_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "trailer_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "operation",
+                "Type": "enum('reception','expedition')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "starts_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ends_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('active','cancelled')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "active",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "appointment",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "driver_id",
+                "Seq_in_index": 1,
+                "Column_name": "driver_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "vehicle_id",
+                "Seq_in_index": 1,
+                "Column_name": "vehicle_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "trailer_id",
+                "Seq_in_index": 1,
+                "Column_name": "trailer_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "idx_appointment_slot",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "idx_appointment_slot",
+                "Seq_in_index": 2,
+                "Column_name": "status",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "idx_appointment_slot",
+                "Seq_in_index": 3,
+                "Column_name": "starts_at",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment",
+                "Non_unique": 1,
+                "Key_name": "idx_appointment_slot",
+                "Seq_in_index": 4,
+                "Column_name": "ends_at",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "driver_id",
+                "REFERENCED_TABLE_NAME": "driver",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "vehicle_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "trailer_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "truck_visit": {
+        "title": "Passages camions",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "appointment_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "driver_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "vehicle_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "trailer_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "operation",
+                "Type": "enum('reception','expedition')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('arrived','checked','parking','called','working','finished','departed','rejected')",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": "arrived",
+                "Extra": ""
+            },
+            {
+                "Field": "document_note",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "truck_visit",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 0,
+                "Key_name": "appointment_id",
+                "Seq_in_index": 1,
+                "Column_name": "appointment_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "driver_id",
+                "Seq_in_index": 1,
+                "Column_name": "driver_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "vehicle_id",
+                "Seq_in_index": 1,
+                "Column_name": "vehicle_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "trailer_id",
+                "Seq_in_index": 1,
+                "Column_name": "trailer_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "dock_id",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "idx_visit_status",
+                "Seq_in_index": 1,
+                "Column_name": "status",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "truck_visit",
+                "Non_unique": 1,
+                "Key_name": "idx_visit_status",
+                "Seq_in_index": 2,
+                "Column_name": "vehicle_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "appointment_id",
+                "REFERENCED_TABLE_NAME": "appointment",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "driver_id",
+                "REFERENCED_TABLE_NAME": "driver",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "vehicle_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "trailer_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "visit_event": {
+        "title": "Chronologie des passages",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "visit_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "state",
+                "Type": "enum('arrived','checked','parking','called','working','finished','departed','rejected')",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "happened_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            },
+            {
+                "Field": "actor_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "visit_event",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 13,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 0,
+                "Key_name": "visit_id",
+                "Seq_in_index": 1,
+                "Column_name": "visit_id",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 0,
+                "Key_name": "visit_id",
+                "Seq_in_index": 2,
+                "Column_name": "state",
+                "Collation": "A",
+                "Cardinality": 13,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 1,
+                "Key_name": "actor_id",
+                "Seq_in_index": 1,
+                "Column_name": "actor_id",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 1,
+                "Key_name": "idx_event_period",
+                "Seq_in_index": 1,
+                "Column_name": "state",
+                "Collation": "A",
+                "Cardinality": 13,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 1,
+                "Key_name": "idx_event_period",
+                "Seq_in_index": 2,
+                "Column_name": "happened_at",
+                "Collation": "A",
+                "Cardinality": 13,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "visit_event",
+                "Non_unique": 1,
+                "Key_name": "idx_event_period",
+                "Seq_in_index": 3,
+                "Column_name": "visit_id",
+                "Collation": "A",
+                "Cardinality": 13,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "visit_id",
+                "REFERENCED_TABLE_NAME": "truck_visit",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "actor_id",
+                "REFERENCED_TABLE_NAME": "user_account",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "owner": {
+        "title": "Clients propriétaires",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "address",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(190)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "owner",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "owner",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "supplier": {
+        "title": "Fournisseurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "address",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "phone",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "supplier",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "supplier",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "article": {
+        "title": "Articles",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "owner_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sku",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "storage",
+                "Type": "enum('ambiant','froid','dangereux')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "packaging",
+                "Type": "varchar(80)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "width_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "depth_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "height_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "unit_kg",
+                "Type": "decimal(10,3)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "units_per_pallet",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "article",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "article",
+                "Non_unique": 0,
+                "Key_name": "owner_id",
+                "Seq_in_index": 1,
+                "Column_name": "owner_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "article",
+                "Non_unique": 0,
+                "Key_name": "owner_id",
+                "Seq_in_index": 2,
+                "Column_name": "sku",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "owner_id",
+                "REFERENCED_TABLE_NAME": "owner",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "zone": {
+        "title": "Zones",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(100)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "storage",
+                "Type": "enum('ambiant','froid','dangereux')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "zone",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "zone",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    },
+    "aisle": {
+        "title": "Allées",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "zone_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "aisle",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "aisle",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "aisle",
+                "Non_unique": 1,
+                "Key_name": "zone_id",
+                "Seq_in_index": 1,
+                "Column_name": "zone_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "zone_id",
+                "REFERENCED_TABLE_NAME": "zone",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "rack": {
+        "title": "Racks",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "aisle_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "rack",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "rack",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "rack",
+                "Non_unique": 1,
+                "Key_name": "aisle_id",
+                "Seq_in_index": 1,
+                "Column_name": "aisle_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "aisle_id",
+                "REFERENCED_TABLE_NAME": "aisle",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "rack_level": {
+        "title": "Niveaux",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "rack_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "rack_level",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "rack_level",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "rack_level",
+                "Non_unique": 1,
+                "Key_name": "rack_id",
+                "Seq_in_index": 1,
+                "Column_name": "rack_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "rack_id",
+                "REFERENCED_TABLE_NAME": "rack",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "location": {
+        "title": "Emplacements",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "level_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(30)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "width_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "depth_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "height_m",
+                "Type": "decimal(10,4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "max_kg",
+                "Type": "decimal(12,3)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "max_pallets",
+                "Type": "decimal(10,3)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "location",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "location",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "location",
+                "Non_unique": 1,
+                "Key_name": "level_id",
+                "Seq_in_index": 1,
+                "Column_name": "level_id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "level_id",
+                "REFERENCED_TABLE_NAME": "rack_level",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "lot": {
+        "title": "Lots",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "article_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "expires_on",
+                "Type": "date",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "blocked",
+                "Type": "tinyint(1)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "block_reason",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "lot",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 0,
+                "Key_name": "article_id",
+                "Seq_in_index": 1,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 0,
+                "Key_name": "article_id",
+                "Seq_in_index": 2,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 1,
+                "Key_name": "idx_lot_fefo",
+                "Seq_in_index": 1,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 1,
+                "Key_name": "idx_lot_fefo",
+                "Seq_in_index": 2,
+                "Column_name": "blocked",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 1,
+                "Key_name": "idx_lot_fefo",
+                "Seq_in_index": 3,
+                "Column_name": "expires_on",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "lot",
+                "Non_unique": 1,
+                "Key_name": "idx_lot_fefo",
+                "Seq_in_index": 4,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 6,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "article_id",
+                "REFERENCED_TABLE_NAME": "article",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "supplier_notice": {
+        "title": "Avis fournisseurs",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "supplier_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "expected_on",
+                "Type": "date",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "supplier_notice",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "supplier_notice",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "supplier_notice",
+                "Non_unique": 1,
+                "Key_name": "supplier_id",
+                "Seq_in_index": 1,
+                "Column_name": "supplier_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "supplier_notice",
+                "Non_unique": 1,
+                "Key_name": "idx_notice_date",
+                "Seq_in_index": 1,
+                "Column_name": "expected_on",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "supplier_notice",
+                "Non_unique": 1,
+                "Key_name": "idx_notice_date",
+                "Seq_in_index": 2,
+                "Column_name": "supplier_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "supplier_id",
+                "REFERENCED_TABLE_NAME": "supplier",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "notice_line": {
+        "title": "Lignes attendues",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "notice_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "article_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "expected_qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "notice_line",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "notice_line",
+                "Non_unique": 0,
+                "Key_name": "notice_id",
+                "Seq_in_index": 1,
+                "Column_name": "notice_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "notice_line",
+                "Non_unique": 0,
+                "Key_name": "notice_id",
+                "Seq_in_index": 2,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "notice_line",
+                "Non_unique": 1,
+                "Key_name": "article_id",
+                "Seq_in_index": 1,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "notice_id",
+                "REFERENCED_TABLE_NAME": "supplier_notice",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "article_id",
+                "REFERENCED_TABLE_NAME": "article",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "receipt": {
+        "title": "Réceptions",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "notice_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "visit_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('draft','validated')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "draft",
+                "Extra": ""
+            },
+            {
+                "Field": "validated_at",
+                "Type": "datetime",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "receipt",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt",
+                "Non_unique": 1,
+                "Key_name": "notice_id",
+                "Seq_in_index": 1,
+                "Column_name": "notice_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt",
+                "Non_unique": 1,
+                "Key_name": "visit_id",
+                "Seq_in_index": 1,
+                "Column_name": "visit_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "notice_id",
+                "REFERENCED_TABLE_NAME": "supplier_notice",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "visit_id",
+                "REFERENCED_TABLE_NAME": "truck_visit",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "receipt_line": {
+        "title": "Lignes de réception",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "receipt_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "notice_line_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "expected_qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "receipt_line",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_line",
+                "Non_unique": 0,
+                "Key_name": "receipt_id",
+                "Seq_in_index": 1,
+                "Column_name": "receipt_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_line",
+                "Non_unique": 0,
+                "Key_name": "receipt_id",
+                "Seq_in_index": 2,
+                "Column_name": "notice_line_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_line",
+                "Non_unique": 1,
+                "Key_name": "notice_line_id",
+                "Seq_in_index": 1,
+                "Column_name": "notice_line_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "receipt_id",
+                "REFERENCED_TABLE_NAME": "receipt",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "notice_line_id",
+                "REFERENCED_TABLE_NAME": "notice_line",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "receipt_item": {
+        "title": "Palettes reçues",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "line_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "lot_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pallet_code",
+                "Type": "varchar(50)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "accepted_qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "damaged_qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "pallet_state",
+                "Type": "enum('bon','abime')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "bon",
+                "Extra": ""
+            },
+            {
+                "Field": "reservation",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "",
+                "Extra": ""
+            },
+            {
+                "Field": "location_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "receipt_item",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_item",
+                "Non_unique": 0,
+                "Key_name": "pallet_code",
+                "Seq_in_index": 1,
+                "Column_name": "pallet_code",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_item",
+                "Non_unique": 1,
+                "Key_name": "line_id",
+                "Seq_in_index": 1,
+                "Column_name": "line_id",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_item",
+                "Non_unique": 1,
+                "Key_name": "lot_id",
+                "Seq_in_index": 1,
+                "Column_name": "lot_id",
+                "Collation": "A",
+                "Cardinality": 5,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "receipt_item",
+                "Non_unique": 1,
+                "Key_name": "location_id",
+                "Seq_in_index": 1,
+                "Column_name": "location_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "line_id",
+                "REFERENCED_TABLE_NAME": "receipt_line",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "lot_id",
+                "REFERENCED_TABLE_NAME": "lot",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "location_id",
+                "REFERENCED_TABLE_NAME": "location",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "customer_order": {
+        "title": "Commandes",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "owner_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "destination",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "desired_on",
+                "Type": "date",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('draft','picking','ready','shipped','cancelled')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "draft",
+                "Extra": ""
+            },
+            {
+                "Field": "preparer_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "picking_at",
+                "Type": "datetime",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ready_at",
+                "Type": "datetime",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "customer_order",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "customer_order",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "customer_order",
+                "Non_unique": 1,
+                "Key_name": "owner_id",
+                "Seq_in_index": 1,
+                "Column_name": "owner_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "customer_order",
+                "Non_unique": 1,
+                "Key_name": "preparer_id",
+                "Seq_in_index": 1,
+                "Column_name": "preparer_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "owner_id",
+                "REFERENCED_TABLE_NAME": "owner",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "preparer_id",
+                "REFERENCED_TABLE_NAME": "user_account",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "order_line": {
+        "title": "Lignes de commande",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "order_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "article_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "order_line",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "order_line",
+                "Non_unique": 0,
+                "Key_name": "order_id",
+                "Seq_in_index": 1,
+                "Column_name": "order_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "order_line",
+                "Non_unique": 0,
+                "Key_name": "order_id",
+                "Seq_in_index": 2,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "order_line",
+                "Non_unique": 1,
+                "Key_name": "article_id",
+                "Seq_in_index": 1,
+                "Column_name": "article_id",
+                "Collation": "A",
+                "Cardinality": 3,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "order_id",
+                "REFERENCED_TABLE_NAME": "customer_order",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "article_id",
+                "REFERENCED_TABLE_NAME": "article",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "pick": {
+        "title": "Prélèvements",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "order_line_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "receipt_item_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "location_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "qty",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('planned','confirmed','shipped','cancelled')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "planned",
+                "Extra": ""
+            },
+            {
+                "Field": "confirmed_at",
+                "Type": "datetime",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "pick",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "pick",
+                "Non_unique": 1,
+                "Key_name": "order_line_id",
+                "Seq_in_index": 1,
+                "Column_name": "order_line_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "pick",
+                "Non_unique": 1,
+                "Key_name": "location_id",
+                "Seq_in_index": 1,
+                "Column_name": "location_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "pick",
+                "Non_unique": 1,
+                "Key_name": "idx_pick_reservation",
+                "Seq_in_index": 1,
+                "Column_name": "receipt_item_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "pick",
+                "Non_unique": 1,
+                "Key_name": "idx_pick_reservation",
+                "Seq_in_index": 2,
+                "Column_name": "location_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "pick",
+                "Non_unique": 1,
+                "Key_name": "idx_pick_reservation",
+                "Seq_in_index": 3,
+                "Column_name": "status",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "order_line_id",
+                "REFERENCED_TABLE_NAME": "order_line",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "receipt_item_id",
+                "REFERENCED_TABLE_NAME": "receipt_item",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "location_id",
+                "REFERENCED_TABLE_NAME": "location",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "package": {
+        "title": "Colis et palettes de sortie",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "order_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "code",
+                "Type": "varchar(50)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "type",
+                "Type": "enum('colis','palette')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "package",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "package",
+                "Non_unique": 0,
+                "Key_name": "code",
+                "Seq_in_index": 1,
+                "Column_name": "code",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "package",
+                "Non_unique": 1,
+                "Key_name": "order_id",
+                "Seq_in_index": 1,
+                "Column_name": "order_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "order_id",
+                "REFERENCED_TABLE_NAME": "customer_order",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "package_pick": {
+        "title": "Contenu des colis",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "package_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pick_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "package_pick",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "package_pick",
+                "Non_unique": 0,
+                "Key_name": "pick_id",
+                "Seq_in_index": 1,
+                "Column_name": "pick_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "package_pick",
+                "Non_unique": 1,
+                "Key_name": "package_id",
+                "Seq_in_index": 1,
+                "Column_name": "package_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "package_id",
+                "REFERENCED_TABLE_NAME": "package",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "pick_id",
+                "REFERENCED_TABLE_NAME": "pick",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "shipment": {
+        "title": "Expéditions",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "order_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "visit_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "shipped_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            },
+            {
+                "Field": "actor_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "shipment",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "shipment",
+                "Non_unique": 0,
+                "Key_name": "order_id",
+                "Seq_in_index": 1,
+                "Column_name": "order_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "shipment",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "shipment",
+                "Non_unique": 1,
+                "Key_name": "visit_id",
+                "Seq_in_index": 1,
+                "Column_name": "visit_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "shipment",
+                "Non_unique": 1,
+                "Key_name": "actor_id",
+                "Seq_in_index": 1,
+                "Column_name": "actor_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "order_id",
+                "REFERENCED_TABLE_NAME": "customer_order",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "visit_id",
+                "REFERENCED_TABLE_NAME": "truck_visit",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "actor_id",
+                "REFERENCED_TABLE_NAME": "user_account",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "stock_movement": {
+        "title": "Mouvements de stock",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "operation_ref",
+                "Type": "varchar(64)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "receipt_item_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "location_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "delta",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "kind",
+                "Type": "enum('entry','transfer','shipment','adjustment')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "pick_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reason",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "actor_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "stock_movement",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 0,
+                "Key_name": "pick_id",
+                "Seq_in_index": 1,
+                "Column_name": "pick_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "location_id",
+                "Seq_in_index": 1,
+                "Column_name": "location_id",
+                "Collation": "A",
+                "Cardinality": 4,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "actor_id",
+                "Seq_in_index": 1,
+                "Column_name": "actor_id",
+                "Collation": "A",
+                "Cardinality": 2,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "idx_movement_stock",
+                "Seq_in_index": 1,
+                "Column_name": "receipt_item_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "idx_movement_stock",
+                "Seq_in_index": 2,
+                "Column_name": "location_id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "idx_movement_stock",
+                "Seq_in_index": 3,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "idx_movement_period",
+                "Seq_in_index": 1,
+                "Column_name": "created_at",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "stock_movement",
+                "Non_unique": 1,
+                "Key_name": "idx_movement_period",
+                "Seq_in_index": 2,
+                "Column_name": "kind",
+                "Collation": "A",
+                "Cardinality": 9,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "receipt_item_id",
+                "REFERENCED_TABLE_NAME": "receipt_item",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "location_id",
+                "REFERENCED_TABLE_NAME": "location",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "pick_id",
+                "REFERENCED_TABLE_NAME": "pick",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "actor_id",
+                "REFERENCED_TABLE_NAME": "user_account",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "audit_log": {
+        "title": "Journal automatique",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "bigint(20)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "entity",
+                "Type": "varchar(50)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "entity_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "operation",
+                "Type": "varchar(12)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "actor_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "happened_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            },
+            {
+                "Field": "details",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "audit_log",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 160,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "audit_log",
+                "Non_unique": 1,
+                "Key_name": "actor_id",
+                "Seq_in_index": 1,
+                "Column_name": "actor_id",
+                "Collation": "A",
+                "Cardinality": 10,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "actor_id",
+                "REFERENCED_TABLE_NAME": "user_account",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
+    "site_lock": {
+        "title": "Verrou du site",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "label",
+                "Type": "varchar(80)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "site_lock",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 1,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": []
+    }
+}
