@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="BD70">
+  <diagram id="bd70-rendu" name="Cas d’utilisation - rendu">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1960" pageHeight="1386" connect="1" arrows="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="system" value="" style="rounded=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="370" width="1880" height="780" />
+        </mxCell>
+        <mxCell id="admin" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="210" y="196" width="60" height="104" />
+        </mxCell>
+        <mxCell id="admin-label" value="Administrateur" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="308" width="320" height="54" />
+        </mxCell>
+        <mxCell id="manager" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="580" y="196" width="60" height="104" />
+        </mxCell>
+        <mxCell id="manager-label" value="Responsable&#10;d’exploitation" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="450" y="308" width="320" height="54" />
+        </mxCell>
+        <mxCell id="gate" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="950" y="196" width="60" height="104" />
+        </mxCell>
+        <mxCell id="gate-label" value="Agent d’accueil" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="308" width="320" height="54" />
+        </mxCell>
+        <mxCell id="warehouse" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1320" y="196" width="60" height="104" />
+        </mxCell>
+        <mxCell id="warehouse-label" value="Magasinier / préparateur" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1190" y="308" width="320" height="54" />
+        </mxCell>
+        <mxCell id="staff" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1690" y="196" width="60" height="104" />
+        </mxCell>
+        <mxCell id="staff-label" value="Personnel&#10;(acteur général)" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1560" y="308" width="320" height="54" />
+        </mxCell>
+        <mxCell id="candidate" value="" style="shape=umlActor;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="210" y="1200" width="60" height="104" />
+        </mxCell>
+        <mxCell id="candidate-label" value="Membre du personnel&#10;non inscrit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=top;fontSize=23;fontStyle=1;strokeColor=none;fillColor=none;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="1312" width="320" height="54" />
+        </mxCell>
+        <mxCell id="accounts" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Administrer&lt;br&gt;les comptes&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Activer, désactiver,&lt;br&gt;attribuer les droits&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="430" width="300" height="144" />
+        </mxCell>
+        <mxCell id="register" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;S’inscrire&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Demander un compte&lt;br&gt;auprès de l’entrepôt&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="794" width="300" height="144" />
+        </mxCell>
+        <mxCell id="transport" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Gérer le référentiel&lt;br&gt;de transport&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Transporteurs, chauffeurs,&lt;br&gt;véhicules&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="460" y="430" width="300" height="144" />
+        </mxCell>
+        <mxCell id="references" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Gérer les données&lt;br&gt;de l’entrepôt&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Quais, articles, clients,&lt;br&gt;stockage, fournisseurs&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="460" y="612" width="300" height="144" />
+        </mxCell>
+        <mxCell id="reports" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Piloter l’activité&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Indicateurs, statistiques,&lt;br&gt;rapports et exports&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="460" y="794" width="300" height="144" />
+        </mxCell>
+        <mxCell id="appointments" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Planifier les quais&lt;br&gt;et les rendez-vous&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Créer, déplacer, annuler ;&lt;br&gt;contrôler leur faisabilité&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="830" y="430" width="300" height="144" />
+        </mxCell>
+        <mxCell id="visits" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Suivre le passage&lt;br&gt;d’un camion&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Arrivée, contrôle, attente,&lt;br&gt;quai, opérations, départ&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="830" y="698" width="300" height="144" />
+        </mxCell>
+        <mxCell id="receipts" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Réceptionner&lt;br&gt;et ranger les produits&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Avis, lots, palettes ;&lt;br&gt;écarts et réserves&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="430" width="300" height="144" />
+        </mxCell>
+        <mxCell id="stock" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Gérer les stocks&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Rechercher, transférer,&lt;br&gt;ajuster l’inventaire&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="612" width="300" height="144" />
+        </mxCell>
+        <mxCell id="orders" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Gérer et préparer&lt;br&gt;les commandes&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Affecter un préparateur ;&lt;br&gt;prélever selon FEFO&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="794" width="300" height="144" />
+        </mxCell>
+        <mxCell id="shipping" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Expédier&lt;br&gt;les commandes&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Colis, palettes, chargement ;&lt;br&gt;BL et lettre de voiture&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1200" y="976" width="300" height="144" />
+        </mxCell>
+        <mxCell id="login" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Se connecter&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Compte actif&lt;br&gt;et identifiants valides&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1570" y="430" width="300" height="144" />
+        </mxCell>
+        <mxCell id="logout" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Se déconnecter&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Fermer sa session&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1570" y="612" width="300" height="144" />
+        </mxCell>
+        <mxCell id="planning" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Consulter les quais&lt;br&gt;et le planning&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Rendez-vous, occupation,&lt;br&gt;indisponibilités&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1570" y="794" width="300" height="144" />
+        </mxCell>
+        <mxCell id="trace" value="&lt;div style=&quot;font-size:22px;line-height:1.2;font-weight:bold&quot;&gt;Tracer un lot&lt;/div&gt;&lt;div style=&quot;font-size:19px;line-height:1.25;font-weight:normal&quot;&gt;Réception, emplacements,&lt;br&gt;commande, camion de sortie&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=0;fontFamily=Arial;fontColor=#20354b;strokeColor=#20354b;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1570" y="976" width="300" height="144" />
+        </mxCell>
+        <mxCell id="edge-0" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;endArrow=block;endFill=0;endSize=18;exitX=1.0;exitY=0.375;exitPerimeter=0;entryX=0.0;entryY=0.375;entryPerimeter=0;" edge="1" parent="1" source="admin" target="manager">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;endArrow=block;endFill=0;endSize=18;exitX=1.0;exitY=0.375;exitPerimeter=0;entryX=0.0;entryY=0.375;entryPerimeter=0;" edge="1" parent="1" source="manager" target="gate">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;endArrow=block;endFill=0;endSize=18;jumpStyle=arc;jumpSize=12;jumpDirection=left;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" edge="1" parent="1" source="manager" target="warehouse">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="610" y="140" />
+              <mxPoint x="1350" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;endArrow=block;endFill=0;endSize=18;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" edge="1" parent="1" source="gate" target="staff">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="980" y="104" />
+              <mxPoint x="1720" y="104" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;endArrow=block;endFill=0;endSize=18;exitX=1.0;exitY=0.375;exitPerimeter=0;entryX=0.0;entryY=0.375;entryPerimeter=0;" edge="1" parent="1" source="warehouse" target="staff">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.9230769230769231;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="admin" target="accounts">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="76" y="292" />
+              <mxPoint x="76" y="502" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.9230769230769231;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="manager" target="transport">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="446" y="292" />
+              <mxPoint x="446" y="502" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.8076923076923077;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="manager" target="references">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="432" y="280" />
+              <mxPoint x="432" y="684" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.6923076923076923;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="manager" target="reports">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="418" y="268" />
+              <mxPoint x="418" y="866" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.9230769230769231;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="gate" target="appointments">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="816" y="292" />
+              <mxPoint x="816" y="502" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-10" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.8076923076923077;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="gate" target="visits">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="802" y="280" />
+              <mxPoint x="802" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-11" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.9230769230769231;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="warehouse" target="receipts">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1186" y="292" />
+              <mxPoint x="1186" y="502" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-12" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.8076923076923077;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="warehouse" target="stock">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1172" y="280" />
+              <mxPoint x="1172" y="684" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-13" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.6923076923076923;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="warehouse" target="orders">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1158" y="268" />
+              <mxPoint x="1158" y="866" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-14" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.5769230769230769;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="warehouse" target="shipping">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1144" y="256" />
+              <mxPoint x="1144" y="1048" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-15" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.9230769230769231;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="staff" target="login">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1556" y="292" />
+              <mxPoint x="1556" y="502" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-16" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.8076923076923077;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="staff" target="logout">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1542" y="280" />
+              <mxPoint x="1542" y="684" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-17" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.6923076923076923;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="staff" target="planning">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1528" y="268" />
+              <mxPoint x="1528" y="866" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-18" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.25;exitY=0.5769230769230769;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="staff" target="trace">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1514" y="256" />
+              <mxPoint x="1514" y="1048" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-19" style="edgeStyle=none;rounded=0;endArrow=none;html=0;strokeWidth=2;strokeColor=#20354b;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" edge="1" parent="1" source="candidate" target="register">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="heading" value="BD70 · Diagramme de cas d’utilisation" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=34;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="10" width="629.84375" height="42" />
+        </mxCell>
+        <mxCell id="subheading" value="Entrepôt logistique · Périmètre fonctionnel du projet" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="55" width="513.3916015625" height="30" />
+        </mxCell>
+        <mxCell id="system-title" value="Système de gestion d’un entrepôt logistique" style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="710.773681640625" y="1116" width="538.45263671875" height="33" />
+        </mxCell>
+        <mxCell id="legend" value="Trait simple : participation à un cas. Triangle creux : héritage vers le rôle général." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=21;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1171" width="764.85205078125" height="29" />
+        </mxCell>
+        <mxCell id="inheritance-note" value="Le Responsable reprend les fonctions Accueil et Magasinier ; l’Administrateur reprend celles du Responsable." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1204" width="984.75390625" height="28" />
+        </mxCell>
+        <mxCell id="session-note" value="Session active et rôle autorisé pour les opérations métier. L’inscription et la connexion sont accessibles sans session." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1236" width="1051.43359375" height="28" />
+        </mxCell>
+        <mxCell id="scope-note" value="Portail Transporteur facultatif non retenu. « Gérer » comprend consultation, recherche et opérations autorisées." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1268" width="996.98046875" height="28" />
+        </mxCell>
+        <mxCell id="terms" value="FEFO : premier périmé, premier sorti. BL : bon de livraison. Les sous-lignes précisent le contenu des cas." style="text;html=0;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontStyle=0;strokeColor=none;fillColor=none;fontColor=#20354b;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1300" width="945.740234375" height="28" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
