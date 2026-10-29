@@ -1,0 +1,31 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+aisle [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ALLÉE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR></TABLE>>];
+article [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ARTICLE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence article</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Condition de stockage</TD></TR><TR><TD ALIGN="LEFT">Conditionnement</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Poids unitaire (kg)</TD></TR><TR><TD ALIGN="LEFT">Unités par palette</TD></TR></TABLE>>];
+location [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>EMPLACEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+lot [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LOT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Date limite / validité (facultatif)</TD></TR><TR><TD ALIGN="LEFT">Lot bloqué</TD></TR><TR><TD ALIGN="LEFT">Motif du blocage</TD></TR></TABLE>>];
+owner [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>CLIENT PROPRIÉTAIRE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Adresse</TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR></TABLE>>];
+rack [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RACK</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR></TABLE>>];
+rack_level [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>NIVEAU</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR></TABLE>>];
+zone [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ZONE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Condition de stockage</TD></TR></TABLE>>];
+R17 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R17\npossède"];
+owner -- R17 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R17 -- article [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R18 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R18\ncontient"];
+zone -- R18 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R18 -- aisle [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R19 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R19\ncontient"];
+aisle -- R19 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R19 -- rack [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R20 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R20\ncontient"];
+rack -- R20 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R20 -- rack_level [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R21 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R21\ncontient"];
+rack_level -- R21 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R21 -- location [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R22 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R22\ndéfinit"];
+article -- R22 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R22 -- lot [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

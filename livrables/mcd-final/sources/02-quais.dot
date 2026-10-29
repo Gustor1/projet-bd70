@@ -1,0 +1,22 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+dock [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>QUAI</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Type</TD></TR></TABLE>>];
+dock_downtime [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>INDISPONIBILITÉ</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Début</TD></TR><TR><TD ALIGN="LEFT">Fin</TD></TR><TR><TD ALIGN="LEFT">Motif</TD></TR></TABLE>>];
+equipment [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ÉQUIPEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR></TABLE>>];
+vehicle [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>VÉHICULE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Immatriculation</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+vehicle_type [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>TYPE DE VÉHICULE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Code type</U></TD></TR></TABLE>>];
+R05 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R05\nsubit une\nindisponibilité"];
+dock -- R05 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R05 -- dock_downtime [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R54 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R54\ndispose de"];
+dock -- R54 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R54 -- equipment [headlabel="0,N", labeldistance=2.0, labelangle=-25];
+R56 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R56\naccepte le type"];
+dock -- R56 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R56 -- vehicle_type [headlabel="0,N", labeldistance=2.0, labelangle=-25];
+R57 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R57\ncaractérise le\nvéhicule"];
+vehicle_type -- R57 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R57 -- vehicle [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

@@ -1,0 +1,26 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+article [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ARTICLE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence article</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Condition de stockage</TD></TR><TR><TD ALIGN="LEFT">Conditionnement</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Poids unitaire (kg)</TD></TR><TR><TD ALIGN="LEFT">Unités par palette</TD></TR></TABLE>>];
+notice_line [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LIGNE D’AVIS</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité attendue</TD></TR></TABLE>>];
+receipt [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RÉCEPTION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Validation (facultatif)</TD></TR></TABLE>>];
+supplier [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>FOURNISSEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Adresse</TD></TR><TR><TD ALIGN="LEFT">Téléphone</TD></TR></TABLE>>];
+supplier_notice [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>AVIS FOURNISSEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Livraison prévue</TD></TR><TR><TD ALIGN="LEFT">Date de clôture (facultatif)</TD></TR><TR><TD ALIGN="LEFT">Motif de clôture</TD></TR></TABLE>>];
+user_account [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>UTILISATEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Empreinte du mot de passe</TD></TR><TR><TD ALIGN="LEFT">Profil</TD></TR><TR><TD ALIGN="LEFT">Compte actif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+R23 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R23\nclôture un avis"];
+user_account -- R23 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R23 -- supplier_notice [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R24 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R24\német un avis"];
+supplier -- R24 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R24 -- supplier_notice [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R25 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R25\ndétaille un avis"];
+supplier_notice -- R25 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R25 -- notice_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R26 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R26\nfigure dans"];
+article -- R26 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R26 -- notice_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R27 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R27\nlivre tout ou\npartie"];
+supplier_notice -- R27 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R27 -- receipt [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

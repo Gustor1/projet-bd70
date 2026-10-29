@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1625pt" height="929pt" viewBox="0.00 0.00 1625.00 929.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(23.04 906.04)">
+<title>MCD</title>
+<polygon fill="white" stroke="none" points="-23.04,23.04 -23.04,-906.04 1602.03,-906.04 1602.03,23.04 -23.04,23.04" />
+
+<g id="edge7" class="edge">
+<title>article--R37</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M656.49,-700.62C688.16,-694.13 724,-686.8 753.65,-680.72" />
+<rect x="667.04693359375" y="-713.26" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="679.94" y="-701.06" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>customer_order--R36</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M687.72,-424.09C712.63,-434.19 738.02,-444.48 759.56,-453.2" />
+<rect x="700.45693359375" y="-446.73" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="713.35" y="-434.53" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge13" class="edge">
+<title>location--R40</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1118.63,-139.33C1144.12,-145.09 1172.06,-151.41 1196.78,-156.99" />
+<rect x="1129.50693359375" y="-159.57" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1142.4500000000003" y="-147.37" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge9" class="edge">
+<title>order_line--R38</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1125.81,-563.17C1145.08,-561.25 1165.4,-559.22 1184.46,-557.31" />
+<rect x="1135.80693359375" y="-577.78" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1148.6900000000003" y="-565.5800000000002" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>owner--R34</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M190.09,-494.34C210.91,-492.34 232.86,-490.24 253.01,-488.31" />
+<rect x="200.04693359375" y="-509.02" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="212.94" y="-496.81999999999994" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>receipt_item--R39</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1127.13,-384C1142.27,-384 1158.04,-384 1173.3,-384" />
+<rect x="1138.0637878432424" y="-406.10685424949236" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1150.9168542494924" y="-393.90685424949237" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>user_account--R35</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M197.38,-273.72C217.38,-277.56 238.1,-281.53 257.02,-285.16" />
+<rect x="209.18221496798856" y="-284.9547186257614" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="222.07528137423859" y="-272.7547186257614" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge2" class="edge">
+<title>R34--customer_order</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M385.8,-458.11C408.77,-448.48 436.38,-436.9 463.31,-425.61" />
+<rect x="426.12904296875" y="-448.41" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="437.86" y="-436.21" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>R35--customer_order</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M393.22,-319.39C414.62,-326.43 439.28,-334.54 463.39,-342.47" />
+<rect x="427.79904296875" y="-352.84" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="439.53" y="-340.64000000000004" font-family="Arial" font-size="14.00" fill="#203c54">0,1</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>R36--order_line</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M872.18,-499.98C894.85,-509.97 921.77,-521.84 947.14,-533.03" />
+<rect x="911.40904296875" y="-541.45" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="923.14" y="-529.25" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>R37--order_line</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M864.78,-647.29C888.9,-636.65 919.1,-623.33 947.36,-610.87" />
+<rect x="922.44904296875" y="-641.92" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="934.18" y="-629.7199999999999" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge10" class="edge">
+<title>R38--pick</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1307.84,-520.82C1335.94,-500.11 1375.19,-471.18 1410.36,-445.26" />
+<rect x="1389.06904296875" y="-482.81" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1400.7900000000002" y="-470.61000000000007" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge12" class="edge">
+<title>R39--pick</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1363.9,-384C1379.19,-384 1394.94,-384 1409.95,-384" />
+<rect x="1376.06904296875" y="-400.45" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1387.82" y="-388.25000000000006" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge14" class="edge">
+<title>R40--pick</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M1308.61,-209.75C1337.42,-236.91 1377.65,-274.83 1413.22,-308.36" />
+<rect x="1374.46904296875" y="-310.08" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="1386.2300000000002" y="-297.88000000000005" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="node1" class="node">
+<title>article</title>
+<polygon fill="#e7eff6" stroke="none" points="495.24,-852 495.24,-882 655.67,-882 655.67,-852 495.24,-852" />
+<text xml:space="preserve" text-anchor="start" x="542.96" y="-863.5" font-family="Arial-Bold" font-size="15.00">ARTICLE</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-833.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-801" font-family="Arial" font-size="15.00">Référence article</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-771" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-741" font-family="Arial" font-size="15.00">Condition de stockage</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-711" font-family="Arial" font-size="15.00">Conditionnement</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-681" font-family="Arial" font-size="15.00">Largeur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-651" font-family="Arial" font-size="15.00">Profondeur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-621" font-family="Arial" font-size="15.00">Hauteur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-591" font-family="Arial" font-size="15.00">Poids unitaire (kg)</text>
+<text xml:space="preserve" text-anchor="start" x="501.24" y="-561" font-family="Arial" font-size="15.00">Unités par palette</text>
+<polygon fill="none" stroke="#48647c" points="494.24,-551 494.24,-883 656.67,-883 656.67,-551 494.24,-551" />
+<line stroke-width="0.8" x1="501.24" x2="566.28638671875" y1="-831.5" y2="-831.5" stroke="#203c54" /></g>
+
+<g id="node2" class="node">
+<title>customer_order</title>
+<polygon fill="#e7eff6" stroke="none" points="463.99,-484 463.99,-514 686.92,-514 686.92,-484 463.99,-484" />
+<text xml:space="preserve" text-anchor="start" x="530.46" y="-495.5" font-family="Arial-Bold" font-size="15.00">COMMANDE</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-465.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-433" font-family="Arial" font-size="15.00">Référence</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-403" font-family="Arial" font-size="15.00">Adresse de livraison</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-373" font-family="Arial" font-size="15.00">Motif de reprise</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-343" font-family="Arial" font-size="15.00">Expédition souhaitée</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-313" font-family="Arial" font-size="15.00">État</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-283" font-family="Arial" font-size="15.00">Début de préparation (facultatif)</text>
+<text xml:space="preserve" text-anchor="start" x="469.99" y="-253" font-family="Arial" font-size="15.00">Fin de préparation (facultatif)</text>
+<polygon fill="none" stroke="#48647c" points="462.99,-243 462.99,-515 687.92,-515 687.92,-243 462.99,-243" />
+<line stroke-width="0.8" x1="469.99" x2="535.03638671875" y1="-463.5" y2="-463.5" stroke="#203c54" /></g>
+
+<g id="node3" class="node">
+<title>location</title>
+<polygon fill="#e7eff6" stroke="none" points="955.05,-211 955.05,-241 1117.95,-241 1117.95,-211 955.05,-211" />
+<text xml:space="preserve" text-anchor="start" x="978.59" y="-222.5" font-family="Arial-Bold" font-size="15.00">EMPLACEMENT</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-192.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-160" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-130" font-family="Arial" font-size="15.00">Largeur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-100" font-family="Arial" font-size="15.00">Profondeur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-70" font-family="Arial" font-size="15.00">Hauteur (m)</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-40" font-family="Arial" font-size="15.00">Capacité (kg)</text>
+<text xml:space="preserve" text-anchor="start" x="961.05" y="-10" font-family="Arial" font-size="15.00">Capacité (éq. palettes)</text>
+<polygon fill="none" stroke="#48647c" points="954.05,0 954.05,-242 1118.95,-242 1118.95,0 954.05,0" />
+<line stroke-width="0.8" x1="961.05" x2="1026.09638671875" y1="-190.5" y2="-190.5" stroke="#203c54" /></g>
+
+<g id="node4" class="node">
+<title>order_line</title>
+<polygon fill="#e7eff6" stroke="none" points="948,-587 948,-617 1125,-617 1125,-587 948,-587" />
+<text xml:space="preserve" text-anchor="start" x="954" y="-598.5" font-family="Arial-Bold" font-size="15.00">LIGNE DE COMMANDE</text>
+<text xml:space="preserve" text-anchor="start" x="954" y="-568.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="954" y="-536" font-family="Arial" font-size="15.00">Quantité</text>
+<polygon fill="none" stroke="#48647c" points="947,-526 947,-618 1126,-618 1126,-526 947,-526" />
+<line stroke-width="0.8" x1="954.0" x2="1019.04638671875" y1="-566.5" y2="-566.5" stroke="#203c54" /></g>
+
+<g id="node5" class="node">
+<title>owner</title>
+<polygon fill="#e7eff6" stroke="none" points="8.13,-563 8.13,-593 189.3,-593 189.3,-563 8.13,-563" />
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-574.5" font-family="Arial-Bold" font-size="15.00">CLIENT PROPRIÉTAIRE</text>
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-544.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-512" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-482" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-452" font-family="Arial" font-size="15.00">Adresse</text>
+<text xml:space="preserve" text-anchor="start" x="14.13" y="-422" font-family="Arial" font-size="15.00">Email</text>
+<polygon fill="none" stroke="#48647c" points="7.13,-412 7.13,-594 190.3,-594 190.3,-412 7.13,-412" />
+<line stroke-width="0.8" x1="14.13" x2="79.17638671875" y1="-542.5" y2="-542.5" stroke="#203c54" /></g>
+
+<g id="node6" class="node">
+<title>pick</title>
+<polygon fill="#e7eff6" stroke="none" points="1410.93,-429 1410.93,-459 1577.99,-459 1577.99,-429 1410.93,-429" />
+<text xml:space="preserve" text-anchor="start" x="1439.87" y="-440.5" font-family="Arial-Bold" font-size="15.00">PRÉLÈVEMENT</text>
+<text xml:space="preserve" text-anchor="start" x="1416.93" y="-410.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1416.93" y="-378" font-family="Arial" font-size="15.00">Quantité</text>
+<text xml:space="preserve" text-anchor="start" x="1416.93" y="-348" font-family="Arial" font-size="15.00">État</text>
+<text xml:space="preserve" text-anchor="start" x="1416.93" y="-318" font-family="Arial" font-size="15.00">Confirmation (facultatif)</text>
+<polygon fill="none" stroke="#48647c" points="1409.93,-308 1409.93,-460 1578.99,-460 1578.99,-308 1409.93,-308" />
+<line stroke-width="0.8" x1="1416.93" x2="1481.97638671875" y1="-408.5" y2="-408.5" stroke="#203c54" /></g>
+
+<g id="node7" class="node">
+<title>receipt_item</title>
+<polygon fill="#e7eff6" stroke="none" points="946.7,-459 946.7,-489 1126.31,-489 1126.31,-459 946.7,-459" />
+<text xml:space="preserve" text-anchor="start" x="970.67" y="-470.5" font-family="Arial-Bold" font-size="15.00">FRACTION REÇUE</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-440.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-408" font-family="Arial" font-size="15.00">Code de fraction / palette</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-378" font-family="Arial" font-size="15.00">Quantité acceptée</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-348" font-family="Arial" font-size="15.00">Quantité endommagée</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-318" font-family="Arial" font-size="15.00">État de palette</text>
+<text xml:space="preserve" text-anchor="start" x="952.7" y="-288" font-family="Arial" font-size="15.00">Observation sur avarie</text>
+<polygon fill="none" stroke="#48647c" points="945.7,-278 945.7,-490 1127.31,-490 1127.31,-278 945.7,-278" />
+<line stroke-width="0.8" x1="952.7" x2="1017.74638671875" y1="-438.5" y2="-438.5" stroke="#203c54" /></g>
+
+<g id="node8" class="node">
+<title>user_account</title>
+<polygon fill="#e7eff6" stroke="none" points="1,-345 1,-375 196.44,-375 196.44,-345 1,-345" />
+<text xml:space="preserve" text-anchor="start" x="49.14" y="-356.5" font-family="Arial-Bold" font-size="15.00">UTILISATEUR</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-326.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-294" font-family="Arial" font-size="15.00">Email</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-264" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-234" font-family="Arial" font-size="15.00">Empreinte du mot de passe</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-204" font-family="Arial" font-size="15.00">Profil</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-174" font-family="Arial" font-size="15.00">Compte actif</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-144" font-family="Arial" font-size="15.00">Créé le</text>
+<polygon fill="none" stroke="#48647c" points="0,-134 0,-376 197.44,-376 197.44,-134 0,-134" />
+<line stroke-width="0.8" x1="7.0" x2="72.04638671875" y1="-324.5" y2="-324.5" stroke="#203c54" /></g>
+
+<g id="node9" class="node">
+<title>R34</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="330.21,-542.92 243.68,-481 330.21,-419.08 416.75,-481 330.21,-542.92" />
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-493.6" font-family="Arial" font-size="14.00">R34</text>
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-476.8" font-family="Arial" font-size="14.00">passe une</text>
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-460" font-family="Arial" font-size="14.00">commande</text>
+</g>
+
+<g id="node10" class="node">
+<title>R35</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="330.21,-360.92 237.44,-299 330.21,-237.08 422.99,-299 330.21,-360.92" />
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-311.6" font-family="Arial" font-size="14.00">R35</text>
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-294.8" font-family="Arial" font-size="14.00">prépare une</text>
+<text xml:space="preserve" text-anchor="middle" x="330.21" y="-278" font-family="Arial" font-size="14.00">commande</text>
+</g>
+
+<g id="node11" class="node">
+<title>R36</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="816.81,-537.92 727.92,-476 816.81,-414.08 905.7,-476 816.81,-537.92" />
+<text xml:space="preserve" text-anchor="middle" x="816.81" y="-488.6" font-family="Arial" font-size="14.00">R36</text>
+<text xml:space="preserve" text-anchor="middle" x="816.81" y="-471.8" font-family="Arial" font-size="14.00">détaille une</text>
+<text xml:space="preserve" text-anchor="middle" x="816.81" y="-455" font-family="Arial" font-size="14.00">commande</text>
+</g>
+
+<g id="node12" class="node">
+<title>R37</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="816.81,-713.12 730.26,-668 816.81,-622.88 903.36,-668 816.81,-713.12" />
+<text xml:space="preserve" text-anchor="middle" x="816.81" y="-672.2" font-family="Arial" font-size="14.00">R37</text>
+<text xml:space="preserve" text-anchor="middle" x="816.81" y="-655.4" font-family="Arial" font-size="14.00">figure dans</text>
+</g>
+
+<g id="node13" class="node">
+<title>R38</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="1268.62,-594.12 1167.31,-549 1268.62,-503.88 1369.93,-549 1268.62,-594.12" />
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-553.2" font-family="Arial" font-size="14.00">R38</text>
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-536.4" font-family="Arial" font-size="14.00">est servie par</text>
+</g>
+
+<g id="node14" class="node">
+<title>R39</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="1268.62,-445.92 1174.31,-384 1268.62,-322.08 1362.93,-384 1268.62,-445.92" />
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-396.6" font-family="Arial" font-size="14.00">R39</text>
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-379.8" font-family="Arial" font-size="14.00">alimente le</text>
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-363" font-family="Arial" font-size="14.00">prélèvement</text>
+</g>
+
+<g id="node15" class="node">
+<title>R40</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="1268.62,-234.92 1172.73,-173 1268.62,-111.08 1364.51,-173 1268.62,-234.92" />
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-185.6" font-family="Arial" font-size="14.00">R40</text>
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-168.8" font-family="Arial" font-size="14.00">est le lieu du</text>
+<text xml:space="preserve" text-anchor="middle" x="1268.62" y="-152" font-family="Arial" font-size="14.00">prélèvement</text>
+</g>
+</g>
+</svg>

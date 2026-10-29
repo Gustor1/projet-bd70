@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1073pt" height="792pt" viewBox="0.00 0.00 1073.00 792.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(23.04 769.04)">
+<title>MCD</title>
+<polygon fill="white" stroke="none" points="-23.04,23.04 -23.04,-769.04 1049.47,-769.04 1049.47,23.04 -23.04,23.04" />
+
+<g id="edge1" class="edge">
+<title>carrier--R01</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M138.91,-454.03C160.58,-486.98 179,-515 179,-515 179,-515 225.99,-565.68 260.13,-602.5" />
+<rect x="128.91693359375" y="-481.82" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="141.81" y="-469.62000000000006" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>carrier--R02</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M138.74,-381.02C171.5,-395.91 210.18,-413.49 240.86,-427.43" />
+<rect x="150.85693359375" y="-404.21" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="163.75" y="-392.01000000000005" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>carrier--R03</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M138.74,-328.41C169.3,-318.74 205.03,-307.44 234.59,-298.08" />
+<rect x="149.67693359375" y="-339.0" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="162.57" y="-326.79999999999995" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge7" class="edge">
+<title>carrier--R04</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M138.91,-254.8C160.58,-224.64 179,-199 179,-199 179,-199 221.22,-164.76 254.69,-137.61" />
+<rect x="151.45693359375" y="-253.01" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="164.35" y="-240.81" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge9" class="edge">
+<title>driver--R52</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M603.73,-264C620.42,-264 638.7,-264 656.7,-264" />
+<rect x="616.96693359375" y="-280.45" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="629.86" y="-268.25000000000006" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>vehicle--R53</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M617.45,-76C631.04,-76 645.29,-76 659.31,-76" />
+<rect x="628.3337878432425" y="-98.10885424949238" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="641.2268542494925" y="-85.90685424949237" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge2" class="edge">
+<title>R01--carrier_contact</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M372.65,-649.57C412,-654.55 458.62,-660.44 491.65,-664.61" />
+<rect x="456.86904296875" y="-678.73" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="468.6" y="-666.53" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>R02--carrier_contract</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M397.9,-458.38C417.84,-459.64 438.46,-460.95 457.43,-462.15" />
+<rect x="423.07904296875" y="-477.44" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="434.81" y="-465.24000000000007" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>R03--driver</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M376.93,-273.94C406.13,-272.1 438.84,-270.03 466.84,-268.26" />
+<rect x="429.54904296875" y="-285.84" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="441.28" y="-273.64000000000004" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>R04--vehicle</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M369.73,-96.1C396.03,-92.89 425.88,-89.24 452.87,-85.94" />
+<rect x="416.16904296875" y="-104.532" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="427.9" y="-92.33" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge10" class="edge">
+<title>R52--qualification</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M867.6,-264C881.03,-264 894.39,-264 906.72,-264" />
+<rect x="867.2116522195115" y="-288.93528137423857" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="880.1047186257616" y="-276.7352813742386" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge12" class="edge">
+<title>R53--equipment</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M864.93,-76C880.78,-76 896.6,-76 910.85,-76" />
+<rect x="875.83693359375" y="-92.452" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="888.73" y="-80.25" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="node1" class="node">
+<title>carrier</title>
+<polygon fill="#e7eff6" stroke="none" points="1,-425 1,-455 138,-455 138,-425 1,-425" />
+<text xml:space="preserve" text-anchor="start" x="7" y="-436.5" font-family="Arial-Bold" font-size="15.00">TRANSPORTEUR</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-406.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-374" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-344" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-314" font-family="Arial" font-size="15.00">Adresse</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-284" font-family="Arial" font-size="15.00">Téléphone</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-254" font-family="Arial" font-size="15.00">Email</text>
+<polygon fill="none" stroke="#48647c" points="0,-244 0,-456 139,-456 139,-244 0,-244" />
+<line stroke-width="0.8" x1="7.0" x2="72.04638671875" y1="-404.5" y2="-404.5" stroke="#203c54" /></g>
+
+<g id="node2" class="node">
+<title>carrier_contact</title>
+<polygon fill="#e7eff6" stroke="none" points="492.59,-715 492.59,-745 577.91,-745 577.91,-715 492.59,-715" />
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-726.5" font-family="Arial-Bold" font-size="15.00">CONTACT</text>
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-696.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-664" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-634" font-family="Arial" font-size="15.00">Téléphone</text>
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-604" font-family="Arial" font-size="15.00">Email</text>
+<polygon fill="none" stroke="#48647c" points="491.59,-594 491.59,-746 578.91,-746 578.91,-594 491.59,-594" />
+<line stroke-width="0.8" x1="498.59" x2="563.6363867187499" y1="-694.5" y2="-694.5" stroke="#203c54" /></g>
+
+<g id="node3" class="node">
+<title>carrier_contract</title>
+<polygon fill="#e7eff6" stroke="none" points="458.38,-527 458.38,-557 612.13,-557 612.13,-527 458.38,-527" />
+<text xml:space="preserve" text-anchor="start" x="498.59" y="-538.5" font-family="Arial-Bold" font-size="15.00">CONTRAT</text>
+<text xml:space="preserve" text-anchor="start" x="464.38" y="-508.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="464.38" y="-476" font-family="Arial" font-size="15.00">Référence</text>
+<text xml:space="preserve" text-anchor="start" x="464.38" y="-446" font-family="Arial" font-size="15.00">Date de début</text>
+<text xml:space="preserve" text-anchor="start" x="464.38" y="-416" font-family="Arial" font-size="15.00">Date de fin</text>
+<text xml:space="preserve" text-anchor="start" x="464.38" y="-386" font-family="Arial" font-size="15.00">Conditions du contrat</text>
+<polygon fill="none" stroke="#48647c" points="457.38,-376 457.38,-558 613.13,-558 613.13,-376 457.38,-376" />
+<line stroke-width="0.8" x1="464.38" x2="529.42638671875" y1="-506.5" y2="-506.5" stroke="#203c54" /></g>
+
+<g id="node4" class="node">
+<title>driver</title>
+<polygon fill="#e7eff6" stroke="none" points="467.57,-309 467.57,-339 602.94,-339 602.94,-309 467.57,-309" />
+<text xml:space="preserve" text-anchor="start" x="488.59" y="-320.5" font-family="Arial-Bold" font-size="15.00">CHAUFFEUR</text>
+<text xml:space="preserve" text-anchor="start" x="473.57" y="-290.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="473.57" y="-258" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="473.57" y="-228" font-family="Arial" font-size="15.00">Téléphone</text>
+<text xml:space="preserve" text-anchor="start" x="473.57" y="-198" font-family="Arial" font-size="15.00">Numéro de permis</text>
+<polygon fill="none" stroke="#48647c" points="466.57,-188 466.57,-340 603.94,-340 603.94,-188 466.57,-188" />
+<line stroke-width="0.8" x1="473.57" x2="538.6163867187499" y1="-288.5" y2="-288.5" stroke="#203c54" /></g>
+
+<g id="node5" class="node">
+<title>equipment</title>
+<polygon fill="#e7eff6" stroke="none" points="911.76,-106 911.76,-136 1021.27,-136 1021.27,-106 911.76,-106" />
+<text xml:space="preserve" text-anchor="start" x="917.76" y="-117.5" font-family="Arial-Bold" font-size="15.00">ÉQUIPEMENT</text>
+<text xml:space="preserve" text-anchor="start" x="917.76" y="-87.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="917.76" y="-55" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="917.76" y="-25" font-family="Arial" font-size="15.00">Nom</text>
+<polygon fill="none" stroke="#48647c" points="910.76,-15 910.76,-137 1022.27,-137 1022.27,-15 910.76,-15" />
+<line stroke-width="0.8" x1="917.76" x2="982.80638671875" y1="-85.5" y2="-85.5" stroke="#203c54" /></g>
+
+<g id="node6" class="node">
+<title>qualification</title>
+<polygon fill="#e7eff6" stroke="none" points="907.61,-294 907.61,-324 1025.43,-324 1025.43,-294 907.61,-294" />
+<text xml:space="preserve" text-anchor="start" x="913.61" y="-305.5" font-family="Arial-Bold" font-size="15.00">HABILITATION</text>
+<text xml:space="preserve" text-anchor="start" x="913.61" y="-275.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="913.61" y="-243" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="913.61" y="-213" font-family="Arial" font-size="15.00">Nom</text>
+<polygon fill="none" stroke="#48647c" points="906.61,-203 906.61,-325 1026.43,-325 1026.43,-203 906.61,-203" />
+<line stroke-width="0.8" x1="913.61" x2="978.65638671875" y1="-273.5" y2="-273.5" stroke="#203c54" /></g>
+
+<g id="node7" class="node">
+<title>vehicle</title>
+<polygon fill="#e7eff6" stroke="none" points="453.8,-121 453.8,-151 616.7,-151 616.7,-121 453.8,-121" />
+<text xml:space="preserve" text-anchor="start" x="498.17" y="-132.5" font-family="Arial-Bold" font-size="15.00">VÉHICULE</text>
+<text xml:space="preserve" text-anchor="start" x="459.8" y="-102.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="459.8" y="-70" font-family="Arial" font-size="15.00">Immatriculation</text>
+<text xml:space="preserve" text-anchor="start" x="459.8" y="-40" font-family="Arial" font-size="15.00">Capacité (kg)</text>
+<text xml:space="preserve" text-anchor="start" x="459.8" y="-10" font-family="Arial" font-size="15.00">Capacité (éq. palettes)</text>
+<polygon fill="none" stroke="#48647c" points="452.8,0 452.8,-152 617.7,-152 617.7,0 452.8,0" />
+<line stroke-width="0.8" x1="459.8" x2="524.84638671875" y1="-100.5" y2="-100.5" stroke="#203c54" /></g>
+
+<g id="node8" class="node">
+<title>R01</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="295.9,-701.92 206.24,-640 295.9,-578.08 385.57,-640 295.9,-701.92" />
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-652.6" font-family="Arial" font-size="14.00">R01</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-635.8" font-family="Arial" font-size="14.00">possède un</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-619" font-family="Arial" font-size="14.00">contact</text>
+</g>
+
+<g id="node9" class="node">
+<title>R02</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="295.9,-497.12 179,-452 295.9,-406.88 412.8,-452 295.9,-497.12" />
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-456.2" font-family="Arial" font-size="14.00">R02</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-439.4" font-family="Arial" font-size="14.00">signe un contrat</text>
+</g>
+
+<g id="node10" class="node">
+<title>R03</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="295.9,-340.92 208.57,-279 295.9,-217.08 383.23,-279 295.9,-340.92" />
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-291.6" font-family="Arial" font-size="14.00">R03</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-274.8" font-family="Arial" font-size="14.00">rattache un</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-258" font-family="Arial" font-size="14.00">chauffeur</text>
+</g>
+
+<g id="node11" class="node">
+<title>R04</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="295.9,-166.92 210.91,-105 295.9,-43.08 380.9,-105 295.9,-166.92" />
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-117.6" font-family="Arial" font-size="14.00">R04</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-100.8" font-family="Arial" font-size="14.00">exploite un</text>
+<text xml:space="preserve" text-anchor="middle" x="295.9" y="-84" font-family="Arial" font-size="14.00">véhicule</text>
+</g>
+
+<g id="node12" class="node">
+<title>R52</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="762.16,-342.72 657.7,-264 762.16,-185.28 866.61,-264 762.16,-342.72" />
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-285" font-family="Arial" font-size="14.00">R52</text>
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-268.2" font-family="Arial" font-size="14.00">est habilité</text>
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-251.4" font-family="Arial" font-size="14.00">Date de fin de</text>
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-234.6" font-family="Arial" font-size="14.00">validité</text>
+</g>
+
+<g id="node13" class="node">
+<title>R53</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="762.16,-121.12 660.82,-76 762.16,-30.88 863.49,-76 762.16,-121.12" />
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-80.2" font-family="Arial" font-size="14.00">R53</text>
+<text xml:space="preserve" text-anchor="middle" x="762.16" y="-63.4" font-family="Arial" font-size="14.00">est équipé de</text>
+</g>
+</g>
+</svg>

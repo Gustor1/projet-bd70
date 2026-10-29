@@ -1,0 +1,25 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+appointment [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RENDEZ-VOUS</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Opération</TD></TR><TR><TD ALIGN="LEFT">Début</TD></TR><TR><TD ALIGN="LEFT">Fin</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR></TABLE>>];
+dock [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>QUAI</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Type</TD></TR></TABLE>>];
+driver [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>CHAUFFEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Téléphone</TD></TR><TR><TD ALIGN="LEFT">Numéro de permis</TD></TR></TABLE>>];
+truck_visit [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PASSAGE CAMION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Opération</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Contrôle des documents</TD></TR></TABLE>>];
+vehicle [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>VÉHICULE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Immatriculation</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+R06 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R06\nest prévu pour"];
+dock -- R06 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R06 -- appointment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R07 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R07\nest prévu pour"];
+driver -- R07 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R07 -- appointment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R08 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R08\nest prévu comme\nprincipal"];
+vehicle -- R08 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R08 -- appointment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R09 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R09\nest prévue comme\nremorque"];
+vehicle -- R09 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R09 -- appointment [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R10 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R10\ndonne lieu à"];
+appointment -- R10 [taillabel="0,1", labeldistance=2.0, labelangle=25];
+R10 -- truck_visit [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+}

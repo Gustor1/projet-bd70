@@ -1,0 +1,34 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+location [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>EMPLACEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+pick [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PRÉLÈVEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Confirmation (facultatif)</TD></TR></TABLE>>];
+receipt [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RÉCEPTION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Validation (facultatif)</TD></TR></TABLE>>];
+receipt_item [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>FRACTION REÇUE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code de fraction / palette</TD></TR><TR><TD ALIGN="LEFT">Quantité acceptée</TD></TR><TR><TD ALIGN="LEFT">Quantité endommagée</TD></TR><TR><TD ALIGN="LEFT">État de palette</TD></TR><TR><TD ALIGN="LEFT">Observation sur avarie</TD></TR></TABLE>>];
+receipt_line [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LIGNE DE RÉCEPTION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité attendue</TD></TR></TABLE>>];
+receipt_reserve [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RÉSERVE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Nature</TD></TR><TR><TD ALIGN="LEFT">Motif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+stock_movement [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>MOUVEMENT DE STOCK</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence d’opération</TD></TR><TR><TD ALIGN="LEFT">Variation (unités)</TD></TR><TR><TD ALIGN="LEFT">Nature</TD></TR><TR><TD ALIGN="LEFT">Motif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+user_account [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>UTILISATEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Empreinte du mot de passe</TD></TR><TR><TD ALIGN="LEFT">Profil</TD></TR><TR><TD ALIGN="LEFT">Compte actif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+R45 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R45\nfait l’objet de\nmouvements"];
+receipt_item -- R45 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R45 -- stock_movement [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R46 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R46\nest affecté par"];
+location -- R46 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R46 -- stock_movement [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R47 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R47\nproduit une\nsortie"];
+pick -- R47 [taillabel="0,1", labeldistance=2.0, labelangle=25];
+R47 -- stock_movement [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R48 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R48\neffectue un\nmouvement"];
+user_account -- R48 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R48 -- stock_movement [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R49 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R49\nporte une\nréserve générale"];
+receipt -- R49 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R49 -- receipt_reserve [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R50 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R50\nporte une\nréserve de ligne"];
+receipt_line -- R50 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R50 -- receipt_reserve [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R51 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R51\német une réserve"];
+user_account -- R51 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R51 -- receipt_reserve [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

@@ -1,0 +1,30 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+location [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>EMPLACEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+lot [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LOT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Date limite / validité (facultatif)</TD></TR><TR><TD ALIGN="LEFT">Lot bloqué</TD></TR><TR><TD ALIGN="LEFT">Motif du blocage</TD></TR></TABLE>>];
+notice_line [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LIGNE D’AVIS</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité attendue</TD></TR></TABLE>>];
+receipt [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>RÉCEPTION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Validation (facultatif)</TD></TR></TABLE>>];
+receipt_item [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>FRACTION REÇUE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code de fraction / palette</TD></TR><TR><TD ALIGN="LEFT">Quantité acceptée</TD></TR><TR><TD ALIGN="LEFT">Quantité endommagée</TD></TR><TR><TD ALIGN="LEFT">État de palette</TD></TR><TR><TD ALIGN="LEFT">Observation sur avarie</TD></TR></TABLE>>];
+receipt_line [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LIGNE DE RÉCEPTION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité attendue</TD></TR></TABLE>>];
+truck_visit [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PASSAGE CAMION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Opération</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Contrôle des documents</TD></TR></TABLE>>];
+R28 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R28\nachemine une\nréception"];
+truck_visit -- R28 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R28 -- receipt [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R29 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R29\ndétaille une\nréception"];
+receipt -- R29 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R29 -- receipt_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R30 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R30\nalloue un\nattendu local"];
+notice_line -- R30 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R30 -- receipt_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R31 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R31\nse répartit en\nfractions"];
+receipt_line -- R31 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R31 -- receipt_item [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R32 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R32\nidentifie le lot\nreçu"];
+lot -- R32 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R32 -- receipt_item [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R33 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R33\nrangement\ninitial"];
+location -- R33 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R33 -- receipt_item [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

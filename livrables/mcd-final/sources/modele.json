@@ -1,0 +1,1727 @@
+{
+  "entities": {
+    "user_account": {
+      "title": "UTILISATEUR",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "password_hash",
+          "label": "Empreinte du mot de passe",
+          "id": false
+        },
+        {
+          "key": "role",
+          "label": "Profil",
+          "id": false
+        },
+        {
+          "key": "active",
+          "label": "Compte actif",
+          "id": false
+        },
+        {
+          "key": "created_at",
+          "label": "Créé le",
+          "id": false
+        }
+      ],
+      "table": "user_account"
+    },
+    "carrier": {
+      "title": "TRANSPORTEUR",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "address",
+          "label": "Adresse",
+          "id": false
+        },
+        {
+          "key": "phone",
+          "label": "Téléphone",
+          "id": false
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "id": false
+        }
+      ],
+      "table": "carrier"
+    },
+    "carrier_contact": {
+      "title": "CONTACT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "phone",
+          "label": "Téléphone",
+          "id": false
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "id": false
+        }
+      ],
+      "table": "carrier_contact"
+    },
+    "carrier_contract": {
+      "title": "CONTRAT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "starts_on",
+          "label": "Date de début",
+          "id": false
+        },
+        {
+          "key": "ends_on",
+          "label": "Date de fin",
+          "id": false
+        },
+        {
+          "key": "terms",
+          "label": "Conditions du contrat",
+          "id": false
+        }
+      ],
+      "table": "carrier_contract"
+    },
+    "qualification": {
+      "title": "HABILITATION",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        }
+      ],
+      "table": "qualification"
+    },
+    "driver": {
+      "title": "CHAUFFEUR",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "phone",
+          "label": "Téléphone",
+          "id": false
+        },
+        {
+          "key": "license_number",
+          "label": "Numéro de permis",
+          "id": false
+        }
+      ],
+      "table": "driver"
+    },
+    "equipment": {
+      "title": "ÉQUIPEMENT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        }
+      ],
+      "table": "equipment"
+    },
+    "vehicle": {
+      "title": "VÉHICULE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "plate",
+          "label": "Immatriculation",
+          "id": false
+        },
+        {
+          "key": "max_kg",
+          "label": "Capacité (kg)",
+          "id": false
+        },
+        {
+          "key": "max_pallets",
+          "label": "Capacité (éq. palettes)",
+          "id": false
+        }
+      ],
+      "table": "vehicle"
+    },
+    "dock": {
+      "title": "QUAI",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "type",
+          "label": "Type",
+          "id": false
+        }
+      ],
+      "table": "dock"
+    },
+    "dock_downtime": {
+      "title": "INDISPONIBILITÉ",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "starts_at",
+          "label": "Début",
+          "id": false
+        },
+        {
+          "key": "ends_at",
+          "label": "Fin",
+          "id": false
+        },
+        {
+          "key": "reason",
+          "label": "Motif",
+          "id": false
+        }
+      ],
+      "table": "dock_downtime"
+    },
+    "appointment": {
+      "title": "RENDEZ-VOUS",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "operation",
+          "label": "Opération",
+          "id": false
+        },
+        {
+          "key": "starts_at",
+          "label": "Début",
+          "id": false
+        },
+        {
+          "key": "ends_at",
+          "label": "Fin",
+          "id": false
+        },
+        {
+          "key": "status",
+          "label": "État",
+          "id": false
+        }
+      ],
+      "table": "appointment"
+    },
+    "truck_visit": {
+      "title": "PASSAGE CAMION",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "operation",
+          "label": "Opération",
+          "id": false
+        },
+        {
+          "key": "status",
+          "label": "État",
+          "id": false
+        },
+        {
+          "key": "document_note",
+          "label": "Contrôle des documents",
+          "id": false
+        }
+      ],
+      "table": "truck_visit"
+    },
+    "visit_event": {
+      "title": "ÉVÉNEMENT DE PASSAGE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "state",
+          "label": "Étape",
+          "id": false
+        },
+        {
+          "key": "happened_at",
+          "label": "Horodatage",
+          "id": false
+        }
+      ],
+      "table": "visit_event"
+    },
+    "owner": {
+      "title": "CLIENT PROPRIÉTAIRE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "address",
+          "label": "Adresse",
+          "id": false
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "id": false
+        }
+      ],
+      "table": "owner"
+    },
+    "supplier": {
+      "title": "FOURNISSEUR",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "address",
+          "label": "Adresse",
+          "id": false
+        },
+        {
+          "key": "phone",
+          "label": "Téléphone",
+          "id": false
+        }
+      ],
+      "table": "supplier"
+    },
+    "article": {
+      "title": "ARTICLE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "sku",
+          "label": "Référence article",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "storage",
+          "label": "Condition de stockage",
+          "id": false
+        },
+        {
+          "key": "packaging",
+          "label": "Conditionnement",
+          "id": false
+        },
+        {
+          "key": "width_m",
+          "label": "Largeur (m)",
+          "id": false
+        },
+        {
+          "key": "depth_m",
+          "label": "Profondeur (m)",
+          "id": false
+        },
+        {
+          "key": "height_m",
+          "label": "Hauteur (m)",
+          "id": false
+        },
+        {
+          "key": "unit_kg",
+          "label": "Poids unitaire (kg)",
+          "id": false
+        },
+        {
+          "key": "units_per_pallet",
+          "label": "Unités par palette",
+          "id": false
+        }
+      ],
+      "table": "article"
+    },
+    "zone": {
+      "title": "ZONE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "name",
+          "label": "Nom",
+          "id": false
+        },
+        {
+          "key": "storage",
+          "label": "Condition de stockage",
+          "id": false
+        }
+      ],
+      "table": "zone"
+    },
+    "aisle": {
+      "title": "ALLÉE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        }
+      ],
+      "table": "aisle"
+    },
+    "rack": {
+      "title": "RACK",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        }
+      ],
+      "table": "rack"
+    },
+    "rack_level": {
+      "title": "NIVEAU",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        }
+      ],
+      "table": "rack_level"
+    },
+    "location": {
+      "title": "EMPLACEMENT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "width_m",
+          "label": "Largeur (m)",
+          "id": false
+        },
+        {
+          "key": "depth_m",
+          "label": "Profondeur (m)",
+          "id": false
+        },
+        {
+          "key": "height_m",
+          "label": "Hauteur (m)",
+          "id": false
+        },
+        {
+          "key": "max_kg",
+          "label": "Capacité (kg)",
+          "id": false
+        },
+        {
+          "key": "max_pallets",
+          "label": "Capacité (éq. palettes)",
+          "id": false
+        }
+      ],
+      "table": "location"
+    },
+    "lot": {
+      "title": "LOT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "expires_on",
+          "label": "Date limite / validité (facultatif)",
+          "id": false
+        },
+        {
+          "key": "blocked",
+          "label": "Lot bloqué",
+          "id": false
+        },
+        {
+          "key": "block_reason",
+          "label": "Motif du blocage",
+          "id": false
+        }
+      ],
+      "table": "lot"
+    },
+    "supplier_notice": {
+      "title": "AVIS FOURNISSEUR",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "expected_on",
+          "label": "Livraison prévue",
+          "id": false
+        },
+        {
+          "key": "closed_at",
+          "label": "Date de clôture (facultatif)",
+          "id": false
+        },
+        {
+          "key": "closure_note",
+          "label": "Motif de clôture",
+          "id": false
+        }
+      ],
+      "table": "supplier_notice"
+    },
+    "notice_line": {
+      "title": "LIGNE D’AVIS",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "expected_qty",
+          "label": "Quantité attendue",
+          "id": false
+        }
+      ],
+      "table": "notice_line"
+    },
+    "receipt": {
+      "title": "RÉCEPTION",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "status",
+          "label": "État",
+          "id": false
+        },
+        {
+          "key": "validated_at",
+          "label": "Validation (facultatif)",
+          "id": false
+        }
+      ],
+      "table": "receipt"
+    },
+    "receipt_line": {
+      "title": "LIGNE DE RÉCEPTION",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "expected_qty",
+          "label": "Quantité attendue",
+          "id": false
+        }
+      ],
+      "table": "receipt_line"
+    },
+    "receipt_item": {
+      "title": "FRACTION REÇUE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "pallet_code",
+          "label": "Code de fraction / palette",
+          "id": false
+        },
+        {
+          "key": "accepted_qty",
+          "label": "Quantité acceptée",
+          "id": false
+        },
+        {
+          "key": "damaged_qty",
+          "label": "Quantité endommagée",
+          "id": false
+        },
+        {
+          "key": "pallet_state",
+          "label": "État de palette",
+          "id": false
+        },
+        {
+          "key": "reservation",
+          "label": "Observation sur avarie",
+          "id": false
+        }
+      ],
+      "table": "receipt_item"
+    },
+    "customer_order": {
+      "title": "COMMANDE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "destination",
+          "label": "Adresse de livraison",
+          "id": false
+        },
+        {
+          "key": "revision_note",
+          "label": "Motif de reprise",
+          "id": false
+        },
+        {
+          "key": "desired_on",
+          "label": "Expédition souhaitée",
+          "id": false
+        },
+        {
+          "key": "status",
+          "label": "État",
+          "id": false
+        },
+        {
+          "key": "picking_at",
+          "label": "Début de préparation (facultatif)",
+          "id": false
+        },
+        {
+          "key": "ready_at",
+          "label": "Fin de préparation (facultatif)",
+          "id": false
+        }
+      ],
+      "table": "customer_order"
+    },
+    "order_line": {
+      "title": "LIGNE DE COMMANDE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "qty",
+          "label": "Quantité",
+          "id": false
+        }
+      ],
+      "table": "order_line"
+    },
+    "pick": {
+      "title": "PRÉLÈVEMENT",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "qty",
+          "label": "Quantité",
+          "id": false
+        },
+        {
+          "key": "status",
+          "label": "État",
+          "id": false
+        },
+        {
+          "key": "confirmed_at",
+          "label": "Confirmation (facultatif)",
+          "id": false
+        }
+      ],
+      "table": "pick"
+    },
+    "package": {
+      "title": "COLIS / PALETTE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "code",
+          "label": "Code",
+          "id": false
+        },
+        {
+          "key": "type",
+          "label": "Type",
+          "id": false
+        }
+      ],
+      "table": "package"
+    },
+    "shipment": {
+      "title": "EXPÉDITION",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "reference",
+          "label": "Référence",
+          "id": false
+        },
+        {
+          "key": "shipped_at",
+          "label": "Expédition",
+          "id": false
+        }
+      ],
+      "table": "shipment"
+    },
+    "stock_movement": {
+      "title": "MOUVEMENT DE STOCK",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "operation_ref",
+          "label": "Référence d’opération",
+          "id": false
+        },
+        {
+          "key": "delta",
+          "label": "Variation (unités)",
+          "id": false
+        },
+        {
+          "key": "kind",
+          "label": "Nature",
+          "id": false
+        },
+        {
+          "key": "reason",
+          "label": "Motif",
+          "id": false
+        },
+        {
+          "key": "created_at",
+          "label": "Créé le",
+          "id": false
+        }
+      ],
+      "table": "stock_movement"
+    },
+    "receipt_reserve": {
+      "title": "RÉSERVE",
+      "attrs": [
+        {
+          "key": "id",
+          "label": "Identifiant",
+          "id": true
+        },
+        {
+          "key": "kind",
+          "label": "Nature",
+          "id": false
+        },
+        {
+          "key": "reason",
+          "label": "Motif",
+          "id": false
+        },
+        {
+          "key": "created_at",
+          "label": "Créé le",
+          "id": false
+        }
+      ],
+      "table": "receipt_reserve"
+    },
+    "vehicle_type": {
+      "title": "TYPE DE VÉHICULE",
+      "attrs": [
+        {
+          "key": "code",
+          "label": "Code type",
+          "id": true
+        }
+      ],
+      "table": null
+    }
+  },
+  "associations": [
+    {
+      "a": "carrier",
+      "b": "carrier_contact",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "possède un contact",
+      "group": 1,
+      "fields": [
+        "carrier_contact.carrier_id"
+      ],
+      "attrs": [],
+      "id": "R01"
+    },
+    {
+      "a": "carrier",
+      "b": "carrier_contract",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "signe un contrat",
+      "group": 1,
+      "fields": [
+        "carrier_contract.carrier_id"
+      ],
+      "attrs": [],
+      "id": "R02"
+    },
+    {
+      "a": "carrier",
+      "b": "driver",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "rattache un chauffeur",
+      "group": 1,
+      "fields": [
+        "driver.carrier_id"
+      ],
+      "attrs": [],
+      "id": "R03"
+    },
+    {
+      "a": "carrier",
+      "b": "vehicle",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "exploite un véhicule",
+      "group": 1,
+      "fields": [
+        "vehicle.carrier_id"
+      ],
+      "attrs": [],
+      "id": "R04"
+    },
+    {
+      "a": "dock",
+      "b": "dock_downtime",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "subit une indisponibilité",
+      "group": 2,
+      "fields": [
+        "dock_downtime.dock_id"
+      ],
+      "attrs": [],
+      "id": "R05"
+    },
+    {
+      "a": "dock",
+      "b": "appointment",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est prévu pour",
+      "group": 3,
+      "fields": [
+        "appointment.dock_id"
+      ],
+      "attrs": [],
+      "id": "R06"
+    },
+    {
+      "a": "driver",
+      "b": "appointment",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est prévu pour",
+      "group": 3,
+      "fields": [
+        "appointment.driver_id"
+      ],
+      "attrs": [],
+      "id": "R07"
+    },
+    {
+      "a": "vehicle",
+      "b": "appointment",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est prévu comme principal",
+      "group": 3,
+      "fields": [
+        "appointment.vehicle_id"
+      ],
+      "attrs": [],
+      "id": "R08"
+    },
+    {
+      "a": "vehicle",
+      "b": "appointment",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "est prévue comme remorque",
+      "group": 3,
+      "fields": [
+        "appointment.trailer_id"
+      ],
+      "attrs": [],
+      "id": "R09"
+    },
+    {
+      "a": "appointment",
+      "b": "truck_visit",
+      "ca": "0,1",
+      "cb": "0,1",
+      "label": "donne lieu à",
+      "group": 3,
+      "fields": [
+        "truck_visit.appointment_id"
+      ],
+      "attrs": [],
+      "id": "R10"
+    },
+    {
+      "a": "driver",
+      "b": "truck_visit",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "conduit le passage",
+      "group": 4,
+      "fields": [
+        "truck_visit.driver_id"
+      ],
+      "attrs": [],
+      "id": "R11"
+    },
+    {
+      "a": "vehicle",
+      "b": "truck_visit",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "effectue (véhicule principal)",
+      "group": 4,
+      "fields": [
+        "truck_visit.vehicle_id"
+      ],
+      "attrs": [],
+      "id": "R12"
+    },
+    {
+      "a": "vehicle",
+      "b": "truck_visit",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "accompagne (remorque)",
+      "group": 4,
+      "fields": [
+        "truck_visit.trailer_id"
+      ],
+      "attrs": [],
+      "id": "R13"
+    },
+    {
+      "a": "dock",
+      "b": "truck_visit",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "dessert le passage",
+      "group": 4,
+      "fields": [
+        "truck_visit.dock_id"
+      ],
+      "attrs": [],
+      "id": "R14"
+    },
+    {
+      "a": "truck_visit",
+      "b": "visit_event",
+      "ca": "1,N",
+      "cb": "1,1",
+      "label": "comporte une étape",
+      "group": 4,
+      "fields": [
+        "visit_event.visit_id"
+      ],
+      "attrs": [],
+      "id": "R15"
+    },
+    {
+      "a": "user_account",
+      "b": "visit_event",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "enregistre une étape",
+      "group": 4,
+      "fields": [
+        "visit_event.actor_id"
+      ],
+      "attrs": [],
+      "id": "R16"
+    },
+    {
+      "a": "owner",
+      "b": "article",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "possède",
+      "group": 5,
+      "fields": [
+        "article.owner_id"
+      ],
+      "attrs": [],
+      "id": "R17"
+    },
+    {
+      "a": "zone",
+      "b": "aisle",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "contient",
+      "group": 5,
+      "fields": [
+        "aisle.zone_id"
+      ],
+      "attrs": [],
+      "id": "R18"
+    },
+    {
+      "a": "aisle",
+      "b": "rack",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "contient",
+      "group": 5,
+      "fields": [
+        "rack.aisle_id"
+      ],
+      "attrs": [],
+      "id": "R19"
+    },
+    {
+      "a": "rack",
+      "b": "rack_level",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "contient",
+      "group": 5,
+      "fields": [
+        "rack_level.rack_id"
+      ],
+      "attrs": [],
+      "id": "R20"
+    },
+    {
+      "a": "rack_level",
+      "b": "location",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "contient",
+      "group": 5,
+      "fields": [
+        "location.level_id"
+      ],
+      "attrs": [],
+      "id": "R21"
+    },
+    {
+      "a": "article",
+      "b": "lot",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "définit",
+      "group": 5,
+      "fields": [
+        "lot.article_id"
+      ],
+      "attrs": [],
+      "id": "R22"
+    },
+    {
+      "a": "user_account",
+      "b": "supplier_notice",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "clôture un avis",
+      "group": 6,
+      "fields": [
+        "supplier_notice.closed_by"
+      ],
+      "attrs": [],
+      "id": "R23"
+    },
+    {
+      "a": "supplier",
+      "b": "supplier_notice",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "émet un avis",
+      "group": 6,
+      "fields": [
+        "supplier_notice.supplier_id"
+      ],
+      "attrs": [],
+      "id": "R24"
+    },
+    {
+      "a": "supplier_notice",
+      "b": "notice_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "détaille un avis",
+      "group": 6,
+      "fields": [
+        "notice_line.notice_id"
+      ],
+      "attrs": [],
+      "id": "R25"
+    },
+    {
+      "a": "article",
+      "b": "notice_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "figure dans",
+      "group": 6,
+      "fields": [
+        "notice_line.article_id"
+      ],
+      "attrs": [],
+      "id": "R26"
+    },
+    {
+      "a": "supplier_notice",
+      "b": "receipt",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "livre tout ou partie",
+      "group": 6,
+      "fields": [
+        "receipt.notice_id"
+      ],
+      "attrs": [],
+      "id": "R27"
+    },
+    {
+      "a": "truck_visit",
+      "b": "receipt",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "achemine une réception",
+      "group": 7,
+      "fields": [
+        "receipt.visit_id"
+      ],
+      "attrs": [],
+      "id": "R28"
+    },
+    {
+      "a": "receipt",
+      "b": "receipt_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "détaille une réception",
+      "group": 7,
+      "fields": [
+        "receipt_line.receipt_id"
+      ],
+      "attrs": [],
+      "id": "R29"
+    },
+    {
+      "a": "notice_line",
+      "b": "receipt_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "alloue un attendu local",
+      "group": 7,
+      "fields": [
+        "receipt_line.notice_line_id"
+      ],
+      "attrs": [],
+      "id": "R30"
+    },
+    {
+      "a": "receipt_line",
+      "b": "receipt_item",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "se répartit en fractions",
+      "group": 7,
+      "fields": [
+        "receipt_item.line_id"
+      ],
+      "attrs": [],
+      "id": "R31"
+    },
+    {
+      "a": "lot",
+      "b": "receipt_item",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "identifie le lot reçu",
+      "group": 7,
+      "fields": [
+        "receipt_item.lot_id"
+      ],
+      "attrs": [],
+      "id": "R32"
+    },
+    {
+      "a": "location",
+      "b": "receipt_item",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "rangement initial",
+      "group": 7,
+      "fields": [
+        "receipt_item.location_id"
+      ],
+      "attrs": [],
+      "id": "R33"
+    },
+    {
+      "a": "owner",
+      "b": "customer_order",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "passe une commande",
+      "group": 9,
+      "fields": [
+        "customer_order.owner_id"
+      ],
+      "attrs": [],
+      "id": "R34"
+    },
+    {
+      "a": "user_account",
+      "b": "customer_order",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "prépare une commande",
+      "group": 9,
+      "fields": [
+        "customer_order.preparer_id"
+      ],
+      "attrs": [],
+      "id": "R35"
+    },
+    {
+      "a": "customer_order",
+      "b": "order_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "détaille une commande",
+      "group": 9,
+      "fields": [
+        "order_line.order_id"
+      ],
+      "attrs": [],
+      "id": "R36"
+    },
+    {
+      "a": "article",
+      "b": "order_line",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "figure dans",
+      "group": 9,
+      "fields": [
+        "order_line.article_id"
+      ],
+      "attrs": [],
+      "id": "R37"
+    },
+    {
+      "a": "order_line",
+      "b": "pick",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est servie par",
+      "group": 9,
+      "fields": [
+        "pick.order_line_id"
+      ],
+      "attrs": [],
+      "id": "R38"
+    },
+    {
+      "a": "receipt_item",
+      "b": "pick",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "alimente le prélèvement",
+      "group": 9,
+      "fields": [
+        "pick.receipt_item_id"
+      ],
+      "attrs": [],
+      "id": "R39"
+    },
+    {
+      "a": "location",
+      "b": "pick",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est le lieu du prélèvement",
+      "group": 9,
+      "fields": [
+        "pick.location_id"
+      ],
+      "attrs": [],
+      "id": "R40"
+    },
+    {
+      "a": "customer_order",
+      "b": "package",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est conditionnée en",
+      "group": 10,
+      "fields": [
+        "package.order_id"
+      ],
+      "attrs": [],
+      "id": "R41"
+    },
+    {
+      "a": "customer_order",
+      "b": "shipment",
+      "ca": "0,1",
+      "cb": "1,1",
+      "label": "donne lieu à",
+      "group": 10,
+      "fields": [
+        "shipment.order_id"
+      ],
+      "attrs": [],
+      "id": "R42"
+    },
+    {
+      "a": "truck_visit",
+      "b": "shipment",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "emporte une expédition",
+      "group": 10,
+      "fields": [
+        "shipment.visit_id"
+      ],
+      "attrs": [],
+      "id": "R43"
+    },
+    {
+      "a": "user_account",
+      "b": "shipment",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "confirme une expédition",
+      "group": 10,
+      "fields": [
+        "shipment.actor_id"
+      ],
+      "attrs": [],
+      "id": "R44"
+    },
+    {
+      "a": "receipt_item",
+      "b": "stock_movement",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "fait l’objet de mouvements",
+      "group": 8,
+      "fields": [
+        "stock_movement.receipt_item_id"
+      ],
+      "attrs": [],
+      "id": "R45"
+    },
+    {
+      "a": "location",
+      "b": "stock_movement",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "est affecté par",
+      "group": 8,
+      "fields": [
+        "stock_movement.location_id"
+      ],
+      "attrs": [],
+      "id": "R46"
+    },
+    {
+      "a": "pick",
+      "b": "stock_movement",
+      "ca": "0,1",
+      "cb": "0,1",
+      "label": "produit une sortie",
+      "group": 8,
+      "fields": [
+        "stock_movement.pick_id"
+      ],
+      "attrs": [],
+      "id": "R47"
+    },
+    {
+      "a": "user_account",
+      "b": "stock_movement",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "effectue un mouvement",
+      "group": 8,
+      "fields": [
+        "stock_movement.actor_id"
+      ],
+      "attrs": [],
+      "id": "R48"
+    },
+    {
+      "a": "receipt",
+      "b": "receipt_reserve",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "porte une réserve générale",
+      "group": 8,
+      "fields": [
+        "receipt_reserve.receipt_id"
+      ],
+      "attrs": [],
+      "id": "R49"
+    },
+    {
+      "a": "receipt_line",
+      "b": "receipt_reserve",
+      "ca": "0,N",
+      "cb": "0,1",
+      "label": "porte une réserve de ligne",
+      "group": 8,
+      "fields": [
+        "receipt_reserve.line_id"
+      ],
+      "attrs": [],
+      "id": "R50"
+    },
+    {
+      "a": "user_account",
+      "b": "receipt_reserve",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "émet une réserve",
+      "group": 8,
+      "fields": [
+        "receipt_reserve.actor_id"
+      ],
+      "attrs": [],
+      "id": "R51"
+    },
+    {
+      "a": "driver",
+      "b": "qualification",
+      "ca": "0,N",
+      "cb": "0,N",
+      "label": "est habilité",
+      "group": 1,
+      "fields": [
+        "driver_qualification.driver_id",
+        "driver_qualification.qualification_id"
+      ],
+      "attrs": [
+        {
+          "key": "driver_qualification.expires_on",
+          "label": "Date de fin de validité"
+        }
+      ],
+      "join": "driver_qualification",
+      "id": "R52"
+    },
+    {
+      "a": "vehicle",
+      "b": "equipment",
+      "ca": "0,N",
+      "cb": "0,N",
+      "label": "est équipé de",
+      "group": 1,
+      "fields": [
+        "vehicle_equipment.vehicle_id",
+        "vehicle_equipment.equipment_id"
+      ],
+      "attrs": [],
+      "join": "vehicle_equipment",
+      "id": "R53"
+    },
+    {
+      "a": "dock",
+      "b": "equipment",
+      "ca": "0,N",
+      "cb": "0,N",
+      "label": "dispose de",
+      "group": 2,
+      "fields": [
+        "dock_equipment.dock_id",
+        "dock_equipment.equipment_id"
+      ],
+      "attrs": [],
+      "join": "dock_equipment",
+      "id": "R54"
+    },
+    {
+      "a": "package",
+      "b": "pick",
+      "ca": "0,N",
+      "cb": "0,N",
+      "label": "contient une quantité",
+      "group": 10,
+      "fields": [
+        "package_pick.package_id",
+        "package_pick.pick_id"
+      ],
+      "attrs": [
+        {
+          "key": "package_pick.qty",
+          "label": "Quantité affectée"
+        }
+      ],
+      "join": "package_pick",
+      "id": "R55"
+    },
+    {
+      "a": "dock",
+      "b": "vehicle_type",
+      "ca": "0,N",
+      "cb": "0,N",
+      "label": "accepte le type",
+      "group": 2,
+      "fields": [
+        "dock_vehicle_type.dock_id",
+        "dock_vehicle_type.vehicle_type"
+      ],
+      "attrs": [],
+      "join": "dock_vehicle_type",
+      "id": "R56"
+    },
+    {
+      "a": "vehicle_type",
+      "b": "vehicle",
+      "ca": "0,N",
+      "cb": "1,1",
+      "label": "caractérise le véhicule",
+      "group": 2,
+      "fields": [
+        "vehicle.type"
+      ],
+      "attrs": [],
+      "id": "R57"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+customer_order [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>COMMANDE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Adresse de livraison</TD></TR><TR><TD ALIGN="LEFT">Motif de reprise</TD></TR><TR><TD ALIGN="LEFT">Expédition souhaitée</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Début de préparation (facultatif)</TD></TR><TR><TD ALIGN="LEFT">Fin de préparation (facultatif)</TD></TR></TABLE>>];
+package [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>COLIS / PALETTE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Type</TD></TR></TABLE>>];
+pick [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PRÉLÈVEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Confirmation (facultatif)</TD></TR></TABLE>>];
+shipment [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>EXPÉDITION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Expédition</TD></TR></TABLE>>];
+truck_visit [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PASSAGE CAMION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Opération</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Contrôle des documents</TD></TR></TABLE>>];
+user_account [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>UTILISATEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Empreinte du mot de passe</TD></TR><TR><TD ALIGN="LEFT">Profil</TD></TR><TR><TD ALIGN="LEFT">Compte actif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+R41 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R41\nest conditionnée\nen"];
+customer_order -- R41 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R41 -- package [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R42 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R42\ndonne lieu à"];
+customer_order -- R42 [taillabel="0,1", labeldistance=2.0, labelangle=25];
+R42 -- shipment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R43 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R43\nemporte une\nexpédition"];
+truck_visit -- R43 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R43 -- shipment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R44 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R44\nconfirme une\nexpédition"];
+user_account -- R44 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R44 -- shipment [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R55 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R55\ncontient une\nquantité\nQuantité\naffectée"];
+package -- R55 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R55 -- pick [headlabel="0,N", labeldistance=2.0, labelangle=-25];
+}

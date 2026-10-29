@@ -1,0 +1,29 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+dock [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>QUAI</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Type</TD></TR></TABLE>>];
+driver [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>CHAUFFEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Téléphone</TD></TR><TR><TD ALIGN="LEFT">Numéro de permis</TD></TR></TABLE>>];
+truck_visit [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PASSAGE CAMION</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Opération</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Contrôle des documents</TD></TR></TABLE>>];
+user_account [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>UTILISATEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Empreinte du mot de passe</TD></TR><TR><TD ALIGN="LEFT">Profil</TD></TR><TR><TD ALIGN="LEFT">Compte actif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+vehicle [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>VÉHICULE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Immatriculation</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+visit_event [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ÉVÉNEMENT DE PASSAGE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Étape</TD></TR><TR><TD ALIGN="LEFT">Horodatage</TD></TR></TABLE>>];
+R11 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R11\nconduit le\npassage"];
+driver -- R11 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R11 -- truck_visit [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R12 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R12\neffectue\n(véhicule\nprincipal)"];
+vehicle -- R12 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R12 -- truck_visit [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R13 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R13\naccompagne\n(remorque)"];
+vehicle -- R13 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R13 -- truck_visit [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R14 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R14\ndessert le\npassage"];
+dock -- R14 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R14 -- truck_visit [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R15 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R15\ncomporte une\nétape"];
+truck_visit -- R15 [taillabel="1,N", labeldistance=2.0, labelangle=25];
+R15 -- visit_event [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R16 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R16\nenregistre une\nétape"];
+user_account -- R16 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R16 -- visit_event [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

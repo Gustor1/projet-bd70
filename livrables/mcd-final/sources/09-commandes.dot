@@ -1,0 +1,34 @@
+graph MCD {
+graph [rankdir=LR, bgcolor="white", pad="0.32", nodesep="0.50", ranksep="0.55", splines=polyline, outputorder=edgesfirst];
+node [fontname="Arial", fontsize=15, color="#48647c", penwidth=1.3];
+edge [fontname="Arial", fontsize=14, color="#6c7d8c", fontcolor="#203c54", penwidth=1.1];
+article [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>ARTICLE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence article</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Condition de stockage</TD></TR><TR><TD ALIGN="LEFT">Conditionnement</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Poids unitaire (kg)</TD></TR><TR><TD ALIGN="LEFT">Unités par palette</TD></TR></TABLE>>];
+customer_order [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>COMMANDE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Référence</TD></TR><TR><TD ALIGN="LEFT">Adresse de livraison</TD></TR><TR><TD ALIGN="LEFT">Motif de reprise</TD></TR><TR><TD ALIGN="LEFT">Expédition souhaitée</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Début de préparation (facultatif)</TD></TR><TR><TD ALIGN="LEFT">Fin de préparation (facultatif)</TD></TR></TABLE>>];
+location [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>EMPLACEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Largeur (m)</TD></TR><TR><TD ALIGN="LEFT">Profondeur (m)</TD></TR><TR><TD ALIGN="LEFT">Hauteur (m)</TD></TR><TR><TD ALIGN="LEFT">Capacité (kg)</TD></TR><TR><TD ALIGN="LEFT">Capacité (éq. palettes)</TD></TR></TABLE>>];
+order_line [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>LIGNE DE COMMANDE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité</TD></TR></TABLE>>];
+owner [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>CLIENT PROPRIÉTAIRE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Adresse</TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR></TABLE>>];
+pick [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>PRÉLÈVEMENT</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Quantité</TD></TR><TR><TD ALIGN="LEFT">État</TD></TR><TR><TD ALIGN="LEFT">Confirmation (facultatif)</TD></TR></TABLE>>];
+receipt_item [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>FRACTION REÇUE</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Code de fraction / palette</TD></TR><TR><TD ALIGN="LEFT">Quantité acceptée</TD></TR><TR><TD ALIGN="LEFT">Quantité endommagée</TD></TR><TR><TD ALIGN="LEFT">État de palette</TD></TR><TR><TD ALIGN="LEFT">Observation sur avarie</TD></TR></TABLE>>];
+user_account [shape=plain,label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#48647c"><TR><TD BGCOLOR="#e7eff6"><B>UTILISATEUR</B></TD></TR><TR><TD ALIGN="LEFT"><U>Identifiant</U></TD></TR><TR><TD ALIGN="LEFT">Email</TD></TR><TR><TD ALIGN="LEFT">Nom</TD></TR><TR><TD ALIGN="LEFT">Empreinte du mot de passe</TD></TR><TR><TD ALIGN="LEFT">Profil</TD></TR><TR><TD ALIGN="LEFT">Compte actif</TD></TR><TR><TD ALIGN="LEFT">Créé le</TD></TR></TABLE>>];
+R34 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R34\npasse une\ncommande"];
+owner -- R34 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R34 -- customer_order [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R35 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R35\nprépare une\ncommande"];
+user_account -- R35 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R35 -- customer_order [headlabel="0,1", labeldistance=2.0, labelangle=-25];
+R36 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R36\ndétaille une\ncommande"];
+customer_order -- R36 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R36 -- order_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R37 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R37\nfigure dans"];
+article -- R37 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R37 -- order_line [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R38 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R38\nest servie par"];
+order_line -- R38 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R38 -- pick [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R39 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R39\nalimente le\nprélèvement"];
+receipt_item -- R39 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R39 -- pick [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+R40 [shape=diamond, style=filled, fillcolor="#fff7e8", margin="0.12,0.08", fontsize=14, label="R40\nest le lieu du\nprélèvement"];
+location -- R40 [taillabel="0,N", labeldistance=2.0, labelangle=25];
+R40 -- pick [headlabel="1,1", labeldistance=2.0, labelangle=-25];
+}

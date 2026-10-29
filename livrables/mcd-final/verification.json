@@ -1,0 +1,375 @@
+{
+  "date": "2026-10-29",
+  "entities": 35,
+  "associations": 57,
+  "business_foreign_keys_covered": 60,
+  "business_columns_covered": 213,
+  "physical_tables": 41,
+  "join_tables": [
+    "dock_equipment",
+    "dock_vehicle_type",
+    "driver_qualification",
+    "package_pick",
+    "vehicle_equipment"
+  ],
+  "excluded_technical_tables": [
+    "audit_log",
+    "site_lock"
+  ],
+  "pdf_pages": 11,
+  "native_drawio_pages": 11,
+  "sources_sha256": {
+    "document projet/A26_Site_Logistique.pdf": "c87635ea2e055e416879e228fe301d2f8966bcd7d51ab50a28c4c2989cfbad4e",
+    "document projet/Éléments dévaluation projet BD70.docx": "5f379c379640f83c3eacf7808e66f63723142cc8c4c79f8fa223aac5e480d48f",
+    "document cours/BD70_A25 (4).pptx": "4ee5a84e5dcea623a89430eb7c2ab3682f44e471947a1a5ab27a043f2fd2103e",
+    "sql/01_schema.sql": "8662bc6804f243e3397c962505724a991d28d4d17e1910c6d190b4e1c2b1c229",
+    "docs/diagrammes/schema.json": "8b64ad9677e038320751fc08a5634abd1d113f2bc3fb2d9ced0e8820d7840c26",
+    "scripts/diagrams.py": "d449643c87735d3db0ee177105e0ea8535de0958a2c7128a92e3f9072977a2d9",
+    "src/Warehouse.php": "e5ae41742e8eb8c82082f2a752970bd54037f6e890cb69fc1a9b4e79d0f23976",
+    "docs/diagrammes/mcd-articles-stockage.dot": "979de2083b5de37c34b88837d05feb96aea5d680566067ec52ea15661408cd67",
+    "docs/diagrammes/mcd-articles-stockage.svg": "d867e9eef452fad0a9792dfc750fb1fa97f4680419c4aae1982647cb2ff771a8",
+    "docs/diagrammes/mcd-commandes-expeditions.dot": "8133196650f3060dfa8ee96be47c9d964a0f61f324b780fe008f235e1053b44a",
+    "docs/diagrammes/mcd-commandes-expeditions.svg": "4fa52bab7c55a0cd6c146a0002ac5c7721a51cd43aaeacb99c777d93ccdcf441",
+    "docs/diagrammes/mcd-complet.dot": "752ae3958b1737052e636b3e7752069607a33b5097323a64c95a3e39708c6d60",
+    "docs/diagrammes/mcd-complet.svg": "5f20b90e9f8d852a312e72d409953b46e98859fa22389b3ca539b5e2c2898874",
+    "docs/diagrammes/mcd-personnel-transport.dot": "9fc08cc1aed1e885e06bcf799f3cbba29e1077aca553007781216bf1981791c5",
+    "docs/diagrammes/mcd-personnel-transport.svg": "ee9c7c7560d91d9bca9075621723a6dea3efe32ddcdbc4cae60b3ff8bd183c84",
+    "docs/diagrammes/mcd-quais-passages.dot": "9afe2380b22b4c00debcfd62278b1eb91cf18c75ec6e1c2a9283eea85722671f",
+    "docs/diagrammes/mcd-quais-passages.svg": "9418f4ee615ca77aae63641eb932ced1b4665480c4dc8da1ff669d627027beca",
+    "docs/diagrammes/mcd-receptions-stock.dot": "2e9e3e92b0f8c8b3670cf1f42aa3896514d3686aa0615e3046e238cf0da8d3e1",
+    "docs/diagrammes/mcd-receptions-stock.svg": "1d8ec0964d85ec1df75b8e0403fb38d0f0d7538b7a65aaf93c2b384f3b3e5110"
+  },
+  "views": [
+    {
+      "name": "00-modele-complet",
+      "format": "grand format, zoom",
+      "scale": 1.0,
+      "entities": [
+        "aisle",
+        "appointment",
+        "article",
+        "carrier",
+        "carrier_contact",
+        "carrier_contract",
+        "customer_order",
+        "dock",
+        "dock_downtime",
+        "driver",
+        "equipment",
+        "location",
+        "lot",
+        "notice_line",
+        "order_line",
+        "owner",
+        "package",
+        "pick",
+        "qualification",
+        "rack",
+        "rack_level",
+        "receipt",
+        "receipt_item",
+        "receipt_line",
+        "receipt_reserve",
+        "shipment",
+        "stock_movement",
+        "supplier",
+        "supplier_notice",
+        "truck_visit",
+        "user_account",
+        "vehicle",
+        "vehicle_type",
+        "visit_event",
+        "zone"
+      ],
+      "relations": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26",
+        "R27",
+        "R28",
+        "R29",
+        "R30",
+        "R31",
+        "R32",
+        "R33",
+        "R34",
+        "R35",
+        "R36",
+        "R37",
+        "R38",
+        "R39",
+        "R40",
+        "R41",
+        "R42",
+        "R43",
+        "R44",
+        "R45",
+        "R46",
+        "R47",
+        "R48",
+        "R49",
+        "R50",
+        "R51",
+        "R52",
+        "R53",
+        "R54",
+        "R55",
+        "R56",
+        "R57"
+      ]
+    },
+    {
+      "name": "01-transport",
+      "format": "A3 paysage",
+      "scale": 0.7915274795196057,
+      "entities": [
+        "carrier",
+        "carrier_contact",
+        "carrier_contract",
+        "driver",
+        "equipment",
+        "qualification",
+        "vehicle"
+      ],
+      "relations": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R52",
+        "R53"
+      ]
+    },
+    {
+      "name": "02-quais",
+      "format": "A3 paysage",
+      "scale": 1,
+      "entities": [
+        "dock",
+        "dock_downtime",
+        "equipment",
+        "vehicle",
+        "vehicle_type"
+      ],
+      "relations": [
+        "R05",
+        "R54",
+        "R56",
+        "R57"
+      ]
+    },
+    {
+      "name": "03-rendez-vous",
+      "format": "A3 paysage",
+      "scale": 0.9512743001206794,
+      "entities": [
+        "appointment",
+        "dock",
+        "driver",
+        "truck_visit",
+        "vehicle"
+      ],
+      "relations": [
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10"
+      ]
+    },
+    {
+      "name": "04-passages",
+      "format": "A3 paysage",
+      "scale": 0.8237710430742808,
+      "entities": [
+        "dock",
+        "driver",
+        "truck_visit",
+        "user_account",
+        "vehicle",
+        "visit_event"
+      ],
+      "relations": [
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16"
+      ]
+    },
+    {
+      "name": "05-articles-stockage",
+      "format": "A2 paysage",
+      "scale": 0.9448357889690021,
+      "entities": [
+        "aisle",
+        "article",
+        "location",
+        "lot",
+        "owner",
+        "rack",
+        "rack_level",
+        "zone"
+      ],
+      "relations": [
+        "R17",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22"
+      ]
+    },
+    {
+      "name": "06-avis",
+      "format": "A3 paysage",
+      "scale": 0.8706802274715663,
+      "entities": [
+        "article",
+        "notice_line",
+        "receipt",
+        "supplier",
+        "supplier_notice",
+        "user_account"
+      ],
+      "relations": [
+        "R23",
+        "R24",
+        "R25",
+        "R26",
+        "R27"
+      ]
+    },
+    {
+      "name": "07-receptions",
+      "format": "A2 paysage",
+      "scale": 1,
+      "entities": [
+        "location",
+        "lot",
+        "notice_line",
+        "receipt",
+        "receipt_item",
+        "receipt_line",
+        "truck_visit"
+      ],
+      "relations": [
+        "R28",
+        "R29",
+        "R30",
+        "R31",
+        "R32",
+        "R33"
+      ]
+    },
+    {
+      "name": "08-reserves-mouvements",
+      "format": "A3 portrait",
+      "scale": 0.7307499483912826,
+      "entities": [
+        "location",
+        "pick",
+        "receipt",
+        "receipt_item",
+        "receipt_line",
+        "receipt_reserve",
+        "stock_movement",
+        "user_account"
+      ],
+      "relations": [
+        "R45",
+        "R46",
+        "R47",
+        "R48",
+        "R49",
+        "R50",
+        "R51"
+      ]
+    },
+    {
+      "name": "09-commandes",
+      "format": "A2 paysage",
+      "scale": 0.9930950938824956,
+      "entities": [
+        "article",
+        "customer_order",
+        "location",
+        "order_line",
+        "owner",
+        "pick",
+        "receipt_item",
+        "user_account"
+      ],
+      "relations": [
+        "R34",
+        "R35",
+        "R36",
+        "R37",
+        "R38",
+        "R39",
+        "R40"
+      ]
+    },
+    {
+      "name": "10-expeditions",
+      "format": "A3 paysage",
+      "scale": 0.7598663803388215,
+      "entities": [
+        "customer_order",
+        "package",
+        "pick",
+        "shipment",
+        "truck_visit",
+        "user_account"
+      ],
+      "relations": [
+        "R41",
+        "R42",
+        "R43",
+        "R44",
+        "R55"
+      ]
+    }
+  ],
+  "final_checks": {
+    "sql_fk_nullability_and_uniqueness": true,
+    "native_drawio_edges_and_bounds": true,
+    "pdf_text_complete": true,
+    "pdf_text_within_page": true,
+    "identifiers_underlined": true,
+    "visual_review_all_pages": true,
+    "source_hashes_unchanged": true,
+    "documentation_links": true
+  },
+  "outputs_sha256": {
+    "ANALYSE-MCD.md": "d963b0f4796c431f19eab87767579e05fc840149beb3edb198f4eb595090730e",
+    "BD70-MCD-FINAL.drawio": "05dd14b181093250706c08bb87d36edf0fc7bf5c7e2677736ecd879b0dfc2fbd",
+    "BD70-MCD-FINAL.pdf": "41a122b469c9249ffc74a1915dd7b2784ef1a054f77d9b86cfc9490976edacac",
+    "CORRESPONDANCE-SQL.md": "447243f86217f8bd5ebbfb87efbab00c428d01c8b1767dfca41320ca2daa72b7",
+    "LIRE-MOI.md": "0681b0fb6201f50dda50d47410a699298cba92dec99ae8666c7ef178d516e93b"
+  }
+}

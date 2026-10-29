@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1183pt" height="761pt" viewBox="0.00 0.00 1183.00 761.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(23.04 738.04)">
+<title>MCD</title>
+<polygon fill="white" stroke="none" points="-23.04,23.04 -23.04,-738.04 1160.36,-738.04 1160.36,23.04 -23.04,23.04" />
+
+<g id="edge7" class="edge">
+<title>dock--R14</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M121.9,-637.76C150.86,-636.83 191.46,-635.53 226.71,-634.4" />
+<rect x="131.39693359375" y="-653.63" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="144.29" y="-641.43" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>driver--R11</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M150.9,-453.17C175.15,-453.95 202.62,-454.83 227.39,-455.62" />
+<rect x="163.85693359375" y="-470.2" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="176.75" y="-458.00000000000006" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge9" class="edge">
+<title>truck_visit--R15</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M626.73,-361.12C648.43,-359.16 671.72,-357.05 693.53,-355.08" />
+<rect x="636.64693359375" y="-375.91" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="649.54" y="-363.71" font-family="Arial" font-size="14.00" fill="#203c54">1,N</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>user_account--R16</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M637.15,-138.64C658.45,-142.49 680.78,-146.53 701.38,-150.25" />
+<rect x="648.58693359375" y="-158.18" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="661.48" y="-145.97999999999996" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>vehicle--R12</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M164.9,-226.52C192.58,-237.57 222.79,-249.64 247.74,-259.6" />
+<rect x="177.70693359375" y="-249.09" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="190.6" y="-236.89000000000001" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>vehicle--R13</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M164.9,-160.36C190.64,-149.72 218.58,-138.18 242.44,-128.33" />
+<rect x="175.98693359375" y="-169.25" width="25.7861328125" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="188.88" y="-157.05" font-family="Arial" font-size="14.00" fill="#203c54">0,N</text>
+</g>
+
+<g id="edge2" class="edge">
+<title>R11--truck_visit</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M355.61,-438.14C383.51,-427.53 418.58,-414.2 450.47,-402.08" />
+<rect x="412.79904296875" y="-424.42" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="424.53" y="-412.2200000000001" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>R12--truck_visit</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M357.95,-301.52C385.39,-311.83 419.29,-324.57 450.22,-336.2" />
+<rect x="414.54904296875" y="-345.73" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="426.28" y="-333.53" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>R13--truck_visit</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M345.65,-139.09C371.56,-160.58 399.79,-184 399.79,-184 399.79,-184 439.79,-260 439.79,-260 439.79,-260 446.48,-267.47 456.37,-278.49" />
+<rect x="426.23904296875" y="-270.64" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="437.97" y="-258.43999999999994" font-family="Arial" font-size="14.00" fill="#203c54">0,1</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>R14--truck_visit</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M338.16,-598.06C365.79,-571.14 399.79,-538 399.79,-538 399.79,-538 430.81,-499.93 463.41,-459.93" />
+<rect x="446.77904296875" y="-487.32" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="458.51" y="-475.12000000000006" font-family="Arial" font-size="14.00" fill="#203c54">0,1</text>
+</g>
+
+<g id="edge10" class="edge">
+<title>R15--visit_event</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M846.01,-321.92C871.68,-311.36 902.27,-298.78 931.19,-286.89" />
+<rect x="893.90904296875" y="-309.6" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="905.64" y="-297.4" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="edge12" class="edge">
+<title>R16--visit_event</title>
+<path fill="none" stroke="#6c7d8c" stroke-width="1.1" d="M853.77,-187.18C877.72,-194.9 905.12,-203.74 931.17,-212.14" />
+<rect x="895.58904296875" y="-222.62" width="23.4619140625" height="17" fill="white" stroke="none" /><text xml:space="preserve" text-anchor="middle" x="907.32" y="-210.41999999999996" font-family="Arial" font-size="14.00" fill="#203c54">1,1</text>
+</g>
+
+<g id="node1" class="node">
+<title>dock</title>
+<polygon fill="#e7eff6" stroke="none" points="43.93,-684 43.93,-714 120.97,-714 120.97,-684 43.93,-684" />
+<text xml:space="preserve" text-anchor="start" x="63.7" y="-695.5" font-family="Arial-Bold" font-size="15.00">QUAI</text>
+<text xml:space="preserve" text-anchor="start" x="49.93" y="-665.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="49.93" y="-633" font-family="Arial" font-size="15.00">Code</text>
+<text xml:space="preserve" text-anchor="start" x="49.93" y="-603" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="49.93" y="-573" font-family="Arial" font-size="15.00">Type</text>
+<polygon fill="none" stroke="#48647c" points="42.93,-563 42.93,-715 121.97,-715 121.97,-563 42.93,-563" />
+<line stroke-width="0.8" x1="49.93" x2="114.97638671875" y1="-663.5" y2="-663.5" stroke="#203c54" /></g>
+
+<g id="node2" class="node">
+<title>driver</title>
+<polygon fill="#e7eff6" stroke="none" points="14.77,-496 14.77,-526 150.14,-526 150.14,-496 14.77,-496" />
+<text xml:space="preserve" text-anchor="start" x="35.79" y="-507.5" font-family="Arial-Bold" font-size="15.00">CHAUFFEUR</text>
+<text xml:space="preserve" text-anchor="start" x="20.77" y="-477.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="20.77" y="-445" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="20.77" y="-415" font-family="Arial" font-size="15.00">Téléphone</text>
+<text xml:space="preserve" text-anchor="start" x="20.77" y="-385" font-family="Arial" font-size="15.00">Numéro de permis</text>
+<polygon fill="none" stroke="#48647c" points="13.77,-375 13.77,-527 151.14,-527 151.14,-375 13.77,-375" />
+<line stroke-width="0.8" x1="20.77" x2="85.81638671875" y1="-475.5" y2="-475.5" stroke="#203c54" /></g>
+
+<g id="node3" class="node">
+<title>truck_visit</title>
+<polygon fill="#e7eff6" stroke="none" points="451.22,-429 451.22,-459 625.8,-459 625.8,-429 451.22,-429" />
+<text xml:space="preserve" text-anchor="start" x="469.33" y="-440.5" font-family="Arial-Bold" font-size="15.00">PASSAGE CAMION</text>
+<text xml:space="preserve" text-anchor="start" x="457.22" y="-410.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="457.22" y="-378" font-family="Arial" font-size="15.00">Référence</text>
+<text xml:space="preserve" text-anchor="start" x="457.22" y="-348" font-family="Arial" font-size="15.00">Opération</text>
+<text xml:space="preserve" text-anchor="start" x="457.22" y="-318" font-family="Arial" font-size="15.00">État</text>
+<text xml:space="preserve" text-anchor="start" x="457.22" y="-288" font-family="Arial" font-size="15.00">Contrôle des documents</text>
+<polygon fill="none" stroke="#48647c" points="450.22,-278 450.22,-460 626.8,-460 626.8,-278 450.22,-278" />
+<line stroke-width="0.8" x1="457.22" x2="522.26638671875" y1="-408.5" y2="-408.5" stroke="#203c54" /></g>
+
+<g id="node4" class="node">
+<title>user_account</title>
+<polygon fill="#e7eff6" stroke="none" points="440.79,-211 440.79,-241 636.23,-241 636.23,-211 440.79,-211" />
+<text xml:space="preserve" text-anchor="start" x="488.93" y="-222.5" font-family="Arial-Bold" font-size="15.00">UTILISATEUR</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-192.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-160" font-family="Arial" font-size="15.00">Email</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-130" font-family="Arial" font-size="15.00">Nom</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-100" font-family="Arial" font-size="15.00">Empreinte du mot de passe</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-70" font-family="Arial" font-size="15.00">Profil</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-40" font-family="Arial" font-size="15.00">Compte actif</text>
+<text xml:space="preserve" text-anchor="start" x="446.79" y="-10" font-family="Arial" font-size="15.00">Créé le</text>
+<polygon fill="none" stroke="#48647c" points="439.79,0 439.79,-242 637.23,-242 637.23,0 439.79,0" />
+<line stroke-width="0.8" x1="446.79" x2="511.83638671875" y1="-190.5" y2="-190.5" stroke="#203c54" /></g>
+
+<g id="node5" class="node">
+<title>vehicle</title>
+<polygon fill="#e7eff6" stroke="none" points="1,-239 1,-269 163.9,-269 163.9,-239 1,-239" />
+<text xml:space="preserve" text-anchor="start" x="45.36" y="-250.5" font-family="Arial-Bold" font-size="15.00">VÉHICULE</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-220.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-188" font-family="Arial" font-size="15.00">Immatriculation</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-158" font-family="Arial" font-size="15.00">Capacité (kg)</text>
+<text xml:space="preserve" text-anchor="start" x="7" y="-128" font-family="Arial" font-size="15.00">Capacité (éq. palettes)</text>
+<polygon fill="none" stroke="#48647c" points="0,-118 0,-270 164.9,-270 164.9,-118 0,-118" />
+<line stroke-width="0.8" x1="7.0" x2="72.04638671875" y1="-218.5" y2="-218.5" stroke="#203c54" /></g>
+
+<g id="node6" class="node">
+<title>visit_event</title>
+<polygon fill="#e7eff6" stroke="none" points="931.79,-275 931.79,-305 1136.32,-305 1136.32,-275 931.79,-275" />
+<text xml:space="preserve" text-anchor="start" x="937.79" y="-286.5" font-family="Arial-Bold" font-size="15.00">ÉVÉNEMENT DE PASSAGE</text>
+<text xml:space="preserve" text-anchor="start" x="937.79" y="-256.5" font-family="Arial" font-size="15.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="937.79" y="-224" font-family="Arial" font-size="15.00">Étape</text>
+<text xml:space="preserve" text-anchor="start" x="937.79" y="-194" font-family="Arial" font-size="15.00">Horodatage</text>
+<polygon fill="none" stroke="#48647c" points="930.79,-184 930.79,-306 1137.32,-306 1137.32,-184 930.79,-184" />
+<line stroke-width="0.8" x1="937.79" x2="1002.83638671875" y1="-254.5" y2="-254.5" stroke="#203c54" /></g>
+
+<g id="node7" class="node">
+<title>R11</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="302.35,-519.92 225.14,-458 302.35,-396.08 379.56,-458 302.35,-519.92" />
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-470.6" font-family="Arial" font-size="14.00">R11</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-453.8" font-family="Arial" font-size="14.00">conduit le</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-437" font-family="Arial" font-size="14.00">passage</text>
+</g>
+
+<g id="node8" class="node">
+<title>R12</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="302.35,-359.72 228.27,-281 302.35,-202.28 376.43,-281 302.35,-359.72" />
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-302" font-family="Arial" font-size="14.00">R12</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-285.2" font-family="Arial" font-size="14.00">effectue</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-268.4" font-family="Arial" font-size="14.00">(véhicule</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-251.6" font-family="Arial" font-size="14.00">principal)</text>
+</g>
+
+<g id="node9" class="node">
+<title>R13</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="302.35,-165.92 204.9,-104 302.35,-42.08 399.79,-104 302.35,-165.92" />
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-116.6" font-family="Arial" font-size="14.00">R13</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-99.8" font-family="Arial" font-size="14.00">accompagne</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-83" font-family="Arial" font-size="14.00">(remorque)</text>
+</g>
+
+<g id="node10" class="node">
+<title>R14</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="302.35,-693.92 224.37,-632 302.35,-570.08 380.32,-632 302.35,-693.92" />
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-644.6" font-family="Arial" font-size="14.00">R14</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-627.8" font-family="Arial" font-size="14.00">dessert le</text>
+<text xml:space="preserve" text-anchor="middle" x="302.35" y="-611" font-family="Arial" font-size="14.00">passage</text>
+</g>
+
+<g id="node11" class="node">
+<title>R15</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="784.01,-408.92 681.12,-347 784.01,-285.08 886.9,-347 784.01,-408.92" />
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-359.6" font-family="Arial" font-size="14.00">R15</text>
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-342.8" font-family="Arial" font-size="14.00">comporte une</text>
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-326" font-family="Arial" font-size="14.00">étape</text>
+</g>
+
+<g id="node12" class="node">
+<title>R16</title>
+<polygon fill="#fff7e8" stroke="#48647c" stroke-width="1.3" points="784.01,-226.92 677.23,-165 784.01,-103.08 890.79,-165 784.01,-226.92" />
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-177.6" font-family="Arial" font-size="14.00">R16</text>
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-160.8" font-family="Arial" font-size="14.00">enregistre une</text>
+<text xml:space="preserve" text-anchor="middle" x="784.01" y="-144" font-family="Arial" font-size="14.00">étape</text>
+</g>
+</g>
+</svg>
