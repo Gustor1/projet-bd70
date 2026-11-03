@@ -6,14 +6,14 @@ final class Reports
     public function __construct(public Database $db) {}
     public function period(array $input): array
     {
-        $from=Warehouse::date((string)($input['from']??date('Y-m-d')));$to=Warehouse::date((string)($input['to']??$from));
+        $from=Warehouse::date((string)($input['from']??Clock::today()));$to=Warehouse::date((string)($input['to']??$from));
         if($to<$from||strtotime($to)-strtotime($from)>366*86400)throw new DomainException('Choisissez une période de 366 jours au maximum.');
         return [$from.' 00:00:00',(new DateTimeImmutable($to))->modify('+1 day')->format('Y-m-d').' 00:00:00'];
     }
     public function stock(array $f,bool $export=false): array
     {
         $where=['s.qty<>0'];$p=[];
-        foreach(['article_id','owner_id','zone_id','lot_id'] as $key)if(!empty($f[$key])){$where[]='s.'.$key.'=?';$p[]=(int)$f[$key];}
+        foreach(['article_id','owner_id','zone_id','lot_id','location_id'] as $key)if(!empty($f[$key])){$where[]='s.'.$key.'=?';$p[]=(int)$f[$key];}
         if(!empty($f['q'])){$where[]='(s.sku LIKE ? OR s.article_name LIKE ? OR s.lot_code LIKE ? OR s.pallet_code LIKE ?)';for($i=0;$i<4;$i++)$p[]='%'.$f['q'].'%';}
         $sort=match($f['sort']??'article'){'lot'=>'s.lot_code,s.location_code','quantity'=>'s.qty DESC,s.sku',default=>'s.sku,s.lot_code,s.location_code'};
         $sql=' FROM v_stock s WHERE '.implode(' AND ',$where);$total=(int)$this->db->scalar('SELECT COUNT(*)'.$sql,$p);
@@ -50,10 +50,10 @@ final class Reports
         $gaps=$this->db->one('SELECT COUNT(*) lignes,COALESCE(SUM(d.missing_qty>0 OR d.excess_qty>0 OR d.damaged_qty>0),0) lignes_ecart,COALESCE(SUM(d.missing_qty),0) manquant,COALESCE(SUM(d.excess_qty),0) excedent,COALESCE(SUM(d.damaged_qty),0) endommage FROM v_receipt_discrepancy d JOIN receipt r ON r.id=d.receipt_id WHERE r.validated_at>=? AND r.validated_at<?',[$from,$to]);
         // Agrégation préalable par commande : aucune multiplication de la durée par le nombre de picks.
         $productivity=$this->db->all("SELECT u.name preparateur,SUM(p.qty) quantite,SUM(p.line_count) lignes,SUM(TIMESTAMPDIFF(SECOND,o.picking_at,o.ready_at))/60 minutes_observees,SUM(p.qty)*3600/NULLIF(SUM(TIMESTAMPDIFF(SECOND,o.picking_at,o.ready_at)),0) unites_heure FROM customer_order o JOIN user_account u ON u.id=o.preparer_id JOIN (SELECT ol.order_id,SUM(p.qty) qty,COUNT(DISTINCT ol.id) line_count FROM order_line ol JOIN pick p ON p.order_line_id=ol.id WHERE p.status IN ('confirmed','shipped') GROUP BY ol.order_id) p ON p.order_id=o.id WHERE o.status IN ('ready','shipped') AND o.ready_at>=? AND o.ready_at<? GROUP BY u.id,u.name",[$from,$to]);
-        $reference=substr($from,0,10);$horizon=max(0,min(365,(int)($f['horizon']??14)));$until=(new DateTimeImmutable($reference))->modify('+'.$horizon.' days')->format('Y-m-d');
+        $reference=Clock::today();$horizon=max(0,min(365,(int)($f['horizon']??14)));$until=(new DateTimeImmutable($reference))->modify('+'.$horizon.' days')->format('Y-m-d');
         $dlc=$this->db->all('SELECT sku,lot_code,expires_on,SUM(available_qty) disponible FROM v_stock WHERE blocked=0 AND available_qty>0 AND expires_on>=? AND expires_on<=? GROUP BY article_id,lot_id,sku,lot_code,expires_on ORDER BY expires_on',[$reference,$until]);
         $expiry=$this->db->one('SELECT COALESCE(SUM(CASE WHEN expires_on<? THEN qty-reserved_qty ELSE 0 END),0) perime,COALESCE(SUM(CASE WHEN expires_on IS NULL THEN qty-reserved_qty ELSE 0 END),0) sans_dlc FROM v_stock WHERE blocked=0',[$reference]);
-        return compact('from','to','occupied','capacity','down','carriers','zones','gaps','productivity','dlc','expiry','horizon');
+        return compact('from','to','occupied','capacity','down','carriers','zones','gaps','productivity','dlc','expiry','horizon','reference');
     }
     public function docks(string $day): array
     {

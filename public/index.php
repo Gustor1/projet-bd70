@@ -28,6 +28,12 @@ try {
           case 'cancel_appointment': Auth::demand($user,'planning');$w->cancelAppointment(Warehouse::positive($_POST['id']??0));break;
           case 'arrive': Auth::demand($user,'visits');$w->arrive($_POST);break;
           case 'transition': Auth::demand($user,'visits');$w->transition(Warehouse::positive($_POST['id']??0),(string)($_POST['next']??''),empty($_POST['dock_id'])?null:(int)$_POST['dock_id'],trim((string)($_POST['document_note']??'')));break;
+          case 'open_receipt': Auth::demand($user,'stock');$rid=$w->openReceipt(Warehouse::positive($_POST['notice_id']??0),Warehouse::positive($_POST['visit_id']??0),trim((string)($_POST['reference']??'')));$_POST['back']=url(['page'=>'receipt_detail','id'=>$rid]);break;
+          case 'reserve_receipt': Auth::demand($user,'stock');$w->reserveReceipt(Warehouse::positive($_POST['receipt_id']??0),empty($_POST['line_id'])?null:Warehouse::positive($_POST['line_id']),(string)($_POST['kind']??''),(string)($_POST['reason']??''));break;
+          case 'receive_item': Auth::demand($user,'stock');$w->receiveItem(Warehouse::positive($_POST['receipt_id']??0),$_POST);break;
+          case 'close_notice': Auth::demand($user,'stock');$w->closeNotice(Warehouse::positive($_POST['notice_id']??0),(string)($_POST['reason']??''));break;
+          case 'reset_preparation': Auth::demand($user,'orders');$w->resetPreparation(Warehouse::positive($_POST['id']??0),(string)($_POST['reason']??''));break;
+          case 'confirm_pick': Auth::demand($user,'orders');$w->confirmPickLine(Warehouse::positive($_POST['pick_id']??0),(int)$user['id'],$user['role']);break;
           case 'receipt': Auth::demand($user,'stock');$w->validateReceipt(Warehouse::positive($_POST['id']??0));break;
           case 'transfer': Auth::demand($user,'stock');$w->transfer(Warehouse::positive($_POST['receipt_item_id']??0),Warehouse::positive($_POST['source_id']??0),Warehouse::positive($_POST['dest_id']??0),Warehouse::positive($_POST['qty']??0),trim((string)($_POST['reason']??'')));break;
           case 'adjust': Auth::demand($user,'stock');if(!preg_match('/^-?[1-9]\d*$/',(string)($_POST['delta']??'')))throw new DomainException('Variation entière non nulle requise.');$w->adjust(Warehouse::positive($_POST['receipt_item_id']??0),Warehouse::positive($_POST['location_id']??0),(int)$_POST['delta'],trim((string)($_POST['reason']??'')));break;
@@ -42,14 +48,14 @@ try {
     }
     if(!$user)$page='login';
     else {
-        $right=match($page){'planning'=>'trace','visits'=>'visits','stock','receipts'=>'stock','orders','document'=>'orders','reports','export'=>'reports','trace'=>'trace',default=>null};
+        $right=match($page){'planning'=>'trace','visits'=>'visits','stock','receipts','receipt_detail','notices'=>'stock','orders','order_detail','document'=>'orders','reports','export'=>'reports','trace'=>'trace',default=>null};
         if($right)Auth::demand($user,$right);
         if($page==='catalog'){
             $table=(string)($_GET['t']??'carrier');$catalog->check($table);
             if(in_array($table,['user_account','audit_log'],true))Auth::demand($user,'accounts');
             elseif($user['role']==='gate'&&!in_array($table,['carrier','driver','vehicle','equipment','qualification','driver_qualification','vehicle_equipment','dock','dock_equipment','dock_vehicle_type','appointment','truck_visit','visit_event','dock_downtime'],true))throw new RuntimeException('Accès interdit pour ce profil.',403);
         }
-        if(!in_array($page,['home','catalog','planning','visits','stock','receipts','orders','reports','trace','document','export'],true))throw new RuntimeException('Page introuvable.',404);
+        if(!in_array($page,['home','catalog','planning','visits','stock','receipts','orders','reports','trace','document','export','receipt_detail','order_detail','notices'],true))throw new RuntimeException('Page introuvable.',404);
         if($page==='export'){
             $kind=(string)($_GET['kind']??'stock');$res=match($kind){'stock'=>$reports->stock($_GET,true),'visits'=>$reports->visits($_GET,true),'receipts'=>$reports->receipts($_GET,true),default=>throw new DomainException('État inconnu.')};
             $rows=$res['rows'];if($kind==='stock')$rows=array_map(fn($r)=>['article'=>$r['sku'],'designation'=>$r['article_name'],'lot'=>$r['lot_code'],'proprietaire'=>$r['owner_name'],'zone'=>$r['zone_name'],'emplacement'=>$r['location_code'],'quantite'=>$r['qty'],'reserve'=>$r['reserved_qty'],'disponible'=>$r['available_qty'],'bloque'=>$r['blocked'],'dlc'=>$r['expires_on']],$rows);

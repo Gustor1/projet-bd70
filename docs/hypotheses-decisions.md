@@ -1,6 +1,6 @@
 # Hypothèses et décisions
 
-1. Un entrepôt, en France, horaires civils Europe/Paris. SQL DATETIME stocke les heures locales du site. Les créneaux durant une transition d'heure saisonnière sont refusés dans cette version ; pas de conversion implicite depuis le fuseau du poste.
+1. Un entrepôt, en France, horaires civils Europe/Paris. SQL DATETIME stocke les heures locales du site. Seules les heures locales inexistantes ou ambiguës d’une transition saisonnière sont refusées ; pas de conversion implicite depuis le fuseau du poste.
 2. Quantités entières en unités de conditionnement d'article, kg et mètres pour les dimensions ; volume calculé. Capacité palettes en équivalents rationnels quantité/unités_par_palette, sans arrondi par opération. Pas de reconditionnement automatique.
 3. Un article appartient à un client propriétaire ; son SKU est unique chez ce propriétaire. Un lot est identifié par (article, code fabricant). Le fournisseur n'est ni le propriétaire ni le transporteur.
 4. Chaque réception peut recevoir plusieurs lots sur une ligne. Un lot peut être reçu plusieurs fois. Le stock conserve l'identité de chaque fraction de réception, même lorsqu'un lot est réparti entre emplacements. C'est le lien de provenance exact des sorties.
@@ -15,3 +15,17 @@
 13. PHP/PDO, MariaDB/InnoDB testés uniquement dans les versions indiquées. Pas d'ORM, CDN, API payante ni service extérieur nécessaire. Serveur PHP local réservé à la démonstration sur boucle locale.
 
 Sources : S (sujet A26), E (grille non pondérée), C et W (cours A25). Les modalités de groupe et de soutenance de C sont anciennes : 10 minutes préparées à titre indicatif ; date de remise inconnue.
+
+
+## Décisions complémentaires après audit
+
+- Réserves : lien exclusif réception OU ligne (CHECK XOR), motif, type, auteur et date. La réception d’une réserve de ligne est obtenue par jointure, sans duplication.
+- Avis : le reste est l’attendu non encore alloué aux réceptions validées. Un manquant validé reste un écart de cette livraison ; il ne relance pas automatiquement une commande fournisseur. Une relivraison peut faire l’objet d’un nouvel avis. Clôture motivée sans brouillon en attente.
+- Colis : (colis, prélèvement) détermine la quantité. Un prélèvement peut alimenter plusieurs colis. Couverture exacte avant chargement ; reprise motivée avant expédition.
+- Référentiels : les téléphones/libellés autorisés restent éditables ; les habilitations peuvent être prolongées sans réduction historique. Les propriétés structurelles utilisées restent protégées.
+- Audit : instantanés JSON avant/après sans password_hash, dénormalisation technique volontaire distincte des relations métier.
+- Indicateurs : activité sur la période ; stock/remplissage/DLC à la date actuelle du site. Le jeu riche est fictif et généré, avec contrôles d’intégrité ; les parcours de formulaires utilisent un jeu distinct.
+
+## Consolidation du 3 novembre 2026
+
+Les sorties du journal de stock répètent volontairement fraction, emplacement et quantité du prélèvement. Cette redondance conditionnelle est contrôlée par le service d’expédition et vérifiée par l’intégrité ; elle ne justifie pas une revendication de 3NF stricte de cette projection. Voir normalisation-3nf.md. Les modèles de référence et la distinction avec la cible corrigée pour le professeur sont dans modeles-reference.md. Les avis clôturés restent protégés même sans réception ; une correction après clôture passe par un nouvel avis.

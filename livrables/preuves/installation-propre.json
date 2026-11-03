@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-22T23:07:37",
-  "database": "bd70_demo_installation_finale",
+  "date": "2026-10-29T06:34:03",
+  "database": "bd70_demo_installation_delivered",
   "new_config_generated": true,
   "isolated_sql_account_generated": true,
   "boolean_sql_and_server_rejections": [

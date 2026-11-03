@@ -4,7 +4,7 @@ from pathlib import Path
 binary=Path(os.environ.get('BD70_MYSQL_BIN','C:/xampp2/mysql/bin'))
 source=os.environ.get('BD70_BACKUP_SOURCE','bd70_demo_final');target=os.environ.get('BD70_RESTORE_TARGET','bd70_restore_verifiee')
 import re
-assert re.fullmatch(r'bd70_demo[a-z0-9_]*',source)
+assert re.fullmatch(r'bd70_(demo|test)[a-z0-9_]*',source)
 assert re.fullmatch(r'bd70_restore[a-z0-9_]*',target)
 common=['--host=127.0.0.1','--port=3307','--user='+os.environ.get('BD70_ADMIN_USER','root'),'--default-character-set=utf8mb4']
 # Un éventuel secret est transmis via l'environnement du client, jamais dans la commande ou le rapport.

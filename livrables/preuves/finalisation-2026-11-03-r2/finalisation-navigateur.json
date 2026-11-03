@@ -1,0 +1,66 @@
+{
+  "executed_at": "2026-11-03T11:14:16.689Z",
+  "checks": [
+    {
+      "name": "Accès direct au formulaire validé expliqué",
+      "ok": true
+    },
+    {
+      "name": "Formulaire impossible masqué",
+      "ok": true
+    },
+    {
+      "name": "Fiche utilisée reste modifiable",
+      "ok": true
+    },
+    {
+      "name": "Suppression référencée masquée",
+      "ok": true
+    },
+    {
+      "name": "Poids historique désactivé dans formulaire",
+      "ok": true
+    },
+    {
+      "name": "Désignation descriptive disponible",
+      "ok": true
+    },
+    {
+      "name": "POST direct de suppression validée refusé",
+      "ok": true
+    },
+    {
+      "name": "Rapport sur période vide sans erreur",
+      "ok": true
+    },
+    {
+      "name": "Catalogue mobile simulé sans débordement global",
+      "ok": true
+    }
+  ],
+  "timings_ms": {
+    "catalog&t=receipt": [
+      206.99339999999938,
+      138.7408000000005,
+      135.50650000000041
+    ],
+    "catalog&t=carrier": [
+      1299.5338999999994,
+      1063.2650999999987,
+      1476.6472999999987
+    ],
+    "stock": [
+      346.84770000000026,
+      315.04399999999987,
+      345.9440000000013
+    ],
+    "reports": [
+      481.71529999999984,
+      255.27930000000015,
+      223.97980000000098
+    ]
+  },
+  "measurement": "Navigation Chromium jusqu’à load, ressources incluses ; trois observations ; jeu réduit",
+  "passed": 9,
+  "failed": 0
+}

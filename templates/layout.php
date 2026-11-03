@@ -10,11 +10,12 @@ foreach($nav as $key=>[$label,$right])if(!$right||Auth::can($user,$right))echo '
 <div class="shell <?= $user?'':'anonymous' ?>"><header class="topbar no-print"><span><?= $user?'Entrepôt de Belfort':'Transit / BD70' ?></span><div class="account"><?php if($user): ?><span><?= h($user['name']) ?><small><?= h(Catalog::VALUES[$user['role']]) ?></small></span><?php startForm('logout'); ?><button class="text-button">Déconnexion</button></form><?php else: ?><span>Application pédagogique</span><?php endif; ?></div></header>
 <main id="main"><?php if($message): ?><div role="status" class="notice success"><?= h($message) ?></div><?php endif; ?><?php if($error): ?><div role="alert" class="notice error"><?= h($error) ?></div><?php endif; ?>
 <?php try {
- if($user&&in_array($page,['catalog','stock','orders','visits'],true)&&(int)$db->scalar('SELECT (SELECT COUNT(*) FROM truck_visit)+(SELECT COUNT(*) FROM receipt_item)+(SELECT COUNT(*) FROM customer_order)')>2000){
+ if($user&&in_array($page,['catalog','stock','orders','visits','trace','planning','receipts','notices','receipt_detail','order_detail'],true)){
   echo '<details class="panel no-print"><summary>Affiner les listes de sélection</summary><p>Retrouvez une référence ou un nom dans les listes volumineuses avant de remplir le formulaire.</p><form method="get" class="filters"><input type="hidden" name="page" value="'.h($page).'">';
+  if(isset($_GET['id']))echo '<input type="hidden" name="id" value="'.h($_GET['id']).'">';
   if($page==='catalog')echo '<input type="hidden" name="t" value="'.h($_GET['t']??'carrier').'">';
   inputField('ref_search','Référence ou nom',$_GET['ref_search']??'','search',false);echo '<button>Rechercher les références</button></form></details>';
  }
- if($page!=='error')require __DIR__.'/'.(in_array($page,['home','login','catalog','planning','visits','receipts','stock','orders','reports','trace','document'],true)?$page:'home').'.php';
+ if($page!=='error')require __DIR__.'/'.(in_array($page,['home','login','catalog','planning','visits','receipts','stock','orders','reports','trace','document','receipt_detail','order_detail','notices'],true)?$page:'home').'.php';
 }catch(Throwable $viewError){http_response_code(422);echo '<div role="alert" class="notice error">'.h($viewError instanceof DomainException?$viewError->getMessage():'Impossible de présenter ces données.').'</div>';error_log('BD70 vue : '.$viewError->getMessage());} ?>
-</main><footer>Transit · Projet BD70 · Heure du site : Europe/Paris · <?= h(date('d/m/Y H:i')) ?></footer></div></body></html>
+</main><footer>Transit · Projet BD70 · Heure du site : Europe/Paris · <?= h(Clock::instant()->format('d/m/Y H:i')) ?></footer></div></body></html>

@@ -1,0 +1,22 @@
+[
+  {
+    "file": "document-delivery.pdf",
+    "pages": 1,
+    "rendered": true
+  },
+  {
+    "file": "document-pick.pdf",
+    "pages": 1,
+    "rendered": true
+  },
+  {
+    "file": "document-waybill.pdf",
+    "pages": 1,
+    "rendered": true
+  },
+  {
+    "file": "etat-indicateurs.pdf",
+    "pages": 3,
+    "rendered": true
+  }
+]

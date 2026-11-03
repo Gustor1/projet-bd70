@@ -1,0 +1,216 @@
+[
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_test_integration_20261103_190304"
+    ],
+    "label": "install-integration",
+    "started_at": "2026-11-03T11:03:13.187517+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/seed.php"
+    ],
+    "label": "seed-integration",
+    "started_at": "2026-11-03T11:03:19.512334+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "tests/integration.php"
+    ],
+    "label": "integration",
+    "started_at": "2026-11-03T11:03:21.307050+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_test_completion_20261103_190304"
+    ],
+    "label": "install-completion",
+    "started_at": "2026-11-03T11:04:02.508891+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/seed.php"
+    ],
+    "label": "seed-completion",
+    "started_at": "2026-11-03T11:04:08.940892+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "tests/completion.php"
+    ],
+    "label": "completion",
+    "started_at": "2026-11-03T11:04:10.917123+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_test_regression_20261103_190304"
+    ],
+    "label": "install-regression",
+    "started_at": "2026-11-03T11:04:12.546547+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/seed.php"
+    ],
+    "label": "seed-regression",
+    "started_at": "2026-11-03T11:04:18.751978+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "tests/finalisation.php"
+    ],
+    "label": "regression",
+    "started_at": "2026-11-03T11:04:20.521217+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "tests/time.php"
+    ],
+    "label": "heure",
+    "started_at": "2026-11-03T11:04:22.187860+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_test_riche_20261103_190304"
+    ],
+    "label": "install-riche",
+    "started_at": "2026-11-03T11:04:22.746372+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/import-demo.php"
+    ],
+    "label": "import-riche",
+    "started_at": "2026-11-03T11:04:35.315741+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/validate-data.php"
+    ],
+    "label": "integrite",
+    "started_at": "2026-11-03T11:04:42.697476+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/model.php"
+    ],
+    "label": "schema",
+    "started_at": "2026-11-03T11:04:47.673034+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_test_ui_20261103_190304"
+    ],
+    "label": "install-ui",
+    "started_at": "2026-11-03T11:04:49.570089+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/seed.php"
+    ],
+    "label": "seed-ui",
+    "started_at": "2026-11-03T11:04:58.772035+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+      "tests/browser.cjs"
+    ],
+    "label": "browser",
+    "started_at": "2026-11-03T11:05:03.218763+00:00",
+    "exit_code": 1
+  },
+  {
+    "command": [
+      "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+      "tests/parcours.cjs"
+    ],
+    "label": "parcours",
+    "started_at": "2026-11-03T11:07:20.103052+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+      "tests/completion-browser.cjs"
+    ],
+    "label": "completion-browser",
+    "started_at": "2026-11-03T11:08:09.235183+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+      "tests/finalisation-browser.cjs"
+    ],
+    "label": "finalisation-browser",
+    "started_at": "2026-11-03T11:08:26.852549+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/install.php",
+      "bd70_perf_20261103_190304"
+    ],
+    "label": "install-perf",
+    "started_at": "2026-11-03T11:08:34.617591+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/xampp2/php/php.exe",
+      "scripts/performance.php",
+      "10000"
+    ],
+    "label": "performances",
+    "started_at": "2026-11-03T11:08:38.746239+00:00",
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/python/python.exe",
+      "scripts/clean-install.py"
+    ],
+    "label": "installation-propre",
+    "started_at": "2026-11-03T11:09:24.379988+00:00",
+    "exit_code": 0
+  }
+]

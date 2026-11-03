@@ -7,10 +7,15 @@ parts=['-- Journal automatique sans mot de passe ni valeur sensible.\nDELIMITER 
 for table in tables:
  if table in ('audit_log','site_lock'): continue
  for event in ('INSERT','UPDATE','DELETE'):
-  if table in ('stock_movement','visit_event','shipment') and event!='INSERT': continue
+  if table in ('stock_movement','visit_event','shipment','receipt_reserve') and event!='INSERT': continue
   ref='OLD' if event=='DELETE' else 'NEW'
-  parts.append(f"CREATE TRIGGER audit_{table}_{event.lower()} AFTER {event} ON {table} FOR EACH ROW\nBEGIN\n INSERT INTO audit_log(entity,entity_id,operation,actor_id,details) VALUES ('{table}',{ref}.id,'{event}',@actor_id,'Modification métier');\nEND$$")
-for table in ('stock_movement','visit_event','shipment','audit_log'):
+  definition=re.search(r'CREATE TABLE '+table+r'\s*\((.*?)\) ENGINE=',schema,re.S).group(1)
+  columns=re.findall(r'(?:^|,)\s*(\w+)\s+(?:INT|BIGINT|VARCHAR|TEXT|DATETIME|DATE|ENUM|BOOLEAN|DECIMAL)\b',definition,re.M)
+  columns=[c for c in columns if c!='password_hash']
+  def obj(prefix):return 'JSON_OBJECT('+','.join("'"+c+"',"+prefix+'.`'+c+'`' for c in columns)+')'
+  detail="JSON_OBJECT('avant',"+(obj('OLD') if event!='INSERT' else 'NULL')+",'apres',"+(obj('NEW') if event!='DELETE' else 'NULL')+")"
+  parts.append(f"CREATE TRIGGER audit_{table}_{event.lower()} AFTER {event} ON {table} FOR EACH ROW\nBEGIN\n INSERT INTO audit_log(entity,entity_id,operation,actor_id,details) VALUES ('{table}',{ref}.id,'{event}',@actor_id,{detail});\nEND$$")
+for table in ('stock_movement','visit_event','shipment','audit_log','receipt_reserve'):
  for event in ('UPDATE','DELETE'):
   parts.append(f"CREATE TRIGGER immutable_{table}_{event.lower()} BEFORE {event} ON {table} FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Historique immuable : utiliser une correction métier'$$")
 parts.append('DELIMITER ;\n')

@@ -11,10 +11,11 @@ final class Catalog
       'owner'=>'Clients propriétaires','supplier'=>'Fournisseurs','article'=>'Articles','zone'=>'Zones','aisle'=>'Allées','rack'=>'Racks','rack_level'=>'Niveaux','location'=>'Emplacements',
       'lot'=>'Lots','supplier_notice'=>'Avis fournisseurs','notice_line'=>'Lignes attendues','receipt'=>'Réceptions','receipt_line'=>'Lignes de réception','receipt_item'=>'Palettes reçues',
       'customer_order'=>'Commandes','order_line'=>'Lignes de commande','pick'=>'Prélèvements','package'=>'Colis et palettes de sortie','package_pick'=>'Contenu des colis',
-      'shipment'=>'Expéditions','stock_movement'=>'Mouvements de stock','audit_log'=>'Journal automatique',
+      'shipment'=>'Expéditions','stock_movement'=>'Mouvements de stock','audit_log'=>'Journal automatique','receipt_reserve'=>'Réserves de réception',
     ];
     public const LABELS = [
       'email'=>'Email','name'=>'Nom','password'=>'Mot de passe','role'=>'Profil','active'=>'Compte actif','created_at'=>'Créé le',
+      'revision_note'=>'Motif de reprise','closed_at'=>'Clôturé le','closed_by'=>'Clôturé par','closure_note'=>'Motif de clôture',
       'code'=>'Code','reference'=>'Référence','address'=>'Adresse','phone'=>'Téléphone','terms'=>'Conditions du contrat','starts_on'=>'Date de début','ends_on'=>'Date de fin',
       'carrier_id'=>'Transporteur','driver_id'=>'Chauffeur','license_number'=>'Numéro de permis','qualification_id'=>'Habilitation','expires_on'=>'Date limite / validité',
       'vehicle_id'=>'Véhicule','equipment_id'=>'Équipement','plate'=>'Immatriculation','type'=>'Type','max_kg'=>'Capacité (kg)','max_pallets'=>'Capacité (équiv. palettes)',
@@ -30,7 +31,7 @@ final class Catalog
       'shipped_at'=>'Expédition','operation_ref'=>'Opération liée','delta'=>'Variation (unités)','kind'=>'Nature','entity'=>'Entité','entity_id'=>'Référence technique d’audit','details'=>'Description',
     ];
     public const VALUES=['admin'=>'Administrateur','manager'=>'Responsable','gate'=>'Accueil','warehouse'=>'Magasinier','pending'=>'En attente','draft'=>'Brouillon','validated'=>'Validée','active'=>'Actif','cancelled'=>'Annulé','arrived'=>'Arrivé','checked'=>'Documents contrôlés','parking'=>'En attente parking','called'=>'Appelé à quai','working'=>'En opération','finished'=>'Opération terminée','departed'=>'Parti','rejected'=>'Refusé','picking'=>'En préparation','ready'=>'Prête','shipped'=>'Expédié','planned'=>'À prélever','confirmed'=>'Prélevé','entry'=>'Entrée','transfer'=>'Transfert','shipment'=>'Sortie expédition','adjustment'=>'Ajustement'];
-    public const READONLY=['truck_visit','visit_event','pick','shipment','stock_movement','audit_log'];
+    public const READONLY=['truck_visit','visit_event','pick','shipment','stock_movement','audit_log','receipt_reserve'];
     private array $columns=[];
     private array $foreign=[];
     public function __construct(public Database $db) {}
@@ -81,7 +82,7 @@ final class Catalog
     public function editable(string $t): array
     {
         if(in_array($t,self::READONLY,true))return [];
-        return array_values(array_filter($this->columns($t),fn($c)=>!in_array($c['Field'],['id','status','password_hash','created_at','validated_at','picking_at','ready_at','preparer_id'],true)));
+        return array_values(array_filter($this->columns($t),fn($c)=>!in_array($c['Field'],['id','status','password_hash','created_at','validated_at','picking_at','ready_at','preparer_id','closed_at','closed_by','closure_note','revision_note'],true)));
     }
     public function save(string $t,?int $id,array $input,int $actor): int
     {
@@ -125,11 +126,10 @@ final class Catalog
             return $this->db->insert($t,$data);
         });
     }
-    public function guard(string $t,?int $id,?array $old,array $d): void
+    private function structurallyUsed(string $t,?int $id,?array $old): bool
     {
         $db=$this->db;
-        if($t==='lot' && $d['blocked'] && trim($d['block_reason'])==='')throw new DomainException('Précisez le motif du blocage.');
-        $frozen=match($t) {
+        return match($t) {
           'article'=>$id&&(bool)$db->scalar('SELECT COUNT(*) FROM lot WHERE article_id=?',[$id]),
           'vehicle'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE vehicle_id=? OR trailer_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE vehicle_id=? OR trailer_id=?)',[$id,$id,$id,$id]),
           'driver'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE driver_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE driver_id=?)',[$id,$id]),
@@ -140,11 +140,31 @@ final class Catalog
           'driver_qualification'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE driver_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE driver_id=?)',[$old['driver_id'],$old['driver_id']]),
           default=>false,
         };
-        if($frozen && $old && array_filter($d,fn($v,$k)=>(string)$v!==(string)$old[$k],ARRAY_FILTER_USE_BOTH))throw new DomainException('Fiche structurelle déjà utilisée : modification protégée pour conserver la cohérence.');
+    }
+    public function protectedFields(string $t,array $row): array
+    {
+        $id=(int)$row['id'];
+        if($t==='lot' && $this->db->scalar('SELECT COUNT(*) FROM receipt_item WHERE lot_id=?',[$id]))return ['article_id','code','expires_on'];
+        if(!$this->structurallyUsed($t,$id,$row))return [];
+        $allowed=match($t){'driver'=>['name','phone'],'article','dock','zone'=>['name'],'driver_qualification'=>['expires_on'],default=>[]};
+        return array_values(array_diff(array_column($this->editable($t),'Field'),$allowed));
+    }
+    public function guard(string $t,?int $id,?array $old,array $d): void
+    {
+        $db=$this->db;
+        if($id && $t==='supplier_notice' && $old['closed_at'])throw new DomainException('Avis clôturé : historique protégé.');
+        if($id && $t==='notice_line' && $db->scalar('SELECT closed_at FROM supplier_notice WHERE id=?',[$old['notice_id']]))throw new DomainException('Avis clôturé : historique protégé.');
+        if($t==='lot' && $d['blocked'] && trim($d['block_reason'])==='')throw new DomainException('Précisez le motif du blocage.');
+        $frozen=$this->structurallyUsed($t,$id,$old);
+        $descriptive=match($t){'driver'=>['name','phone'],'article','dock','zone'=>['name'],'driver_qualification'=>['expires_on'],default=>[]};
+        if($frozen&&$old&&array_filter($d,fn($v,$k)=>!in_array($k,$descriptive,true)&&(string)$v!==(string)$old[$k],ARRAY_FILTER_USE_BOTH))throw new DomainException('Caractéristique structurelle déjà utilisée : modification protégée. Les informations descriptives restent modifiables.');
+        if($frozen&&$t==='driver_qualification'&&$d['expires_on']<$old['expires_on'])throw new DomainException('Une habilitation utilisée peut être renouvelée, mais sa validité historique ne peut pas être raccourcie.');
         if($t==='lot'&&$id&&$db->scalar('SELECT COUNT(*) FROM receipt_item WHERE lot_id=?',[$id]))foreach(['article_id','code','expires_on'] as $k)if((string)$d[$k] !== (string)$old[$k])throw new DomainException('Identité du lot déjà reçu protégée ; seul son blocage est modifiable.');
         if(in_array($t,['receipt','receipt_line','receipt_item'],true)) {
             $receiptId=match($t){'receipt'=>$id,'receipt_line'=>$d['receipt_id'],default=>$db->scalar('SELECT receipt_id FROM receipt_line WHERE id=?',[$d['line_id']])};
             if($receiptId && $db->scalar('SELECT status FROM receipt WHERE id=?',[$receiptId])!=='draft')throw new DomainException('Réception validée : corriger par un mouvement motivé.');
+            $notice=$t==='receipt'?$d['notice_id']:($receiptId?$db->scalar('SELECT notice_id FROM receipt WHERE id=?',[$receiptId]):null);
+            if($notice&&$db->scalar('SELECT closed_at FROM supplier_notice WHERE id=?',[$notice]))throw new DomainException('Avis clôturé : aucune nouvelle réception ou modification autorisée.');
             if($id && $t!=='receipt') {
                 $oldReceipt=$t==='receipt_line'?$old['receipt_id']:$db->scalar('SELECT receipt_id FROM receipt_line WHERE id=?',[$old['line_id']]);
                 if($db->scalar('SELECT status FROM receipt WHERE id=?',[$oldReceipt])!=='draft')throw new DomainException('Impossible de déplacer une ligne validée.');
@@ -162,15 +182,18 @@ final class Catalog
             $notice=$t==='supplier_notice'?$id:$old['notice_id'];
             if($db->scalar('SELECT COUNT(*) FROM receipt WHERE notice_id=?',[$notice]))throw new DomainException('Avis déjà lié à une réception : modification protégée.');
         }
+        if($t==='notice_line'&&$db->scalar('SELECT closed_at FROM supplier_notice WHERE id=?',[$d['notice_id']]))throw new DomainException('Avis clôturé.');
         if(in_array($t,['customer_order','order_line','package','package_pick'],true)){
             $oid=match($t){'customer_order'=>$id,'package_pick'=>$db->scalar('SELECT order_id FROM package WHERE id=?',[$d['package_id']]),default=>$d['order_id']};
             if($oid){$o=$db->one('SELECT * FROM customer_order WHERE id=?',[$oid]);
-              if(in_array($t,['customer_order','order_line'],true)&&$o['status']!=='draft')throw new DomainException('Commande déjà lancée : annulez la préparation avant modification.');
+              if(in_array($t,['customer_order','order_line'],true)&&$o['status']!=='draft')throw new DomainException('Commande déjà lancée : utilisez Reprendre en brouillon avant modification.');
               if(in_array($t,['package','package_pick'],true)&&$o['status']!=='ready')throw new DomainException('Constituez les colis lorsque la préparation est confirmée.');
               if($t==='order_line'&&$d['article_id']&&$o['owner_id']!=$db->scalar('SELECT owner_id FROM article WHERE id=?',[$d['article_id']]))throw new DomainException('Article d’un autre propriétaire.');
               if($t==='package_pick'){
                 $p=$db->one('SELECT p.*,ol.order_id FROM pick p JOIN order_line ol ON ol.id=p.order_line_id WHERE p.id=?',[$d['pick_id']]);
                 if($p['order_id']!=$oid||$p['status']!=='confirmed')throw new DomainException('Prélèvement non confirmé ou d’une autre commande.');
+                $allocated=(int)$db->scalar('SELECT COALESCE(SUM(qty),0) FROM package_pick WHERE pick_id=? AND id<>?',[$p['id'],$id??0]);
+                if($allocated+Warehouse::positive($d['qty'])>$p['qty'])throw new DomainException('Quantité déjà conditionnée : dépassement du prélèvement.');
               }
             }
             if($id&&$t!=='customer_order'){
@@ -179,12 +202,38 @@ final class Catalog
             }
         }
     }
+    /** Same state checks for UI and writes; SQL constraints remain authoritative. */
+    public function restrictions(string $t,array $row): array
+    {
+        $edit=null;$delete=null;$id=(int)$row['id'];
+        if(in_array($t,self::READONLY,true))return ['edit'=>'Utilisez les actions métier ; historique protégé.','delete'=>'Historique conservé.'];
+        try {
+            $this->guard($t,$id,$row,$row);
+            if($t==='appointment' && ($row['status']!=='active'||$this->db->scalar('SELECT COUNT(*) FROM truck_visit WHERE appointment_id=?',[$id])))throw new DomainException('Rendez-vous utilisé ou annulé : consultez le passage camion.');
+        } catch(DomainException $e){$edit=$e->getMessage();}
+        if(!$edit && count($this->protectedFields($t,$row))===count($this->editable($t)))$edit='Caractéristiques structurelles déjà utilisées : consultez les opérations métier ; fiche conservée.';
+        $delete=$edit;
+        if(in_array($t,['appointment','user_account'],true))$delete='Utilisez l’annulation avant arrivée ou la désactivation du compte.';
+        if(!$delete){
+            $links=$this->db->all('SELECT TABLE_NAME,COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA=DATABASE() AND REFERENCED_TABLE_NAME=?',[$t]);
+            foreach($links as $link)if($this->db->scalar('SELECT COUNT(*) FROM `'.$link['TABLE_NAME'].'` WHERE `'.$link['COLUMN_NAME'].'`=?',[$id])){$delete='Fiche référencée : conservez son historique et corrigez les données modifiables.';break;}
+        }
+        if(!$delete && in_array($t,['dock_equipment','dock_vehicle_type','vehicle_equipment','driver_qualification'],true)){
+            $key=match($t){'vehicle_equipment'=>'vehicle_id','driver_qualification'=>'driver_id',default=>'dock_id'};
+            $extra=$key==='vehicle_id'?' OR trailer_id=?':'';
+            $params=$extra?[$row[$key],$row[$key]]:[$row[$key]];
+            foreach(['appointment','truck_visit'] as $parent)if($this->db->scalar('SELECT COUNT(*) FROM `'.$parent.'` WHERE `'.$key.'`=?'.$extra,$params)){$delete='Association utilisée par le planning : suppression protégée.';break;}
+        }
+        return ['edit'=>$edit,'delete'=>$delete];
+    }
     public function delete(string $t,int $id,int $actor): void
     {
         $this->check($t);
         if(in_array($t,self::READONLY,true)||in_array($t,['appointment','user_account'],true))throw new DomainException('Utilisez l’annulation ou la désactivation.');
         $this->db->transaction($actor,function()use($t,$id){
             $old=$this->db->one('SELECT * FROM `'.$t.'` WHERE id=?',[$id]);
+            $restriction=$this->restrictions($t,$old)['delete'];
+            if($restriction)throw new DomainException($restriction);
             $this->guard($t,$id,$old,$old);
             if(in_array($t,['dock_equipment','dock_vehicle_type','vehicle_equipment','driver_qualification'],true)){
                 $key=match($t){'vehicle_equipment'=>'vehicle_id','driver_qualification'=>'driver_id',default=>'dock_id'};

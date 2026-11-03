@@ -5,7 +5,7 @@ declare(strict_types=1);
 final class Warehouse
 {
     public function __construct(public Database $db,public int $actor,private ?string $clock=null) {}
-    public function now(): string { return $this->clock??date('Y-m-d H:i:s'); }
+    public function now(): string { return $this->clock??Clock::now(); }
     public static function date(string $s): string
     {
         $d=DateTimeImmutable::createFromFormat('!Y-m-d',$s);
@@ -17,7 +17,11 @@ final class Warehouse
         $d=DateTimeImmutable::createFromFormat('!Y-m-d H:i:s',$s);
         if(!$d||$d->format('Y-m-d H:i:s')!==$s)throw new DomainException('Date ou heure invalide.');
         $day=$d->setTime(0,0);$tz=new DateTimeZone(date_default_timezone_get());
-        if(count($tz->getTransitions($day->getTimestamp(),$day->modify('+1 day')->getTimestamp())?:[])>1)throw new DomainException('Jour de changement d’heure : choisissez un autre créneau pour cette démonstration.');
+        $transitions=$tz->getTransitions($day->getTimestamp(),$day->modify('+1 day')->getTimestamp())?:[];
+        for($i=1;$i<count($transitions);$i++){
+            $previous=$transitions[$i-1]['offset'];$current=$transitions[$i]['offset'];$at=$transitions[$i]['ts'];
+            if($current<$previous&&$s>=gmdate('Y-m-d H:i:s',$at+$current)&&$s<gmdate('Y-m-d H:i:s',$at+$previous))throw new DomainException('Heure répétée lors du passage à l’heure d’hiver : choisissez une heure non ambiguë.');
+        }
         return $s;
     }
     public static function positive(mixed $value): int
@@ -33,7 +37,8 @@ final class Warehouse
         if($v['carrier_id']!==$p['carrier_id']||$v['type']==='remorque')throw new DomainException('Chauffeur et véhicule moteur doivent appartenir au même transporteur.');
         if(!$this->db->scalar('SELECT COUNT(*) FROM dock_vehicle_type WHERE dock_id=? AND vehicle_type=?',[$dock,$v['type']]))throw new DomainException('Type de véhicule incompatible avec le quai.');
         if(($v['type']==='tracteur')!==($trailer!==null))throw new DomainException('Un tracteur nécessite une remorque ; les autres véhicules ne prennent pas de remorque.');
-        if($trailer){$t=$this->db->one('SELECT * FROM vehicle WHERE id=?',[$trailer]);if($t['type']!=='remorque'||$t['carrier_id']!==$v['carrier_id'])throw new DomainException('Remorque incompatible avec le transporteur.');}
+        if($trailer){$t=$this->db->one('SELECT * FROM vehicle WHERE id=?',[$trailer]);if($t['type']!=='remorque'||$t['carrier_id']!==$v['carrier_id'])throw new DomainException('Remorque incompatible avec le transporteur.');
+            if(!$this->db->scalar("SELECT COUNT(*) FROM dock_vehicle_type WHERE dock_id=? AND vehicle_type='remorque'",[$dock]))throw new DomainException('Ce quai ne permet pas les remorques.');}
         $missing=$this->db->scalar('SELECT COUNT(*) FROM vehicle_equipment ve WHERE ve.vehicle_id IN (?,?) AND NOT EXISTS (SELECT 1 FROM dock_equipment de WHERE de.dock_id=? AND de.equipment_id=ve.equipment_id)',[$vehicle,$trailer??$vehicle,$dock]);
         if($missing)throw new DomainException('Équipements du quai insuffisants pour ce véhicule.');
     }
@@ -44,6 +49,7 @@ final class Warehouse
         if($id){$old=$this->db->one('SELECT * FROM appointment WHERE id=?',[$id]);if($old['status']!=='active'||$this->db->scalar('SELECT COUNT(*) FROM truck_visit WHERE appointment_id=?',[$id]))throw new DomainException('Rendez-vous annulé ou déjà utilisé : modification interdite.');}
         $this->compatible((int)$d['dock_id'],(int)$d['driver_id'],(int)$d['vehicle_id'],$d['trailer_id']?(int)$d['trailer_id']:null,$d['operation'],$start);
         if($this->db->scalar("SELECT COUNT(*) FROM appointment WHERE dock_id=? AND status='active' AND starts_at<? AND ends_at>? AND id<>?",[$d['dock_id'],$end,$start,$id??0]))throw new DomainException('Ce créneau chevauche un rendez-vous actif.');
+        if($this->db->scalar("SELECT COUNT(*) FROM appointment WHERE status='active' AND starts_at<? AND ends_at>? AND id<>? AND (driver_id=? OR vehicle_id=? OR (trailer_id IS NOT NULL AND trailer_id=?))",[$end,$start,$id??0,$d['driver_id'],$d['vehicle_id'],$d['trailer_id']??0]))throw new DomainException('Chauffeur, véhicule ou remorque déjà réservé sur ce créneau.');
         if($this->db->scalar('SELECT COUNT(*) FROM dock_downtime WHERE dock_id=? AND starts_at<? AND ends_at>?',[$d['dock_id'],$end,$start]))throw new DomainException('Quai hors service pendant le créneau.');
         if($id){$this->db->run('UPDATE appointment SET reference=?,dock_id=?,driver_id=?,vehicle_id=?,trailer_id=?,operation=?,starts_at=?,ends_at=? WHERE id=?',[$d['reference'],$d['dock_id'],$d['driver_id'],$d['vehicle_id'],$d['trailer_id'],$d['operation'],$start,$end,$id]);return $id;}
         $d['starts_at']=$start;$d['ends_at']=$end;return $this->db->insert('appointment',$d);
@@ -108,9 +114,8 @@ final class Warehouse
     }
     public function suggestions(int $articleId,int $qty): array
     {
-        $a=$this->db->one('SELECT * FROM article WHERE id=?',[$articleId]);$out=[];
-        foreach($this->db->all('SELECT id,code FROM location ORDER BY code') as $l){try{$this->capacity((int)$l['id'],$a,$qty);$out[]=$l;}catch(DomainException){}}
-        return $out;
+        self::positive($qty);
+        return $this->db->all('SELECT l.id,l.code FROM v_location l JOIN v_location_usage u ON u.id=l.id JOIN article a ON a.id=? WHERE l.storage=a.storage AND a.width_m<=l.width_m AND a.depth_m<=l.depth_m AND a.height_m<=l.height_m AND u.used_kg+?*a.unit_kg<=l.max_kg AND u.used_m3+?*a.width_m*a.depth_m*a.height_m<=l.capacity_m3 AND u.used_pallets+?/a.units_per_pallet<=l.max_pallets ORDER BY l.code',[$articleId,$qty,$qty,$qty]);
     }
     private function goodsVehicle(array $visit,array $article): void
     {
@@ -123,6 +128,7 @@ final class Warehouse
     {
         $this->db->transaction($this->actor,function()use($id){
             $r=$this->db->one('SELECT * FROM receipt WHERE id=?',[$id]);if($r['status']!=='draft')throw new DomainException('Cette réception a déjà été validée.');
+            if($this->db->scalar('SELECT closed_at FROM supplier_notice WHERE id=?',[$r['notice_id']]))throw new DomainException('Avis fournisseur clôturé.');
             $visit=$this->db->one('SELECT * FROM truck_visit WHERE id=?',[$r['visit_id']]);if($visit['status']!=='working'||$visit['operation']!=='reception')throw new DomainException('Le camion doit être en déchargement sur un quai.');
             $lines=$this->db->all('SELECT rl.*,n.article_id,n.notice_id,n.expected_qty notice_qty FROM receipt_line rl JOIN notice_line n ON n.id=rl.notice_line_id WHERE rl.receipt_id=?',[$id]);
             if(!$lines)throw new DomainException('Ajoutez au moins une ligne de réception.');
@@ -140,6 +146,51 @@ final class Warehouse
             }
             $this->truckCapacity($visit,$kg,$pallets,false);
             $this->db->run("UPDATE receipt SET status='validated',validated_at=? WHERE id=?",[$this->now(),$id]);
+        });
+    }
+    public function openReceipt(int $notice,int $visit,string $reference): int
+    {
+        return $this->db->transaction($this->actor,function()use($notice,$visit,$reference){
+            $n=$this->db->one('SELECT * FROM supplier_notice WHERE id=?',[$notice]);
+            $v=$this->db->one('SELECT * FROM truck_visit WHERE id=?',[$visit]);
+            if($n['closed_at']||$v['operation']!=='reception'||$v['status']!=='working')throw new DomainException('Avis ouvert et camion en déchargement requis.');
+            $cat=new Catalog($this->db);$id=$cat->save('receipt',null,['reference'=>$reference?:$this->ref('REC'),'notice_id'=>$notice,'visit_id'=>$visit],$this->actor);
+            $count=0;
+            foreach($this->db->all('SELECT * FROM v_notice_line_progress WHERE notice_id=?',[$notice]) as $l){
+                $draft=(int)$this->db->scalar("SELECT COALESCE(SUM(l.expected_qty),0) FROM receipt_line l JOIN receipt r ON r.id=l.receipt_id WHERE l.notice_line_id=? AND r.status='draft'",[$l['id']]);
+                $remaining=(int)$l['remaining_qty']-$draft;
+                if($remaining>0){$cat->save('receipt_line',null,['receipt_id'=>$id,'notice_line_id'=>$l['id'],'expected_qty'=>$remaining],$this->actor);$count++;}
+            }
+            if(!$count)throw new DomainException('Aucun reste à réceptionner : vérifiez les brouillons existants.');return $id;
+        });
+    }
+    public function reserveReceipt(int $receipt,?int $line,string $kind,string $reason): void
+    {
+        $this->db->transaction($this->actor,function()use($receipt,$line,$kind,$reason){
+            $this->db->one('SELECT id FROM receipt WHERE id=?',[$receipt]);
+            if($line&&$this->db->scalar('SELECT receipt_id FROM receipt_line WHERE id=?',[$line])!=$receipt)throw new DomainException('Ligne d’une autre réception.');
+            if(!in_array($kind,['manquant','excedent','avarie','autre'],true)||trim($reason)===''||mb_strlen($reason)>255)throw new DomainException('Nature et texte de réserve requis (255 caractères au maximum).');
+            $this->db->insert('receipt_reserve',['receipt_id'=>$line?null:$receipt,'line_id'=>$line,'kind'=>$kind,'reason'=>trim($reason),'actor_id'=>$this->actor,'created_at'=>$this->now()]);
+        });
+    }
+    public function receiveItem(int $receipt,array $data): int
+    {
+        return $this->db->transaction($this->actor,function()use($receipt,$data){
+            $line=$this->db->one('SELECT l.*,n.article_id FROM receipt_line l JOIN notice_line n ON n.id=l.notice_line_id WHERE l.id=?',[(int)($data['line_id']??0)]);
+            if($line['receipt_id']!=$receipt)throw new DomainException('Ligne d’une autre réception.');
+            $cat=new Catalog($this->db);
+            if(!empty($data['new_lot']))$data['lot_id']=$cat->save('lot',null,['article_id'=>$line['article_id'],'code'=>$data['new_lot'],'expires_on'=>$data['expires_on']??'','blocked'=>0,'block_reason'=>''],$this->actor);
+            return $cat->save('receipt_item',null,$data,$this->actor);
+        });
+    }
+    public function closeNotice(int $notice,string $reason): void
+    {
+        $this->db->transaction($this->actor,function()use($notice,$reason){
+            $n=$this->db->one('SELECT * FROM supplier_notice WHERE id=?',[$notice]);
+            if($n['closed_at'])throw new DomainException('Avis déjà clôturé.');
+            if($this->db->scalar("SELECT COUNT(*) FROM receipt WHERE notice_id=? AND status='draft'",[$notice]))throw new DomainException('Validez ou supprimez les réceptions brouillon avant de clôturer.');
+            if(trim($reason)===''||mb_strlen($reason)>255)throw new DomainException('Précisez le bilan de clôture (255 caractères au maximum), notamment les restes non livrés.');
+            $this->db->run('UPDATE supplier_notice SET closed_at=?,closed_by=?,closure_note=? WHERE id=?',[$this->now(),$this->actor,trim($reason),$notice]);
         });
     }
     private function movement(string $ref,int $item,int $location,int $delta,string $kind,string $reason,?int $pick=null): void
@@ -178,7 +229,7 @@ final class Warehouse
             foreach($lines as $line){
                 if($o['owner_id']!=$this->db->scalar('SELECT owner_id FROM article WHERE id=?',[$line['article_id']]))throw new DomainException('Article d’un autre propriétaire.');
                 $need=(int)$line['qty'];
-                $stock=$this->db->all('SELECT * FROM v_stock WHERE article_id=? AND available_qty>0 AND blocked=0 AND (expires_on IS NULL OR expires_on>=?) ORDER BY expires_on IS NULL,expires_on,received_at,receipt_item_id,location_id',[$line['article_id'],substr($this->now(),0,10)]);
+                $stock=$this->db->all('SELECT s.*,qty-reserved_qty available_qty FROM v_stock s WHERE article_id=? AND qty-reserved_qty>0 AND blocked=0 AND (expires_on IS NULL OR expires_on>=?) ORDER BY expires_on IS NULL,expires_on,received_at,receipt_item_id,location_id',[$line['article_id'],substr($this->now(),0,10)]);
                 foreach($stock as $s){$take=min($need,(int)$s['available_qty']);$this->db->insert('pick',['order_line_id'=>$line['id'],'receipt_item_id'=>$s['receipt_item_id'],'location_id'=>$s['location_id'],'qty'=>$take]);$need-=$take;if(!$need)break;}
                 if($need>0)throw new DomainException('Stock FEFO disponible insuffisant : aucune ligne réservée.');
             }
@@ -203,9 +254,35 @@ final class Warehouse
             $this->db->run("UPDATE customer_order SET status='cancelled' WHERE id=?",[$id]);
         });
     }
+    public function resetPreparation(int $id,string $reason): void
+    {
+        $this->db->transaction($this->actor,function()use($id,$reason){
+            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$id]);
+            if($o['status']==='shipped'||trim($reason)===''||mb_strlen($reason)>255)throw new DomainException('Reprise impossible après expédition ; un motif de 255 caractères maximum est requis.');
+            $this->db->run('DELETE pp FROM package_pick pp JOIN package c ON c.id=pp.package_id WHERE c.order_id=?',[$id]);
+            $this->db->run('DELETE FROM package WHERE order_id=?',[$id]);
+            $this->db->run("UPDATE pick p JOIN order_line l ON l.id=p.order_line_id SET p.status='cancelled' WHERE l.order_id=?",[$id]);
+            $this->db->run("UPDATE customer_order SET status='draft',preparer_id=NULL,picking_at=NULL,ready_at=NULL WHERE id=?",[$id]);
+            $this->db->run('SET @business_reason=?',[trim($reason)]);
+            // Le motif est enregistré par une modification dédiée de la commande.
+            $this->db->run('UPDATE customer_order SET revision_note=? WHERE id=?',[trim($reason),$id]);
+            $this->db->run('SET @business_reason=NULL');
+        });
+    }
+    public function confirmPickLine(int $pick,int $userId,string $role): void
+    {
+        $this->db->transaction($this->actor,function()use($pick,$userId,$role){
+            $p=$this->db->one('SELECT p.*,ol.order_id,l.blocked,l.expires_on FROM pick p JOIN order_line ol ON ol.id=p.order_line_id JOIN receipt_item i ON i.id=p.receipt_item_id JOIN lot l ON l.id=i.lot_id WHERE p.id=?',[$pick]);
+            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$p['order_id']]);
+            if($o['status']!=='picking'||$p['status']!=='planned'||($role==='warehouse'&&$o['preparer_id']!=$userId))throw new DomainException('Prélèvement non affecté ou déjà confirmé.');
+            if($p['blocked']||($p['expires_on']&&$p['expires_on']<substr($this->now(),0,10)))throw new DomainException('Lot bloqué ou périmé : reprendre la préparation.');
+            $this->db->run("UPDATE pick SET status='confirmed',confirmed_at=? WHERE id=?",[$this->now(),$pick]);
+            if(!$this->db->scalar("SELECT COUNT(*) FROM pick p JOIN order_line l ON l.id=p.order_line_id WHERE l.order_id=? AND p.status='planned'",[$o['id']]))$this->db->run("UPDATE customer_order SET status='ready',ready_at=? WHERE id=?",[$this->now(),$o['id']]);
+        });
+    }
     private function truckCapacity(array $visit,float $kg,float $pallets,bool $out): void
     {
-        if($out){$previous=$this->db->one('SELECT COALESCE(SUM(p.qty*a.unit_kg),0) kg,COALESCE(SUM(p.qty/a.units_per_pallet),0) palettes FROM shipment s JOIN order_line ol ON ol.order_id=s.order_id JOIN pick p ON p.order_line_id=ol.id JOIN article a ON a.id=ol.article_id WHERE s.visit_id=?',[$visit['id']]);$kg+=(float)$previous['kg'];$pallets+=(float)$previous['palettes'];}
+        if($out){$previous=$this->db->one('SELECT COALESCE(SUM(p.qty*a.unit_kg),0) kg,COALESCE(SUM(p.qty/a.units_per_pallet),0) palettes FROM shipment s JOIN order_line ol ON ol.order_id=s.order_id JOIN pick p ON p.order_line_id=ol.id JOIN article a ON a.id=ol.article_id WHERE s.visit_id=? AND p.status=\'shipped\'',[$visit['id']]);$kg+=(float)$previous['kg'];$pallets+=(float)$previous['palettes'];}
         else {$previous=$this->db->one("SELECT COALESCE(SUM((i.accepted_qty+i.damaged_qty)*a.unit_kg),0) kg,COALESCE(SUM((i.accepted_qty+i.damaged_qty)/a.units_per_pallet),0) palettes FROM receipt r JOIN receipt_line rl ON rl.receipt_id=r.id JOIN receipt_item i ON i.line_id=rl.id JOIN lot l ON l.id=i.lot_id JOIN article a ON a.id=l.article_id WHERE r.visit_id=? AND r.status='validated'",[$visit['id']]);$kg+=(float)$previous['kg'];$pallets+=(float)$previous['palettes'];}
         $v=$this->db->one('SELECT * FROM vehicle WHERE id=?',[$visit['trailer_id']?:$visit['vehicle_id']]);if($kg>$v['max_kg']+0.000001||$pallets>$v['max_pallets']+0.000001)throw new DomainException('Capacité de chargement du véhicule dépassée.');
     }
@@ -218,7 +295,7 @@ final class Warehouse
             if(!$picks)throw new DomainException('Aucun prélèvement confirmé.');$kg=0;$pallets=0;
             foreach($picks as $p){
                 if($p['blocked']||($p['expires_on']&&$p['expires_on']<substr($this->now(),0,10)))throw new DomainException('Lot bloqué ou périmé.');
-                if(!$this->db->scalar('SELECT COUNT(*) FROM package_pick pp JOIN package c ON c.id=pp.package_id WHERE pp.pick_id=? AND c.order_id=?',[$p['id'],$order]))throw new DomainException('Affectez chaque prélèvement à un colis ou une palette.');
+                if((int)$this->db->scalar('SELECT COALESCE(SUM(pp.qty),0) FROM package_pick pp JOIN package c ON c.id=pp.package_id WHERE pp.pick_id=? AND c.order_id=?',[$p['id'],$order])!==(int)$p['qty'])throw new DomainException('Répartissez exactement chaque quantité prélevée entre les colis ou palettes.');
                 $this->goodsVehicle($v,$p);$kg+=$p['qty']*$p['unit_kg'];$pallets+=$p['qty']/$p['units_per_pallet'];
                 if((int)$this->db->scalar('SELECT COALESCE(SUM(delta),0) FROM stock_movement WHERE receipt_item_id=? AND location_id=?',[$p['receipt_item_id'],$p['location_id']])<$p['qty'])throw new DomainException('Stock physique insuffisant.');
             }

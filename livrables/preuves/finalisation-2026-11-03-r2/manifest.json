@@ -1,0 +1,286 @@
+{
+  "executed_at": "2026-11-03T11:16:04.325003+00:00",
+  "run": "finalisation-2026-11-03-r2",
+  "working_copy": "C:\\Users\\eliot\\Documents\\GitHub\\projet-bd70\\.local\\finalisation-2026-11-03-r2",
+  "commands": [
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_test_integration_20261103_191012"
+      ],
+      "label": "install-integration",
+      "started_at": "2026-11-03T11:10:19.318191+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/seed.php"
+      ],
+      "label": "seed-integration",
+      "started_at": "2026-11-03T11:10:22.992095+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "tests/integration.php"
+      ],
+      "label": "integration",
+      "started_at": "2026-11-03T11:10:24.425981+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_test_completion_20261103_191012"
+      ],
+      "label": "install-completion",
+      "started_at": "2026-11-03T11:10:29.466734+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/seed.php"
+      ],
+      "label": "seed-completion",
+      "started_at": "2026-11-03T11:10:33.071871+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "tests/completion.php"
+      ],
+      "label": "completion",
+      "started_at": "2026-11-03T11:10:34.475526+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_test_regression_20261103_191012"
+      ],
+      "label": "install-regression",
+      "started_at": "2026-11-03T11:10:35.323020+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/seed.php"
+      ],
+      "label": "seed-regression",
+      "started_at": "2026-11-03T11:10:39.467891+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "tests/finalisation.php"
+      ],
+      "label": "regression",
+      "started_at": "2026-11-03T11:10:40.783287+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "tests/time.php"
+      ],
+      "label": "heure",
+      "started_at": "2026-11-03T11:10:42.155741+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_test_riche_20261103_191012"
+      ],
+      "label": "install-riche",
+      "started_at": "2026-11-03T11:10:42.599937+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/import-demo.php"
+      ],
+      "label": "import-riche",
+      "started_at": "2026-11-03T11:10:47.599104+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/validate-data.php"
+      ],
+      "label": "integrite",
+      "started_at": "2026-11-03T11:10:54.883007+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/python/python.exe",
+        "scripts/backup-restore.py"
+      ],
+      "label": "restauration",
+      "started_at": "2026-11-03T11:10:59.811529+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/model.php"
+      ],
+      "label": "schema",
+      "started_at": "2026-11-03T11:11:47.760214+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_test_ui_20261103_191012"
+      ],
+      "label": "install-ui",
+      "started_at": "2026-11-03T11:11:48.804574+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/seed.php"
+      ],
+      "label": "seed-ui",
+      "started_at": "2026-11-03T11:11:59.465530+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+        "tests/browser.cjs"
+      ],
+      "label": "browser",
+      "started_at": "2026-11-03T11:12:01.855686+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+        "tests/parcours.cjs"
+      ],
+      "label": "parcours",
+      "started_at": "2026-11-03T11:13:02.901332+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+        "tests/completion-browser.cjs"
+      ],
+      "label": "completion-browser",
+      "started_at": "2026-11-03T11:13:38.607539+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+        "tests/finalisation-browser.cjs"
+      ],
+      "label": "finalisation-browser",
+      "started_at": "2026-11-03T11:14:03.096778+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/install.php",
+        "bd70_perf_20261103_191012"
+      ],
+      "label": "install-perf",
+      "started_at": "2026-11-03T11:14:17.401285+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/xampp2/php/php.exe",
+        "scripts/performance.php",
+        "10000"
+      ],
+      "label": "performances",
+      "started_at": "2026-11-03T11:14:27.400682+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/python/python.exe",
+        "scripts/clean-install.py"
+      ],
+      "label": "installation-propre",
+      "started_at": "2026-11-03T11:15:30.629238+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1026-487-0_26.1026.487.0_x64__3k8sg7r9htsxt/dependencies/python/python.exe",
+        "scripts/verify-migration.py"
+      ],
+      "label": "migration",
+      "started_at": "2026-11-03T11:15:43.240719+00:00",
+      "exit_code": 0
+    }
+  ],
+  "all_commands_passed": true,
+  "sources_sha256": {
+    "src\\Auth.php": "3998c21b3c1ccd473cdb38b0001b659af36783dfe5892cc3fe17117f36059b5a",
+    "src\\bootstrap.php": "917fcfc71aa1486993cf33a3196c7da7e156f25bf26cd25a1131d40c658c182e",
+    "src\\Catalog.php": "454e15151d9c4caa3db6f3872743a8be3e1c35df9f67c5378a782ada5070a404",
+    "src\\Clock.php": "1ad78a13098a40bc14bdf6f466cdbfc8502b69cb873fd13552d53ade4c9a79ee",
+    "src\\Database.php": "1d49a0fe3f8f1a2dba7b42a27d458f652994173258b6f87231a405adbaef15ab",
+    "src\\Reports.php": "9d6573a4b1df906bc5f7da93b1b81de06ca670d475ddea8c915f83f2de8cf707",
+    "src\\Warehouse.php": "e5ae41742e8eb8c82082f2a752970bd54037f6e890cb69fc1a9b4e79d0f23976",
+    "templates\\catalog.php": "261d5e29f04ccb2c27a3ff8d939d6236ee5cadd31d891adaeb138b218ef97b0f",
+    "templates\\document.php": "549e6166fa51c49627b7d33a834022e93584031cc333d40c6bd8b49f6d5e72c5",
+    "templates\\helpers.php": "57d21354952430fd1c1a4f5c2be4bdf5f03263b3d823438d99f3e01522328d80",
+    "templates\\home.php": "ef74465a5107d504e167c46d412c17122214deefa39601765fceb2900ada9ba5",
+    "templates\\layout.php": "da95f9fb3cf0c81a77c54b29fee2069e5d4d288044416e7d346240d56f488131",
+    "templates\\login.php": "3d27ed1d1a9c2f7d533f071d6038518c4a648e5312b87cf99864b186369d0a1e",
+    "templates\\notices.php": "78bcfc477853e6bec9f591149790a9a08130238ecfb8d09398caf3bd28543a4f",
+    "templates\\orders.php": "a7c2d36d5a5f98f029c5cc447fdd4cded6f9951b648f321cd5fbc7d620397e9b",
+    "templates\\order_detail.php": "e4d8fab3106d9cc0bf75c142fa1c9085f162660f89cbbfa885eb97c54242dad1",
+    "templates\\planning.php": "745b16eda24fb88d7729fcd82d78f853313800a36c5cea783959a68069a5b6f9",
+    "templates\\receipts.php": "56eda9f817473f0e7b4a7290181bd1b609adb68b3d0ada8e12f29aacde717363",
+    "templates\\receipt_detail.php": "c19a6284e8e6c07238a5b2b54593535311b9fa7371f4844a5da26c0dfb2b6947",
+    "templates\\reports.php": "c9e845725439205fc3e94cb70f26213cf59c36705781cde6ea0260832a0ec12a",
+    "templates\\stock.php": "2d27ceac9d5628e6aced1299535fe49a4ec8699d4a6a9f77d2212ba5b85007d0",
+    "templates\\trace.php": "5a24f4afac85cd37969f8d0f6f6af165085bf062452d9158b54ed070e012de16",
+    "templates\\visits.php": "b3ddd1ee118883e166d6aceac1e527181a03be8b232da8b852436bca16205ee4",
+    "tests\\browser.cjs": "35893d0b590b106b1b277a0f2fa9db93875e792e7484cd3ee2da03012b204af8",
+    "tests\\completion-browser.cjs": "35dbda3d7639eed83fc48c5f126d9c9e046447336ce01dcc335e70c54e3752b2",
+    "tests\\completion.php": "e694820d048f11ddd477d1e1adff145bcc5b1624448da77cfc893f3b0c34b45d",
+    "tests\\finalisation-browser.cjs": "786b38c6510e46a59b00b5945ffc6acbf85cab65fa78fca8c9df1644576bf087",
+    "tests\\finalisation.php": "fa034d67aee6166f868caaabc8e47c05ce4df754ad28bffb094f8b5c87c0e79f",
+    "tests\\integration.php": "534b5cda797e85d8c4547d56408ead225b491025f68bfee4113f0a8b056f48dc",
+    "tests\\parcours.cjs": "e5453b7987078e68c860adb401d66fcd8421b3fe6bf955b5b24ab87b1ed02599",
+    "tests\\print.cjs": "4bb84a852c24813fbb17ad158f7a80847dee40450db6b9d069bd3a8da505c65e",
+    "tests\\race_worker.php": "b5966bc75ceb317e18b5d9ade55c47fecc7385d5217d50cc91a30984507440d6",
+    "tests\\rich-browser.cjs": "8854d81b70fcb3ac5fd11bc975c0bb6f1336b95a48be66f9cde97709fa289d1c",
+    "tests\\rich-read.php": "30945599ae167ed9d760c521508740447f5becda62bb8d639229406f61a84366",
+    "tests\\time.php": "722305e423542dbdac8f1fe7b472192c3e87a614adef12f28daf0d9ff6db7d39",
+    "sql\\01_schema.sql": "8662bc6804f243e3397c962505724a991d28d4d17e1910c6d190b4e1c2b1c229",
+    "sql\\02_vues.sql": "ad33fd677dfb3874c267f582d0a1c9ca75bb162978271c9373705be2808c6be0",
+    "sql\\03_procedures.sql": "dc22d1e750e8c116c7bac058b319ab01456e486b0588ca7f7351cde63d0b8d14",
+    "sql\\04_triggers.sql": "e1103c3930067d23fe0631005759f894da75658f23d10fb99a191acec0d6209d",
+    "sql\\05_index.sql": "321f5b3b310e30899347ef04f4aaa4680ffa1a63101d8d0a670f9af9f2485b2a",
+    "sql\\06_privileges.example.sql": "61747f27be8b66c004659ec230270bca37ccf605c2a726b1fe94e171b25b47d9",
+    "sql\\07_donnees_demo_riches.sql": "6c0f8d2fb97d8acf1c3b963c3f3cbf9249f520168b46b8087440be5333586429",
+    "sql\\requetes_metier.sql": "5567aac454cd77f05483829bfb1d90ef13e6eb33a206c0a8cdd0fd00252e96c1",
+    "sql\\migrations\\20261028_completion.sql": "14252870b4cca4c6122d1da1c3bf239128c828ab613331b2d1721cf55e21d76d"
+  }
+}

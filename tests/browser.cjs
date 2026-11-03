@@ -24,10 +24,10 @@ function check(ok,name){results.push({name,ok});console.log(`${ok?'OK':'ECHEC'} 
  const f=page.locator('form').filter({has:page.locator('input[name="action"][value="save"]')});
  for(const [key,val] of Object.entries({code:'WEB-CRUD',name:`O'Neil <script>alert(1)</script>`,address:'Adresse fictive',phone:'000',email:'web-crud@bd70.test'}))await f.locator(`[name="${key}"]`).fill(val);
  await f.getByRole('button',{name:'Enregistrer',exact:true}).click();check(await page.getByRole('status').isVisible(),'Création formulaire avec apostrophe et HTML échappé');
- await page.locator('form.filters input[name="q"]').fill('WEB-CRUD');await page.getByRole('button',{name:'Afficher',exact:true}).click();
+ await page.locator('form.filters input[name="q"]').fill('WEB-CRUD');await page.getByRole('button',{name:'Afficher',exact:true}).click();await page.waitForURL(u=>u.searchParams.get('q')==='WEB-CRUD');await page.locator('tbody tr').filter({hasText:'WEB-CRUD'}).waitFor();
  check(await page.locator('tbody tr').count()===1&&await page.locator('tbody script').count()===0,'Filtre et absence d’exécution HTML');
  await page.getByRole('link',{name:'Modifier',exact:true}).click();await page.locator('details form input[name="name"]').fill('Fiche modifiée par navigateur');await page.getByRole('button',{name:'Enregistrer',exact:true}).click();
- await page.locator('form.filters input[name="q"]').fill('WEB-CRUD');await page.getByRole('button',{name:'Afficher',exact:true}).click();check(await page.getByText('Fiche modifiée par navigateur',{exact:true}).isVisible(),'Modification formulaire');
+ await page.locator('form.filters input[name="q"]').fill('WEB-CRUD');await page.getByRole('button',{name:'Afficher',exact:true}).click();await page.waitForURL(u=>u.searchParams.get('q')==='WEB-CRUD');await page.getByText('Fiche modifiée par navigateur',{exact:true}).waitFor();check(await page.getByText('Fiche modifiée par navigateur',{exact:true}).isVisible(),'Modification formulaire');
  page.once('dialog',d=>d.accept());await page.getByRole('button',{name:'Supprimer',exact:true}).click();check(await page.getByRole('status').isVisible(),'Suppression formulaire');
  // CSRF et accès directs, y compris export sans droits.
  let resp=await page.request.post(origin+'/',{form:{action:'adjust',receipt_item_id:'1',location_id:'1',delta:'-1',reason:'Sans CSRF'}});check(resp.status()===403,'HTTP écriture sans CSRF rejetée');

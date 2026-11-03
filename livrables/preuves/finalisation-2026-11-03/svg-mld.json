@@ -1,0 +1,12 @@
+{
+  "text_matches_regeneration": {
+    "mld-articles-stockage.svg": true,
+    "mld-commandes-expeditions.svg": true,
+    "mld-complet.svg": true,
+    "mld-historisation.svg": true,
+    "mld-personnel-transport.svg": true,
+    "mld-quais-passages.svg": true,
+    "mld-receptions-stock.svg": true
+  },
+  "passed": true
+}

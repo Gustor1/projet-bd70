@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "generation_exit": true,
+    "curated_unchanged": true,
+    "mld-articles-stockage.dot": true,
+    "mld-commandes-expeditions.dot": true,
+    "mld-complet.dot": true,
+    "mld-historisation.dot": true,
+    "mld-personnel-transport.dot": true,
+    "mld-quais-passages.dot": true,
+    "mld-receptions-stock.dot": true
+  },
+  "passed": true,
+  "output": "MLD \u00e9crits. MCD final : build-mcd-final.py ; UML livr\u00e9 : build-usecase-v2.py. Documents manuels pr\u00e9serv\u00e9s.\n"
+}

@@ -1,0 +1,18 @@
+{
+    "timezone": "Europe\/Paris",
+    "received_test_lots": [
+        {
+            "code": "UI-1793205762360-LOT",
+            "expires_on": "2026-10-23"
+        }
+    ],
+    "actual_picks": [
+        {
+            "commande": "UI-1793205762360-CMD",
+            "sku": "ART-CAFE",
+            "lot_preleve": "LOT-A",
+            "expires_on": "2026-11-10",
+            "qty": 10
+        }
+    ]
+}

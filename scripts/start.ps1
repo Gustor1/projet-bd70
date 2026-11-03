@@ -22,7 +22,8 @@ if(!$listening){
 if(!(Test-Path -LiteralPath (Join-Path $projectRoot 'config/local.php'))){
  $env:BD70_PORT="$DbPort"
  Push-Location $projectRoot
- try{& $PhpPath scripts/install.php bd70_demo;if($LASTEXITCODE -ne 0){throw 'Installation échouée.'};& $PhpPath scripts/seed.php;if($LASTEXITCODE -ne 0){throw 'Chargement du jeu échoué.'}}finally{Pop-Location}
+ $previousDatabase=$env:BD70_DATABASE
+ try{& $PhpPath scripts/install.php bd70_demo;if($LASTEXITCODE -ne 0){throw 'Installation échouée.'};$env:BD70_DATABASE='bd70_demo';& $PhpPath scripts/import-demo.php;if($LASTEXITCODE -ne 0){throw 'Chargement du jeu riche échoué.'}}finally{$env:BD70_DATABASE=$previousDatabase;Pop-Location}
 }
 $webListening=Get-NetTCPConnection -LocalPort $WebPort -State Listen -ErrorAction SilentlyContinue
 if(!$webListening){

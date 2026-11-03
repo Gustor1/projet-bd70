@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../src/bootstrap.php';
+putenv('BD70_NOW=2026-10-22 12:00:00');
 putenv('BD70_DATABASE='.(getenv('BD70_TEST_DATABASE')?:'bd70_test'));$db=new Database();$w=new Warehouse($db,1,'2026-10-22 12:00:00');
 $payload=json_decode(base64_decode($argv[2]),true);$at=(float)$argv[3];while(microtime(true)<$at)usleep(1000);
 try {

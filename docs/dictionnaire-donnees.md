@@ -331,6 +331,9 @@ Unicités : (id); (reference).
 | reference | Référence | varchar(40) | NO |  |
 | supplier_id | Fournisseur | int(11) | NO | supplier.id |
 | expected_on | Livraison prévue | date | NO |  |
+| closed_at | Clôturé le | datetime | YES |  |
+| closed_by | Clôturé par | int(11) | YES | user_account.id |
+| closure_note | Motif de clôture | varchar(255) | NO |  |
 
 ## notice_line - Lignes attendues
 
@@ -393,6 +396,7 @@ Unicités : (id); (reference).
 | reference | Référence | varchar(40) | NO |  |
 | owner_id | Propriétaire | int(11) | NO | owner.id |
 | destination | Adresse de livraison | varchar(255) | NO |  |
+| revision_note | Motif de reprise | varchar(255) | NO |  |
 | desired_on | Expédition souhaitée | date | NO |  |
 | status | État | enum('draft','picking','ready','shipped','cancelled') | NO |  |
 | preparer_id | Préparateur | int(11) | YES | user_account.id |
@@ -437,13 +441,14 @@ Unicités : (id); (code).
 
 ## package_pick - Contenu des colis
 
-Unicités : (id); (pick_id).
+Unicités : (id); (package_id, pick_id).
 
 | Attribut | Sens | Type | NULL | Relation |
 |---|---|---|---|---|
 | id | Identifiant interne | int(11) | NO |  |
 | package_id | Colis / palette | int(11) | NO | package.id |
 | pick_id | Prélèvement | int(11) | NO | pick.id |
+| qty | Quantité | int(11) | NO |  |
 
 ## shipment - Expéditions
 
@@ -487,7 +492,21 @@ Unicités : (id).
 | operation | Opération | varchar(12) | NO |  |
 | actor_id | Auteur | int(11) | YES | user_account.id |
 | happened_at | Horodatage | datetime | NO |  |
-| details | Description | varchar(255) | NO |  |
+| details | Description | text | NO |  |
+
+## receipt_reserve - Réserves de réception
+
+Unicités : (id).
+
+| Attribut | Sens | Type | NULL | Relation |
+|---|---|---|---|---|
+| id | Identifiant interne | int(11) | NO |  |
+| receipt_id | Réception | int(11) | YES | receipt.id |
+| line_id | Ligne de réception | int(11) | YES | receipt_line.id |
+| kind | Nature | enum('manquant','excedent','avarie','autre') | NO |  |
+| reason | Motif | varchar(255) | NO |  |
+| actor_id | Auteur | int(11) | NO | user_account.id |
+| created_at | Créé le | datetime | NO |  |
 
 ## site_lock - Verrou du site
 

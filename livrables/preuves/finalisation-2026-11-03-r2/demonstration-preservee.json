@@ -1,0 +1,751 @@
+{
+  "unchanged": true,
+  "before": {
+    "database": "bd70_demo_rich_final",
+    "tables": {
+      "aisle": [
+        18,
+        [
+          {
+            "Table": "bd70_demo_rich_final.aisle",
+            "Checksum": 2691192602
+          }
+        ]
+      ],
+      "appointment": [
+        1350,
+        [
+          {
+            "Table": "bd70_demo_rich_final.appointment",
+            "Checksum": 3771322891
+          }
+        ]
+      ],
+      "article": [
+        180,
+        [
+          {
+            "Table": "bd70_demo_rich_final.article",
+            "Checksum": 2862904222
+          }
+        ]
+      ],
+      "audit_log": [
+        92513,
+        [
+          {
+            "Table": "bd70_demo_rich_final.audit_log",
+            "Checksum": 3571606362
+          }
+        ]
+      ],
+      "carrier": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier",
+            "Checksum": 67130996
+          }
+        ]
+      ],
+      "carrier_contact": [
+        40,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier_contact",
+            "Checksum": 3481294513
+          }
+        ]
+      ],
+      "carrier_contract": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier_contract",
+            "Checksum": 2186529546
+          }
+        ]
+      ],
+      "customer_order": [
+        924,
+        [
+          {
+            "Table": "bd70_demo_rich_final.customer_order",
+            "Checksum": 17925650
+          }
+        ]
+      ],
+      "dock": [
+        9,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock",
+            "Checksum": 1569271850
+          }
+        ]
+      ],
+      "dock_downtime": [
+        1,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_downtime",
+            "Checksum": 1572769806
+          }
+        ]
+      ],
+      "dock_equipment": [
+        27,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_equipment",
+            "Checksum": 443341638
+          }
+        ]
+      ],
+      "dock_vehicle_type": [
+        36,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_vehicle_type",
+            "Checksum": 2875236476
+          }
+        ]
+      ],
+      "driver": [
+        80,
+        [
+          {
+            "Table": "bd70_demo_rich_final.driver",
+            "Checksum": 1742534777
+          }
+        ]
+      ],
+      "driver_qualification": [
+        80,
+        [
+          {
+            "Table": "bd70_demo_rich_final.driver_qualification",
+            "Checksum": 1910171422
+          }
+        ]
+      ],
+      "equipment": [
+        3,
+        [
+          {
+            "Table": "bd70_demo_rich_final.equipment",
+            "Checksum": 4283885088
+          }
+        ]
+      ],
+      "location": [
+        360,
+        [
+          {
+            "Table": "bd70_demo_rich_final.location",
+            "Checksum": 1648440360
+          }
+        ]
+      ],
+      "lot": [
+        720,
+        [
+          {
+            "Table": "bd70_demo_rich_final.lot",
+            "Checksum": 2215505462
+          }
+        ]
+      ],
+      "notice_line": [
+        5406,
+        [
+          {
+            "Table": "bd70_demo_rich_final.notice_line",
+            "Checksum": 1348840043
+          }
+        ]
+      ],
+      "order_line": [
+        3648,
+        [
+          {
+            "Table": "bd70_demo_rich_final.order_line",
+            "Checksum": 2714398071
+          }
+        ]
+      ],
+      "owner": [
+        18,
+        [
+          {
+            "Table": "bd70_demo_rich_final.owner",
+            "Checksum": 4140798608
+          }
+        ]
+      ],
+      "package": [
+        1800,
+        [
+          {
+            "Table": "bd70_demo_rich_final.package",
+            "Checksum": 2959284640
+          }
+        ]
+      ],
+      "package_pick": [
+        15541,
+        [
+          {
+            "Table": "bd70_demo_rich_final.package_pick",
+            "Checksum": 503609084
+          }
+        ]
+      ],
+      "pick": [
+        7873,
+        [
+          {
+            "Table": "bd70_demo_rich_final.pick",
+            "Checksum": 1948566920
+          }
+        ]
+      ],
+      "qualification": [
+        2,
+        [
+          {
+            "Table": "bd70_demo_rich_final.qualification",
+            "Checksum": 3674760163
+          }
+        ]
+      ],
+      "rack": [
+        36,
+        [
+          {
+            "Table": "bd70_demo_rich_final.rack",
+            "Checksum": 993675980
+          }
+        ]
+      ],
+      "rack_level": [
+        72,
+        [
+          {
+            "Table": "bd70_demo_rich_final.rack_level",
+            "Checksum": 3677007342
+          }
+        ]
+      ],
+      "receipt": [
+        903,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt",
+            "Checksum": 921270241
+          }
+        ]
+      ],
+      "receipt_item": [
+        5130,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_item",
+            "Checksum": 3989817690
+          }
+        ]
+      ],
+      "receipt_line": [
+        5406,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_line",
+            "Checksum": 4239017014
+          }
+        ]
+      ],
+      "receipt_reserve": [
+        1365,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_reserve",
+            "Checksum": 3516930302
+          }
+        ]
+      ],
+      "shipment": [
+        900,
+        [
+          {
+            "Table": "bd70_demo_rich_final.shipment",
+            "Checksum": 163481466
+          }
+        ]
+      ],
+      "site_lock": [
+        1,
+        [
+          {
+            "Table": "bd70_demo_rich_final.site_lock",
+            "Checksum": 3815636698
+          }
+        ]
+      ],
+      "stock_movement": [
+        24917,
+        [
+          {
+            "Table": "bd70_demo_rich_final.stock_movement",
+            "Checksum": 4286290200
+          }
+        ]
+      ],
+      "supplier": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.supplier",
+            "Checksum": 1268737130
+          }
+        ]
+      ],
+      "supplier_notice": [
+        903,
+        [
+          {
+            "Table": "bd70_demo_rich_final.supplier_notice",
+            "Checksum": 3016260374
+          }
+        ]
+      ],
+      "truck_visit": [
+        1806,
+        [
+          {
+            "Table": "bd70_demo_rich_final.truck_visit",
+            "Checksum": 184639158
+          }
+        ]
+      ],
+      "user_account": [
+        21,
+        [
+          {
+            "Table": "bd70_demo_rich_final.user_account",
+            "Checksum": 1116604301
+          }
+        ]
+      ],
+      "vehicle": [
+        100,
+        [
+          {
+            "Table": "bd70_demo_rich_final.vehicle",
+            "Checksum": 768975218
+          }
+        ]
+      ],
+      "vehicle_equipment": [
+        100,
+        [
+          {
+            "Table": "bd70_demo_rich_final.vehicle_equipment",
+            "Checksum": 2705620693
+          }
+        ]
+      ],
+      "visit_event": [
+        11719,
+        [
+          {
+            "Table": "bd70_demo_rich_final.visit_event",
+            "Checksum": 854981308
+          }
+        ]
+      ],
+      "zone": [
+        6,
+        [
+          {
+            "Table": "bd70_demo_rich_final.zone",
+            "Checksum": 4025201864
+          }
+        ]
+      ]
+    }
+  },
+  "after": {
+    "database": "bd70_demo_rich_final",
+    "tables": {
+      "aisle": [
+        18,
+        [
+          {
+            "Table": "bd70_demo_rich_final.aisle",
+            "Checksum": 2691192602
+          }
+        ]
+      ],
+      "appointment": [
+        1350,
+        [
+          {
+            "Table": "bd70_demo_rich_final.appointment",
+            "Checksum": 3771322891
+          }
+        ]
+      ],
+      "article": [
+        180,
+        [
+          {
+            "Table": "bd70_demo_rich_final.article",
+            "Checksum": 2862904222
+          }
+        ]
+      ],
+      "audit_log": [
+        92513,
+        [
+          {
+            "Table": "bd70_demo_rich_final.audit_log",
+            "Checksum": 3571606362
+          }
+        ]
+      ],
+      "carrier": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier",
+            "Checksum": 67130996
+          }
+        ]
+      ],
+      "carrier_contact": [
+        40,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier_contact",
+            "Checksum": 3481294513
+          }
+        ]
+      ],
+      "carrier_contract": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.carrier_contract",
+            "Checksum": 2186529546
+          }
+        ]
+      ],
+      "customer_order": [
+        924,
+        [
+          {
+            "Table": "bd70_demo_rich_final.customer_order",
+            "Checksum": 17925650
+          }
+        ]
+      ],
+      "dock": [
+        9,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock",
+            "Checksum": 1569271850
+          }
+        ]
+      ],
+      "dock_downtime": [
+        1,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_downtime",
+            "Checksum": 1572769806
+          }
+        ]
+      ],
+      "dock_equipment": [
+        27,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_equipment",
+            "Checksum": 443341638
+          }
+        ]
+      ],
+      "dock_vehicle_type": [
+        36,
+        [
+          {
+            "Table": "bd70_demo_rich_final.dock_vehicle_type",
+            "Checksum": 2875236476
+          }
+        ]
+      ],
+      "driver": [
+        80,
+        [
+          {
+            "Table": "bd70_demo_rich_final.driver",
+            "Checksum": 1742534777
+          }
+        ]
+      ],
+      "driver_qualification": [
+        80,
+        [
+          {
+            "Table": "bd70_demo_rich_final.driver_qualification",
+            "Checksum": 1910171422
+          }
+        ]
+      ],
+      "equipment": [
+        3,
+        [
+          {
+            "Table": "bd70_demo_rich_final.equipment",
+            "Checksum": 4283885088
+          }
+        ]
+      ],
+      "location": [
+        360,
+        [
+          {
+            "Table": "bd70_demo_rich_final.location",
+            "Checksum": 1648440360
+          }
+        ]
+      ],
+      "lot": [
+        720,
+        [
+          {
+            "Table": "bd70_demo_rich_final.lot",
+            "Checksum": 2215505462
+          }
+        ]
+      ],
+      "notice_line": [
+        5406,
+        [
+          {
+            "Table": "bd70_demo_rich_final.notice_line",
+            "Checksum": 1348840043
+          }
+        ]
+      ],
+      "order_line": [
+        3648,
+        [
+          {
+            "Table": "bd70_demo_rich_final.order_line",
+            "Checksum": 2714398071
+          }
+        ]
+      ],
+      "owner": [
+        18,
+        [
+          {
+            "Table": "bd70_demo_rich_final.owner",
+            "Checksum": 4140798608
+          }
+        ]
+      ],
+      "package": [
+        1800,
+        [
+          {
+            "Table": "bd70_demo_rich_final.package",
+            "Checksum": 2959284640
+          }
+        ]
+      ],
+      "package_pick": [
+        15541,
+        [
+          {
+            "Table": "bd70_demo_rich_final.package_pick",
+            "Checksum": 503609084
+          }
+        ]
+      ],
+      "pick": [
+        7873,
+        [
+          {
+            "Table": "bd70_demo_rich_final.pick",
+            "Checksum": 1948566920
+          }
+        ]
+      ],
+      "qualification": [
+        2,
+        [
+          {
+            "Table": "bd70_demo_rich_final.qualification",
+            "Checksum": 3674760163
+          }
+        ]
+      ],
+      "rack": [
+        36,
+        [
+          {
+            "Table": "bd70_demo_rich_final.rack",
+            "Checksum": 993675980
+          }
+        ]
+      ],
+      "rack_level": [
+        72,
+        [
+          {
+            "Table": "bd70_demo_rich_final.rack_level",
+            "Checksum": 3677007342
+          }
+        ]
+      ],
+      "receipt": [
+        903,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt",
+            "Checksum": 921270241
+          }
+        ]
+      ],
+      "receipt_item": [
+        5130,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_item",
+            "Checksum": 3989817690
+          }
+        ]
+      ],
+      "receipt_line": [
+        5406,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_line",
+            "Checksum": 4239017014
+          }
+        ]
+      ],
+      "receipt_reserve": [
+        1365,
+        [
+          {
+            "Table": "bd70_demo_rich_final.receipt_reserve",
+            "Checksum": 3516930302
+          }
+        ]
+      ],
+      "shipment": [
+        900,
+        [
+          {
+            "Table": "bd70_demo_rich_final.shipment",
+            "Checksum": 163481466
+          }
+        ]
+      ],
+      "site_lock": [
+        1,
+        [
+          {
+            "Table": "bd70_demo_rich_final.site_lock",
+            "Checksum": 3815636698
+          }
+        ]
+      ],
+      "stock_movement": [
+        24917,
+        [
+          {
+            "Table": "bd70_demo_rich_final.stock_movement",
+            "Checksum": 4286290200
+          }
+        ]
+      ],
+      "supplier": [
+        20,
+        [
+          {
+            "Table": "bd70_demo_rich_final.supplier",
+            "Checksum": 1268737130
+          }
+        ]
+      ],
+      "supplier_notice": [
+        903,
+        [
+          {
+            "Table": "bd70_demo_rich_final.supplier_notice",
+            "Checksum": 3016260374
+          }
+        ]
+      ],
+      "truck_visit": [
+        1806,
+        [
+          {
+            "Table": "bd70_demo_rich_final.truck_visit",
+            "Checksum": 184639158
+          }
+        ]
+      ],
+      "user_account": [
+        21,
+        [
+          {
+            "Table": "bd70_demo_rich_final.user_account",
+            "Checksum": 1116604301
+          }
+        ]
+      ],
+      "vehicle": [
+        100,
+        [
+          {
+            "Table": "bd70_demo_rich_final.vehicle",
+            "Checksum": 768975218
+          }
+        ]
+      ],
+      "vehicle_equipment": [
+        100,
+        [
+          {
+            "Table": "bd70_demo_rich_final.vehicle_equipment",
+            "Checksum": 2705620693
+          }
+        ]
+      ],
+      "visit_event": [
+        11719,
+        [
+          {
+            "Table": "bd70_demo_rich_final.visit_event",
+            "Checksum": 854981308
+          }
+        ]
+      ],
+      "zone": [
+        6,
+        [
+          {
+            "Table": "bd70_demo_rich_final.zone",
+            "Checksum": 4025201864
+          }
+        ]
+      ]
+    }
+  }
+}

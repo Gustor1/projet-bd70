@@ -62,7 +62,7 @@ function seed(Database $db): array
         (new Warehouse($db,$ids['manager'],'2026-10-22 09:30:00'))->prepare($order,$ids['warehouse']);
         (new Warehouse($db,$ids['warehouse'],'2026-10-22 09:40:00'))->confirmPick($order,$ids['warehouse'],'warehouse');
         $pkg=$db->insert('package',['order_id'=>$order,'code'=>'COL-DEMO-'.($k+1),'type'=>'colis']);
-        foreach($db->all('SELECT p.id FROM pick p JOIN order_line l ON l.id=p.order_line_id WHERE l.order_id=?',[$order]) as $p)$db->insert('package_pick',['package_id'=>$pkg,'pick_id'=>$p['id']]);
+        foreach($db->all('SELECT p.id,p.qty FROM pick p JOIN order_line l ON l.id=p.order_line_id WHERE l.order_id=?',[$order]) as $p)$db->insert('package_pick',['package_id'=>$pkg,'pick_id'=>$p['id'],'qty'=>$p['qty']]);
         (new Warehouse($db,$ids['warehouse'],'2026-10-22 09:45:00'))->ship($order,$out);
     }
     foreach([['09:50','finished'],['10:00','departed']] as [$time,$state])(new Warehouse($db,$ids['gate'],'2026-10-22 '.$time.':00'))->transition($out,$state);

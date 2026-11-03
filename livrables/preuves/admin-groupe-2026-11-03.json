@@ -1,0 +1,13 @@
+{
+  "executed_at": "2026-11-03T11:23:01.621886+00:00",
+  "database": "bd70_test_admin_groupe_20261103",
+  "checks": {
+    "creation_sur_base_neuve": true,
+    "compte_admin_actif_connectable": true,
+    "idempotent_sans_nouvel_audit": true,
+    "recuperation_role_activation_mot_de_passe": true,
+    "identifiant_conserve": true
+  },
+  "passed": true,
+  "demonstration": "Commande exécutée aussi sur bd70_demo_rich_final : compte déjà disponible, aucune modification."
+}

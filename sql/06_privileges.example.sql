@@ -8,4 +8,5 @@ GRANT INSERT, UPDATE, DELETE ON bd70_demo.carrier TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.stock_movement TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.visit_event TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.shipment TO 'bd70_app'@'127.0.0.1';
+GRANT INSERT ON bd70_demo.receipt_reserve TO 'bd70_app'@'127.0.0.1';
 -- Aucun DDL, aucun UPDATE/DELETE sur les historiques, aucune écriture directe dans audit_log.

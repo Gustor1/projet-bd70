@@ -60,7 +60,7 @@ CREATE TABLE location (
  CHECK(width_m>0 AND depth_m>0 AND height_m>0 AND max_kg>0 AND max_pallets>0), FOREIGN KEY(level_id) REFERENCES rack_level(id)
 ) ENGINE=InnoDB;
 CREATE TABLE lot (id INT AUTO_INCREMENT PRIMARY KEY, article_id INT NOT NULL, code VARCHAR(40) NOT NULL, expires_on DATE NULL, blocked BOOLEAN NOT NULL DEFAULT 0, block_reason VARCHAR(255) NOT NULL DEFAULT '', CHECK(blocked IN (0,1)), UNIQUE(article_id,code), FOREIGN KEY(article_id) REFERENCES article(id)) ENGINE=InnoDB;
-CREATE TABLE supplier_notice (id INT AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(40) NOT NULL UNIQUE, supplier_id INT NOT NULL, expected_on DATE NOT NULL, FOREIGN KEY(supplier_id) REFERENCES supplier(id)) ENGINE=InnoDB;
+CREATE TABLE supplier_notice (id INT AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(40) NOT NULL UNIQUE, supplier_id INT NOT NULL, expected_on DATE NOT NULL, closed_at DATETIME NULL, closed_by INT NULL, closure_note VARCHAR(255) NOT NULL DEFAULT '', FOREIGN KEY(closed_by) REFERENCES user_account(id), FOREIGN KEY(supplier_id) REFERENCES supplier(id)) ENGINE=InnoDB;
 CREATE TABLE notice_line (id INT AUTO_INCREMENT PRIMARY KEY, notice_id INT NOT NULL, article_id INT NOT NULL, expected_qty INT NOT NULL, UNIQUE(notice_id,article_id), CHECK(expected_qty>0), FOREIGN KEY(notice_id) REFERENCES supplier_notice(id), FOREIGN KEY(article_id) REFERENCES article(id)) ENGINE=InnoDB;
 CREATE TABLE receipt (id INT AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(40) NOT NULL UNIQUE, notice_id INT NOT NULL, visit_id INT NOT NULL, status ENUM('draft','validated') NOT NULL DEFAULT 'draft', validated_at DATETIME NULL, FOREIGN KEY(notice_id) REFERENCES supplier_notice(id), FOREIGN KEY(visit_id) REFERENCES truck_visit(id)) ENGINE=InnoDB;
 CREATE TABLE receipt_line (id INT AUTO_INCREMENT PRIMARY KEY, receipt_id INT NOT NULL, notice_line_id INT NOT NULL, expected_qty INT NOT NULL, UNIQUE(receipt_id,notice_line_id), CHECK(expected_qty>0), FOREIGN KEY(receipt_id) REFERENCES receipt(id), FOREIGN KEY(notice_line_id) REFERENCES notice_line(id)) ENGINE=InnoDB;
@@ -70,11 +70,11 @@ CREATE TABLE receipt_item (
  CHECK(accepted_qty>=0 AND damaged_qty>=0 AND accepted_qty+damaged_qty>0), CHECK(damaged_qty=0 OR CHAR_LENGTH(reservation)>0),
  FOREIGN KEY(line_id) REFERENCES receipt_line(id), FOREIGN KEY(lot_id) REFERENCES lot(id), FOREIGN KEY(location_id) REFERENCES location(id)
 ) ENGINE=InnoDB;
-CREATE TABLE customer_order (id INT AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(40) NOT NULL UNIQUE, owner_id INT NOT NULL, destination VARCHAR(255) NOT NULL, desired_on DATE NOT NULL, status ENUM('draft','picking','ready','shipped','cancelled') NOT NULL DEFAULT 'draft', preparer_id INT NULL, picking_at DATETIME NULL, ready_at DATETIME NULL, FOREIGN KEY(owner_id) REFERENCES owner(id), FOREIGN KEY(preparer_id) REFERENCES user_account(id)) ENGINE=InnoDB;
+CREATE TABLE customer_order (id INT AUTO_INCREMENT PRIMARY KEY, reference VARCHAR(40) NOT NULL UNIQUE, owner_id INT NOT NULL, destination VARCHAR(255) NOT NULL, revision_note VARCHAR(255) NOT NULL DEFAULT '', desired_on DATE NOT NULL, status ENUM('draft','picking','ready','shipped','cancelled') NOT NULL DEFAULT 'draft', preparer_id INT NULL, picking_at DATETIME NULL, ready_at DATETIME NULL, FOREIGN KEY(owner_id) REFERENCES owner(id), FOREIGN KEY(preparer_id) REFERENCES user_account(id)) ENGINE=InnoDB;
 CREATE TABLE order_line (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT NULL, article_id INT NOT NULL, qty INT NOT NULL, UNIQUE(order_id,article_id), CHECK(qty>0), FOREIGN KEY(order_id) REFERENCES customer_order(id), FOREIGN KEY(article_id) REFERENCES article(id)) ENGINE=InnoDB;
 CREATE TABLE pick (id INT AUTO_INCREMENT PRIMARY KEY, order_line_id INT NOT NULL, receipt_item_id INT NOT NULL, location_id INT NOT NULL, qty INT NOT NULL, status ENUM('planned','confirmed','shipped','cancelled') NOT NULL DEFAULT 'planned', confirmed_at DATETIME NULL, CHECK(qty>0), FOREIGN KEY(order_line_id) REFERENCES order_line(id), FOREIGN KEY(receipt_item_id) REFERENCES receipt_item(id), FOREIGN KEY(location_id) REFERENCES location(id)) ENGINE=InnoDB;
 CREATE TABLE package (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT NULL, code VARCHAR(50) NOT NULL UNIQUE, type ENUM('colis','palette') NOT NULL, FOREIGN KEY(order_id) REFERENCES customer_order(id)) ENGINE=InnoDB;
-CREATE TABLE package_pick (id INT AUTO_INCREMENT PRIMARY KEY, package_id INT NOT NULL, pick_id INT NOT NULL UNIQUE, FOREIGN KEY(package_id) REFERENCES package(id), FOREIGN KEY(pick_id) REFERENCES pick(id)) ENGINE=InnoDB;
+CREATE TABLE package_pick (id INT AUTO_INCREMENT PRIMARY KEY, package_id INT NOT NULL, pick_id INT NOT NULL, qty INT NOT NULL DEFAULT 1, CHECK(qty>0), UNIQUE(package_id,pick_id), FOREIGN KEY(package_id) REFERENCES package(id), FOREIGN KEY(pick_id) REFERENCES pick(id)) ENGINE=InnoDB;
 CREATE TABLE shipment (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT NULL UNIQUE, visit_id INT NOT NULL, reference VARCHAR(40) NOT NULL UNIQUE, shipped_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, actor_id INT NOT NULL, FOREIGN KEY(order_id) REFERENCES customer_order(id), FOREIGN KEY(visit_id) REFERENCES truck_visit(id), FOREIGN KEY(actor_id) REFERENCES user_account(id)) ENGINE=InnoDB;
 CREATE TABLE stock_movement (
  id INT AUTO_INCREMENT PRIMARY KEY, operation_ref VARCHAR(64) NOT NULL, receipt_item_id INT NOT NULL, location_id INT NOT NULL, delta INT NOT NULL,
@@ -82,4 +82,12 @@ CREATE TABLE stock_movement (
  CHECK(delta<>0), CHECK((kind='entry' AND delta>0 AND pick_id IS NULL) OR (kind='shipment' AND delta<0 AND pick_id IS NOT NULL) OR (kind IN ('transfer','adjustment') AND pick_id IS NULL)),
  FOREIGN KEY(receipt_item_id) REFERENCES receipt_item(id), FOREIGN KEY(location_id) REFERENCES location(id), FOREIGN KEY(pick_id) REFERENCES pick(id), FOREIGN KEY(actor_id) REFERENCES user_account(id)
 ) ENGINE=InnoDB;
-CREATE TABLE audit_log (id BIGINT AUTO_INCREMENT PRIMARY KEY, entity VARCHAR(50) NOT NULL, entity_id INT NOT NULL, operation VARCHAR(12) NOT NULL, actor_id INT NULL, happened_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, details VARCHAR(255) NOT NULL, FOREIGN KEY(actor_id) REFERENCES user_account(id)) ENGINE=InnoDB;
+CREATE TABLE audit_log (id BIGINT AUTO_INCREMENT PRIMARY KEY, entity VARCHAR(50) NOT NULL, entity_id INT NOT NULL, operation VARCHAR(12) NOT NULL, actor_id INT NULL, happened_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, details TEXT NOT NULL, FOREIGN KEY(actor_id) REFERENCES user_account(id)) ENGINE=InnoDB;
+
+CREATE TABLE receipt_reserve (
+ id INT AUTO_INCREMENT PRIMARY KEY, receipt_id INT NULL, line_id INT NULL,
+ kind ENUM('manquant','excedent','avarie','autre') NOT NULL, reason VARCHAR(255) NOT NULL,
+ actor_id INT NOT NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ CHECK(CHAR_LENGTH(TRIM(reason))>0), CHECK((receipt_id IS NULL) <> (line_id IS NULL)), FOREIGN KEY(receipt_id) REFERENCES receipt(id),
+ FOREIGN KEY(line_id) REFERENCES receipt_line(id), FOREIGN KEY(actor_id) REFERENCES user_account(id)
+) ENGINE=InnoDB;

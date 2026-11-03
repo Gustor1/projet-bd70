@@ -16,19 +16,33 @@ CREATE VIEW v_stock AS
  JOIN owner o ON o.id=a.owner_id JOIN v_location l ON l.id=b.location_id JOIN receipt_line cl ON cl.id=i.line_id JOIN receipt c ON c.id=cl.receipt_id
  LEFT JOIN v_reserved p ON p.receipt_item_id=b.receipt_item_id AND p.location_id=b.location_id WHERE b.qty<>0;
 CREATE VIEW v_location_usage AS
- SELECT l.id,COALESCE(SUM(s.qty*s.unit_kg),0) used_kg,COALESCE(SUM(s.qty*s.unit_m3),0) used_m3,COALESCE(SUM(s.qty/s.units_per_pallet),0) used_pallets
- FROM location l LEFT JOIN v_stock s ON s.location_id=l.id GROUP BY l.id;
+ SELECT l.id,COALESCE(u.used_kg,0) used_kg,COALESCE(u.used_m3,0) used_m3,COALESCE(u.used_pallets,0) used_pallets
+ FROM location l LEFT JOIN (
+ SELECT b.location_id,SUM(b.qty*a.unit_kg) used_kg,SUM(b.qty*a.width_m*a.depth_m*a.height_m) used_m3,SUM(b.qty/a.units_per_pallet) used_pallets
+ FROM v_balance b JOIN receipt_item i ON i.id=b.receipt_item_id JOIN lot t ON t.id=i.lot_id JOIN article a ON a.id=t.article_id
+ GROUP BY b.location_id
+ ) u ON u.location_id=l.id;
 CREATE VIEW v_visit AS
  SELECT v.*,c.id carrier_id,c.name carrier_name,d.name driver_name,ve.plate,
- MAX(CASE WHEN e.state='arrived' THEN e.happened_at END) arrived_at,
- MAX(CASE WHEN e.state='working' THEN e.happened_at END) working_at,
- MAX(CASE WHEN e.state='finished' THEN e.happened_at END) finished_at,
- MAX(CASE WHEN e.state='departed' THEN e.happened_at END) departed_at,
- TIMESTAMPDIFF(SECOND,MAX(CASE WHEN e.state='arrived' THEN e.happened_at END),MAX(CASE WHEN e.state='working' THEN e.happened_at END))/60 wait_minutes,
- TIMESTAMPDIFF(SECOND,MAX(CASE WHEN e.state='arrived' THEN e.happened_at END),MAX(CASE WHEN e.state='departed' THEN e.happened_at END))/60 immobilized_minutes
- FROM truck_visit v JOIN driver d ON d.id=v.driver_id JOIN vehicle ve ON ve.id=v.vehicle_id JOIN carrier c ON c.id=ve.carrier_id LEFT JOIN visit_event e ON e.visit_id=v.id GROUP BY v.id;
+ ea.happened_at arrived_at,ew.happened_at working_at,ef.happened_at finished_at,ed.happened_at departed_at,
+ TIMESTAMPDIFF(SECOND,ea.happened_at,ew.happened_at)/60 wait_minutes,
+ TIMESTAMPDIFF(SECOND,ea.happened_at,ed.happened_at)/60 immobilized_minutes
+ FROM truck_visit v JOIN driver d ON d.id=v.driver_id JOIN vehicle ve ON ve.id=v.vehicle_id JOIN carrier c ON c.id=ve.carrier_id
+ LEFT JOIN visit_event ea ON ea.visit_id=v.id AND ea.state='arrived'
+ LEFT JOIN visit_event ew ON ew.visit_id=v.id AND ew.state='working'
+ LEFT JOIN visit_event ef ON ef.visit_id=v.id AND ef.state='finished'
+ LEFT JOIN visit_event ed ON ed.visit_id=v.id AND ed.state='departed';
 CREATE VIEW v_receipt_discrepancy AS
  SELECT rl.id,rl.receipt_id,rl.expected_qty,COALESCE(SUM(i.accepted_qty+i.damaged_qty),0) received_qty,COALESCE(SUM(i.damaged_qty),0) damaged_qty,
  GREATEST(rl.expected_qty-COALESCE(SUM(i.accepted_qty+i.damaged_qty),0),0) missing_qty,
  GREATEST(COALESCE(SUM(i.accepted_qty+i.damaged_qty),0)-rl.expected_qty,0) excess_qty
  FROM receipt_line rl LEFT JOIN receipt_item i ON i.line_id=rl.id GROUP BY rl.id;
+
+CREATE VIEW v_notice_line_progress AS
+ SELECT n.*,COALESCE(r.allocated_qty,0) allocated_qty,COALESCE(r.received_qty,0) received_qty,
+ COALESCE(r.damaged_qty,0) damaged_qty,GREATEST(n.expected_qty-COALESCE(r.allocated_qty,0),0) remaining_qty
+ FROM notice_line n LEFT JOIN (
+ SELECT l.notice_line_id,SUM(l.expected_qty) allocated_qty,SUM(d.received_qty) received_qty,SUM(d.damaged_qty) damaged_qty
+ FROM receipt_line l JOIN receipt c ON c.id=l.receipt_id JOIN v_receipt_discrepancy d ON d.id=l.id
+ WHERE c.status='validated' GROUP BY l.notice_line_id
+ ) r ON r.notice_line_id=n.id;

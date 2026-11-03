@@ -1,0 +1,238 @@
+{
+  "revision": "b7eab735a69b9e2dadb5bf9258c4d40ad538acab",
+  "source_files_changed_since_snapshot": [],
+  "files": [
+    {
+      "path": "src/Auth.php",
+      "sha256": "3998c21b3c1ccd473cdb38b0001b659af36783dfe5892cc3fe17117f36059b5a"
+    },
+    {
+      "path": "src/bootstrap.php",
+      "sha256": "917fcfc71aa1486993cf33a3196c7da7e156f25bf26cd25a1131d40c658c182e"
+    },
+    {
+      "path": "src/Catalog.php",
+      "sha256": "37f98a9b191da7f87b8bc8c772e30fd66013c946f8f09300f246321aadd83f2a"
+    },
+    {
+      "path": "src/Database.php",
+      "sha256": "1c6db5fb2adec3884f447b085f993fb9016dbb21fad87b4d49252210eafab479"
+    },
+    {
+      "path": "src/Reports.php",
+      "sha256": "fd3270da64356cdd608d1977fe3a0defba520694b0624544e11c456c1b6d8b5b"
+    },
+    {
+      "path": "src/Warehouse.php",
+      "sha256": "48c926d11daa7a251ea66449488473a2e3daca8ee7fdf3af8245533687d7bbbf"
+    },
+    {
+      "path": "templates/catalog.php",
+      "sha256": "364b84d35f85590ffaa2ea6186b2deecf927d8cb636317427d046efc347c8652"
+    },
+    {
+      "path": "templates/document.php",
+      "sha256": "129bc203a5e86d3587ee5bcbbcabbf6859c345fcb35e50870c5e56310312ea67"
+    },
+    {
+      "path": "templates/helpers.php",
+      "sha256": "8c3d96167a22ef1e24e3b59a77472e614e5b6128ffef663259cef0e16d9ce93f"
+    },
+    {
+      "path": "templates/home.php",
+      "sha256": "b1c152f9ea393507a612ae17feacb1353fe8a185baf1bdd65d98b7efe5cf6c50"
+    },
+    {
+      "path": "templates/layout.php",
+      "sha256": "def7926a5883d6192760946ea396f33bd2bd70ab5b10428e79e95a4fdaffb22a"
+    },
+    {
+      "path": "templates/login.php",
+      "sha256": "ac9a1cf519d891d86cc4982722aecc5a09cbf69e3e2decbcce9ca7298c030b35"
+    },
+    {
+      "path": "templates/orders.php",
+      "sha256": "c0714357237c5f8d84be60c4abb1a789347115305aaaf8468a339ec259e74bbd"
+    },
+    {
+      "path": "templates/planning.php",
+      "sha256": "b11a723f3c861cb7a2cba6c2b9e144fda708b294517a6ffd8803756b2bf181a1"
+    },
+    {
+      "path": "templates/receipts.php",
+      "sha256": "c145f8f51045c3b22919dde2bdd9537ab99f74f3cbe81ee7cdec43ed081443c2"
+    },
+    {
+      "path": "templates/reports.php",
+      "sha256": "8c1f2686691fe6feaa78612d7732d4e8fb7313a2fc96c9b88ecb3573ada9fd3d"
+    },
+    {
+      "path": "templates/stock.php",
+      "sha256": "fd2dfcaa9d6148be986af8ea35d4e428883d26aafc96e0e7573ace0030b53bff"
+    },
+    {
+      "path": "templates/trace.php",
+      "sha256": "28889e5c4cbb52de6d6db7f2b1c97a8b19e9b81e6e24d09664c3fa73ee46f234"
+    },
+    {
+      "path": "templates/visits.php",
+      "sha256": "b6e1b18d1d4a9f808b1b7e25c4391c9d4ca3c3639b4de1b5875eb26ebfecb13d"
+    },
+    {
+      "path": "public/assets/app.css",
+      "sha256": "54a3f3ebda1327ca7ce2847de574b2fc681fd8cfcb384ac2343fdf56cd81066c"
+    },
+    {
+      "path": "public/assets/app.js",
+      "sha256": "f20a9108c83d7ac48590fbaec17c8b52d0123bc7e38351b759c8e8fbb0f9f22f"
+    },
+    {
+      "path": "public/index.php",
+      "sha256": "e212ead748cf6a2285eb59a8b4818c65b936d09d7a199f91cb80a1cf1e6d63ed"
+    },
+    {
+      "path": "sql/01_schema.sql",
+      "sha256": "a63dd016331bfd46ee470e071a9c4739bb31b34cb4425b76d17e9a5cab818233"
+    },
+    {
+      "path": "sql/02_vues.sql",
+      "sha256": "b8a3f2698cc826d23455f85501c3a5c453467c16fa50b1d9b9d9ff4f884880ce"
+    },
+    {
+      "path": "sql/03_procedures.sql",
+      "sha256": "dc22d1e750e8c116c7bac058b319ab01456e486b0588ca7f7351cde63d0b8d14"
+    },
+    {
+      "path": "sql/04_triggers.sql",
+      "sha256": "a6c7439517907e3005eef972cb6c8b9683eac8ca47d655ba2b41c436d064394b"
+    },
+    {
+      "path": "sql/05_index.sql",
+      "sha256": "321f5b3b310e30899347ef04f4aaa4680ffa1a63101d8d0a670f9af9f2485b2a"
+    },
+    {
+      "path": "sql/06_privileges.example.sql",
+      "sha256": "8dddfdb886a472518915f9d9d2075697ec313eed7aed28e4ed5c2bc787b08f40"
+    },
+    {
+      "path": "sql/requetes_metier.sql",
+      "sha256": "5567aac454cd77f05483829bfb1d90ef13e6eb33a206c0a8cdd0fd00252e96c1"
+    },
+    {
+      "path": "scripts/__pycache__/backup-restore.cpython-314.pyc",
+      "sha256": "112d736f59bcc11bad7cf73a7a74481390bbb321268374448fcabef133220c42"
+    },
+    {
+      "path": "scripts/__pycache__/build_report.cpython-314.pyc",
+      "sha256": "5005d262b649eb47af0c487309af963eacde827ad3fe2d93f2e8129115625481"
+    },
+    {
+      "path": "scripts/__pycache__/build_triggers.cpython-314.pyc",
+      "sha256": "6f4e0941c7952c75fd6529dd643fb7ee42b5ded3c8d9c6b7d53ddcc0b24e7dbb"
+    },
+    {
+      "path": "scripts/__pycache__/clean-install.cpython-314.pyc",
+      "sha256": "b3b501cee29c108a4fb19ad12d2438d98efd53e81f5fb0eaf6d887b3c60273e1"
+    },
+    {
+      "path": "scripts/__pycache__/diagrams.cpython-314.pyc",
+      "sha256": "015ad1b4a8238b955ebb8f9ef6d7e26ceebd40d63584684071fef17841a5232a"
+    },
+    {
+      "path": "scripts/__pycache__/finalize-docs.cpython-314.pyc",
+      "sha256": "7435bf68745ac7336968fbe74eb7363e2f6615a99f474a870a5035085cac9aa0"
+    },
+    {
+      "path": "scripts/backup-restore.py",
+      "sha256": "9aa7a66b3d2bd0b3edb9578f47339939ca4a429919d195209ef3618a33c2d72d"
+    },
+    {
+      "path": "scripts/build-usecase-drawio.py",
+      "sha256": "4e9700fa4f9052d23f3aa4999fbdf1660577ba8433ba183aa01091d1b7db5433"
+    },
+    {
+      "path": "scripts/build-usecase-submission.py",
+      "sha256": "810e40a694a1dd907ce36ba4240474c89270808e8ad4c30c5fde211c5dc38ef9"
+    },
+    {
+      "path": "scripts/build-usecase-v2.py",
+      "sha256": "ebfa2f73920bcf8bbb47ad2a83d022aa93f5b70c527d6057eaffbd82f2dd318f"
+    },
+    {
+      "path": "scripts/build_report.py",
+      "sha256": "9bfbd546bbd284e6ee49a96808e3ef0cda8979e572d0a1f4b8b97acb965f8ec3"
+    },
+    {
+      "path": "scripts/build_triggers.py",
+      "sha256": "0789e1bc7ec120fdaf92bac1e831949a6c5484672125b7596329fdbd83209a93"
+    },
+    {
+      "path": "scripts/clean-install.py",
+      "sha256": "63bcbccb75d0b5484775dd4905b9b6eca083f6a5e467632ad2146146f88ce28f"
+    },
+    {
+      "path": "scripts/diagrams.py",
+      "sha256": "60122ad87a6a951905131e6830bb778802a0abe4436e34035a78d0f44cade688"
+    },
+    {
+      "path": "scripts/finalize-docs.py",
+      "sha256": "ba60ddef2b11a232023433fd3dd945e643de4b95ff7c6216cef09e870df26ec6"
+    },
+    {
+      "path": "scripts/install.php",
+      "sha256": "f8a777cb55ea90ac2a7d200eb22a6354d05406cb88dbf9fd7f8b8a140db72004"
+    },
+    {
+      "path": "scripts/model.php",
+      "sha256": "279e167ea1f36ec455cc5896d5f290f39cfd6425e86d09e1c7a0265e56740b30"
+    },
+    {
+      "path": "scripts/performance.php",
+      "sha256": "3e068dc667a3a6469b923156c0b88bfd4c6930b6e6948c750b9483bc11518c97"
+    },
+    {
+      "path": "scripts/render-diagrams.cjs",
+      "sha256": "6817ac3d24061e0b1a90ad967df07870e911cad97f2f4933cc26a695189d7d16"
+    },
+    {
+      "path": "scripts/seed.php",
+      "sha256": "7c11378e687deeb28841d4a1e7f1b7a57a7171650fcbb474a6b9b4dc93dfea2c"
+    },
+    {
+      "path": "scripts/start.ps1",
+      "sha256": "e58781c3acf5849a30cbb871022d2192c6318dfa862c7488f93e66321ba1f528"
+    },
+    {
+      "path": "scripts/stop.ps1",
+      "sha256": "7914dd24a7f794b2246b710a9d51941d6d79b10ac1f667631b9f99a556d74921"
+    },
+    {
+      "path": "tests/browser.cjs",
+      "sha256": "e53c0338a742a4df8e7e4d2f97a7ca455d0b61533180c2c1cef423fdc68009fd"
+    },
+    {
+      "path": "tests/integration.php",
+      "sha256": "b80f14f6e4458d11e9fbd46febd1c27088c658da0e3c714344b61eee07602862"
+    },
+    {
+      "path": "tests/parcours.cjs",
+      "sha256": "63826779a6da6ad17cce3dd42f9f9b28eb0e524e0c70cdb380bdcaff2dadb725"
+    },
+    {
+      "path": "tests/print.cjs",
+      "sha256": "4bb84a852c24813fbb17ad158f7a80847dee40450db6b9d069bd3a8da505c65e"
+    },
+    {
+      "path": "tests/race_worker.php",
+      "sha256": "0f1d17394dfec3e85e77ff57ffd3f0ab995d7a3e65c46907ba94767329f95d82"
+    },
+    {
+      "path": "document projet/A26_Site_Logistique.pdf",
+      "sha256": "c87635ea2e055e416879e228fe301d2f8966bcd7d51ab50a28c4c2989cfbad4e"
+    },
+    {
+      "path": "document projet/Éléments dévaluation projet BD70.docx",
+      "sha256": "5f379c379640f83c3eacf7808e66f63723142cc8c4c79f8fa223aac5e480d48f"
+    }
+  ]
+}

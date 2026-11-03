@@ -1,45 +1,45 @@
 {
     "reservation": [
         {
-            "ok": true,
-            "connection": 648
+            "ok": false,
+            "connection": 1829,
+            "error": "Ce créneau chevauche un rendez-vous actif."
         },
         {
-            "ok": false,
-            "connection": 649,
-            "error": "Ce créneau chevauche un rendez-vous actif."
+            "ok": true,
+            "connection": 1830
         }
     ],
     "occupation": [
         {
-            "ok": false,
-            "connection": 650,
-            "error": "Quai déjà occupé."
+            "ok": true,
+            "connection": 1831
         },
         {
-            "ok": true,
-            "connection": 651
+            "ok": false,
+            "connection": 1832,
+            "error": "Quai déjà occupé."
         }
     ],
     "capacite": [
         {
-            "ok": true,
-            "connection": 652
+            "ok": false,
+            "connection": 1834,
+            "error": "Capacité restante insuffisante (kg, volume ou palettes)."
         },
         {
-            "ok": false,
-            "connection": 653,
-            "error": "Capacité restante insuffisante (kg, volume ou palettes)."
+            "ok": true,
+            "connection": 1833
         }
     ],
     "reservation_stock": [
         {
             "ok": true,
-            "connection": 654
+            "connection": 1835
         },
         {
             "ok": false,
-            "connection": 655,
+            "connection": 1836,
             "error": "Stock FEFO disponible insuffisant : aucune ligne réservée."
         }
     ]

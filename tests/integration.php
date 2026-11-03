@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../src/bootstrap.php';
+putenv('BD70_NOW=2026-10-22 12:00:00');
 $testName=getenv('BD70_TEST_DATABASE')?:'bd70_test';if(!preg_match('/^bd70_test[a-z0-9_]*$/',$testName))die('Base de test requise.');putenv('BD70_DATABASE='.$testName);putenv('BD70_TEST_DATABASE='.$testName);
 $db=new Database();$ids=json_decode(file_get_contents(__DIR__.'/../.local/seed-'.$testName.'.json'),true);
 $w=new Warehouse($db,$ids['admin'],'2026-10-22 12:00:00');$cat=new Catalog($db);$passed=[];$failures=[];

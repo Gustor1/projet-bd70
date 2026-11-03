@@ -1,39 +1,98 @@
-# Matrice de conformité
+# Matrice de conformité après réalisation
 
-S = sujet A26 (PDF), E = grille d’évaluation (DOCX). C = cours conception A25, W = cours web A25. Aucune pondération inventée. Toutes les fonctions ci-dessous possèdent une interface réelle ; seul le jeu volumétrique est une simulation SQL.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF historique ne contient pas le MCD final.
 
-| Exigence | Cas | Tables principales | Traitement / écran | Preuve | Rapport | État |
-|---|---|---|---|---|---|---|
-| F01 | UC01 | user_account | Auth, utilisateurs | Rôles, inscription, CSRF, HTTP direct | 7 | réalisé et testé |
-| F02 | UC02 | carrier, driver, vehicle, équipements et associations | Catalog / référentiels | CRUD SQL + navigateur, 39 rubriques visitées | 7 | réalisé et testé |
-| F03 | UC03 | dock, appointment, dock_downtime | Planning / Warehouse | R01, R02, deux connexions | 8 | réalisé et testé |
-| F04 | UC04 | truck_visit, visit_event | Poste de garde / transitions | R03, R04, parcours sans rendez-vous | 8 | réalisé et testé |
-| F05 | UC05 | supplier_notice, notice_line, receipt, receipt_line, receipt_item | Réception et rangement | R05, R08, R12, avarie / manquant / excédent | 9 | réalisé et testé |
-| F06 | UC06 | article, lot, structure, stock_movement | Stock, propositions, transfert et ajustement | R06–R09, concurrence capacité, filtres | 9 | réalisé et testé |
-| F07 | UC07–08 | customer_order, order_line, pick, package, package_pick, shipment | Commandes, colis, expédition et documents | FEFO, R10, parcours 31 étapes, PDFs | 10 | réalisé et testé |
-| F08 | UC09–10 | vues de stock, visites, écarts et procédures | Trace, tableaux, graphes, états et CSV | Oracles, filtres CSV et graphiques, HTTP | 10, 12–15 | réalisé et testé |
+Les huit domaines obligatoires sont présents dans l’interface. Les preuves couvrent des scénarios ciblés ; charger une rubrique ne prouve pas tous ses CRUD. L’audit initial reste conservé dans livrables/audit-2026-10-28/.
 
-## Critères de E et livrables de S
-| Critère | Réalisation et preuve |
+## F01 - Connexion et profils
+
+**Objectif.** Permettre au personnel de s’inscrire, se connecter et agir selon son rôle.
+
+**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, quatre profils, contrôles serveur, CSRF, mots de passe hachés.
+
+**Conclusion.** Les accès interdits et l’élévation de rôle sont refusés. Le compte transporteur est explicitement facultatif dans le sujet.
+
+Implémentation : Auth.php ; public/index.php. Preuves : integration.json ; navigateur.json, dans livrables/preuves/.
+
+## F02 - Transporteurs, chauffeurs et véhicules
+
+**Objectif.** Maintenir sociétés, coordonnées, contacts, contrats et ressources de transport.
+
+**Travail réalisé.** Chauffeurs, permis, habilitations datées ; tracteurs, remorques, porteurs et fourgons, plaques, capacités et équipements. Téléphone modifiable après utilisation, renouvellement d’une habilitation sans raccourcir son passé.
+
+**Conclusion.** Les fiches inutilisées sont supprimables ; les caractéristiques structurelles utilisées sont protégées. Les valeurs avant/après sont historisées.
+
+Implémentation : Catalog.php ; templates/catalog.php. Preuves : completion.json ; navigateur.json, dans livrables/preuves/.
+
+## F03 - Quais et rendez-vous
+
+**Objectif.** Réserver des créneaux compatibles sans chevauchement et suivre les quais.
+
+**Travail réalisé.** Types et équipements de quai, indisponibilités, création/déplacement/annulation. Compatibilité du véhicule et de la remorque ; disponibilité du chauffeur, du véhicule et de la remorque entre quais. États libre, réservé, occupé et hors service.
+
+**Conclusion.** Les courses concurrentes sont contrôlées. Actualisation toutes les 30 secondes hors saisie, référence Paris commune à PHP/SQL.
+
+Implémentation : Warehouse::appointment/compatible ; Reports::docks. Preuves : integration.json ; completion.json ; heure-paris.json, dans livrables/preuves/.
+
+## F04 - Flux de camions
+
+**Objectif.** Tracer chaque étape, avec ou sans rendez-vous, et mesurer les durées.
+
+**Travail réalisé.** Arrivée, contrôle documentaire, parking facultatif, appel à quai, début, fin et départ. Horodates, attente, immobilisation et retard par rapport au rendez-vous.
+
+**Conclusion.** Transitions impossibles, rétrogrades et doubles occupations refusées. Les ressources constatées sont distinctes du planning.
+
+Implémentation : Warehouse::arrive/transition ; v_visit. Preuves : integration.json ; parcours.json, dans livrables/preuves/.
+
+## F05 - Réception des marchandises
+
+**Objectif.** Comparer l’annonce fournisseur à la réception et conserver les réserves.
+
+**Travail réalisé.** Avis et lignes attendues, réceptions partielles, fiche guidée, fractions multilots, DLC, palettes, avaries, emplacements compatibles. Suivi attendu/alloué/reçu/reste et clôture motivée. Réserves générales ou de ligne, même sans marchandise.
+
+**Conclusion.** Un manquant total ne crée aucune fausse palette. La validation est atomique et non rejouable. Réserves consultables dans la réception et la trace des lots concernés.
+
+Implémentation : Warehouse::openReceipt/receiveItem/reserveReceipt/validateReceipt/closeNotice. Preuves : completion.json ; completion-navigateur.json ; parcours.json, dans livrables/preuves/.
+
+## F06 - Emplacements et stocks
+
+**Objectif.** Connaître les quantités, les capacités et la provenance dans l’entrepôt.
+
+**Travail réalisé.** Zones ambiant/froid/dangereux, allées, racks, niveaux, emplacements. Articles, propriétaires, dimensions, poids et conditionnement. Stock par article/lot/emplacement ; entrées, transferts, sorties, ajustements motivés ; propositions selon compatibilité et capacités restantes.
+
+**Conclusion.** Le stock est calculé depuis les mouvements. Kg, m³ et équivalents palettes sont contrôlés séparément. Concurrence et conservation des quantités sont testées.
+
+Implémentation : Warehouse::capacity/suggestions/transfer/adjust ; Reports::stock. Preuves : integration.json ; integrite-donnees.json, dans livrables/preuves/.
+
+## F07 - Préparation et expédition
+
+**Objectif.** Servir les commandes, constituer les colis, charger et produire les documents.
+
+**Travail réalisé.** Commandes et lignes avec date souhaitée, préparateur, réservation FEFO, confirmation par prélèvement. Affectations quantifiées dans plusieurs colis/palettes. Reprise motivée en brouillon avant expédition. Chargement sur camion sortant avec capacité ; bon de livraison et lettre de voiture avec totaux.
+
+**Conclusion.** Couverture exacte des quantités, refus des suraffectations et doubles expéditions. FEFO satisfait l’alternative FIFO ou FEFO du sujet. Commandes expédiées intégralement.
+
+Implémentation : Warehouse::prepare/confirmPickLine/resetPreparation/ship ; templates/order_detail.php. Preuves : completion.json ; completion-navigateur.json ; parcours.json, dans livrables/preuves/.
+
+## F08 - Traçabilité et tableaux de bord
+
+**Objectif.** Retrouver l’historique du lot et fournir les indicateurs demandés.
+
+**Travail réalisé.** Réceptions, réserves, emplacements successifs, commandes et camions sortants. Occupation des quais, attente/immobilisation par transporteur, remplissage par zone, taux d’écart, productivité, proximité DLC. Tableaux, graphiques, impressions et CSV filtrés.
+
+**Conclusion.** Période vide acceptée. Activité sur la période choisie ; stock et DLC à la date actuelle du site, explicitement annoncée. Mouvements de trace paginés.
+
+Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Preuves : integration.json ; heure-paris.json ; navigateur-riche.json, dans livrables/preuves/.
+
+## Exigences générales et grille
+
+| Critère | Réalisation |
 |---|---|
-| Identification des usages / UML | 10 cas textuels, diagramme avec acteurs, ellipses et frontière, sources DOT + SVG/PDF |
-| MCD cohérent avec usages | MCD conceptuel distinct, complet et cinq vues de domaine |
-| MLD cohérent avec MCD | 40 tables du moteur, PK/FK, unicités, nullabilité ; schéma SQL et exports |
-| Clés, types, relations 1:N et N:N | Dictionnaire exhaustif ; associations équipements/habilitations/prélèvements |
-| Erreurs, redondances et normalisation | DF et clés candidates par table ; stock/durées calculés, hypothèses expliquées |
-| Qualité et quantité des informations | Référentiels utiles et jeu volumétrique contrôlé ; pas de quota artificiel |
-| Ajout, édition, suppression de toutes les données | Formulaires sur fiches et brouillons ; historiques via corrections/annulations, matrice CRUD explicite |
-| Contrôle des saisies | Validation serveur, contraintes, transactions et messages ; tests négatifs |
-| Recherche multicritère | Période/transporteur/état, article/lot/zone/propriétaire, réception/fournisseur/écart |
-| Tableaux et graphiques | Sept indicateurs définis, tableaux et barres issus des vues ; oracles |
-| Génération d’états | Trois états CSV/imprimables et trois documents pédagogiques de sortie |
-| Finition, menus, boutons, IDs masqués | Interface française, sélection des références, navigation et largeurs contrôlées |
-| Plusieurs utilisateurs | Quatre profils, inscription contrôlée, sessions, droits URL/POST et quatre courses SQL |
-| Rapport et forme | 18 pages, sommaire, introduction, conclusion ; objectif/travail/conclusion par paire de fonctions, sources éditables ; auteurs à compléter |
-| Captures, grammaire, ergonomie | Captures réelles, contrôle des pages PDF et pages principales responsive ; limites explicites |
-| Performances et optimisation S | Huit requêtes, chauffe + dix, EXPLAIN/volumes/paramètres ; comparaison index et observation écriture |
-| Automatisation interne S | 116 déclencheurs et deux procédures ; audit et restauration testés |
-| Reproductibilité | Installation sur base vierge puis copie sans configuration, huit routes authentifiées, sauvegarde restaurée |
-
-## Points à compléter par les étudiants
-Auteurs réels, répartition des contributions, échéance et modalités A26. Ces informations absentes ne sont jamais inventées. La liste des limites techniques et choix de portée est dans docs/limites.md.
+| UML, MCD, MLD | Diagrammes DOT/SVG, recueil PDF et dictionnaire du moteur réel |
+| PK, types, 1:N, N:N, normalisation | 41 tables ; FK, CHECK, clés métier et dépendances documentées |
+| Ajout, édition, suppression | Formulaires de référentiels/brouillons ; correction et annulation métier des faits protégés |
+| Contrôle de saisie et recherches | Validation PHP/SQL, filtres multicritères, pagination et recherche des références |
+| Statistiques, graphiques et états | Six familles d’indicateurs, trois exports CSV et documents imprimables |
+| Multi-utilisateurs et automatisation | Quatre rôles ; courses à deux connexions ; 119 triggers et deux procédures |
+| Données factices en quantité | SQL riche, 90 jours simulés ; 82 contrôles métier/FK |
+| Rapport et performance | Auteurs, objectifs/travail/conclusion ; huit requêtes, dix mesures et EXPLAIN |

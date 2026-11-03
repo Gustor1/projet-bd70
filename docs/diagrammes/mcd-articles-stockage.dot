@@ -9,10 +9,10 @@ owner [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",labe
 rack [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Racks\nCode"];
 rack_level [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Niveaux\nCode"];
 zone [shape=box,style="rounded,filled",fillcolor="#edf4fa",color="#5b82a6",label="Zones\nCode\nNom\nCondition de stockage"];
-assoc18 [shape=diamond,fontsize=10,label="possède",color="#7693ad"];owner -- assoc18 [taillabel="1",labeldistance=2];assoc18 -- article [headlabel="0..N",labeldistance=2];
-assoc19 [shape=diamond,fontsize=10,label="identifie",color="#7693ad"];article -- assoc19 [taillabel="1",labeldistance=2];assoc19 -- lot [headlabel="0..N",labeldistance=2];
-assoc20 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];zone -- assoc20 [taillabel="1",labeldistance=2];assoc20 -- aisle [headlabel="0..N",labeldistance=2];
-assoc21 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];aisle -- assoc21 [taillabel="1",labeldistance=2];assoc21 -- rack [headlabel="0..N",labeldistance=2];
-assoc22 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack -- assoc22 [taillabel="1",labeldistance=2];assoc22 -- rack_level [headlabel="0..N",labeldistance=2];
-assoc23 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack_level -- assoc23 [taillabel="1",labeldistance=2];assoc23 -- location [headlabel="0..N",labeldistance=2];
+assoc21 [shape=diamond,fontsize=10,label="possède",color="#7693ad"];owner -- assoc21 [taillabel="0..N",labeldistance=2];assoc21 -- article [headlabel="1",labeldistance=2];
+assoc22 [shape=diamond,fontsize=10,label="identifie",color="#7693ad"];article -- assoc22 [taillabel="0..N",labeldistance=2];assoc22 -- lot [headlabel="1",labeldistance=2];
+assoc23 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];zone -- assoc23 [taillabel="0..N",labeldistance=2];assoc23 -- aisle [headlabel="1",labeldistance=2];
+assoc24 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];aisle -- assoc24 [taillabel="0..N",labeldistance=2];assoc24 -- rack [headlabel="1",labeldistance=2];
+assoc25 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack -- assoc25 [taillabel="0..N",labeldistance=2];assoc25 -- rack_level [headlabel="1",labeldistance=2];
+assoc26 [shape=diamond,fontsize=10,label="contient",color="#7693ad"];rack_level -- assoc26 [taillabel="0..N",labeldistance=2];assoc26 -- location [headlabel="1",labeldistance=2];
 }

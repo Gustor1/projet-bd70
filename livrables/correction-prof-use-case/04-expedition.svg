@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1800" viewBox="0 0 2400 1800" role="img" aria-labelledby="04-expedition-title 04-expedition-desc">
+<title id="04-expedition-title">BD70 · Expédier une commande</title>
+<desc id="04-expedition-desc">Fonctions du logiciel et relations entre les acteurs et les cas du projet BD70.</desc>
+<rect width="2400" height="1800" fill="white"/>
+<rect x="280" y="180" width="1840" height="1430" fill="white" stroke="#8395a5" stroke-width="2"/>
+<path d="M147 750 L450 750" fill="none" stroke="#20354b" stroke-width="2"/>
+<path d="M1016.1360598770184 720 L1112.0 720.0 Q1120 720 1120.0 712.0 L1120.0 408.0 Q1120 400 1128.0 400.0 L1440 400" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="1422.0,409.0 1440,400 1422.0,391.0" fill="none" stroke="#20354b" stroke-width="2"/>
+<rect x="1195.0" y="359" width="170" height="30" fill="white"/>
+<text fill="#20354b" font-family="Arial" font-size="22" font-weight="400" text-anchor="middle"><tspan x="1280.0" y="381.48">« include »</tspan></text>
+<path d="M1050.0 750 L1182.0 750.0 Q1190 750 1198.0 750.0 L1440 750" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="1422.0,759.0 1440,750 1422.0,741.0" fill="none" stroke="#20354b" stroke-width="2"/>
+<rect x="1230.0" y="709" width="170" height="30" fill="white"/>
+<text fill="#20354b" font-family="Arial" font-size="22" font-weight="400" text-anchor="middle"><tspan x="1315.0" y="731.48">« include »</tspan></text>
+<path d="M1016.1360598770184 780 L1252.0 780.0 Q1260 780 1260.0 788.0 L1260.0 1092.0 Q1260 1100 1268.0 1100.0 L1440 1100" fill="none" stroke="#20354b" stroke-width="2" stroke-dasharray="8 6"/>
+<polyline points="1422.0,1109.0 1440,1100 1422.0,1091.0" fill="none" stroke="#20354b" stroke-width="2"/>
+<rect x="1265.0" y="1059" width="170" height="30" fill="white"/>
+<text fill="#20354b" font-family="Arial" font-size="22" font-weight="400" text-anchor="middle"><tspan x="1350.0" y="1081.48">« include »</tspan></text>
+<path d="M147 1400 L450 1400" fill="none" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="38" font-weight="700" text-anchor="start"><tspan x="70" y="85.42">BD70 · Expédier une commande</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="23" font-weight="400" text-anchor="start"><tspan x="70" y="128.82">Magasinier / préparateur : contrôler et confirmer l’expédition · Documents consultables séparément après expédition</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="23" font-weight="700" text-anchor="start"><tspan x="300" y="212.82">Système de gestion d’un entrepôt logistique</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="22" font-weight="400" text-anchor="start"><tspan x="70" y="1684.98">« include » : comportement systématique, flèche vers le cas inclus. « extend » : complément conditionnel, flèche vers le cas de base.</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="22" font-weight="400" text-anchor="start"><tspan x="70" y="1734.98">Les relations expriment des dépendances fonctionnelles, pas un ordre chronologique. Une session et les droits du rôle sont requis.</tspan></text>
+<ellipse cx="750.0" cy="750.0" rx="300.0" ry="65.0" fill="#f1f6fa" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="24" font-weight="400" text-anchor="middle"><tspan x="750.0" y="758.16">Expédier une commande</tspan></text>
+<g stroke="#20354b" stroke-width="2.2" fill="none"><circle cx="125.0" cy="725" r="10" fill="white"/><path d="M125.0 735 V757 M103 750 H147 M103 779 L125.0 757 L147 779"/></g>
+<text fill="#20354b" font-family="Arial" font-size="18" font-weight="400" text-anchor="middle"><tspan x="125.0" y="794.42">Magasinier /</tspan><tspan x="125.0" y="817.8199999999999">préparateur</tspan></text>
+<ellipse cx="1740.0" cy="400.0" rx="300.0" ry="65.0" fill="#f1f6fa" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="24" font-weight="400" text-anchor="middle"><tspan x="1740.0" y="392.56">Contrôler les colis, les lots</tspan><tspan x="1740.0" y="423.76">et la capacité du camion</tspan></text>
+<ellipse cx="1740.0" cy="750.0" rx="300.0" ry="65.0" fill="#f1f6fa" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="24" font-weight="400" text-anchor="middle"><tspan x="1740.0" y="742.56">Confirmer le chargement</tspan><tspan x="1740.0" y="773.76">dans le camion sortant</tspan></text>
+<ellipse cx="1740.0" cy="1100.0" rx="300.0" ry="65.0" fill="#f1f6fa" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="24" font-weight="400" text-anchor="middle"><tspan x="1740.0" y="1092.5600000000002">Enregistrer la sortie de stock</tspan><tspan x="1740.0" y="1123.7600000000002">et le statut expédié</tspan></text>
+<ellipse cx="750.0" cy="1400.0" rx="300.0" ry="65.0" fill="#f1f6fa" stroke="#20354b" stroke-width="2"/>
+<text fill="#20354b" font-family="Arial" font-size="24" font-weight="400" text-anchor="middle"><tspan x="750.0" y="1392.5600000000002">Éditer les documents de transport</tspan><tspan x="750.0" y="1423.7600000000002">Bon de livraison / lettre de voiture</tspan></text>
+<g stroke="#20354b" stroke-width="2.2" fill="none"><circle cx="125.0" cy="1375" r="10" fill="white"/><path d="M125.0 1385 V1407 M103 1400 H147 M103 1429 L125.0 1407 L147 1429"/></g>
+<text fill="#20354b" font-family="Arial" font-size="18" font-weight="400" text-anchor="middle"><tspan x="125.0" y="1444.4199999999998">Magasinier /</tspan><tspan x="125.0" y="1467.82">préparateur</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="23" font-weight="400" text-anchor="start"><tspan x="420" y="260.32">Préconditions : commande préparée, colis constitués, camion sortant en opération à quai.</tspan></text>
+<text fill="#20354b" font-family="Arial" font-size="21" font-weight="400" text-anchor="start"><tspan x="1100" y="1479.64">Documents : expédition existante ; impression possible à nouveau sans refaire le chargement.</tspan></text>
+</svg>

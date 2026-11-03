@@ -1,0 +1,80 @@
+{
+    "clock": {
+        "php": "2026-10-28 17:41:48",
+        "timezone": "Europe/Paris",
+        "sql": {
+            "now_sql": "2026-10-29 00:41:48",
+            "date_sql": "2026-10-29",
+            "tz": "SYSTEM"
+        }
+    },
+    "phone_edit_used_driver": {
+        "exception": "DomainException",
+        "message": "Fiche structurelle déjà utilisée : modification protégée pour conserver la cohérence."
+    },
+    "renew_used_qualification": {
+        "exception": "DomainException",
+        "message": "Fiche structurelle déjà utilisée : modification protégée pour conserver la cohérence."
+    },
+    "live_dock_during_php_appointment": {
+        "appointment": [
+            "2026-10-28 17:36:48",
+            "2026-10-28 18:06:48"
+        ],
+        "sql_system_zone": "Libre",
+        "sql_paris_offset_for_this_test": "Réservé",
+        "session_setting_restored": true
+    },
+    "trailer_not_in_dock_types": {
+        "accepted": true,
+        "appointment_id": 3,
+        "allowed_types": [
+            "tracteur"
+        ],
+        "trailer_type": "remorque"
+    },
+    "same_driver_vehicle_two_docks": [
+        4,
+        5
+    ],
+    "cancel_then_edit_order": {
+        "exception": "DomainException",
+        "message": "Commande déjà lancée : annulez la préparation avant modification."
+    },
+    "split_pick_two_packages": {
+        "exception": "PDOException",
+        "message": "SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4' for key 'pick_id'"
+    },
+    "full_shortage_and_reserve": {
+        "receipt": {
+            "status": "validated"
+        },
+        "gap": {
+            "id": 5,
+            "receipt_id": 4,
+            "expected_qty": 10,
+            "received_qty": "0",
+            "damaged_qty": "0",
+            "missing_qty": "10",
+            "excess_qty": "0"
+        },
+        "zero_item_reserve_error": "SQLSTATE[23000]: Integrity constraint violation: 4025 CONSTRAINT `CONSTRAINT_1` failed for `bd70_test_audit_probes_20261029`.`receipt_item`",
+        "receipt_and_line_have_reservation": []
+    },
+    "current_period_no_carriers": 0,
+    "empty_chart_php": {
+        "exception": "TypeError",
+        "message": "max(): Argument #1 ($value) must be of type array, int given"
+    },
+    "audit_values": {
+        "entity": "customer_order",
+        "operation": "UPDATE",
+        "details": "Modification métier"
+    },
+    "historic_dlc_current_sql_date": {
+        "simulated_sql_today": "2026-12-01",
+        "report_start": "2026-10-22",
+        "dlc": [],
+        "expected_seed_cold_qty": 40
+    }
+}
