@@ -1,0 +1,174 @@
+[
+  {
+    "file": "src\\Auth.php",
+    "ok": true
+  },
+  {
+    "file": "src\\bootstrap.php",
+    "ok": true
+  },
+  {
+    "file": "src\\CarrierPortal.php",
+    "ok": true
+  },
+  {
+    "file": "src\\Catalog.php",
+    "ok": true
+  },
+  {
+    "file": "src\\Clock.php",
+    "ok": true
+  },
+  {
+    "file": "src\\Database.php",
+    "ok": true
+  },
+  {
+    "file": "src\\Reports.php",
+    "ok": true
+  },
+  {
+    "file": "src\\Warehouse.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\carrier_portal.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\catalog.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\document.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\helpers.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\home.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\layout.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\login.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\notices.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\orders.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\order_detail.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\planning.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\receipts.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\receipt_detail.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\reports.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\stock.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\trace.php",
+    "ok": true
+  },
+  {
+    "file": "templates\\visits.php",
+    "ok": true
+  },
+  {
+    "file": "public\\index.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\admin-local.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\import-demo.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\install.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\migrate-corrections.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\migrate.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\model.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\performance.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\seed-rich.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\seed.php",
+    "ok": true
+  },
+  {
+    "file": "scripts\\validate-data.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\completion.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\corrections.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\finalisation.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\integration.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\race_worker.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\rich-read.php",
+    "ok": true
+  },
+  {
+    "file": "tests\\time.php",
+    "ok": true
+  }
+]

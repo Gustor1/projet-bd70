@@ -1,6 +1,6 @@
 # Recette et preuves
 
-La recette du **3 novembre 2026** est détaillée dans [FINALISATION-2026-11-03.md](FINALISATION-2026-11-03.md), avec commandes, empreintes et nouvelles preuves séparées. Les chiffres ci-dessous sont les relevés antérieurs, conservés comme historique ; ils ne valident pas de nouvelles modifications.
+La recette courante après correction du retour enseignant est dans [CORRECTIONS-RENDU-2026-11-03.md](CORRECTIONS-RENDU-2026-11-03.md). La précédente recette du **3 novembre 2026** est détaillée dans [FINALISATION-2026-11-03.md](FINALISATION-2026-11-03.md), avec commandes, empreintes et nouvelles preuves séparées. Les chiffres ci-dessous sont les relevés antérieurs, conservés comme historique ; ils ne valident pas de nouvelles modifications.
 
 ## Relevés antérieurs
 

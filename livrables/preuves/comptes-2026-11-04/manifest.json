@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-04",
+  "scope": "Comptes de démonstration, guide de recette, correction de la page rendue après refus de connexion, publication des corrections précédentes",
+  "sha256": {
+    "public/index.php": "a14426aced6a5a002960231361f4a911fc7d511ea2402ce9bf5c3869f5f41ed9",
+    "scripts/comptes-demo.php": "e443898f0603a4c35c736778eb656164da3d544d4d6c5367c51f2ed2ecfa3d34",
+    "scripts/import-demo.php": "ad8a444de0a952471992a6126c846629a2de3c02b9fbbe10192c11fb85823299",
+    "tests/comptes-demo.php": "9b81c806e3c3c4fa339f17c71fa8ef3c7c749d15ae8114ae8197f4f7328c7550",
+    "tests/comptes-browser.cjs": "bfeeab89d845da4cc9683f30bbe8e35d9d15e36df7a60e2774b595275f9975dc",
+    "COMPTES-TEST.md": "5c28dd8b1d8af1ad37629e3ca66a72f8aca7801164c0f99ace64c00ef0566a8a",
+    "COMMENT-TESTER.md": "1fde1e6fd491954da309a3d87d30f5e43d7ffd93f59ed4f5f911a0fa48335a90",
+    "README.md": "516aa75791e4c92dc593a66bcab429d920e611cde76e467ff775a16954115e92"
+  },
+  "account_checks": 31,
+  "browser_account_checks": 15,
+  "browser_rights_checks": 32,
+  "php_files": 45,
+  "all_targeted_checks_passed": true
+}

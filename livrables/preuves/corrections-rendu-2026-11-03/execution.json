@@ -1,0 +1,62 @@
+[
+  {
+    "label": "install-integration",
+    "exit_code": 0
+  },
+  {
+    "label": "seed-integration",
+    "exit_code": 0
+  },
+  {
+    "label": "integration",
+    "exit_code": 0
+  },
+  {
+    "label": "install-completion",
+    "exit_code": 0
+  },
+  {
+    "label": "seed-completion",
+    "exit_code": 0
+  },
+  {
+    "label": "completion",
+    "exit_code": 0
+  },
+  {
+    "label": "install-finalisation",
+    "exit_code": 0
+  },
+  {
+    "label": "seed-finalisation",
+    "exit_code": 0
+  },
+  {
+    "label": "finalisation",
+    "exit_code": 0
+  },
+  {
+    "label": "install-corrections",
+    "exit_code": 0
+  },
+  {
+    "label": "seed-corrections",
+    "exit_code": 0
+  },
+  {
+    "label": "corrections",
+    "exit_code": 0
+  },
+  {
+    "label": "time",
+    "exit_code": 0
+  },
+  {
+    "label": "browser-rights",
+    "exit_code": 0
+  },
+  {
+    "label": "parcours",
+    "exit_code": 0
+  }
+]

@@ -1,6 +1,6 @@
 # Limites et choix de portée
 
-Tous les domaines obligatoires ont un accès web. Le rôle transporteur externe est facultatif et non retenu ; FEFO est une stratégie autorisée. Les commandes sont expédiées intégralement.
+Tous les domaines obligatoires ont un accès web. Le rôle transporteur externe est réalisé dans un espace limité aux rendez-vous de sa société ; FEFO est une stratégie autorisée. Les commandes sont expédiées intégralement.
 
 Application monosite, locale, PHP 8.2.12 / MariaDB 10.4.32 / Windows / Edge. Pas de déploiement public ni de test sur téléphone physique. Le planning se rafraîchit toutes les 30 secondes hors saisie.
 

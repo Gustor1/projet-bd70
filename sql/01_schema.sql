@@ -6,10 +6,11 @@ INSERT INTO site_lock VALUES (1,'Entrepôt de démonstration');
 CREATE TABLE user_account (
  id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(190) NOT NULL UNIQUE,
  name VARCHAR(100) NOT NULL, password_hash VARCHAR(255) NOT NULL,
- role ENUM('pending','admin','manager','gate','warehouse') NOT NULL DEFAULT 'pending',
+ role ENUM('pending','admin','manager','gate','warehouse','carrier') NOT NULL DEFAULT 'pending',
  active BOOLEAN NOT NULL DEFAULT 0, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, CHECK(active IN (0,1))
 ) ENGINE=InnoDB;
 CREATE TABLE carrier (id INT AUTO_INCREMENT PRIMARY KEY, code VARCHAR(30) NOT NULL UNIQUE, name VARCHAR(100) NOT NULL, address VARCHAR(255) NOT NULL, phone VARCHAR(30) NOT NULL, email VARCHAR(190) NOT NULL) ENGINE=InnoDB;
+ALTER TABLE user_account ADD carrier_id INT NULL, ADD FOREIGN KEY(carrier_id) REFERENCES carrier(id), ADD CHECK((role='carrier' AND carrier_id IS NOT NULL) OR (role<>'carrier' AND carrier_id IS NULL));
 CREATE TABLE carrier_contact (id INT AUTO_INCREMENT PRIMARY KEY, carrier_id INT NOT NULL, name VARCHAR(100) NOT NULL, phone VARCHAR(30) NOT NULL, email VARCHAR(190) NOT NULL, FOREIGN KEY(carrier_id) REFERENCES carrier(id)) ENGINE=InnoDB;
 CREATE TABLE carrier_contract (id INT AUTO_INCREMENT PRIMARY KEY, carrier_id INT NOT NULL, reference VARCHAR(40) NOT NULL UNIQUE, starts_on DATE NOT NULL, ends_on DATE NOT NULL, terms TEXT NOT NULL, CHECK(ends_on>=starts_on), FOREIGN KEY(carrier_id) REFERENCES carrier(id)) ENGINE=InnoDB;
 CREATE TABLE qualification (id INT AUTO_INCREMENT PRIMARY KEY, code VARCHAR(30) NOT NULL UNIQUE, name VARCHAR(100) NOT NULL) ENGINE=InnoDB;
@@ -77,9 +78,9 @@ CREATE TABLE package (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT NULL, 
 CREATE TABLE package_pick (id INT AUTO_INCREMENT PRIMARY KEY, package_id INT NOT NULL, pick_id INT NOT NULL, qty INT NOT NULL DEFAULT 1, CHECK(qty>0), UNIQUE(package_id,pick_id), FOREIGN KEY(package_id) REFERENCES package(id), FOREIGN KEY(pick_id) REFERENCES pick(id)) ENGINE=InnoDB;
 CREATE TABLE shipment (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT NOT NULL UNIQUE, visit_id INT NOT NULL, reference VARCHAR(40) NOT NULL UNIQUE, shipped_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, actor_id INT NOT NULL, FOREIGN KEY(order_id) REFERENCES customer_order(id), FOREIGN KEY(visit_id) REFERENCES truck_visit(id), FOREIGN KEY(actor_id) REFERENCES user_account(id)) ENGINE=InnoDB;
 CREATE TABLE stock_movement (
- id INT AUTO_INCREMENT PRIMARY KEY, operation_ref VARCHAR(64) NOT NULL, receipt_item_id INT NOT NULL, location_id INT NOT NULL, delta INT NOT NULL,
+ id INT AUTO_INCREMENT PRIMARY KEY, operation_ref VARCHAR(64) NOT NULL, receipt_item_id INT NULL, location_id INT NULL, delta INT NULL,
  kind ENUM('entry','transfer','shipment','adjustment') NOT NULL, pick_id INT NULL UNIQUE, reason VARCHAR(255) NOT NULL, actor_id INT NOT NULL, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
- CHECK(delta<>0), CHECK((kind='entry' AND delta>0 AND pick_id IS NULL) OR (kind='shipment' AND delta<0 AND pick_id IS NOT NULL) OR (kind IN ('transfer','adjustment') AND pick_id IS NULL)),
+ CHECK((kind='shipment' AND pick_id IS NOT NULL AND receipt_item_id IS NULL AND location_id IS NULL AND delta IS NULL) OR (kind<>'shipment' AND pick_id IS NULL AND receipt_item_id IS NOT NULL AND location_id IS NOT NULL AND delta IS NOT NULL AND delta<>0 AND (kind<>'entry' OR delta>0))),
  FOREIGN KEY(receipt_item_id) REFERENCES receipt_item(id), FOREIGN KEY(location_id) REFERENCES location(id), FOREIGN KEY(pick_id) REFERENCES pick(id), FOREIGN KEY(actor_id) REFERENCES user_account(id)
 ) ENGINE=InnoDB;
 CREATE TABLE audit_log (id BIGINT AUTO_INCREMENT PRIMARY KEY, entity VARCHAR(50) NOT NULL, entity_id INT NOT NULL, operation VARCHAR(12) NOT NULL, actor_id INT NULL, happened_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, details TEXT NOT NULL, FOREIGN KEY(actor_id) REFERENCES user_account(id)) ENGINE=InnoDB;

@@ -1,6 +1,6 @@
 # Matrice de conformité après réalisation
 
-Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF historique ne contient pas le MCD final.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le dernier MCD (retour enseignant attendu) et les MLD courants.
 
 Les huit domaines obligatoires sont présents dans l’interface. Les preuves couvrent des scénarios ciblés ; charger une rubrique ne prouve pas tous ses CRUD. L’audit initial reste conservé dans livrables/audit-2026-10-28/.
 
@@ -8,7 +8,7 @@ Les huit domaines obligatoires sont présents dans l’interface. Les preuves co
 
 **Objectif.** Permettre au personnel de s’inscrire, se connecter et agir selon son rôle.
 
-**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, quatre profils, contrôles serveur, CSRF, mots de passe hachés.
+**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, cinq profils, contrôles serveur, CSRF, mots de passe hachés.
 
 **Conclusion.** Les accès interdits et l’élévation de rôle sont refusés. Le compte transporteur est explicitement facultatif dans le sujet.
 
@@ -93,6 +93,6 @@ Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Pre
 | Ajout, édition, suppression | Formulaires de référentiels/brouillons ; correction et annulation métier des faits protégés |
 | Contrôle de saisie et recherches | Validation PHP/SQL, filtres multicritères, pagination et recherche des références |
 | Statistiques, graphiques et états | Six familles d’indicateurs, trois exports CSV et documents imprimables |
-| Multi-utilisateurs et automatisation | Quatre rôles ; courses à deux connexions ; 119 triggers et deux procédures |
+| Multi-utilisateurs et automatisation | Cinq rôles ; courses à deux connexions ; 120 triggers et deux procédures |
 | Données factices en quantité | SQL riche, 90 jours simulés ; 82 contrôles métier/FK |
 | Rapport et performance | Auteurs, objectifs/travail/conclusion ; huit requêtes, dix mesures et EXPLAIN |

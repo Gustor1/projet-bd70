@@ -1,0 +1,6 @@
+01_schema installé
+02_vues installé
+03_procedures installé
+04_triggers installé
+05_index installé
+Base bd70_test_publication_ui_20261104 prête ; configuration locale exclue de Git.

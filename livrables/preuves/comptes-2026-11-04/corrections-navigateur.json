@@ -1,0 +1,134 @@
+{
+  "passed": 32,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Accueil administration technique",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit stock",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit orders",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit reports",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit planning",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit visits",
+      "ok": true
+    },
+    {
+      "name": "Admin interdit trace",
+      "ok": true
+    },
+    {
+      "name": "Admin catalogue métier interdit",
+      "ok": true
+    },
+    {
+      "name": "Admin gestion utilisateurs",
+      "ok": true
+    },
+    {
+      "name": "Responsable ne lance pas le prélèvement",
+      "ok": true
+    },
+    {
+      "name": "Responsable confirmation forgée refusée",
+      "ok": true
+    },
+    {
+      "name": "Responsable expédition forgée refusée",
+      "ok": true
+    },
+    {
+      "name": "Responsable gestion commandes",
+      "ok": true
+    },
+    {
+      "name": "Accueil début quai refusé",
+      "ok": true
+    },
+    {
+      "name": "Accueil affectation refusée",
+      "ok": true
+    },
+    {
+      "name": "Magasinier auto-affectation refusée",
+      "ok": true
+    },
+    {
+      "name": "Magasinier départ site refusé",
+      "ok": true
+    },
+    {
+      "name": "Magasinier commande non affectée refusée",
+      "ok": true
+    },
+    {
+      "name": "Catalogue conditionnements non filtré refusé",
+      "ok": true
+    },
+    {
+      "name": "Portail transporteur accessible",
+      "ok": true
+    },
+    {
+      "name": "Transporteur accès interne refusé orders",
+      "ok": true
+    },
+    {
+      "name": "Transporteur accès interne refusé stock",
+      "ok": true
+    },
+    {
+      "name": "Transporteur accès interne refusé trace",
+      "ok": true
+    },
+    {
+      "name": "Transporteur accès interne refusé reports",
+      "ok": true
+    },
+    {
+      "name": "Transporteur accès interne refusé catalog",
+      "ok": true
+    },
+    {
+      "name": "Transporteur POST interne refusé",
+      "ok": true
+    },
+    {
+      "name": "Transporteur sélecteur limité à sa société",
+      "ok": true
+    },
+    {
+      "name": "Création transporteur par formulaire",
+      "ok": true
+    },
+    {
+      "name": "Nouveau rendez-vous visible",
+      "ok": true
+    },
+    {
+      "name": "Annulation HTTP autre société refusée",
+      "ok": true
+    },
+    {
+      "name": "Liste HTTP sans rendez-vous autre société",
+      "ok": true
+    },
+    {
+      "name": "Indicateurs période vide",
+      "ok": true
+    }
+  ]
+}

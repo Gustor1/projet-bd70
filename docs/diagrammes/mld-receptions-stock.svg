@@ -452,13 +452,13 @@
 <text xml:space="preserve" text-anchor="start" x="378.81" y="-247" font-family="Arial" font-size="12.00">NN</text>
 <text xml:space="preserve" text-anchor="start" x="7" y="-220.6" font-family="Arial" font-size="12.00">FK receipt_item_id</text>
 <text xml:space="preserve" text-anchor="start" x="119.04" y="-220.6" font-family="Arial" font-size="12.00">int(11)</text>
-<text xml:space="preserve" text-anchor="start" x="378.81" y="-220.6" font-family="Arial" font-size="12.00">NN</text>
+<text xml:space="preserve" text-anchor="start" x="372.13" y="-220.6" font-family="Arial" font-size="12.00">NULL</text>
 <text xml:space="preserve" text-anchor="start" x="7" y="-194.2" font-family="Arial" font-size="12.00">FK location_id</text>
 <text xml:space="preserve" text-anchor="start" x="119.04" y="-194.2" font-family="Arial" font-size="12.00">int(11)</text>
-<text xml:space="preserve" text-anchor="start" x="378.81" y="-194.2" font-family="Arial" font-size="12.00">NN</text>
+<text xml:space="preserve" text-anchor="start" x="372.13" y="-194.2" font-family="Arial" font-size="12.00">NULL</text>
 <text xml:space="preserve" text-anchor="start" x="7" y="-167.8" font-family="Arial" font-size="12.00">delta</text>
 <text xml:space="preserve" text-anchor="start" x="119.04" y="-167.8" font-family="Arial" font-size="12.00">int(11)</text>
-<text xml:space="preserve" text-anchor="start" x="378.81" y="-167.8" font-family="Arial" font-size="12.00">NN</text>
+<text xml:space="preserve" text-anchor="start" x="372.13" y="-167.8" font-family="Arial" font-size="12.00">NULL</text>
 <text xml:space="preserve" text-anchor="start" x="7" y="-141.4" font-family="Arial" font-size="12.00">kind</text>
 <text xml:space="preserve" text-anchor="start" x="119.04" y="-141.4" font-family="Arial" font-size="12.00">enum(&#39;entry&#39;,&#39;transfer&#39;,&#39;shipment&#39;,&#39;adjustment&#39;)</text>
 <text xml:space="preserve" text-anchor="start" x="378.81" y="-141.4" font-family="Arial" font-size="12.00">NN</text>
@@ -483,7 +483,7 @@
 <path fill="none" stroke="#617b94" d="M409.66,-190.87C601.53,-220.5 881.38,-263.72 1032.32,-287.03"/>
 <polygon fill="#617b94" stroke="#617b94" points="1031.5,-290.45 1041.92,-288.51 1032.57,-283.53 1031.5,-290.45"/>
 <text xml:space="preserve" text-anchor="middle" x="733.54" y="-271.18" font-family="Arial" font-size="10.00" fill="#17324d">location_id</text>
-<text xml:space="preserve" text-anchor="middle" x="1024.21" y="-291.33" font-family="Arial" font-size="10.00" fill="#17324d">1</text>
+<text xml:space="preserve" text-anchor="middle" x="1024.21" y="-291.33" font-family="Arial" font-size="10.00" fill="#17324d">0..1</text>
 <text xml:space="preserve" text-anchor="middle" x="428.87" y="-182.28" font-family="Arial" font-size="10.00" fill="#17324d">0..N</text>
 </g>
 <!-- stock_movement&#45;&gt;pick -->
@@ -501,7 +501,7 @@
 <path fill="none" stroke="#617b94" d="M409.52,-278.48C476.01,-317.37 547.85,-359.39 606.87,-393.9"/>
 <polygon fill="#617b94" stroke="#617b94" points="604.9,-396.8 615.3,-398.83 608.43,-390.76 604.9,-396.8"/>
 <text xml:space="preserve" text-anchor="middle" x="479.72" y="-334.84" font-family="Arial" font-size="10.00" fill="#17324d">receipt_item_id</text>
-<text xml:space="preserve" text-anchor="middle" x="596.69" y="-394.74" font-family="Arial" font-size="10.00" fill="#17324d">1</text>
+<text xml:space="preserve" text-anchor="middle" x="596.69" y="-394.74" font-family="Arial" font-size="10.00" fill="#17324d">0..1</text>
 <text xml:space="preserve" text-anchor="middle" x="429.43" y="-277.34" font-family="Arial" font-size="10.00" fill="#17324d">0..N</text>
 </g>
 <!-- stock_movement&#45;&gt;user_account -->

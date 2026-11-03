@@ -1,0 +1,131 @@
+{
+    "database": "bd70_test_comptes_20261104",
+    "passed": 31,
+    "failed": 0,
+    "results": [
+        {
+            "name": "Compte admin conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement admin",
+            "ok": true
+        },
+        {
+            "name": "Compte admin2 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement admin2",
+            "ok": true
+        },
+        {
+            "name": "Compte manager conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement manager",
+            "ok": true
+        },
+        {
+            "name": "Compte pilotage conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement pilotage",
+            "ok": true
+        },
+        {
+            "name": "Compte gate conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement gate",
+            "ok": true
+        },
+        {
+            "name": "Compte gate2 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement gate2",
+            "ok": true
+        },
+        {
+            "name": "Compte warehouse conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement warehouse",
+            "ok": true
+        },
+        {
+            "name": "Compte warehouse2 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement warehouse2",
+            "ok": true
+        },
+        {
+            "name": "Compte warehouse3 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement warehouse3",
+            "ok": true
+        },
+        {
+            "name": "Compte carrier1 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement carrier1",
+            "ok": true
+        },
+        {
+            "name": "Compte carrier2 conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement carrier2",
+            "ok": true
+        },
+        {
+            "name": "Compte pending conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement pending",
+            "ok": true
+        },
+        {
+            "name": "Compte inactive conforme après import",
+            "ok": true
+        },
+        {
+            "name": "Rattachement inactive",
+            "ok": true
+        },
+        {
+            "name": "Deuxième passage sans écriture dans les 41 tables",
+            "ok": true
+        },
+        {
+            "name": "Configuration modifiée conservée sans option",
+            "ok": true
+        },
+        {
+            "name": "Réinitialisation explicite conserve identifiant et rétablit accès",
+            "ok": true
+        },
+        {
+            "name": "Compte hors liste préservé",
+            "ok": true
+        },
+        {
+            "name": "Données métier inchangées après création et rétablissement de comptes",
+            "ok": true
+        }
+    ]
+}

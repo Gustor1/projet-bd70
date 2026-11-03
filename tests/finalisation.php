@@ -7,7 +7,7 @@ $db=new Database();$cat=new Catalog($db);$checks=[];
 function check(bool $ok,string $name):void{global $checks;$checks[$name]=$ok;echo ($ok?'OK ':'ECHEC ').$name."\n";}
 function rejects(callable $fn,string $name):void{try{$fn();check(false,$name);}catch(DomainException|PDOException){check(true,$name);}}
 $r=$db->one("SELECT * FROM receipt WHERE status='validated' LIMIT 1");
-$before=$db->one('SELECT COUNT(*) n,SUM(delta) qty FROM stock_movement');
+$before=$db->one('SELECT COUNT(*) n,SUM(delta) qty FROM v_stock_movement');
 check($cat->restrictions('receipt',$r)['edit']!==null,'Réception validée sans action Modifier');
 rejects(fn()=>$cat->save('receipt',(int)$r['id'],[...$r,'reference'=>'INTERDIT'],1),'POST direct refuse édition réception validée');
 rejects(fn()=>$cat->delete('receipt',(int)$r['id'],1),'POST direct refuse suppression réception validée');
@@ -32,7 +32,7 @@ $old=$db->one('SELECT * FROM notice_line WHERE id=?',[$dl]);
 $cat->save('notice_line',$dl,[...$old,'expected_qty'=>2],1);$cat->delete('notice_line',$dl,1);$cat->delete('supplier_notice',$draft,1);
 check(!$db->scalar('SELECT COUNT(*) FROM supplier_notice WHERE id=?',[$draft]),'Brouillon : correction puis suppression sans SQL utilisateur');
 check($cat->restrictions('carrier',$db->one('SELECT * FROM carrier WHERE id=1'))['delete']!==null,'Fiche référencée sans suppression proposée');
-check($before===$db->one('SELECT COUNT(*) n,SUM(delta) qty FROM stock_movement'),'Corrections sans altération des mouvements historiques');
+check($before===$db->one('SELECT COUNT(*) n,SUM(delta) qty FROM v_stock_movement'),'Corrections sans altération des mouvements historiques');
 $result=['executed_at'=>gmdate(DATE_ATOM),'database'=>getenv('BD70_DATABASE'),'fixed_clock'=>Clock::now(),'passed'=>count(array_filter($checks)),'failed'=>count(array_filter($checks,fn($v)=>!$v)),'checks'=>$checks];
 file_put_contents(__DIR__.'/../livrables/preuves/finalisation.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 exit($result['failed']?1:0);

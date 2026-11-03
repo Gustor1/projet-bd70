@@ -1,0 +1,32 @@
+OK Accueil administration technique
+OK Admin interdit stock
+OK Admin interdit orders
+OK Admin interdit reports
+OK Admin interdit planning
+OK Admin interdit visits
+OK Admin interdit trace
+OK Admin catalogue métier interdit
+OK Admin gestion utilisateurs
+OK Responsable ne lance pas le prélèvement
+OK Responsable confirmation forgée refusée
+OK Responsable expédition forgée refusée
+OK Responsable gestion commandes
+OK Accueil début quai refusé
+OK Accueil affectation refusée
+OK Magasinier auto-affectation refusée
+OK Magasinier départ site refusé
+OK Magasinier commande non affectée refusée
+OK Catalogue conditionnements non filtré refusé
+OK Portail transporteur accessible
+OK Transporteur accès interne refusé orders
+OK Transporteur accès interne refusé stock
+OK Transporteur accès interne refusé trace
+OK Transporteur accès interne refusé reports
+OK Transporteur accès interne refusé catalog
+OK Transporteur POST interne refusé
+OK Transporteur sélecteur limité à sa société
+OK Création transporteur par formulaire
+OK Nouveau rendez-vous visible
+OK Annulation HTTP autre société refusée
+OK Liste HTTP sans rendez-vous autre société
+OK Indicateurs période vide

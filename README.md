@@ -2,7 +2,7 @@
 
 Application PHP/PDO de gestion d'un entrepôt logistique, réalisée à partir du sujet A26, de la grille d'évaluation et des deux supports de cours fournis. Les fichiers d'origine sont conservés dans `document cours/` et `document projet/`.
 
-**Pour le groupe : [comptes de test et récupération de l’accès administrateur](COMPTES-TEST.md).** L’admin local est créé automatiquement à la première installation ; `scripts/admin-local.php` permet de le recréer ou de rétablir son accès sans effacer les données.
+**Pour le groupe : [13 comptes de démonstration](COMPTES-TEST.md) · [Comment tester toute l’application](COMMENT-TESTER.md).** L’admin local est créé automatiquement à la première installation ; `scripts/admin-local.php` permet de le recréer ou de rétablir son accès sans effacer les données.
 
 **Démarrage Windows** (outils XAMPP déjà présents sur ce poste) :
 
@@ -11,7 +11,7 @@ cd C:/Users/eliot/Documents/GitHub/projet-bd70
 powershell -ExecutionPolicy Bypass -File scripts/start.ps1
 ```
 
-Ouvrir [l'application locale](http://127.0.0.1:8070). Le script initialise sa propre instance MariaDB sur **127.0.0.1:3307**, avec les données dans `.local/mariadb/`, sans utiliser les bases XAMPP existantes. Le serveur PHP écoute seulement la boucle locale. La première exécution installe la base de démonstration vide, génère le compte SQL à droits limités et charge les données. Les suivantes préservent les données. Sur ce poste, la démonstration vérifiée est dans `bd70_demo_rich_final` (configuration locale ; ancienne base `bd70_demo_final` conservée) ; une nouvelle installation utilise `bd70_demo`.
+Ouvrir [l'application locale](http://127.0.0.1:8070). Le script initialise sa propre instance MariaDB sur **127.0.0.1:3307**, avec les données dans `.local/mariadb/`, sans utiliser les bases XAMPP existantes. Le serveur PHP écoute seulement la boucle locale. La première exécution installe la base de démonstration vide, génère le compte SQL à droits limités et charge les données. Les suivantes préservent les données. Sur ce poste, la démonstration vérifiée est dans `bd70_demo_corrige_20261103b` (configuration locale ; ancienne base `bd70_demo_final` conservée) ; une nouvelle installation utilise `bd70_demo`.
 
 | Profil | Email de démonstration | Mot de passe fictif |
 |---|---|---|
@@ -96,8 +96,8 @@ Pour arrêter : `scripts/stop.ps1` ferme seulement le serveur PHP dont le PID a 
 
 ## Livrables et preuves
 
-- `livrables/rapport/RAPPORT-PROJET-BD70.pdf` : rapport antérieur à la consolidation du 3 novembre ; références techniques corrigées dans sa source Markdown et dans l’index des modèles. Pas de réédition éditoriale générale.
-- [Index des modèles de référence](docs/modeles-reference.md) : UML livré dans `livrables/use-case-v2/`, MCD dans `livrables/mcd-final/`, MLD dans `docs/diagrammes/mld-*`. Les anciens MCD et le recueil `DIAGRAMMES-BD70.pdf` sont historiques.
+- `livrables/rapport/RAPPORT-PROJET-BD70.pdf` : rapport final actualisé avec les droits corrigés et la normalisation des sorties.
+- [Index des modèles de référence](docs/modeles-reference.md) : UML corrigé dans `livrables/correction-prof-use-case/`, MCD dans `livrables/mcd-final/`, MLD dans `docs/diagrammes/mld-*`. Les anciens MCD et l’ancien recueil sont historiques ; `DIAGRAMMES-BD70.pdf` est reconstruit à partir des références actuelles.
 - `docs/dictionnaire-donnees.md`, `docs/normalisation-3nf.md`, `docs/matrice-crud-droits.md` : conception détaillée des 41 tables.
 - `docs/matrice-conformite.md`, `docs/recette.md`, `docs/performances.md`, `docs/SUIVI-PROJET.md` : couverture, résultats et reprise.
 - `livrables/preuves/` : résultats JSON, plans EXPLAIN, captures authentiques, états imprimés et exemple CSV. Les captures de démonstration, le parcours sur base de test et le jeu volumétrique sont distingués.
@@ -137,3 +137,13 @@ $env:BD70_NOW='2026-10-22 12:00:00'
 Dans un second terminal : BD70_URL=http://127.0.0.1:8071, puis `node tests/browser.cjs`, `node tests/parcours.cjs` et `node tests/completion-browser.cjs`. La base doit avoir été installée et seedée avant ce lancement. Les tests modifient des données fictives : ne pas les lancer sur la démonstration riche. `node tests/rich-browser.cjs` vérifie la base riche en lecture au port 8070.
 
 Le compte applicatif est créé automatiquement ; le secret reste local. L’export fictif contient uniquement les hachages des comptes pédagogiques dont le mot de passe est publié ci-dessus.
+
+## Version corrigée après retour enseignant (3 novembre)
+
+L’administrateur est technique : utiliser manager@bd70.test pour le pilotage et l’affectation, gate@bd70.test pour l’accueil et warehouse@bd70.test pour l’exécution. Tous ont le mot de passe fictif du tableau. Le responsable affecte d’abord ; le magasinier affecté lance ensuite FEFO. Les colis se corrigent dans la fiche de commande.
+
+Pour activer un transporteur : créer/activer son compte dans Utilisateurs avec le profil Transporteur et sa société. Un compte interne garde cette société vide. L’inscription publique demeure en attente et ne choisit jamais de rôle privilégié.
+
+Migration d’une installation antérieure : arrêter les saisies, sauvegarder puis exécuter `php scripts/migrate-corrections.php bd70_demo_source bd70_demo_cible_neuve`. Le script refuse une cible existante, copie les 41 tables sous lecture cohérente, normalise les sorties et compare les valeurs originales à leur projection. Il ne change pas la configuration. Après validation de `livrables/preuves/migration-corrections.json`, changer le dbname de config/local.php vers la cible et conserver la source pour retour arrière. Le compte applicatif reçoit les privilèges de la nouvelle base via l’installation.
+
+Recette actuelle : `tests/integration.php`, `tests/completion.php`, `tests/finalisation.php`, `tests/corrections.php`, `tests/time.php`, `tests/corrections-browser.cjs` et `tests/parcours.cjs`. Les anciennes suites navigateur supposant un administrateur métier sont historiques et ne décrivent plus les droits courants. `scripts/verify-finalisation.py` utilise les suites actuelles. Résultats de cette correction : `livrables/preuves/corrections-rendu-2026-11-03/`.

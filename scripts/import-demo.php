@@ -12,3 +12,6 @@ try{
  if(trim($buffer)!=='')throw new RuntimeException('Export SQL incomplet.');
  $db->pdo->commit();echo 'Données fictives importées dans '.$name.". Vérifier avec scripts/validate-data.php.\n";
 }catch(Throwable $e){if($db->pdo->inTransaction())$db->pdo->rollBack();throw $e;}finally{fclose($handle);$db->pdo->exec('SET FOREIGN_KEY_CHECKS=1');}
+
+// Comptes internes supplémentaires et deux sociétés pour tester les profils.
+require __DIR__.'/comptes-demo.php';

@@ -14,15 +14,15 @@ Sources : A26_Site_Logistique.pdf, pages 1 à 3 ; Éléments dévaluation projet
 
 ## Acteurs et cas d’utilisation
 
-Administrateur : comptes et tous les traitements. Responsable : référentiels, planification, stocks, commandes et analyses. Accueil : rendez-vous et passages. Magasinier : réception, rangement, préparation et expédition. Les profils internes consultent la traçabilité et le planning ; les actions restent contrôlées côté serveur.
+Administrateur technique : comptes et journal. Responsable : référentiels, planification, commandes, affectation et analyses. Accueil : arrivée, contrôles, appel à quai et départ. Magasinier : réception, stock, début/fin des opérations à quai et exécution des commandes qui lui sont affectées. Transporteur : création, modification et annulation des rendez-vous de sa société. Les contrôles portent sur les routes, les requêtes directes et les objets concernés.
 
-UC01-UC10 sont détaillés dans docs/02-cas-utilisation.md. L’authentification est une précondition des cas métier. Les modèles faisant référence sont indexés dans docs/modeles-reference.md : UML livré dans livrables/use-case-v2/, MCD dans livrables/mcd-final/, MLD dans docs/diagrammes/mld-*. L’annexe vectorielle historique ne contient pas le MCD final.
+UC01-UC10 sont détaillés dans docs/02-cas-utilisation.md. L’authentification est une précondition des cas métier. Les modèles faisant référence sont indexés dans docs/modeles-reference.md : UML corrigé dans livrables/correction-prof-use-case/, MCD dans livrables/mcd-final/, MLD dans docs/diagrammes/mld-*. Le recueil joint rassemble cet UML, le dernier MCD réalisé (en attente du retour enseignant) et les MLD actualisés. Les adaptations physiques sont expliquées dans docs/modeles-reference.md.
 
 ## F01 - Connexion et profils
 
 **Objectif.** Permettre au personnel de s’inscrire, se connecter et agir selon son rôle.
 
-**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, quatre profils, contrôles serveur, CSRF, mots de passe hachés.
+**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, cinq profils, contrôles serveur, CSRF, mots de passe hachés.
 
 **Conclusion.** Les accès interdits et l’élévation de rôle sont refusés. Le compte transporteur est explicitement facultatif dans le sujet.
 
@@ -98,6 +98,14 @@ Preuves : completion.json ; completion-navigateur.json ; parcours.json. Sources 
 
 Preuves : integration.json ; heure-paris.json ; navigateur-riche.json. Sources : Reports.php ; templates/trace.php ; templates/reports.php.
 
+## Corrections après retour enseignant
+
+Le use case corrigé constitue la référence. L’administrateur technique gère les comptes ; les droits métier ne sont plus hérités. Le responsable affecte une commande sans réserver de stock, puis le magasinier affecté lance FEFO et exécute la préparation. L’accueil enregistre les étapes du site ; le magasinier enregistre le début et la fin à quai. Le transporteur dispose d’un espace limité aux rendez-vous et ressources de sa société, avec refus des identifiants d’autres sociétés.
+
+Les sorties de stock enregistrent le prélèvement et les informations propres au mouvement. Quantité, fraction et emplacement sont lus depuis le prélèvement par v_stock_movement ; ces trois valeurs ne sont plus dupliquées dans les sorties. Les contrôles SQL imposent cette structure. La migration copie les 41 tables dans une nouvelle base et compare les valeurs originales à la projection obtenue. La base source reste inchangée.
+
+Le dernier modèle entité-association réalisé est conservé dans l’attente du retour du professeur. Le MLD et le dictionnaire documentent déjà le rattachement des comptes transporteurs à leur société et les sorties normalisées. Ce maintien du MCD ne vaut pas validation par l’enseignant.
+
 ## Conception et normalisation
 
 41 tables, dont journal d’audit et verrou techniques. Les relations 1:N relient sociétés/chauffeurs, avis/lignes et commandes/lignes. Les N:N utilisent des jointures : habilitations, équipements et allocations de colis. PK techniques, clés métier, types, FK et CHECK sont extraits du moteur dans le dictionnaire.
@@ -110,7 +118,7 @@ Les états opérationnels sont des projections contrôlées. L’audit conserve 
 
 ## Transactions et sécurité
 
-Les services PHP prennent le verrou site_lock puis réalisent les mutations atomiques. Les opérations imbriquées utilisent des points de sauvegarde. Deux procédures assurent verrou et trace ; 119 déclencheurs assurent audit et immuabilité. Le compte applicatif n’a pas de droit DDL ni d’édition du journal.
+Les services PHP prennent le verrou site_lock puis réalisent les mutations atomiques. Les opérations imbriquées utilisent des points de sauvegarde. Deux procédures assurent verrou et trace ; 120 déclencheurs assurent audit et immuabilité. Le compte applicatif n’a pas de droit DDL ni d’édition du journal.
 
 Requêtes paramétrées, validation serveur/SQL, échappement HTML, sessions renouvelées, CSRF et mots de passe hachés sont contrôlés dans les parcours. Les instantanés excluent password_hash. Configuration et sauvegardes privées sont exclues du dépôt.
 
@@ -145,43 +153,43 @@ L’export sql/07_donnees_demo_riches.sql se charge après la structure. Les tri
 
 ## Vérification et résultats
 
-Résultats exécutés par les scripts livrés. Bases mutantes dédiées ; démonstration riche consultée en lecture.
+Recette de la version corrigée, sur bases dédiées neuves. Toutes les suites ci-dessous ont été exécutées avec succès. Les preuves JSON, commandes et captures sont dans livrables/preuves/corrections-rendu-2026-11-03/.
 
 | Vérification | Réussis | Échecs | Preuve |
 |---|---:|---:|---|
-| Intégration métier/SQL | 64 | 0 | integration.json |
-| Nouveaux cas métier | 23 | 0 | completion.json |
-| Navigateur général | 71 | 0 | navigateur.json |
-| Parcours complet | 31 | 0 | parcours.json |
-| Parcours guidés ajoutés | 34 | 0 | completion-navigateur.json |
-| Base riche en lecture | 16 | 0 | navigateur-riche.json |
+| Intégration métier/SQL et concurrence | 64 | 0 | integration.json |
+| Compléments métier | 23 | 0 | completion.json |
+| Régressions de protection des faits | 14 | 0 | finalisation.json |
+| Droits et isolation des objets, normalisation | 18 | 0 | corrections.json |
+| Navigateur, accès directs et portail transporteur | 32 | 0 | corrections-navigateur.json |
+| Parcours complet avec changement de profils | 32 | 0 | parcours.json |
+| Horloge du site | 8 | 0 | heure-paris.json |
+| Import riche et intégrité | 83 | 0 | integrite-donnees.json |
 
-Horloge Paris : 8 contrôles. Intégrité riche : 82 contrôles métier/FK. Migration : 42 contrôles des colonnes préexistantes et allocations.
+Le parcours navigateur couvre création d’un avis, réception avec avarie, transfert, affectation par le responsable, lancement FEFO par le préparateur, confirmation, colis, chargement, expédition, document et traçabilité. Les profils sont changés au fil des responsabilités. Les accès entre sociétés et entre préparateurs sont refusés. Les anciennes suites navigateur fondées sur un administrateur métier sont historiques.
 
-Restauration : 41 tables comparées par comptes et checksums, 119 déclencheurs et 2 procédures. Une mutation vérifie l’audit dans la copie.
+La copie migrée compare les 41 tables : tous les faits métier sont conservés, les mouvements de sortie sont comparés via leur projection. Les checksums de la source restent identiques avant/après. Un import complet du jeu fictif dans une autre base neuve passe aussi les 83 contrôles d’intégrité. La sauvegarde/restauration vérifie les tables, triggers, procédures et le fonctionnement de l’audit dans une copie.
 
-Installation propre : configuration et compte SQL neufs, trois refus de booléens invalides, CRUD d’une relation inutilisée et huit routes authentifiées.
+Les 64 assertions d’intégration incluent quatre courses entre deux connexions, la conservation du stock et les rollbacks. La recette ne prouve pas tous les entrelacements possibles. Les constats mobiles antérieurs restent des simulations à 390 px, sans téléphone physique.
 
-Les 64 assertions initiales incluent quatre courses entre deux connexions, la conservation du stock, les rollbacks et les oracles des indicateurs. Les 23 nouveaux cas couvrent réserves, restes, clôtures, ressources, modifications permises, reprise et colis. Les contrôles mobiles sont effectués dans Edge à 390 px, pas sur appareil physique.
-
-Reproduction : installer une base neuve, charger scripts/seed.php. integration.php utilise BD70_TEST_DATABASE ; completion.php utilise BD70_DATABASE. Les tests fixent le 22/10/2026 à midi ; le serveur navigateur dédié doit recevoir BD70_NOW=2026-10-22 12:00:00 et une base bd70_test*. Ne jamais figer la démonstration.
+Reproduction : scripts/verify-finalisation.py crée des bases neuves, applique seed.php puis exécute les suites actuelles. L’horloge fixe du 22 octobre 2026 sert uniquement aux bases de recette. La démonstration utilise l’heure réelle.
 
 ## Analyse des performances
 
-Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_completion. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
+Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_corrections_20261103. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
 
 | Requête | Médiane ms | Min ms | Max ms |
 |---|---:|---:|---:|
-| disponibilite_quai | 1.940 | 1.427 | 3.231 |
-| recherche_passages | 8.927 | 4.302 | 13.486 |
-| recherche_stock | 61.910 | 46.158 | 75.219 |
-| emplacements | 50.225 | 37.541 | 61.628 |
-| historique_lot | 56.277 | 45.494 | 65.249 |
-| selection_fefo | 74.066 | 67.637 | 89.753 |
-| statistiques_transporteur | 25.255 | 19.178 | 30.299 |
-| remplissage_zone | 49.243 | 35.433 | 60.719 |
+| disponibilite_quai | 1.263 | 0.845 | 1.744 |
+| recherche_passages | 48.410 | 41.429 | 75.394 |
+| recherche_stock | 60.175 | 44.939 | 75.853 |
+| emplacements | 41.890 | 39.288 | 53.623 |
+| historique_lot | 38.453 | 31.770 | 49.741 |
+| selection_fefo | 65.776 | 57.190 | 116.835 |
+| statistiques_transporteur | 59.515 | 51.458 | 90.713 |
+| remplissage_zone | 48.001 | 46.746 | 59.589 |
 
-Index comparé : idx_appointment_slot uniquement ; index FK simple maintenu. Lecture avant 10.481 ms, après 1.361 ms. Les dix observations et le coût INSERT + ROLLBACK sont publiés dans le JSON.
+Comparaison historique de l’index (avant cette correction) : idx_appointment_slot uniquement ; index FK simple maintenu. Lecture avant 10.481 ms, après 1.361 ms. Les dix observations et le coût INSERT + ROLLBACK sont publiés dans le JSON.
 
 v_visit joint les événements uniques (passage, état) au lieu d’agréger tout l’historique. v_location_usage calcule les capacités physiques sans toutes les jointures de v_stock. La seconde correction répond à une expiration de 30 secondes observée avec les données riches.
 
@@ -193,13 +201,13 @@ Ces mesures locales ne sont pas une certification de charge industrielle. Les co
 
 scripts/start.ps1 démarre MariaDB et PHP localement ; une nouvelle installation charge le SQL riche. Le README décrit les commandes et comptes fictifs. Une configuration existante n’est pas écrasée.
 
-La migration additive est testée sur une restauration distincte : colonnes anciennes et allocations conservées ; les nouvelles entrées d’audit dues à la migration sont normales. L’ancienne base bd70_demo_final est conservée. La démonstration active est bd70_demo_rich_final.
+La copie migrée conserve tous les faits métier et tous les auteurs ; les mouvements normalisés sont comparés par leur projection. Les comptes et historiques restent conservés. L’ancienne base bd70_demo_final est conservée. La démonstration active est bd70_demo_corrige_20261103b ; la source bd70_demo_rich_final est conservée.
 
-La restauration compare les 41 tables par comptes/checksums, vérifie 119 déclencheurs et deux procédures, puis provoque une historisation dans la copie. Installation sur copie propre également testée.
+La restauration compare les 41 tables par comptes/checksums, vérifie 120 déclencheurs et deux procédures, puis provoque une historisation dans la copie. Installation sur copie propre également testée.
 
 ## Limites et bilan
 
-Tous les domaines obligatoires ont un accès web. Le rôle transporteur externe est facultatif et non retenu ; FEFO est une stratégie autorisée. Les commandes sont expédiées intégralement.
+Tous les domaines obligatoires ont un accès web. Le rôle transporteur externe est réalisé dans un espace limité aux rendez-vous de sa société ; FEFO est une stratégie autorisée. Les commandes sont expédiées intégralement.
 
 Application monosite, locale, PHP 8.2.12 / MariaDB 10.4.32 / Windows / Edge. Pas de déploiement public ni de test sur téléphone physique. Le planning se rafraîchit toutes les 30 secondes hors saisie.
 
@@ -222,4 +230,4 @@ L’IA a aidé à l’audit, à l’implémentation, au jeu fictif et à la vér
 
 docs/matrice-conformite.md : couverture. docs/02-cas-utilisation.md : scénarios. docs/diagrammes/ : DOT/SVG et métadonnées. Dictionnaire, normalisation et matrice CRUD : conception. sql/ : structure, procédures, triggers, index, migration et données. tests/ et livrables/preuves/ : scripts et résultats. README.md : lancement.
 
-DIAGRAMMES-BD70.pdf est un recueil historique, conservé sans être régénéré : ses MCD sont incomplets et il ne constitue pas la référence finale. Le PDF de ce rapport est antérieur à la consolidation du 3 novembre ; pour les références techniques actuelles, utiliser docs/modeles-reference.md et la présente source Markdown.
+DIAGRAMMES-BD70.pdf réunit le use case corrigé après retour du professeur, le dernier MCD réalisé et les MLD physiques actualisés. Le MCD reste la référence de travail dans l’attente du retour du professeur. Les nouveaux droits et la projection normalisée des sorties sont décrits dans ce rapport et dans docs/modeles-reference.md.

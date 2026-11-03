@@ -13,7 +13,7 @@ Le suivi du passage est un regroupement de cas réalisés à différents moments
 
 ## Portée
 
-Cette livraison corrige le modèle métier demandé par le professeur. Elle ne modifie pas le code, les autorisations ni les données de l'application. Les droits existants devront être comparés à ce modèle avant de revendiquer une conformité complète de l'implémentation. En particulier : administrateur technique, responsabilité d'affectation, accès transporteur et enregistrement des opérations à quai.
+Ce modèle est désormais la référence du logiciel corrigé. Les comptes et leurs rattachements, l’affectation des commandes, les étapes de passage et le portail transporteur sont contrôlés côté serveur. Voir docs/CORRECTIONS-RENDU-2026-11-03.md pour les preuves de cette mise en cohérence.
 
 ## Modification et reconstruction
 

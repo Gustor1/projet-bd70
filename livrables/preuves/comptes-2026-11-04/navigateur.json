@@ -1,0 +1,81 @@
+{
+  "origin": "http://127.0.0.1:8070",
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "account": "admin@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "admin2@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "manager@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "pilotage@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "gate@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "gate2@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "warehouse@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "warehouse2@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "warehouse3@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "carrier1@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "carrier2@bd70.test",
+      "expected": "connexion",
+      "ok": true
+    },
+    {
+      "account": "pending@bd70.test",
+      "expected": "refus",
+      "ok": true
+    },
+    {
+      "account": "inactive@bd70.test",
+      "expected": "refus",
+      "ok": true
+    },
+    {
+      "account": "manager@bd70.test",
+      "expected": "mauvais mot de passe : formulaire sans données métier",
+      "ok": true
+    },
+    {
+      "expected": "CSRF anonyme refusé sans écran métier",
+      "ok": true
+    }
+  ]
+}

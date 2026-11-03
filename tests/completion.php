@@ -38,7 +38,7 @@ rejects(fn()=>$cat->save('package_pick',null,['package_id'=>$b,'pick_id'=>$pick[
 $cat->save('package_pick',null,['package_id'=>$b,'pick_id'=>$pick['id'],'qty'=>10],1);
 check((int)$db->scalar('SELECT COUNT(*) FROM package_pick WHERE pick_id=?',[$pick['id']])===2,'Un prélèvement réparti dans deux colis');
 $out=$w->arrive(['reference'=>'NEW-OUT','driver_id'=>1,'vehicle_id'=>1,'operation'=>'expedition']);$w->transition($out,'checked',null,'Conforme');$w->transition($out,'called',3);$w->transition($out,'working');
-$before=(int)$db->scalar('SELECT SUM(delta) FROM stock_movement');$w->ship($order,$out);check((int)$db->scalar('SELECT SUM(delta) FROM stock_movement')===$before-20,'Expédition multicolis débite exactement 20');
+$before=(int)$db->scalar('SELECT SUM(delta) FROM v_stock_movement');$w->ship($order,$out);check((int)$db->scalar('SELECT SUM(delta) FROM v_stock_movement')===$before-20,'Expédition multicolis débite exactement 20');
 rejects(fn()=>$w->ship($order,$out),'Double expédition refusée');rejects(fn()=>$w->resetPreparation($order,'Trop tard'),'Reprise après expédition interdite');
 $redo=createOrder('REWORK',2);$w->prepare($redo,4);$w->confirmPick($redo,4,'warehouse');$p=$db->one('SELECT p.* FROM pick p JOIN order_line l ON l.id=p.order_line_id WHERE l.order_id=?',[$redo]);$pkg=$cat->save('package',null,['order_id'=>$redo,'code'=>'REDO-COL','type'=>'colis'],1);$cat->save('package_pick',null,['package_id'=>$pkg,'pick_id'=>$p['id'],'qty'=>2],1);$w->resetPreparation($redo,'Correction de destination');
 check($db->scalar('SELECT status FROM customer_order WHERE id=?',[$redo])==='draft'&&!$db->scalar('SELECT COUNT(*) FROM package WHERE order_id=?',[$redo]),'Reprise libère colis et remet en brouillon');

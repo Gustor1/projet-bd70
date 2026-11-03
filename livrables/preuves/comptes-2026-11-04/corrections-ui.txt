@@ -1,0 +1,18 @@
+OK Administrateur technique sans accès métier
+OK Affectation réservée au responsable
+OK Début opération réservé au magasinier
+OK Départ réservé à accueil
+OK Responsable affecte sans réserver le stock
+OK Lecture de sa commande affectée
+OK Autre préparateur refusé
+OK Edition de colis autre préparateur refusée
+OK Conditionnement interdit au responsable
+OK Transporteur crée un rendez-vous
+OK Transporteur modifie son rendez-vous
+OK Annulation entre sociétés refusée
+OK Edition entre sociétés refusée
+OK Ressources autre société refusées
+OK Liste transporteur isolée
+OK Transporteur annule son rendez-vous
+OK Sortie sans duplication des faits du prélèvement
+OK Projection reconstitue le mouvement pour stock et trace

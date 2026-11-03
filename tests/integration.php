@@ -7,7 +7,7 @@ $db=new Database();$ids=json_decode(file_get_contents(__DIR__.'/../.local/seed-'
 $w=new Warehouse($db,$ids['admin'],'2026-10-22 12:00:00');$cat=new Catalog($db);$passed=[];$failures=[];
 function check(bool $ok,string $name): void {global $passed,$failures;if($ok){$passed[]=$name;echo "OK $name\n";}else{$failures[]=$name;echo "ECHEC $name\n";}}
 function rejects(callable $f,string $name): void {try{$f();check(false,$name);}catch(DomainException|PDOException $e){check(true,$name);}}
-function countMoves(): int {global $db;return (int)$db->scalar('SELECT COUNT(*) FROM stock_movement');}
+function countMoves(): int {global $db;return (int)$db->scalar('SELECT COUNT(*) FROM v_stock_movement');}
 function orderTest(string $ref,int $qty): int {global $db,$ids;$o=$db->insert('customer_order',['reference'=>$ref,'owner_id'=>$ids['owners'][0],'destination'=>'Adresse fictive','desired_on'=>'2026-10-22']);$db->insert('order_line',['order_id'=>$o,'article_id'=>$ids['articles'][0],'qty'=>$qty]);return $o;}
 function race(string $action,array $payloads): array {
     $jobs=[];$at=microtime(true)+0.8;
@@ -74,13 +74,13 @@ $receipt=$db->insert('receipt',['reference'=>'TEST-REC-ROLLBACK','notice_id'=>$n
 foreach([$ids['locations'][0],$ids['locations'][2]] as $k=>$loc)$db->insert('receipt_item',['line_id'=>$rl,'lot_id'=>$ids['lots'][0],'pallet_code'=>'TEST-PAL-ROLLBACK-'.$k,'accepted_qty'=>10,'location_id'=>$loc]);
 $before=countMoves();rejects(fn()=>$w->validateReceipt($receipt),'R08/R12 réception multi-fractions rollback');check(countMoves()===$before&&$db->scalar('SELECT status FROM receipt WHERE id=?',[$receipt])==='draft','R12 aucune entrée partielle ni validation');
 // R06/R07/R08 : transferts et réservations concurrentes.
-$item=$ids['items'][0];$src=$ids['locations'][0];$dest=$ids['locations'][1];$sum=(int)$db->scalar('SELECT SUM(delta) FROM stock_movement WHERE receipt_item_id=?',[$item]);
-$w->transfer($item,$src,$dest,5,'Test conservation');check((int)$db->scalar('SELECT SUM(delta) FROM stock_movement WHERE receipt_item_id=?',[$item])===$sum,'R07 transfert conserve quantité');
+$item=$ids['items'][0];$src=$ids['locations'][0];$dest=$ids['locations'][1];$sum=(int)$db->scalar('SELECT SUM(delta) FROM v_stock_movement WHERE receipt_item_id=?',[$item]);
+$w->transfer($item,$src,$dest,5,'Test conservation');check((int)$db->scalar('SELECT SUM(delta) FROM v_stock_movement WHERE receipt_item_id=?',[$item])===$sum,'R07 transfert conserve quantité');
 $before=countMoves();rejects(fn()=>$w->transfer($item,$src,$ids['locations'][2],1,'Incompatible'),'R08 zone incompatible');check(countMoves()===$before,'R12 transfert refusé sans débit');
 rejects(fn()=>$w->adjust($item,$src,-99999,'Test négatif'),'R06 stock négatif refusé');
 $tiny=$db->insert('location',['level_id'=>1,'code'=>'TEST-CAPACITE','width_m'=>1,'depth_m'=>1,'height_m'=>1,'max_kg'=>10,'max_pallets'=>2]);
 $rr2=race('transfer',[['item'=>$item,'source'=>$src,'dest'=>$tiny,'qty'=>4],['item'=>$item,'source'=>$src,'dest'=>$tiny,'qty'=>4]]);check(count(array_filter($rr2,fn($x)=>$x['ok']))===1,'R08 capacité concurrente : une seule entrée de 4');
-check((int)$db->scalar('SELECT SUM(delta) FROM stock_movement WHERE location_id=?',[$tiny])===4,'R08 capacité non dépassée');
+check((int)$db->scalar('SELECT SUM(delta) FROM v_stock_movement WHERE location_id=?',[$tiny])===4,'R08 capacité non dépassée');
 $available=(int)$db->scalar('SELECT SUM(available_qty) FROM v_stock WHERE article_id=?',[$ids['articles'][0]]);
 $o1=orderTest('RACE-STOCK-A',$available);$o2=orderTest('RACE-STOCK-B',$available);
 $rr3=race('prepare',[['order'=>$o1,'preparer'=>$ids['warehouse']],['order'=>$o2,'preparer'=>$ids['warehouse']]]);check(count(array_filter($rr3,fn($x)=>$x['ok']))===1,'R06 deux préparations : aucune sur-réservation');
@@ -93,7 +93,7 @@ $o=orderTest('TEST-FEFO',1);$w->prepare($o,$ids['warehouse']);
 check($db->scalar('SELECT i.lot_id FROM pick p JOIN receipt_item i ON i.id=p.receipt_item_id JOIN order_line l ON l.id=p.order_line_id WHERE l.order_id=?',[$o])==$ids['lots'][0],'FEFO choisit LOT-A stable');
 $w->cancelOrder($o);
 // Authentification et formulaire : droits testés sans dépendre des menus.
-foreach(['admin','manager','gate','warehouse'] as $role){$u=$db->one('SELECT * FROM user_account WHERE role=?',[$role]);check(Auth::can($u,'trace'),'F01 rôle '.$role.' accès traçabilité');check(Auth::can($u,'accounts')===($role==='admin'),'F01 rôle '.$role.' comptes protégés');}
+foreach(['admin','manager','gate','warehouse'] as $role){$u=$db->one('SELECT * FROM user_account WHERE role=?',[$role]);check(Auth::can($u,'trace')===($role!=='admin'),'F01 rôle '.$role.' accès traçabilité');check(Auth::can($u,'accounts')===($role==='admin'),'F01 rôle '.$role.' comptes protégés');}
 Auth::register($db,['name'=>'Compte Test','email'=>'pending-test@bd70.test','password'=>'TestInscription2026!','role'=>'admin','active'=>1]);$u=$db->one('SELECT * FROM user_account WHERE email=?',['pending-test@bd70.test']);check($u['role']==='pending'&&!$u['active'],'F01 inscription sans élévation de privilèges');
 check((new Reports($db))->stock(['article_id'=>$ids['articles'][0],'owner_id'=>$ids['owners'][0],'zone_id'=>1,'q'=>'LOT-A'])['total']>0,'F06 filtres stock combinés');
 check((new Reports($db))->stock(['q'=>'INEXISTANT-TEST'])['total']===0,'F06 aucun résultat');

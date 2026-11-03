@@ -1,0 +1,78 @@
+{
+    "passed": 18,
+    "failed": 0,
+    "results": [
+        {
+            "name": "Administrateur technique sans accès métier",
+            "ok": true
+        },
+        {
+            "name": "Affectation réservée au responsable",
+            "ok": true
+        },
+        {
+            "name": "Début opération réservé au magasinier",
+            "ok": true
+        },
+        {
+            "name": "Départ réservé à accueil",
+            "ok": true
+        },
+        {
+            "name": "Responsable affecte sans réserver le stock",
+            "ok": true
+        },
+        {
+            "name": "Lecture de sa commande affectée",
+            "ok": true
+        },
+        {
+            "name": "Autre préparateur refusé",
+            "ok": true
+        },
+        {
+            "name": "Edition de colis autre préparateur refusée",
+            "ok": true
+        },
+        {
+            "name": "Conditionnement interdit au responsable",
+            "ok": true
+        },
+        {
+            "name": "Transporteur crée un rendez-vous",
+            "ok": true
+        },
+        {
+            "name": "Transporteur modifie son rendez-vous",
+            "ok": true
+        },
+        {
+            "name": "Annulation entre sociétés refusée",
+            "ok": true
+        },
+        {
+            "name": "Edition entre sociétés refusée",
+            "ok": true
+        },
+        {
+            "name": "Ressources autre société refusées",
+            "ok": true
+        },
+        {
+            "name": "Liste transporteur isolée",
+            "ok": true
+        },
+        {
+            "name": "Transporteur annule son rendez-vous",
+            "ok": true
+        },
+        {
+            "name": "Sortie sans duplication des faits du prélèvement",
+            "ok": true
+        },
+        {
+            "name": "Projection reconstitue le mouvement pour stock et trace",
+            "ok": true
+        }
+    ]
+}

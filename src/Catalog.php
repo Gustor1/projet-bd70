@@ -30,10 +30,11 @@ final class Catalog
       'order_id'=>'Commande','qty'=>'Quantité','order_line_id'=>'Ligne de commande','receipt_item_id'=>'Palette reçue / fraction','confirmed_at'=>'Confirmation','package_id'=>'Colis / palette','pick_id'=>'Prélèvement',
       'shipped_at'=>'Expédition','operation_ref'=>'Opération liée','delta'=>'Variation (unités)','kind'=>'Nature','entity'=>'Entité','entity_id'=>'Référence technique d’audit','details'=>'Description',
     ];
-    public const VALUES=['admin'=>'Administrateur','manager'=>'Responsable','gate'=>'Accueil','warehouse'=>'Magasinier','pending'=>'En attente','draft'=>'Brouillon','validated'=>'Validée','active'=>'Actif','cancelled'=>'Annulé','arrived'=>'Arrivé','checked'=>'Documents contrôlés','parking'=>'En attente parking','called'=>'Appelé à quai','working'=>'En opération','finished'=>'Opération terminée','departed'=>'Parti','rejected'=>'Refusé','picking'=>'En préparation','ready'=>'Prête','shipped'=>'Expédié','planned'=>'À prélever','confirmed'=>'Prélevé','entry'=>'Entrée','transfer'=>'Transfert','shipment'=>'Sortie expédition','adjustment'=>'Ajustement'];
+    public const VALUES=['admin'=>'Administrateur','manager'=>'Responsable','gate'=>'Accueil','carrier'=>'Transporteur','warehouse'=>'Magasinier','pending'=>'En attente','draft'=>'Brouillon','validated'=>'Validée','active'=>'Actif','cancelled'=>'Annulé','arrived'=>'Arrivé','checked'=>'Documents contrôlés','parking'=>'En attente parking','called'=>'Appelé à quai','working'=>'En opération','finished'=>'Opération terminée','departed'=>'Parti','rejected'=>'Refusé','picking'=>'En préparation','ready'=>'Prête','shipped'=>'Expédié','planned'=>'À prélever','confirmed'=>'Prélevé','entry'=>'Entrée','transfer'=>'Transfert','shipment'=>'Sortie expédition','adjustment'=>'Ajustement'];
     public const READONLY=['truck_visit','visit_event','pick','shipment','stock_movement','audit_log','receipt_reserve'];
     private array $columns=[];
     private array $foreign=[];
+    private array $referencing=[];
     public function __construct(public Database $db) {}
     public function check(string $t): void { if(!isset(self::TITLES[$t]))throw new DomainException('Rubrique inconnue.'); }
     public function columns(string $t): array
@@ -75,7 +76,8 @@ final class Catalog
             $t==='user_account'=>'accounts',
             in_array($t,['appointment','dock_downtime'],true)=>'planning',
             in_array($t,['receipt','receipt_line','receipt_item','supplier_notice','notice_line','lot'],true)=>'stock',
-            in_array($t,['customer_order','order_line','package','package_pick'],true)=>'orders',
+            in_array($t,['customer_order','order_line'],true)=>'manage_orders',
+            in_array($t,['package','package_pick'],true)=>'orders',
             default=>'catalog',
         };
     }
@@ -115,6 +117,7 @@ final class Catalog
             if($t==='appointment')return $service->saveAppointmentInside($id,$data);
             if($t==='dock_downtime')$service->checkDowntime($id,$data);
             if($t==='user_account'){
+                if(($data['role']==='carrier')!==($data['carrier_id']!==null))throw new DomainException('Le profil transporteur exige sa société ; les profils internes ne doivent pas en avoir.');
                 if($id===$actor && ($data['role']!=='admin'||!$data['active']))throw new DomainException('Conservez votre propre accès administrateur.');
                 $pass=$input['password']??'';
                 if(!$id || $pass!==''){
@@ -134,7 +137,7 @@ final class Catalog
           'vehicle'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE vehicle_id=? OR trailer_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE vehicle_id=? OR trailer_id=?)',[$id,$id,$id,$id]),
           'driver'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE driver_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE driver_id=?)',[$id,$id]),
           'dock'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE dock_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE dock_id=?)',[$id,$id]),
-          'zone','aisle','rack','rack_level','location'=>$id&&(bool)$db->scalar('SELECT COUNT(*) FROM stock_movement m JOIN location l ON l.id=m.location_id JOIN rack_level n ON n.id=l.level_id JOIN rack r ON r.id=n.rack_id JOIN aisle a ON a.id=r.aisle_id JOIN zone z ON z.id=a.zone_id WHERE '.(['zone'=>'z','aisle'=>'a','rack'=>'r','rack_level'=>'n','location'=>'l'][$t]).'.id=?',[$id]),
+          'zone','aisle','rack','rack_level','location'=>$id&&(bool)$db->scalar('SELECT COUNT(*) FROM v_stock_movement m JOIN location l ON l.id=m.location_id JOIN rack_level n ON n.id=l.level_id JOIN rack r ON r.id=n.rack_id JOIN aisle a ON a.id=r.aisle_id JOIN zone z ON z.id=a.zone_id WHERE '.(['zone'=>'z','aisle'=>'a','rack'=>'r','rack_level'=>'n','location'=>'l'][$t]).'.id=?',[$id]),
           'dock_equipment','dock_vehicle_type'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE dock_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE dock_id=?)',[$old['dock_id'],$old['dock_id']]),
           'vehicle_equipment'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE vehicle_id=? OR trailer_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE vehicle_id=? OR trailer_id=?)',[$old['vehicle_id'],$old['vehicle_id'],$old['vehicle_id'],$old['vehicle_id']]),
           'driver_qualification'=>$id&&(bool)$db->scalar('SELECT (SELECT COUNT(*) FROM appointment WHERE driver_id=?)+(SELECT COUNT(*) FROM truck_visit WHERE driver_id=?)',[$old['driver_id'],$old['driver_id']]),
@@ -215,7 +218,7 @@ final class Catalog
         $delete=$edit;
         if(in_array($t,['appointment','user_account'],true))$delete='Utilisez l’annulation avant arrivée ou la désactivation du compte.';
         if(!$delete){
-            $links=$this->db->all('SELECT TABLE_NAME,COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA=DATABASE() AND REFERENCED_TABLE_NAME=?',[$t]);
+            $links=$this->referencing[$t]??=$this->db->all('SELECT TABLE_NAME,COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA=DATABASE() AND REFERENCED_TABLE_SCHEMA=DATABASE() AND REFERENCED_TABLE_NAME=?',[$t]);
             foreach($links as $link)if($this->db->scalar('SELECT COUNT(*) FROM `'.$link['TABLE_NAME'].'` WHERE `'.$link['COLUMN_NAME'].'`=?',[$id])){$delete='Fiche référencée : conservez son historique et corrigez les données modifiables.';break;}
         }
         if(!$delete && in_array($t,['dock_equipment','dock_vehicle_type','vehicle_equipment','driver_qualification'],true)){

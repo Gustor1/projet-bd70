@@ -1,0 +1,22 @@
+[
+  {
+    "role": "admin",
+    "title": "Administration technique",
+    "ok": true
+  },
+  {
+    "role": "manager",
+    "title": "Vue d’ensemble",
+    "ok": true
+  },
+  {
+    "role": "gate",
+    "title": "Vue d’ensemble",
+    "ok": true
+  },
+  {
+    "role": "warehouse",
+    "title": "Vue d’ensemble",
+    "ok": true
+  }
+]

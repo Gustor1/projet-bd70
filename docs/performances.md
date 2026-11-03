@@ -1,21 +1,21 @@
 # Analyse des performances
 
-Les nouvelles mesures du **3 novembre 2026** sont référencées dans [le bilan de consolidation](FINALISATION-2026-11-03.md). Les chiffres qui suivent restent les relevés antérieurs. Les temps SQL, réponses HTTP et navigations avec ressources sont mesurés séparément.
+Mesures de la version corrigée du **3 novembre 2026**, incluant la projection normalisée des sorties. Preuve : livrables/preuves/corrections-rendu-2026-11-03/performances.json. Les temps SQL, réponses HTTP et navigations avec ressources sont mesurés séparément.
 
-Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_completion. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
+Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_corrections_20261103. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
 
 | Requête | Médiane ms | Min ms | Max ms |
 |---|---:|---:|---:|
-| disponibilite_quai | 1.940 | 1.427 | 3.231 |
-| recherche_passages | 8.927 | 4.302 | 13.486 |
-| recherche_stock | 61.910 | 46.158 | 75.219 |
-| emplacements | 50.225 | 37.541 | 61.628 |
-| historique_lot | 56.277 | 45.494 | 65.249 |
-| selection_fefo | 74.066 | 67.637 | 89.753 |
-| statistiques_transporteur | 25.255 | 19.178 | 30.299 |
-| remplissage_zone | 49.243 | 35.433 | 60.719 |
+| disponibilite_quai | 1.263 | 0.845 | 1.744 |
+| recherche_passages | 48.410 | 41.429 | 75.394 |
+| recherche_stock | 60.175 | 44.939 | 75.853 |
+| emplacements | 41.890 | 39.288 | 53.623 |
+| historique_lot | 38.453 | 31.770 | 49.741 |
+| selection_fefo | 65.776 | 57.190 | 116.835 |
+| statistiques_transporteur | 59.515 | 51.458 | 90.713 |
+| remplissage_zone | 48.001 | 46.746 | 59.589 |
 
-Index comparé : idx_appointment_slot uniquement ; index FK simple maintenu. Lecture avant 10.481 ms, après 1.361 ms. Les dix observations et le coût INSERT + ROLLBACK sont publiés dans le JSON.
+Comparaison historique de l’index (avant cette correction) : idx_appointment_slot uniquement ; index FK simple maintenu. Lecture avant 10.481 ms, après 1.361 ms. Les dix observations et le coût INSERT + ROLLBACK sont publiés dans le JSON.
 
 v_visit joint les événements uniques (passage, état) au lieu d’agréger tout l’historique. v_location_usage calcule les capacités physiques sans toutes les jointures de v_stock. La seconde correction répond à une expiration de 30 secondes observée avec les données riches.
 

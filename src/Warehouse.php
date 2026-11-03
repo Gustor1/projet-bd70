@@ -195,11 +195,11 @@ final class Warehouse
     }
     private function movement(string $ref,int $item,int $location,int $delta,string $kind,string $reason,?int $pick=null): void
     {
-        $this->db->insert('stock_movement',['operation_ref'=>$ref,'receipt_item_id'=>$item,'location_id'=>$location,'delta'=>$delta,'kind'=>$kind,'reason'=>$reason,'pick_id'=>$pick,'actor_id'=>$this->actor,'created_at'=>$this->now()]);
+        $this->db->insert('stock_movement',['operation_ref'=>$ref,'receipt_item_id'=>$kind==='shipment'?null:$item,'location_id'=>$kind==='shipment'?null:$location,'delta'=>$kind==='shipment'?null:$delta,'kind'=>$kind,'reason'=>$reason,'pick_id'=>$pick,'actor_id'=>$this->actor,'created_at'=>$this->now()]);
     }
     private function free(int $item,int $location): int
     {
-        return (int)$this->db->scalar('SELECT COALESCE((SELECT SUM(delta) FROM stock_movement WHERE receipt_item_id=? AND location_id=?),0)-COALESCE((SELECT SUM(qty) FROM pick WHERE receipt_item_id=? AND location_id=? AND status IN (\'planned\',\'confirmed\')),0)',[$item,$location,$item,$location]);
+        return (int)$this->db->scalar('SELECT COALESCE((SELECT SUM(delta) FROM v_stock_movement WHERE receipt_item_id=? AND location_id=?),0)-COALESCE((SELECT SUM(qty) FROM pick WHERE receipt_item_id=? AND location_id=? AND status IN (\'planned\',\'confirmed\')),0)',[$item,$location,$item,$location]);
     }
     public function transfer(int $item,int $source,int $dest,int $qty,string $reason): void
     {
@@ -220,11 +220,20 @@ final class Warehouse
             $this->movement($this->ref('INV'),$item,$location,$delta,'adjustment',$reason);
         });
     }
+    public function assignPreparer(int $order,int $preparer): void
+    {
+        $this->db->transaction($this->actor,function()use($order,$preparer){
+            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$order]);
+            if($o['status']!=='draft')throw new DomainException('Reprenez la commande en brouillon avant réaffectation.');
+            if(!$this->db->scalar("SELECT id FROM user_account WHERE id=? AND active=1 AND role='warehouse'",[$preparer]))throw new DomainException('Préparateur actif requis.');
+            $this->db->run('UPDATE customer_order SET preparer_id=? WHERE id=?',[$preparer,$order]);
+        });
+    }
     public function prepare(int $id,int $preparer): void
     {
         $this->db->transaction($this->actor,function()use($id,$preparer){
-            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$id]);if($o['status']!=='draft')throw new DomainException('Commande déjà lancée ou annulée.');
-            $p=$this->db->one('SELECT * FROM user_account WHERE id=?',[$preparer]);if(!$p['active']||!in_array($p['role'],['warehouse','manager','admin'],true))throw new DomainException('Choisissez un préparateur actif.');
+            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$id]);if($this->db->scalar('SELECT role FROM user_account WHERE id=?',[$this->actor])==='warehouse'&&(int)$o['preparer_id']!==$this->actor)throw new DomainException('Commande non affectée à ce préparateur.');if($o['status']!=='draft')throw new DomainException('Commande déjà lancée ou annulée.');
+            $p=$this->db->one('SELECT * FROM user_account WHERE id=?',[$preparer]);if(!$p['active']||$p['role']!=='warehouse')throw new DomainException('Choisissez un préparateur actif.');
             $lines=$this->db->all('SELECT * FROM order_line WHERE order_id=? ORDER BY id',[$id]);if(!$lines)throw new DomainException('Ajoutez des lignes à la commande.');
             foreach($lines as $line){
                 if($o['owner_id']!=$this->db->scalar('SELECT owner_id FROM article WHERE id=?',[$line['article_id']]))throw new DomainException('Article d’un autre propriétaire.');
@@ -289,7 +298,7 @@ final class Warehouse
     public function ship(int $order,int $visit): void
     {
         $this->db->transaction($this->actor,function()use($order,$visit){
-            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$order]);if($o['status']!=='ready')throw new DomainException('Commande non prête ou déjà expédiée.');
+            $o=$this->db->one('SELECT * FROM customer_order WHERE id=?',[$order]);if($this->db->scalar('SELECT role FROM user_account WHERE id=?',[$this->actor])==='warehouse'&&(int)$o['preparer_id']!==$this->actor)throw new DomainException('Commande non affectée à ce préparateur.');if($o['status']!=='ready')throw new DomainException('Commande non prête ou déjà expédiée.');
             $v=$this->db->one('SELECT * FROM truck_visit WHERE id=?',[$visit]);if($v['status']!=='working'||$v['operation']!=='expedition')throw new DomainException('Camion sortant non disponible au chargement.');
             $picks=$this->db->all('SELECT p.*,a.unit_kg,a.units_per_pallet,a.storage,a.id article_id,l.blocked,l.expires_on FROM pick p JOIN order_line ol ON ol.id=p.order_line_id JOIN article a ON a.id=ol.article_id JOIN receipt_item i ON i.id=p.receipt_item_id JOIN lot l ON l.id=i.lot_id WHERE ol.order_id=? AND p.status=\'confirmed\' ORDER BY p.id',[$order]);
             if(!$picks)throw new DomainException('Aucun prélèvement confirmé.');$kg=0;$pallets=0;
@@ -297,7 +306,7 @@ final class Warehouse
                 if($p['blocked']||($p['expires_on']&&$p['expires_on']<substr($this->now(),0,10)))throw new DomainException('Lot bloqué ou périmé.');
                 if((int)$this->db->scalar('SELECT COALESCE(SUM(pp.qty),0) FROM package_pick pp JOIN package c ON c.id=pp.package_id WHERE pp.pick_id=? AND c.order_id=?',[$p['id'],$order])!==(int)$p['qty'])throw new DomainException('Répartissez exactement chaque quantité prélevée entre les colis ou palettes.');
                 $this->goodsVehicle($v,$p);$kg+=$p['qty']*$p['unit_kg'];$pallets+=$p['qty']/$p['units_per_pallet'];
-                if((int)$this->db->scalar('SELECT COALESCE(SUM(delta),0) FROM stock_movement WHERE receipt_item_id=? AND location_id=?',[$p['receipt_item_id'],$p['location_id']])<$p['qty'])throw new DomainException('Stock physique insuffisant.');
+                if((int)$this->db->scalar('SELECT COALESCE(SUM(delta),0) FROM v_stock_movement WHERE receipt_item_id=? AND location_id=?',[$p['receipt_item_id'],$p['location_id']])<$p['qty'])throw new DomainException('Stock physique insuffisant.');
             }
             $this->truckCapacity($v,$kg,$pallets,true);$ref=$this->ref('EXP');
             $this->db->insert('shipment',['order_id'=>$order,'visit_id'=>$visit,'reference'=>$ref,'shipped_at'=>$this->now(),'actor_id'=>$this->actor]);

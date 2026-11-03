@@ -18,5 +18,16 @@ for table in tables:
 for table in ('stock_movement','visit_event','shipment','audit_log','receipt_reserve'):
  for event in ('UPDATE','DELETE'):
   parts.append(f"CREATE TRIGGER immutable_{table}_{event.lower()} BEFORE {event} ON {table} FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Historique immuable : utiliser une correction métier'$$")
+parts.append("""CREATE TRIGGER normalize_shipment BEFORE INSERT ON stock_movement FOR EACH ROW
+BEGIN
+ IF NEW.kind='shipment' THEN
+  IF (NEW.receipt_item_id IS NOT NULL AND NEW.receipt_item_id<>(SELECT receipt_item_id FROM pick WHERE id=NEW.pick_id)) OR
+     (NEW.location_id IS NOT NULL AND NEW.location_id<>(SELECT location_id FROM pick WHERE id=NEW.pick_id)) OR
+     (NEW.delta IS NOT NULL AND NEW.delta<>-(SELECT qty FROM pick WHERE id=NEW.pick_id)) THEN
+   SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Sortie incoherente avec le prelevement';
+  END IF;
+  SET NEW.receipt_item_id=NULL, NEW.location_id=NULL, NEW.delta=NULL;
+ END IF;
+END$$""")
 parts.append('DELIMITER ;\n')
 Path('sql/04_triggers.sql').write_text('\n'.join(parts),encoding='utf-8')

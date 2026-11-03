@@ -446,4 +446,15 @@ CREATE TRIGGER immutable_audit_log_update BEFORE UPDATE ON audit_log FOR EACH RO
 CREATE TRIGGER immutable_audit_log_delete BEFORE DELETE ON audit_log FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Historique immuable : utiliser une correction métier'$$
 CREATE TRIGGER immutable_receipt_reserve_update BEFORE UPDATE ON receipt_reserve FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Historique immuable : utiliser une correction métier'$$
 CREATE TRIGGER immutable_receipt_reserve_delete BEFORE DELETE ON receipt_reserve FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Historique immuable : utiliser une correction métier'$$
+CREATE TRIGGER normalize_shipment BEFORE INSERT ON stock_movement FOR EACH ROW
+BEGIN
+ IF NEW.kind='shipment' THEN
+  IF (NEW.receipt_item_id IS NOT NULL AND NEW.receipt_item_id<>(SELECT receipt_item_id FROM pick WHERE id=NEW.pick_id)) OR
+     (NEW.location_id IS NOT NULL AND NEW.location_id<>(SELECT location_id FROM pick WHERE id=NEW.pick_id)) OR
+     (NEW.delta IS NOT NULL AND NEW.delta<>-(SELECT qty FROM pick WHERE id=NEW.pick_id)) THEN
+   SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Sortie incoherente avec le prelevement';
+  END IF;
+  SET NEW.receipt_item_id=NULL, NEW.location_id=NULL, NEW.delta=NULL;
+ END IF;
+END$$
 DELIMITER ;

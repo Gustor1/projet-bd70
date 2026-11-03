@@ -1,0 +1,18 @@
+[
+  {
+    "label": "install-ui",
+    "exit_code": 0
+  },
+  {
+    "label": "seed-ui",
+    "exit_code": 0
+  },
+  {
+    "label": "corrections-ui",
+    "exit_code": 0
+  },
+  {
+    "label": "droits-navigateur",
+    "exit_code": 0
+  }
+]

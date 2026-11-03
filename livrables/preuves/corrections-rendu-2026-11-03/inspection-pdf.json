@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-03T13:16:58.317748+00:00",
+  "report_pages": 11,
+  "diagram_pages": 23,
+  "rendered_with": "Poppler",
+  "all_pages_contact_reviewed": true,
+  "report_changed_screenshots_reviewed_at_full_size": true,
+  "no_visible_overlap_or_clipping": true,
+  "mcd_pdf_retained_unchanged": true,
+  "files": {
+    "livrables\\rapport\\DIAGRAMMES-BD70.pdf": "f587f6839e8d0a3def16624d4edb37b22850497036fe8208de060f9dad1d091f",
+    "livrables\\rapport\\RAPPORT-PROJET-BD70.pdf": "5797e5561cabbc8ba737741784388529053d736d27be638cdd940f872f949854"
+  }
+}

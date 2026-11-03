@@ -75,17 +75,19 @@ try:
     call([php,'scripts/model.php'],e,'schema')
     shutil.copy2(work/'docs/diagrammes/schema.json',proof/'schema-installe.json')
     e=install('ui');e['BD70_NOW']='2026-10-22 12:00:00'
+    call([php,'tests/corrections.php'],e,'corrections')
     log=(work/'.local/web.log').open('wb')
     server=subprocess.Popen([php,'-S','127.0.0.1:8071','-t','public'],cwd=work,env=e,stdout=log,stderr=log,creationflags=subprocess.CREATE_NO_WINDOW)
     try:
         time.sleep(1)
         if server.poll() is not None:raise RuntimeError('Le serveur dédié ne démarre pas ; aucun test navigateur exécuté.')
-        for test in ['browser','parcours','completion-browser','finalisation-browser']:
+        for test in ['corrections-browser','parcours']:
             call([node,'tests/'+test+'.cjs'],{**e,'BD70_URL':'http://127.0.0.1:8071'},test,600)
     finally:server.terminate();server.wait(timeout=10);log.close()
     e=install('perf',False);call([php,'scripts/performance.php','10000'],e,'performances')
     call([python,'scripts/clean-install.py'],{**env,'BD70_CLEAN_DIR':'installation-'+suffix,'BD70_CLEAN_DB':'bd70_test_install_'+suffix},'installation-propre')
-    call([python,'scripts/verify-migration.py'],{**env,'BD70_MIGRATION_TARGET':'bd70_restore_migration_'+suffix},'migration') if (work/'.local/bd70-demo-final-before-completion.sql').exists() else None
+    # Current copy migration: scripts/migrate-corrections.php, tested against the preserved rich demo.
+    # Historical verify-migration.py remains available for the pre-correction schema.
 finally:
     collect()
     demo_after=demo_snapshot()

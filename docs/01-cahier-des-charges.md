@@ -11,7 +11,7 @@ F01 : inscription, authentification, quatre rôles. F02 : transporteurs, contact
 L'interface inclut les compléments de F02/F07 afin de couvrir la grille E. Le minimum de S n'est pas considéré comme une dispense de recherche, statistiques ou gestion des référentiels.
 
 ## Acteurs
-Administrateur : comptes et tous les traitements. Responsable : référentiels, planning, stock, réception, préparation, expédition et analyses. Accueil : rendez-vous et passages, lecture des référentiels utiles. Magasinier : lecture planning, réception, stock, préparation et expédition. Compte en attente : aucun accès métier.
+Administrateur technique : comptes et journal. Responsable : référentiels, planning, commandes, affectation et analyses. Accueil : arrivée, contrôle, appel à quai et départ. Magasinier : opérations à quai, réception, stock et préparation/expédition de ses commandes affectées. Transporteur : rendez-vous de sa société. Compte en attente : aucun accès métier.
 
 ## Exigences transversales
 SQL préparé, validation serveur et contraintes relationnelles ; sessions renouvelées, CSRF, mots de passe hachés, droits contrôlés côté serveur ; transactions atomiques et contrôle concurrent ; journal automatique en base ; interface française responsive, ressources locales, valeurs métier à la place des clés internes ; filtres combinables, pagination, export respectant les droits.

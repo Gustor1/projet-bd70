@@ -1,9 +1,14 @@
+CREATE VIEW v_stock_movement AS
+ SELECT m.id,m.operation_ref,CASE WHEN m.kind='shipment' THEN p.receipt_item_id ELSE m.receipt_item_id END receipt_item_id,
+ CASE WHEN m.kind='shipment' THEN p.location_id ELSE m.location_id END location_id,
+ CASE WHEN m.kind='shipment' THEN -p.qty ELSE m.delta END delta,m.kind,m.pick_id,m.reason,m.actor_id,m.created_at
+ FROM stock_movement m LEFT JOIN pick p ON p.id=m.pick_id;
 CREATE VIEW v_location AS
  SELECT l.*, z.id zone_id, z.name zone_name,z.storage, a.code aisle_code,r.code rack_code,n.code level_code,
  l.width_m*l.depth_m*l.height_m capacity_m3
  FROM location l JOIN rack_level n ON n.id=l.level_id JOIN rack r ON r.id=n.rack_id JOIN aisle a ON a.id=r.aisle_id JOIN zone z ON z.id=a.zone_id;
 CREATE VIEW v_balance AS
- SELECT receipt_item_id,location_id,SUM(delta) qty FROM stock_movement GROUP BY receipt_item_id,location_id;
+ SELECT receipt_item_id,location_id,SUM(delta) qty FROM v_stock_movement GROUP BY receipt_item_id,location_id;
 CREATE VIEW v_reserved AS
  SELECT receipt_item_id,location_id,SUM(qty) qty FROM pick WHERE status IN ('planned','confirmed') GROUP BY receipt_item_id,location_id;
 CREATE VIEW v_stock AS
