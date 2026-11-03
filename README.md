@@ -2,7 +2,7 @@
 
 Application PHP/PDO de gestion d'un entrepôt logistique, réalisée à partir du sujet A26, de la grille d'évaluation et des deux supports de cours fournis. Les fichiers d'origine sont conservés dans `document cours/` et `document projet/`.
 
-**Pour le groupe : [13 comptes de démonstration](COMPTES-TEST.md) · [Comment tester toute l’application](COMMENT-TESTER.md).** L’admin local est créé automatiquement à la première installation ; `scripts/admin-local.php` permet de le recréer ou de rétablir son accès sans effacer les données.
+**Pour le groupe : [Installer sur son PC](INSTALLATION-LOCALE.md) · [13 comptes de démonstration](COMPTES-TEST.md) · [Comment tester toute l’application](COMMENT-TESTER.md).** L’admin local est créé automatiquement à la première installation ; `scripts/admin-local.php` permet de le recréer ou de rétablir son accès sans effacer les données.
 
 **Démarrage Windows** (outils XAMPP déjà présents sur ce poste) :
 

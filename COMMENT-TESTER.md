@@ -4,6 +4,8 @@ Ce guide couvre les fonctionnalités du sujet A26 et les critères de la grille.
 
 ## 1. Démarrer et préparer les tests
 
+Pour une première installation sur un autre PC, suivre d’abord [INSTALLATION-LOCALE.md](INSTALLATION-LOCALE.md).
+
 Prérequis testés : Windows, PHP 8.2 avec PDO MySQL/mbstring, MariaDB 10.4, Edge/Chromium. Adapter les chemins XAMPP selon le [README](README.md).
 
 Depuis la racine du dépôt :
