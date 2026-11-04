@@ -43,7 +43,7 @@ $queries=[
  'statistiques_transporteur'=>['SELECT carrier_name,COUNT(*) passages,AVG(wait_minutes),AVG(immobilized_minutes) FROM v_visit WHERE arrived_at>=? AND arrived_at<? GROUP BY carrier_id,carrier_name',['2025-05-01','2025-06-01']],
  'remplissage_zone'=>['SELECT l.zone_name,SUM(u.used_kg),SUM(l.max_kg),SUM(u.used_pallets),SUM(l.max_pallets) FROM v_location l JOIN v_location_usage u ON u.id=l.id GROUP BY l.zone_id,l.zone_name',[]],
 ];
-$planDb=new Database(['dsn'=>'mysql:host=127.0.0.1;port=3307;dbname='.$name.';charset=utf8mb4','user'=>getenv('BD70_ADMIN_USER')?:'root','password'=>getenv('BD70_ADMIN_PASSWORD')?:'','timezone'=>'Europe/Paris']);
+$planDb=new Database(['dsn'=>'mysql:host=127.0.0.1;port='.(getenv('BD70_PORT')?:3307).';dbname='.$name.';charset=utf8mb4','user'=>getenv('BD70_ADMIN_USER')?:'root','password'=>getenv('BD70_ADMIN_PASSWORD')?:'','timezone'=>'Europe/Paris']);
 function measure(Database $db,string $sql,array $params): array {
  global $planDb;
  $db->all($sql,$params);$raw=[];for($i=0;$i<10;$i++){$start=hrtime(true);$rows=$db->all($sql,$params);$raw[]=(hrtime(true)-$start)/1e6;}
@@ -63,7 +63,7 @@ $volumes=[];$indexes=[];foreach($db->all('SHOW FULL TABLES WHERE Table_type="BAS
 $checks=['stock_non_negatif'=>(int)$db->scalar('SELECT COUNT(*) FROM v_balance WHERE qty<0')===0,'capacites'=>(int)$db->scalar('SELECT COUNT(*) FROM v_location l JOIN v_location_usage u ON u.id=l.id WHERE u.used_kg>l.max_kg OR u.used_pallets>l.max_pallets OR u.used_m3>l.capacity_m3')===0,'transferts_conserves'=>(int)$db->scalar("SELECT COUNT(*) FROM (SELECT operation_ref FROM v_stock_movement WHERE kind='transfer' GROUP BY operation_ref HAVING SUM(delta)<>0) x")===0];
 $cfg=$db->one('SELECT @@innodb_buffer_pool_size buffer_pool_bytes,@@max_connections max_connections,@@tx_isolation isolation_level');
 // Comparaison contrôlée sur la seule base volumétrique, avec le compte d'installation.
-$admin=new PDO('mysql:host=127.0.0.1;port=3307;dbname='.$name.';charset=utf8mb4',getenv('BD70_ADMIN_USER')?:'root',getenv('BD70_ADMIN_PASSWORD')?:'',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$admin=new PDO('mysql:host=127.0.0.1;port='.(getenv('BD70_PORT')?:3307).';dbname='.$name.';charset=utf8mb4',getenv('BD70_ADMIN_USER')?:'root',getenv('BD70_ADMIN_PASSWORD')?:'',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
 // Un index FK de remplacement maintient les contraintes pendant le retrait du composé.
 $admin->exec('CREATE INDEX IF NOT EXISTS idx_appt_dock_baseline ON appointment(dock_id)');
 $admin->exec('ALTER TABLE appointment DROP INDEX idx_appointment_slot');

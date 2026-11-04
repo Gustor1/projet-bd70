@@ -7,7 +7,9 @@ final class Reports
     public function period(array $input): array
     {
         $from=Warehouse::date((string)($input['from']??Clock::today()));$to=Warehouse::date((string)($input['to']??$from));
-        if($to<$from||strtotime($to)-strtotime($from)>366*86400)throw new DomainException('Choisissez une période de 366 jours au maximum.');
+        $utc=new DateTimeZone('UTC');
+        $days=(new DateTimeImmutable($from,$utc))->diff(new DateTimeImmutable($to,$utc))->days+1;
+        if($to<$from||$days>366)throw new DomainException('Choisissez une période de 366 jours au maximum.');
         return [$from.' 00:00:00',(new DateTimeImmutable($to))->modify('+1 day')->format('Y-m-d').' 00:00:00'];
     }
     public function stock(array $f,bool $export=false): array
@@ -41,7 +43,9 @@ final class Reports
     }
     public function dashboard(array $f): array
     {
-        [$from,$to]=$this->period($f);$period=(new DateTimeImmutable($to))->getTimestamp()-(new DateTimeImmutable($from))->getTimestamp();
+        [$from,$to]=$this->period($f);// Les DATETIME SQL mesurent des secondes civiles, y compris aux changements d’heure.
+        $utc=new DateTimeZone('UTC');
+        $period=(new DateTimeImmutable($to,$utc))->getTimestamp()-(new DateTimeImmutable($from,$utc))->getTimestamp();
         $occupied=(float)$this->db->scalar("SELECT COALESCE(SUM(GREATEST(0,TIMESTAMPDIFF(SECOND,GREATEST(working_at,?),LEAST(COALESCE(finished_at,NOW()),?)))),0) FROM v_visit WHERE working_at<? AND COALESCE(finished_at,NOW())>?",[$from,$to,$to,$from]);
         $down=(float)$this->db->scalar('SELECT COALESCE(SUM(TIMESTAMPDIFF(SECOND,GREATEST(starts_at,?),LEAST(ends_at,?))),0) FROM dock_downtime WHERE starts_at<? AND ends_at>?',[$from,$to,$to,$from]);
         $capacity=(int)$this->db->scalar('SELECT COUNT(*) FROM dock')*$period-$down;

@@ -4,7 +4,16 @@ require __DIR__.'/../src/bootstrap.php';
 ini_set('session.use_strict_mode','1');
 session_name('bd70_session');
 session_set_cookie_params(['httponly'=>true,'samesite'=>'Lax','secure'=>!empty($_SERVER['HTTPS']),'path'=>'/']);
-session_start();
+$sessionPath=__DIR__.'/../.local/sessions';
+if ((!is_dir($sessionPath)&&!@mkdir($sessionPath,0700,true))||!is_writable($sessionPath)) {
+    http_response_code(503);
+    exit('Le dossier privé de sessions PHP est inaccessible en écriture.');
+}
+ini_set('session.save_path',$sessionPath);
+if (!@session_start()) {
+    http_response_code(503);
+    exit('Impossible de démarrer la session PHP. Vérifiez les droits du dossier .local/sessions.');
+}
 header("Content-Security-Policy: default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; frame-ancestors 'none'; form-action 'self'; base-uri 'none'");
 header('X-Content-Type-Options: nosniff');header('Referrer-Policy: same-origin');header('Cache-Control: no-store');
 $_SESSION['csrf']??=bin2hex(random_bytes(24));

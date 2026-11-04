@@ -5,7 +5,7 @@ target=os.environ.get('BD70_MIGRATION_TARGET','bd70_restore_completion_final')
 assert re.fullmatch(r'bd70_restore[a-z0-9_]*',target)
 source='bd70_demo_final'
 binary=Path(os.environ.get('BD70_MYSQL_BIN','C:/xampp2/mysql/bin'))
-common=['--host=127.0.0.1','--port=3307','--user='+os.environ.get('BD70_ADMIN_USER','root'),'--default-character-set=utf8mb4','--batch','--skip-column-names']
+common=['--host=127.0.0.1','--port='+os.environ.get('BD70_PORT','3307'),'--user='+os.environ.get('BD70_ADMIN_USER','root'),'--default-character-set=utf8mb4','--batch','--skip-column-names']
 env=os.environ.copy()
 if env.get('BD70_ADMIN_PASSWORD'):env['MYSQL_PWD']=env['BD70_ADMIN_PASSWORD']
 def query(sql,db=None):
