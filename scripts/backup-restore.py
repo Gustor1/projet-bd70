@@ -32,6 +32,6 @@ sql("SET @actor_id=1; UPDATE carrier SET phone='000-RESTORE-TEST' WHERE id=1",ta
 automatic=int(sql('SELECT COUNT(*) FROM audit_log',target))==old_audit+1
 checks={'data':all(x['ok'] for x in results),'triggers_restored':triggers>0,'procedures_restored':procedures==2,'historisation_after_restore':automatic}
 report={'date':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':source,'target':target,'tables':results,'triggers':triggers,'procedures':procedures,'checks':checks,'backup_bytes':file.stat().st_size}
-Path('livrables/preuves/restauration.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+Path('docs/preuves/restauration.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(f'{len(results)} tables restaurées, {triggers} déclencheurs, {procedures} procédures. Contrôles : {checks}')
 assert all(checks.values())

@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-04",
+  "before_files": 433,
+  "after_files": 158,
+  "backup": "C:\\Users\\eliot\\Documents\\GitHub\\projet-bd70-avant-nettoyage-20261104-221348.zip",
+  "old_files_outside_project": "C:\\Users\\eliot\\Documents\\GitHub\\projet-bd70-anciens-fichiers-20261104",
+  "php_syntax_files": 45,
+  "python_syntax_files": 9,
+  "broken_markdown_links": [],
+  "clean_install": "../installation-propre.json",
+  "model_verification": "../mcd-2026-11-04/modeles.json",
+  "report_pages": 11,
+  "diagram_collection_pages": 7,
+  "visual_review": "Les 18 pages ont été rendues en planche et inspectées. Les schémas globaux se lisent avec zoom.",
+  "scope": "Nettoyage documentaire et outillage de recette. Les données actives restent dans .local."
+}

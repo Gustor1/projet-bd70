@@ -4,7 +4,7 @@
 Un entrepôt reçoit des camions, contrôle leurs documents, réceptionne et range les marchandises de plusieurs propriétaires puis prépare et expédie les commandes. Le système doit conserver la provenance de chaque quantité et fournir des indicateurs de pilotage.
 
 ## Sources et périmètre
-S : `document projet/A26_Site_Logistique.pdf`, trois pages. E : grille DOCX. C : 261 diapositives de conception/administration et SmartArt. W : 31 diapositives web/PHP/PDO. Les extractions intégrales sont dans `docs/sources/`. S prime sur les exemples de C ; E n'impose pas Access/VBA et n'indique aucune pondération.
+S est le sujet A26 dans document projet/A26_Site_Logistique.pdf. E est la grille DOCX fournie dans le même dossier. Les supports de cours ont guidé la conception. Le sujet prime sur leurs exemples. La grille autorise un langage approprié et ne donne aucune pondération.
 
 F01 : inscription, authentification, quatre rôles. F02 : transporteurs, contacts, contrats, chauffeurs, habilitations, véhicules. F03 : quais, équipements, compatibilités, indisponibilités, réservation sans chevauchement. F04 : étapes horodatées du passage avec ou sans rendez-vous. F05 : avis, réceptions multilots, palettes, avaries et réserves. F06 : structure physique, propriétaires, articles, stock et mouvements. F07 : commandes, FEFO, préparateur, colis/palettes, chargement, bon et lettre. F08 : traçabilité, indicateurs, états et graphiques.
 

@@ -71,6 +71,6 @@ try{$before=measure($db,...$queries['disponibilite_quai']);$writeBefore=measureW
 $after=measure($db,...$queries['disponibilite_quai']);
 $writeAfter=measureWrite($db);
 $result=['date'=>date(DATE_ATOM),'database'=>$name,'engine'=>$db->scalar('SELECT VERSION()'),'php'=>PHP_VERSION,'os'=>php_uname(),'config'=>$cfg,'seed'=>70,'reference_date'=>'2026-10-22','volumes'=>$volumes,'indexes'=>$indexes,'checks'=>$checks,'queries'=>$measurements,'comparison'=>['changed'=>'idx_appointment_slot uniquement ; index FK simple maintenu','before'=>$before,'after'=>$after,'write_before'=>$writeBefore,'write_after'=>$writeAfter]];
-file_put_contents(__DIR__.'/../livrables/preuves/performances.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/performances.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 $text="-- Requêtes réellement mesurées, paramètres dans performances.json.\n";foreach($queries as $key=>[$sql,$p])$text.="\n-- $key\n$sql;\n";file_put_contents(__DIR__.'/../sql/requetes_metier.sql',$text);
 if(in_array(false,$checks,true))throw new RuntimeException('Jeu volumétrique incohérent.');

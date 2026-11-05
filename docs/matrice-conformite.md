@@ -1,8 +1,8 @@
 # Matrice de conformité après réalisation
 
-Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le dernier MCD (retour enseignant attendu) et les MLD courants.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le MCD aligné sur le schéma courant le 4 novembre 2026 et le schéma relationnel complet.
 
-Les huit domaines obligatoires sont présents dans l’interface. Les preuves couvrent des scénarios ciblés ; charger une rubrique ne prouve pas tous ses CRUD. L’audit initial reste conservé dans livrables/audit-2026-10-28/.
+Les huit domaines obligatoires sont présents dans l’interface. Les preuves couvrent des scénarios ciblés ; charger une rubrique ne prouve pas tous ses CRUD.
 
 ## F01 - Connexion et profils
 
@@ -12,7 +12,7 @@ Les huit domaines obligatoires sont présents dans l’interface. Les preuves co
 
 **Conclusion.** Les accès interdits et l’élévation de rôle sont refusés. Le compte transporteur est explicitement facultatif dans le sujet.
 
-Implémentation : Auth.php ; public/index.php. Preuves : integration.json ; navigateur.json, dans livrables/preuves/.
+Implémentation : Auth.php ; public/index.php. Preuves : integration.json ; corrections-navigateur.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F02 - Transporteurs, chauffeurs et véhicules
 
@@ -22,7 +22,7 @@ Implémentation : Auth.php ; public/index.php. Preuves : integration.json ; navi
 
 **Conclusion.** Les fiches inutilisées sont supprimables ; les caractéristiques structurelles utilisées sont protégées. Les valeurs avant/après sont historisées.
 
-Implémentation : Catalog.php ; templates/catalog.php. Preuves : completion.json ; navigateur.json, dans livrables/preuves/.
+Implémentation : Catalog.php ; templates/catalog.php. Preuves : completion.json ; corrections-navigateur.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F03 - Quais et rendez-vous
 
@@ -32,7 +32,7 @@ Implémentation : Catalog.php ; templates/catalog.php. Preuves : completion.json
 
 **Conclusion.** Les courses concurrentes sont contrôlées. Actualisation toutes les 30 secondes hors saisie, référence Paris commune à PHP/SQL.
 
-Implémentation : Warehouse::appointment/compatible ; Reports::docks. Preuves : integration.json ; completion.json ; heure-paris.json, dans livrables/preuves/.
+Implémentation : Warehouse::appointment/compatible ; Reports::docks. Preuves : integration.json ; completion.json ; time.log, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F04 - Flux de camions
 
@@ -42,7 +42,7 @@ Implémentation : Warehouse::appointment/compatible ; Reports::docks. Preuves : 
 
 **Conclusion.** Transitions impossibles, rétrogrades et doubles occupations refusées. Les ressources constatées sont distinctes du planning.
 
-Implémentation : Warehouse::arrive/transition ; v_visit. Preuves : integration.json ; parcours.json, dans livrables/preuves/.
+Implémentation : Warehouse::arrive/transition ; v_visit. Preuves : integration.json ; parcours.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F05 - Réception des marchandises
 
@@ -52,7 +52,7 @@ Implémentation : Warehouse::arrive/transition ; v_visit. Preuves : integration.
 
 **Conclusion.** Un manquant total ne crée aucune fausse palette. La validation est atomique et non rejouable. Réserves consultables dans la réception et la trace des lots concernés.
 
-Implémentation : Warehouse::openReceipt/receiveItem/reserveReceipt/validateReceipt/closeNotice. Preuves : completion.json ; completion-navigateur.json ; parcours.json, dans livrables/preuves/.
+Implémentation : Warehouse::openReceipt/receiveItem/reserveReceipt/validateReceipt/closeNotice. Preuves : completion.json ; parcours.json ; parcours.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F06 - Emplacements et stocks
 
@@ -62,7 +62,7 @@ Implémentation : Warehouse::openReceipt/receiveItem/reserveReceipt/validateRece
 
 **Conclusion.** Le stock est calculé depuis les mouvements. Kg, m³ et équivalents palettes sont contrôlés séparément. Concurrence et conservation des quantités sont testées.
 
-Implémentation : Warehouse::capacity/suggestions/transfer/adjust ; Reports::stock. Preuves : integration.json ; integrite-donnees.json, dans livrables/preuves/.
+Implémentation : Warehouse::capacity/suggestions/transfer/adjust ; Reports::stock. Preuves : integration.json ; integrite-donnees.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F07 - Préparation et expédition
 
@@ -72,7 +72,7 @@ Implémentation : Warehouse::capacity/suggestions/transfer/adjust ; Reports::sto
 
 **Conclusion.** Couverture exacte des quantités, refus des suraffectations et doubles expéditions. FEFO satisfait l’alternative FIFO ou FEFO du sujet. Commandes expédiées intégralement.
 
-Implémentation : Warehouse::prepare/confirmPickLine/resetPreparation/ship ; templates/order_detail.php. Preuves : completion.json ; completion-navigateur.json ; parcours.json, dans livrables/preuves/.
+Implémentation : Warehouse::prepare/confirmPickLine/resetPreparation/ship ; templates/order_detail.php. Preuves : completion.json ; parcours.json ; parcours.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## F08 - Traçabilité et tableaux de bord
 
@@ -82,13 +82,13 @@ Implémentation : Warehouse::prepare/confirmPickLine/resetPreparation/ship ; tem
 
 **Conclusion.** Période vide acceptée. Activité sur la période choisie ; stock et DLC à la date actuelle du site, explicitement annoncée. Mouvements de trace paginés.
 
-Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Preuves : integration.json ; heure-paris.json ; navigateur-riche.json, dans livrables/preuves/.
+Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Preuves : integration.json ; time.log ; integrite-donnees.json, dans docs/preuves/corrections-rendu-2026-11-03/.
 
 ## Exigences générales et grille
 
 | Critère | Réalisation |
 |---|---|
-| UML, MCD, MLD | Diagrammes DOT/SVG, recueil PDF et dictionnaire du moteur réel |
+| UML, MCD, MLD | Use case corrigé, MCD Chen, schéma relationnel complet et dictionnaire |
 | PK, types, 1:N, N:N, normalisation | 41 tables ; FK, CHECK, clés métier et dépendances documentées |
 | Ajout, édition, suppression | Formulaires de référentiels/brouillons ; correction et annulation métier des faits protégés |
 | Contrôle de saisie et recherches | Validation PHP/SQL, filtres multicritères, pagination et recherche des références |

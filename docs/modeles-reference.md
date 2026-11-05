@@ -1,38 +1,37 @@
-# Modèles de référence de la version livrée
+# Modèles du rendu final
 
-Vérification du 3 novembre 2026. Le choix repose sur les attributs, associations et droits représentés, comparés au SQL et aux contrôles PHP, et non sur les noms des fichiers.
+Les trois modèles ci-dessous sont les références du rendu du 4 novembre 2026.
 
-| Modèle | Référence livrée | Source modifiable | Justification |
-|---|---|---|---|
-| UML des fonctionnalités livrées | [PDF corrigé](../livrables/correction-prof-use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf), cinq vues | Draw.io dans le même dossier | Retour du professeur appliqué : aucun héritage de droits, administrateur technique, affectation par le responsable, opérations par le magasinier et espace transporteur isolé. |
-| MCD métier | [PDF final](../livrables/mcd-final/BD70-MCD-FINAL.pdf), global et dix détails | [Draw.io final](../livrables/mcd-final/BD70-MCD-FINAL.drawio), DOT dans `livrables/mcd-final/sources/`, générateur `scripts/build-mcd-final.py` | Attributs propres complets, identifiants, deux rôles véhicule/remorque, auteurs, associations N:N avec quantité/validité ; couverture du socle précédent (60 FK métier et 213 colonnes métier) ; adaptations physiques actuelles détaillées ci-dessous. |
-| MLD physique | [SVG complet](diagrammes/mld-complet.svg) et `mld-*` par domaine | [DOT complet](diagrammes/mld-complet.dot), `schema.json`, `scripts/diagrams.py` | 41 tables, colonnes/types/nullabilités, PK, FK et UNIQUE du schéma installé. Les deux tables techniques sont conservées. Les CHECK restent dans le SQL. |
+| Modèle | Version retenue | Sources modifiables |
+|---|---|---|
+| Cas d’utilisation UML | [PDF corrigé](../livrables/use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf), cinq vues du même modèle | Draw.io dans le même dossier |
+| Modèle entité-association | [PDF Chen](../livrables/entite-association/BD70-MCD-CHEN.pdf) | [Draw.io](../livrables/entite-association/BD70-MCD-CHEN.drawio) |
+| Schéma relationnel | [PDF relationnel](../livrables/schema-relationnel/mld-complet.pdf) | [Draw.io](../livrables/schema-relationnel/mld-complet.drawio) |
 
-Le [schéma SQL](../sql/01_schema.sql) est l’autorité physique ; les [vues](../sql/02_vues.sql), procédures et triggers complètent ses garanties. Les cardinalités ne garantissent pas à elles seules l’égalité d’articles/propriétaires entre chemins, les capacités cumulées, les transitions ou les quantités d’allocations. Voir [normalisation](normalisation-3nf.md), [hypothèses](hypotheses-decisions.md) et [correspondance MCD/SQL](../livrables/mcd-final/CORRESPONDANCE-SQL.md).
+Le [recueil PDF](../livrables/rapport/DIAGRAMMES-BD70.pdf) réunit uniquement ces trois modèles, soit sept pages. Les diagrammes globaux sont vectoriels et de grand format. Les lire avec zoom.
 
-Les cinq N:N sont chauffeur/habilitation (validité), véhicule/équipement, quai/équipement, quai/type de véhicule et colis/prélèvement (quantité). TYPE DE VÉHICULE est un domaine conceptuel réalisé par deux ENUM cohérents, pas une table manquante. Une réserve appartient à une réception OU à une ligne ; les deux participations optionnelles sont complétées par le CHECK XOR. `shipment.order_id` est obligatoire unique ; les unicités nullable de passage/rendez-vous et mouvement/prélèvement ne sont pas des clés totales. Le lien facultatif sortie/prélèvement est complété par CHECK et contrôles transactionnels.
+## Lecture du MCD Chen
 
-## Références et adaptations physiques
+Un rectangle représente une entité, un losange une association et un ovale un attribut. Les identifiants sont soulignés. Les cardinalités (min,max) indiquent la participation de l’entité située du même côté.
 
-Le dernier MCD réalisé dans `livrables/mcd-final/` est conservé dans l’attente du retour enseignant, conformément à la demande du groupe. Aucune correction conceptuelle supposée du professeur n’est inventée. Il décrit la base métier précédente ; la correspondance exacte physique est désormais dans le MLD et le SQL : ajout de user_account.carrier_id (profil externe rattaché à une société) et projection des données de sortie par prélèvement. Les mouvements de sortie n’enregistrent plus en double quantité, emplacement et fraction ; la vue v_stock_movement reconstitue ces valeurs.
+TRANSPORTEUR est associé à UTILISATEUR avec les participations 0,N et 0,1. Le CHECK SQL impose une société au profil transporteur et son absence pour les profils internes.
 
-Le recueil `livrables/rapport/DIAGRAMMES-BD70.pdf` rassemble le use case corrigé, ce dernier MCD et les MLD actuels. Les fichiers `docs/diagrammes/mcd-*`, `cas-utilisation.*`, `livrables/use-case-v2/` et `livrables/rendu-intermediaire/` sont des versions historiques. Le rapport PDF et sa source Markdown décrivent la version corrigée.
+Pour une sortie de stock, le mouvement référence uniquement son prélèvement. Fraction reçue, emplacement et variation sont déduits de ce prélèvement par v_stock_movement. Les autres mouvements portent directement ces trois valeurs et aucun prélèvement. Cette règle exclusive complète les cardinalités facultatives R45, R46 et R47.
 
-## Génération faisant autorité
+Une réserve concerne une réception OU une ligne de réception. Le CHECK XOR impose exactement un rattachement.
 
-Exécuter depuis la racine, après installation d’une base neuve de test et chargement du schéma courant. Exporter ses métadonnées, jamais celles d’une ancienne base de démonstration :
+Les cinq associations N:N portent sur chauffeur/habilitation, véhicule/équipement, quai/équipement, quai/type de véhicule et colis/prélèvement. TYPE DE VÉHICULE est un domaine conceptuel traduit par des ENUM cohérents. audit_log et site_lock sont des tables techniques représentées dans le schéma relationnel.
 
-```powershell
-$env:BD70_DATABASE='bd70_test_modele_nouveau'
-& C:/xampp2/php/php.exe scripts/model.php
-python scripts/diagrams.py
-node scripts/render-diagrams.cjs --mld-only
-python scripts/build-report-final.py
-Remove-Item Env:/BD70_DATABASE
-```
+Le MCD couvre 35 entités, 58 associations, 61 FK métier et 214 colonnes métier. Le fichier modele.json du dossier Chen conserve la correspondance des attributs et associations avec SQL pour le validateur.
 
-Outils : Python avec ReportLab/svglib/pypdf, Node avec `@viz-js/viz` ; variables `BD70_VIZ` et `BD70_PLAYWRIGHT` selon l’environnement. Les générateurs de PDF utilisent les polices Windows livrées sur ce poste. Conserver une copie des sources Draw.io avant reconstruction si elles ont été modifiées manuellement.
+## Cohérence et reconstruction
 
-`diagrams.py` génère désormais les seuls MLD par défaut : la normalisation et la matrice des droits sont des analyses maintenues à la main. Son ancien chemin `--legacy`, `finalize-docs.py`, `finalize-completion.py` et `build_report.py` sont des outils historiques et ne font pas partie de cette chaîne. Ils peuvent réécrire des textes ou assembler les anciens MCD. Ne pas les utiliser pour fabriquer un recueil prétendument final.
+Le [SQL](../sql/01_schema.sql) définit la structure physique. Les vues, procédures, triggers et services transactionnels complètent les garanties. Les capacités cumulées, transitions, égalités d’articles et quantités ne sont pas exprimées par les seules cardinalités. Voir [normalisation](normalisation-3nf.md) et [hypothèses](hypotheses-decisions.md).
 
-Après génération : contrôler les métadonnées contre le schéma installé, la couverture des attributs/FK dans `sources/modele.json`, les cardinalités et règles complémentaires, puis rendre et inspecter visuellement les PDF. Les preuves du 3 novembre sont référencées dans la recette ; elles ne valent que pour les fichiers identifiés par leurs empreintes.
+Après une évolution de la base, exporter les métadonnées depuis une installation neuve du schéma courant avec scripts/model.php. scripts/diagrams.py génère uniquement le schéma relationnel complet, puis scripts/render-diagrams.cjs produit son SVG. scripts/export-mld-drawio.py en reproduit les tables, attributs et relations sous forme d’objets éditables.
+
+Le use case se reconstruit avec scripts/build-usecase-correction-prof.py, qui utilise scripts/usecase_layout.py. Le MCD Chen se modifie dans Draw.io ou dans sa source DOT. Après une modification du DOT, régénérer le SVG avec Graphviz et reporter les mêmes changements dans le Draw.io.
+
+scripts/verify-models.py compare les métadonnées installées, le MLD et le modèle Chen. scripts/build-report-final.py reconstruit le rapport, les PDF des deux schémas globaux et le recueil. Les dépendances documentaires sont ReportLab, svglib, pypdf et Pillow. Les outils de rendu DOT utilisent @viz-js/viz, avec BD70_VIZ pour son chemin.
+
+Les PDF sont générés depuis les SVG. Vérifier les exports et préserver les retouches manuelles du Draw.io avant toute reconstruction.

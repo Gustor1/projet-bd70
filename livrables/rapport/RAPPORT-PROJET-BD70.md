@@ -1,233 +1,100 @@
-# Transit - Gestion d’un entrepôt logistique
+# Transit
 
-Auteurs : ELIOTT LE, SEMIH TASKIN et Thomas VUILLIN.
+Rapport de projet BD70 · A26
 
-Projet BD70 - sujet A26. Réalisation après audit. Référence du jeu riche : 28 octobre 2026, Europe/Paris. Les contributions individuelles n’ont pas été communiquées.
+Eliott LE · Semih TASKIN · Thomas VUILLIN
 
-## Introduction et démarche
+## Introduction
 
-Le système relie transporteurs, passages de camions, quais, réceptions, stocks et expéditions. Chaque quantité conserve sa provenance jusqu’au camion de sortie. Le sujet exige un modèle couvrant huit domaines et un minimum web de cinq domaines ; les huit ont ici une interface.
+Lorsqu’un client signale un problème sur un lot de café, l’entrepôt doit pouvoir répondre à trois questions. Qui a livré ce lot ? Où la marchandise a-t-elle été rangée ? Dans quel camion est-elle repartie ? Le stock disponible à l’instant présent ne suffit pas à répondre. Il faut conserver les événements qui expliquent comment les quantités ont évolué.
 
-L’audit a confronté le sujet, la grille et le code, puis reproduit les anomalies. Six lots ont corrigé la fiabilité, les réceptions, les référentiels/planning, les commandes/colis, les données et la recette. Les sauvegardes précèdent les modifications ; les tests utilisent des bases distinctes.
+Nous avons développé Transit pour suivre cette chaîne dans un entrepôt unique. Le sujet A26 demande une base relationnelle couvrant huit domaines et une interface web pour au moins cinq d’entre eux. Transit propose une interface pour les huit, depuis la gestion des accès jusqu’aux indicateurs d’activité. Les opérations sont réalisées dans le navigateur avec PHP et PDO côté serveur et MariaDB pour la persistance.
 
-Sources : A26_Site_Logistique.pdf, pages 1 à 3 ; Éléments dévaluation projet BD70.docx ; supports techniques A25 locaux. Les modalités A25 de soutenance ne sont pas supposées applicables à A26.
+## Acteurs et responsabilités
 
-## Acteurs et cas d’utilisation
+Le diagramme de cas d’utilisation distingue la décision, l’exécution et le contrôle. La préparation d’une commande illustre cette séparation. Le responsable désigne un magasinier. Ce dernier réserve et prélève les unités de sa commande. L’affectation et la réservation correspondent donc à deux actions distinctes.
 
-Administrateur technique : comptes et journal. Responsable : référentiels, planification, commandes, affectation et analyses. Accueil : arrivée, contrôles, appel à quai et départ. Magasinier : réception, stock, début/fin des opérations à quai et exécution des commandes qui lui sont affectées. Transporteur : création, modification et annulation des rendez-vous de sa société. Les contrôles portent sur les routes, les requêtes directes et les objets concernés.
+| Acteur | Responsabilité dans Transit |
+|---|---|
+| Administrateur technique | Active les comptes, gère les profils et consulte le journal. |
+| Responsable d’exploitation | Tient les référentiels, planifie les quais, gère les commandes, affecte les préparateurs et consulte les indicateurs. |
+| Agent d’accueil | Enregistre l’arrivée, le contrôle documentaire, l’attente, l’appel à quai et le départ. |
+| Magasinier ou préparateur | Horodate les opérations à quai, réceptionne, range et prépare les commandes qui lui sont affectées. |
+| Transporteur | Gère les rendez-vous et les ressources de sa propre société dans un espace dédié. |
 
-UC01-UC10 sont détaillés dans docs/02-cas-utilisation.md. L’authentification est une précondition des cas métier. Les modèles faisant référence sont indexés dans docs/modeles-reference.md : UML corrigé dans livrables/correction-prof-use-case/, MCD dans livrables/mcd-final/, MLD dans docs/diagrammes/mld-*. Le recueil joint rassemble cet UML, le dernier MCD réalisé (en attente du retour enseignant) et les MLD actualisés. Les adaptations physiques sont expliquées dans docs/modeles-reference.md.
+## Du modèle conceptuel au schéma relationnel
 
-## F01 - Connexion et profils
+Le MCD en notation de Chen décrit les faits métier. Le schéma relationnel les traduit en 41 tables, dont deux tables techniques consacrées au journal et au verrou du site. Les deux modèles et le use case corrigé figurent dans le recueil de diagrammes joint au rapport.
 
-**Objectif.** Permettre au personnel de s’inscrire, se connecter et agir selon son rôle.
+**Distinguer la prévision du fait constaté.** Le rendez-vous décrit le quai et les ressources prévus. Le passage décrit le camion effectivement arrivé et la chronologie de ses opérations. Une réservation peut rester sans passage et un camion peut arriver spontanément. De même, un avis fournisseur décrit les quantités attendues, alors que la réception conserve le comptage réel et les réserves.
 
-**Travail réalisé.** Inscription en attente, activation administrative, sessions renouvelées, cinq profils, contrôles serveur, CSRF, mots de passe hachés.
+**Conserver la provenance.** Un même lot peut arriver en plusieurs livraisons. Chaque fraction reçue conserve son lien avec la ligne de réception, le lot et l’emplacement initial. Les transferts expliquent ses déplacements ultérieurs. Le prélèvement relie cette fraction à une ligne de commande et à l’emplacement où elle a été prise.
 
-**Conclusion.** Les accès interdits et l’élévation de rôle sont refusés. Le compte transporteur est explicitement facultatif dans le sujet.
+**Choisir où placer un attribut.** Une société emploie plusieurs chauffeurs. Une clé étrangère sur le chauffeur suffit à exprimer cette relation 1:N. Pour les colis, il faut représenter une relation N:N. Si un prélèvement de douze unités est réparti entre deux colis, les quantités sept et cinq décrivent chacune une affectation précise. La table package_pick porte donc les deux clés étrangères, l’unicité du couple et la quantité affectée.
 
-Preuves : integration.json ; navigateur.json. Sources : Auth.php ; public/index.php.
+**Normaliser les sorties.** Lors d’une expédition, le prélèvement détermine déjà la fraction, l’emplacement et la quantité. Le mouvement de sortie référence ce prélèvement. La vue v_stock_movement reconstitue les valeurs nécessaires au calcul du stock. Pour les autres mouvements, ces valeurs sont portées directement par le mouvement. Un CHECK impose l’exclusivité des deux structures. Cette décision évite que deux enregistrements donnent des quantités différentes pour la même sortie.
 
-## F02 - Transporteurs, chauffeurs et véhicules
+## Intégrité, transactions et historisation
 
-**Objectif.** Maintenir sociétés, coordonnées, contacts, contrats et ressources de transport.
+Une clé étrangère garantit qu’un emplacement existe. Elle ne garantit pas qu’il dispose encore de la capacité requise. Transit complète les contraintes SQL par des contrôles sur les quantités, les poids, les volumes, les équivalents palettes et la compatibilité entre le produit et la zone de stockage.
 
-**Travail réalisé.** Chauffeurs, permis, habilitations datées ; tracteurs, remorques, porteurs et fourgons, plaques, capacités et équipements. Téléphone modifiable après utilisation, renouvellement d’une habilitation sans raccourcir son passé.
+Lorsqu’une opération touche plusieurs lignes, le backend ouvre une transaction. Par exemple, deux responsables peuvent voir le même créneau libre au même moment. La procédure lock_site verrouille une ligne avec SELECT FOR UPDATE. La première transaction vérifie la disponibilité et enregistre son rendez-vous. La seconde attend, puis relit le planning et détecte le chevauchement. Si un contrôle échoue, les écritures de la transaction sont annulées. Le verrou de site simplifie cette garantie, au prix d’une attente possible entre des écritures indépendantes.
 
-**Conclusion.** Les fiches inutilisées sont supprimables ; les caractéristiques structurelles utilisées sont protégées. Les valeurs avant/après sont historisées.
+MariaDB définit 120 déclencheurs, deux procédures stockées et neuf vues. Par exemple, le trigger audit_carrier_update enregistre automatiquement l’ancienne et la nouvelle valeur quand un transporteur est modifié. D’autres déclencheurs protègent l’historique contre des modifications ou suppressions. La procédure trace_lot est appelée par l’écran de traçabilité pour retrouver les mouvements et, le cas échéant, l’expédition et le camion associés.
 
-Preuves : completion.json ; navigateur.json. Sources : Catalog.php ; templates/catalog.php.
+L’application vérifie le rôle et les objets concernés côté serveur. Le transporteur doit appartenir à la société du rendez-vous qu’il modifie. Les requêtes paramétrées, les mots de passe hachés et la vérification des jetons CSRF complètent ces contrôles. Le compte SQL de l’application dispose de privilèges limités.
 
-## F03 - Quais et rendez-vous
+## Fonctionnalités du site et des quais
 
-**Objectif.** Réserver des créneaux compatibles sans chevauchement et suivre les quais.
+**1. Connexion et profils.** Objectif : identifier les utilisateurs et limiter leurs droits. Réalisation : une inscription crée un compte en attente, qu’un administrateur doit activer. Les autorisations sont contrôlées lors de l’accès aux pages et lors des actions. Conclusion : un compte désactivé est refusé et un transporteur autorisé reste limité à sa société.
 
-**Travail réalisé.** Types et équipements de quai, indisponibilités, création/déplacement/annulation. Compatibilité du véhicule et de la remorque ; disponibilité du chauffeur, du véhicule et de la remorque entre quais. États libre, réservé, occupé et hors service.
+**2. Transporteurs et ressources.** Objectif : savoir qui transporte la marchandise et avec quel matériel. Réalisation : les fiches regroupent sociétés, contacts, contrats, chauffeurs, habilitations, véhicules, capacités et équipements. Conclusion : le responsable peut actualiser un numéro de téléphone ou supprimer une fiche inutilisée. Une ressource déjà référencée reste identifiable dans son historique.
 
-**Conclusion.** Les courses concurrentes sont contrôlées. Actualisation toutes les 30 secondes hors saisie, référence Paris commune à PHP/SQL.
+**3. Quais et rendez-vous.** Objectif : attribuer un créneau réalisable. Réalisation : le responsable choisit un quai, un horaire et des ressources compatibles. L’application contrôle les indisponibilités et les conflits de réservation. Conclusion : le planning présente les quais libres, réservés, occupés ou hors service. Il s’actualise toutes les trente secondes en dehors d’une saisie.
 
-Preuves : integration.json ; completion.json ; heure-paris.json. Sources : Warehouse::appointment/compatible ; Reports::docks.
+**4. Passage du camion.** Objectif : mesurer où le camion passe du temps. Réalisation : l’accueil et le magasinier enregistrent les étapes successives, depuis l’arrivée jusqu’au départ. Le parking est facultatif. Conclusion : la chronologie permet de distinguer l’attente et l’immobilisation totale, et de comparer l’arrivée effective au rendez-vous prévu.
 
-## F04 - Flux de camions
+## Fonctionnalités de réception et d’expédition
 
-**Objectif.** Tracer chaque étape, avec ou sans rendez-vous, et mesurer les durées.
+**5. Réception.** Objectif : comparer la livraison à l’annonce du fournisseur. Réalisation : le magasinier enregistre les fractions reçues, les lots, les dates limites, les avaries et les réserves. Conclusion : seules les quantités acceptées entrent en stock. Un manque total peut faire l’objet d’une réserve sans créer de palette fictive.
 
-**Travail réalisé.** Arrivée, contrôle documentaire, parking facultatif, appel à quai, début, fin et départ. Horodates, attente, immobilisation et retard par rapport au rendez-vous.
+**6. Emplacements et stock.** Objectif : connaître la quantité d’un lot et sa position. Réalisation : le rangement est organisé par zone, allée, rack, niveau et emplacement. Les propositions tiennent compte des capacités disponibles et des conditions de stockage. Les entrées, transferts, sorties et ajustements alimentent le journal des mouvements. Conclusion : le solde se calcule depuis ce journal et chaque déplacement reste explicable.
 
-**Conclusion.** Transitions impossibles, rétrogrades et doubles occupations refusées. Les ressources constatées sont distinctes du planning.
+**7. Préparation et expédition.** Objectif : servir la commande avec les lots utilisables et charger les quantités prévues. Réalisation : le préparateur affecté lance la sélection FEFO, qui privilégie les échéances les plus proches. Il confirme les prélèvements, constitue les colis et les rattache au camion sortant. Conclusion : la validation contrôle les quantités et les capacités avant l’émission du bon de livraison et de la lettre de voiture.
 
-Preuves : integration.json ; parcours.json. Sources : Warehouse::arrive/transition ; v_visit.
+**8. Traçabilité et pilotage.** Objectif : retrouver un lot et mesurer l’activité du site. Réalisation : une recherche par lot relie réceptions, mouvements, commandes et camions. Le tableau de bord propose l’occupation des quais, les temps par transporteur, le remplissage par zone, les écarts en réception, la productivité et les alertes de date limite. Conclusion : les filtres, tableaux, graphiques, impressions et exports permettent d’exploiter les résultats. Les indicateurs d’activité portent sur la période choisie, tandis que les stocks et les alertes de péremption reflètent la situation courante.
 
-## F05 - Réception des marchandises
+## Vérification sur un parcours complet
 
-**Objectif.** Comparer l’annonce fournisseur à la réception et conserver les réserves.
+Le scénario de soutenance utilise une base de test distincte et le lot ORAL-CAFE-LOT. Le fournisseur annonce 20 unités. À la réception, le magasinier en accepte 18 et déclare 2 unités endommagées. Il transfère ensuite 3 unités entre deux emplacements. Ce transfert change leur répartition tout en préservant le total de 18 unités.
 
-**Travail réalisé.** Avis et lignes attendues, réceptions partielles, fiche guidée, fractions multilots, DLC, palettes, avaries, emplacements compatibles. Suivi attendu/alloué/reçu/reste et clôture motivée. Réserves générales ou de ligne, même sans marchandise.
+Le responsable crée une commande de 10 unités et l’affecte à un magasinier. Après réservation, prélèvement et mise en colis, celui-ci confirme le chargement dans le passage ORAL-CAFE-SORTIE. La recherche de traçabilité retrouve ce camion à partir du lot. Les 32 étapes vérifiées sur ce parcours ont réussi. Le guide illustré du dossier soutenance présente les écrans et les saisies correspondantes.
 
-**Conclusion.** Un manquant total ne crée aucune fausse palette. La validation est atomique et non rejouable. Réserves consultables dans la réception et la trace des lots concernés.
+D’autres recettes ciblent les refus que ce parcours nominal ne montre pas : conflit de créneaux, dépassement de capacité, accès aux données d’une autre société et double validation. La recette métier de référence comprend 64 contrôles d’intégration. Sur le jeu riche, 83 contrôles d’intégrité ont été exécutés sans anomalie détectée. Ces résultats correspondent aux versions et aux jeux de données indiqués dans docs/recette.md.
 
-Preuves : completion.json ; completion-navigateur.json ; parcours.json. Sources : Warehouse::openReceipt/receiveItem/reserveReceipt/validateReceipt/closeNotice.
+## Données de démonstration et performances
 
-## F06 - Emplacements et stocks
+Le jeu riche est fictif. Il couvre 90 jours simulés, avec 180 articles, 1 806 passages de camions, 903 réceptions et 900 expéditions. Il alimente les formulaires de recherche et les tableaux de bord. Une base distincte contenant 10 000 passages sert aux mesures de performances.
 
-**Objectif.** Connaître les quantités, les capacités et la provenance dans l’entrepôt.
+Pour chaque requête, une exécution de chauffe précède dix exécutions mesurées côté PDO, récupération des résultats comprise. Le tableau donne les médianes en millisecondes. Le détail des paramètres, des plans EXPLAIN et des valeurs extrêmes figure dans docs/performances.md.
 
-**Travail réalisé.** Zones ambiant/froid/dangereux, allées, racks, niveaux, emplacements. Articles, propriétaires, dimensions, poids et conditionnement. Stock par article/lot/emplacement ; entrées, transferts, sorties, ajustements motivés ; propositions selon compatibilité et capacités restantes.
-
-**Conclusion.** Le stock est calculé depuis les mouvements. Kg, m³ et équivalents palettes sont contrôlés séparément. Concurrence et conservation des quantités sont testées.
-
-Preuves : integration.json ; integrite-donnees.json. Sources : Warehouse::capacity/suggestions/transfer/adjust ; Reports::stock.
-
-## F07 - Préparation et expédition
-
-**Objectif.** Servir les commandes, constituer les colis, charger et produire les documents.
-
-**Travail réalisé.** Commandes et lignes avec date souhaitée, préparateur, réservation FEFO, confirmation par prélèvement. Affectations quantifiées dans plusieurs colis/palettes. Reprise motivée en brouillon avant expédition. Chargement sur camion sortant avec capacité ; bon de livraison et lettre de voiture avec totaux.
-
-**Conclusion.** Couverture exacte des quantités, refus des suraffectations et doubles expéditions. FEFO satisfait l’alternative FIFO ou FEFO du sujet. Commandes expédiées intégralement.
-
-Preuves : completion.json ; completion-navigateur.json ; parcours.json. Sources : Warehouse::prepare/confirmPickLine/resetPreparation/ship ; templates/order_detail.php.
-
-## F08 - Traçabilité et tableaux de bord
-
-**Objectif.** Retrouver l’historique du lot et fournir les indicateurs demandés.
-
-**Travail réalisé.** Réceptions, réserves, emplacements successifs, commandes et camions sortants. Occupation des quais, attente/immobilisation par transporteur, remplissage par zone, taux d’écart, productivité, proximité DLC. Tableaux, graphiques, impressions et CSV filtrés.
-
-**Conclusion.** Période vide acceptée. Activité sur la période choisie ; stock et DLC à la date actuelle du site, explicitement annoncée. Mouvements de trace paginés.
-
-Preuves : integration.json ; heure-paris.json ; navigateur-riche.json. Sources : Reports.php ; templates/trace.php ; templates/reports.php.
-
-## Corrections après retour enseignant
-
-Le use case corrigé constitue la référence. L’administrateur technique gère les comptes ; les droits métier ne sont plus hérités. Le responsable affecte une commande sans réserver de stock, puis le magasinier affecté lance FEFO et exécute la préparation. L’accueil enregistre les étapes du site ; le magasinier enregistre le début et la fin à quai. Le transporteur dispose d’un espace limité aux rendez-vous et ressources de sa société, avec refus des identifiants d’autres sociétés.
-
-Les sorties de stock enregistrent le prélèvement et les informations propres au mouvement. Quantité, fraction et emplacement sont lus depuis le prélèvement par v_stock_movement ; ces trois valeurs ne sont plus dupliquées dans les sorties. Les contrôles SQL imposent cette structure. La migration copie les 41 tables dans une nouvelle base et compare les valeurs originales à la projection obtenue. La base source reste inchangée.
-
-Le dernier modèle entité-association réalisé est conservé dans l’attente du retour du professeur. Le MLD et le dictionnaire documentent déjà le rattachement des comptes transporteurs à leur société et les sorties normalisées. Ce maintien du MCD ne vaut pas validation par l’enseignant.
-
-## Conception et normalisation
-
-41 tables, dont journal d’audit et verrou techniques. Les relations 1:N relient sociétés/chauffeurs, avis/lignes et commandes/lignes. Les N:N utilisent des jointures : habilitations, équipements et allocations de colis. PK techniques, clés métier, types, FK et CHECK sont extraits du moteur dans le dictionnaire.
-
-Chaîne de provenance : fournisseur → avis → ligne de réception → fraction/lot → mouvements/emplacements → prélèvement → commande → expédition → camion sortant. Plusieurs réceptions peuvent fournir un lot ; une fraction peut servir plusieurs commandes.
-
-Les descriptions restent dans leurs entités. (package_id, pick_id) détermine qty ; aucun des deux seuls ne suffit. Une réserve porte soit receipt_id soit line_id, jamais les deux (CHECK XOR), pour éviter la dépendance redondante line_id → receipt_id. Les soldes, capacités et durées sont calculés dans les vues.
-
-Les états opérationnels sont des projections contrôlées. L’audit conserve volontairement des instantanés JSON historiques : cette redondance technique est explicitée, distincte du modèle métier normalisé. docs/normalisation-3nf.md expose clés et dépendances ; les propriétés du domaine, et non la seule présence d’une PK, justifient la normalisation.
-
-## Transactions et sécurité
-
-Les services PHP prennent le verrou site_lock puis réalisent les mutations atomiques. Les opérations imbriquées utilisent des points de sauvegarde. Deux procédures assurent verrou et trace ; 120 déclencheurs assurent audit et immuabilité. Le compte applicatif n’a pas de droit DDL ni d’édition du journal.
-
-Requêtes paramétrées, validation serveur/SQL, échappement HTML, sessions renouvelées, CSRF et mots de passe hachés sont contrôlés dans les parcours. Les instantanés excluent password_hash. Configuration et sauvegardes privées sont exclues du dépôt.
-
-## Données fictives en quantité
-
-Graine 70, 90 jours simulés et situations en cours. L’historique est généré directement sous contrôles ; les scénarios actifs utilisent les services métier. Cela ne représente pas 900 cycles saisis dans un navigateur.
-
-| Entité | Nombre |
+| Requête | Médiane (ms) |
 |---|---:|
-| carrier | 20 |
-| driver | 80 |
-| vehicle | 100 |
-| owner | 18 |
-| supplier | 20 |
-| article | 180 |
-| lot | 720 |
-| location | 360 |
-| appointment | 1350 |
-| truck_visit | 1806 |
-| receipt | 903 |
-| receipt_item | 5130 |
-| receipt_reserve | 1365 |
-| customer_order | 924 |
-| pick | 7873 |
-| package | 1800 |
-| package_pick | 15541 |
-| shipment | 900 |
-| stock_movement | 24917 |
-| audit_log | 92512 |
+| Disponibilité d’un quai | 1,263 |
+| Recherche de passages | 48,410 |
+| Recherche de stock | 60,175 |
+| Emplacements | 41,890 |
+| Historique d’un lot | 38,453 |
+| Sélection FEFO | 65,776 |
+| Statistiques par transporteur | 59,515 |
+| Remplissage par zone | 48,001 |
 
-L’export sql/07_donnees_demo_riches.sql se charge après la structure. Les triggers recréent l’audit lors de l’import ; ses instantanés diffèrent donc de ceux de la génération. Le jeu réduit reste réservé aux oracles ; un jeu séparé de 10 000 passages sert aux performances.
+L’index de réservation facilite la recherche des créneaux qui se chevauchent sur un quai. La vue d’utilisation des emplacements a aussi été revue pour éviter des jointures inutiles lors du calcul des capacités. Les temps mesurés dépendent du volume, du cache et de la machine. L’affichage d’une page ajoute le traitement PHP et le rendu du navigateur.
 
-## Vérification et résultats
+## Conclusion
 
-Recette de la version corrigée, sur bases dédiées neuves. Toutes les suites ci-dessous ont été exécutées avec succès. Les preuves JSON, commandes et captures sont dans livrables/preuves/corrections-rendu-2026-11-03/.
+À partir d’un numéro de lot, Transit permet de retrouver la livraison d’origine, les emplacements successifs et le camion d’expédition. Cette réponse repose sur trois décisions de conception : séparer l’attendu du réalisé, conserver la provenance des fractions et rattacher chaque sortie à un prélèvement identifié.
 
-| Vérification | Réussis | Échecs | Preuve |
-|---|---:|---:|---|
-| Intégration métier/SQL et concurrence | 64 | 0 | integration.json |
-| Compléments métier | 23 | 0 | completion.json |
-| Régressions de protection des faits | 14 | 0 | finalisation.json |
-| Droits et isolation des objets, normalisation | 18 | 0 | corrections.json |
-| Navigateur, accès directs et portail transporteur | 32 | 0 | corrections-navigateur.json |
-| Parcours complet avec changement de profils | 32 | 0 | parcours.json |
-| Horloge du site | 8 | 0 | heure-paris.json |
-| Import riche et intégrité | 83 | 0 | integrite-donnees.json |
+L’application couvre les huit domaines du sujet sur un site unique. Les commandes sont expédiées intégralement. La restauration d’une sauvegarde a été vérifiée dans une base séparée par comparaison des 41 tables et contrôle de l’historisation. Pour étendre le système à plusieurs entrepôts ou à des expéditions partielles, il faudrait revoir les règles d’affectation des ressources, la clôture des commandes et la granularité des verrous.
 
-Le parcours navigateur couvre création d’un avis, réception avec avarie, transfert, affectation par le responsable, lancement FEFO par le préparateur, confirmation, colis, chargement, expédition, document et traçabilité. Les profils sont changés au fil des responsabilités. Les accès entre sociétés et entre préparateurs sont refusés. Les anciennes suites navigateur fondées sur un administrateur métier sont historiques.
-
-La copie migrée compare les 41 tables : tous les faits métier sont conservés, les mouvements de sortie sont comparés via leur projection. Les checksums de la source restent identiques avant/après. Un import complet du jeu fictif dans une autre base neuve passe aussi les 83 contrôles d’intégrité. La sauvegarde/restauration vérifie les tables, triggers, procédures et le fonctionnement de l’audit dans une copie.
-
-Les 64 assertions d’intégration incluent quatre courses entre deux connexions, la conservation du stock et les rollbacks. La recette ne prouve pas tous les entrelacements possibles. Les constats mobiles antérieurs restent des simulations à 390 px, sans téléphone physique.
-
-Reproduction : scripts/verify-finalisation.py crée des bases neuves, applique seed.php puis exécute les suites actuelles. L’horloge fixe du 22 octobre 2026 sert uniquement aux bases de recette. La démonstration utilise l’heure réelle.
-
-## Analyse des performances
-
-Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_corrections_20261103. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
-
-| Requête | Médiane ms | Min ms | Max ms |
-|---|---:|---:|---:|
-| disponibilite_quai | 1.263 | 0.845 | 1.744 |
-| recherche_passages | 48.410 | 41.429 | 75.394 |
-| recherche_stock | 60.175 | 44.939 | 75.853 |
-| emplacements | 41.890 | 39.288 | 53.623 |
-| historique_lot | 38.453 | 31.770 | 49.741 |
-| selection_fefo | 65.776 | 57.190 | 116.835 |
-| statistiques_transporteur | 59.515 | 51.458 | 90.713 |
-| remplissage_zone | 48.001 | 46.746 | 59.589 |
-
-Comparaison historique de l’index (avant cette correction) : idx_appointment_slot uniquement ; index FK simple maintenu. Lecture avant 10.481 ms, après 1.361 ms. Les dix observations et le coût INSERT + ROLLBACK sont publiés dans le JSON.
-
-v_visit joint les événements uniques (passage, état) au lieu d’agréger tout l’historique. v_location_usage calcule les capacités physiques sans toutes les jointures de v_stock. La seconde correction répond à une expiration de 30 secondes observée avec les données riches.
-
-Les navigations riches ont été rejouées après correction : navigateur-riche.json contient des observations uniques, avec rendu et ressources, distinctes des dix mesures PDO. La page Indicateurs a alors chargé en environ 2,2 s dans ce relevé. Le jeu volumétrique de 10 000 passages et le catalogue riche de 180 articles sont complémentaires.
-
-Ces mesures locales ne sont pas une certification de charge industrielle. Les comparaisons historiques de réécriture ne contrôlent pas cache et charge à l’identique. Le verrou global limite le parallélisme.
-
-## Installation et conservation des données
-
-scripts/start.ps1 démarre MariaDB et PHP localement ; une nouvelle installation charge le SQL riche. Le README décrit les commandes et comptes fictifs. Une configuration existante n’est pas écrasée.
-
-La copie migrée conserve tous les faits métier et tous les auteurs ; les mouvements normalisés sont comparés par leur projection. Les comptes et historiques restent conservés. L’ancienne base bd70_demo_final est conservée. La démonstration active est bd70_demo_corrige_20261103b ; la source bd70_demo_rich_final est conservée.
-
-La restauration compare les 41 tables par comptes/checksums, vérifie 120 déclencheurs et deux procédures, puis provoque une historisation dans la copie. Installation sur copie propre également testée.
-
-## Limites et bilan
-
-Tous les domaines obligatoires ont un accès web. Le rôle transporteur externe est réalisé dans un espace limité aux rendez-vous de sa société ; FEFO est une stratégie autorisée. Les commandes sont expédiées intégralement.
-
-Application monosite, locale, PHP 8.2.12 / MariaDB 10.4.32 / Windows / Edge. Pas de déploiement public ni de test sur téléphone physique. Le planning se rafraîchit toutes les 30 secondes hors saisie.
-
-SQL DATETIME stocke les heures civiles de Paris. Seules les heures locales ambiguës/inexistantes des changements saisonniers sont refusées. Changer le fuseau ne corrige pas une horloge système physiquement fausse.
-
-Les invariants entre lignes reposent sur les services transactionnels et le verrou global. Un administrateur SQL peut les contourner. L’historique riche est simulé directement puis vérifié ; il ne représente pas 900 cycles saisis au navigateur.
-
-Les sélecteurs sont limités à 2 000 propositions, avec une recherche préalable. Les mouvements de trace sont paginés ; ses réceptions et commandes restent des tableaux complets. Les propriétés structurelles utilisées et les historiques sont protégés ; corrections par reprise, annulation ou ajustement selon l’état.
-
-Les documents consultent les libellés actuels ; ils ne constituent pas une archive réglementaire figée. GPS, EDI, facturation, signature électronique et chargement géométrique ne sont pas demandés ni réalisés.
-
-Auteurs : ELIOTT LE, SEMIH TASKIN et Thomas VUILLIN. Répartition individuelle non communiquée, donc non inventée. Date de remise et modalités de soutenance A26 à confirmer par le groupe.
-
-
-Les fonctionnalités obligatoires des huit domaines sont présentes, avec des preuves ciblées métier, SQL et navigateur. Les corrections renforcent les cas non nominaux et les données riches ont révélé une requête trop coûteuse, corrigée avant livraison. Les tests ne constituent pas une certification exhaustive ou industrielle.
-
-L’IA a aidé à l’audit, à l’implémentation, au jeu fictif et à la vérification. Les auteurs doivent pouvoir expliquer le modèle, les règles, les requêtes et les limites du projet.
-
-## Index des livrables
-
-docs/matrice-conformite.md : couverture. docs/02-cas-utilisation.md : scénarios. docs/diagrammes/ : DOT/SVG et métadonnées. Dictionnaire, normalisation et matrice CRUD : conception. sql/ : structure, procédures, triggers, index, migration et données. tests/ et livrables/preuves/ : scripts et résultats. README.md : lancement.
-
-DIAGRAMMES-BD70.pdf réunit le use case corrigé après retour du professeur, le dernier MCD réalisé et les MLD physiques actualisés. Le MCD reste la référence de travail dans l’attente du retour du professeur. Les nouveaux droits et la projection normalisée des sorties sont décrits dans ce rapport et dans docs/modeles-reference.md.
+Le dossier livrables contient le use case corrigé, le modèle Chen, le schéma relationnel et leurs sources Draw.io. Le README indique comment installer Transit et charger le jeu fictif pour reproduire le parcours.

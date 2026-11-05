@@ -1,7 +1,7 @@
 """Recette isolée. Aucune base existante supprimée, aucune preuve ancienne écrasée.
 
 Usage: python scripts/verify-finalisation.py
-BD70_RUN_ID permet une nouvelle exécution ; sorties dans livrables/preuves/<id>.
+BD70_RUN_ID permet une nouvelle exécution ; sorties dans docs/preuves/<id>.
 BD70_PYTHON/BD70_NODE/BD70_PLAYWRIGHT permettent de choisir les outils.
 """
 from pathlib import Path
@@ -15,11 +15,11 @@ for port in [8071,8072]:
 run=os.environ.get('BD70_RUN_ID','finalisation-'+datetime.datetime.now().strftime('%Y%m%d_%H%M%S'))
 assert re.fullmatch(r'[a-z0-9_-]+',run)
 work=ROOT/'.local'/run
-proof=ROOT/'livrables/preuves'/run
+proof=ROOT/'docs/preuves'/run
 if work.exists() or proof.exists():raise SystemExit('Choisir un nouvel identifiant BD70_RUN_ID ; aucune réutilisation.')
 work.mkdir(parents=True);proof.mkdir(parents=True)
 for folder in ['src','templates','public','sql','scripts','tests','config']:shutil.copytree(ROOT/folder,work/folder)
-(work/'.local').mkdir();(work/'livrables/preuves').mkdir(parents=True)
+(work/'.local').mkdir();(work/'docs/preuves').mkdir(parents=True)
 baseline=ROOT/'.local/bd70-demo-final-before-completion.sql'
 if baseline.exists():shutil.copy2(baseline,work/'.local'/baseline.name)
 php=os.environ.get('BD70_PHP','C:/xampp2/php/php.exe')
@@ -49,7 +49,7 @@ def install(kind,seed=True):
         if not call([php,'scripts/seed.php'],e,label='seed-'+kind):raise RuntimeError('Seed '+kind)
     return e
 def collect():
-    for f in (work/'livrables/preuves').iterdir():
+    for f in (work/'docs/preuves').iterdir():
         if f.is_file():shutil.copy2(f,proof/f.name)
 def demo_snapshot():
     code="require 'src/bootstrap.php';$db=new Database();$out=['database'=>$db->scalar('SELECT DATABASE()'),'tables'=>[]];foreach($db->all('SHOW FULL TABLES WHERE Table_type=\"BASE TABLE\"') as $r){$t=array_values($r)[0];$out['tables'][$t]=[$db->scalar('SELECT COUNT(*) FROM `'.$t.'`'),$db->all('CHECKSUM TABLE `'.$t.'`')];}echo json_encode($out);"
@@ -87,7 +87,6 @@ try:
     e=install('perf',False);call([php,'scripts/performance.php','10000'],e,'performances')
     call([python,'scripts/clean-install.py'],{**env,'BD70_CLEAN_DIR':'installation-'+suffix,'BD70_CLEAN_DB':'bd70_test_install_'+suffix},'installation-propre')
     # Current copy migration: scripts/migrate-corrections.php, tested against the preserved rich demo.
-    # Historical verify-migration.py remains available for the pre-correction schema.
 finally:
     collect()
     demo_after=demo_snapshot()

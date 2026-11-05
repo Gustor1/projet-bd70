@@ -1,6 +1,6 @@
 # Comment tester toute l’application Transit — BD70
 
-Ce guide couvre les fonctionnalités du sujet A26 et les critères de la grille. Chaque scénario donne le compte, les actions et le résultat attendu. Cocher seulement après exécution réelle : ce document ne prouve pas à lui seul la réussite sur un autre poste. Les originaux du sujet et de la grille sont dans `document projet/` ; leurs extractions lisibles dans `docs/sources/`.
+Ce guide couvre les fonctionnalités du sujet A26 et les critères de la grille. Chaque scénario donne le compte, les actions et le résultat attendu. Cocher seulement après exécution réelle : ce document ne prouve pas à lui seul la réussite sur un autre poste. Les originaux du sujet et de la grille sont dans `document projet/`.
 
 ## 1. Démarrer et préparer les tests
 
@@ -225,9 +225,9 @@ python scripts/verify-finalisation.py
 Remove-Item Env:/BD70_RUN_ID
 ```
 
-Cet outillage exige Python, Node, Playwright/Edge et les dépendances des scripts. L’application PHP fonctionne sans ces outils. Les ports de recette 8071/8072 doivent être libres. Le script crée ses bases et serveurs dédiés ; lire tous les codes de sortie et le manifeste dans `livrables/preuves/<identifiant>/`.
+Cet outillage exige Python, Node, Playwright/Edge et les dépendances des scripts. L’application PHP fonctionne sans ces outils. Les ports de recette 8071/8072 doivent être libres. Le script crée ses bases et serveurs dédiés ; lire tous les codes de sortie et le manifeste dans `docs/preuves/<identifiant>/`.
 
-Les suites navigateur actuelles sont `tests/corrections-browser.cjs` et `tests/parcours.cjs`. Le premier utilise les comptes créés par `tests/corrections.php` sur le jeu réduit. Les anciennes suites fondées sur un administrateur métier sont historiques ; ne pas confondre leurs preuves avec une validation des droits actuels.
+Les suites navigateur actuelles sont `tests/corrections-browser.cjs` et `tests/parcours.cjs`. Le premier utilise les comptes créés par `tests/corrections.php` sur le jeu réduit.
 
 ### Intégrité, performances, sauvegarde et migration
 
@@ -241,8 +241,8 @@ Employer de nouveaux noms pour rejouer les essais, sans supprimer de bases exist
 ## 14. Vérifier la conception et le rapport
 
 - [ ] [Cahier des charges](docs/01-cahier-des-charges.md) et [scénarios](docs/02-cas-utilisation.md) cohérents avec les actions testées.
-- [ ] [Use case corrigé](livrables/correction-prof-use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf) et Draw.io : rôles distincts, affectation et exécution séparées, portail transporteur.
-- [ ] [Dernier MCD](livrables/mcd-final/BD70-MCD-FINAL.pdf) et Draw.io conservés **en attendant le retour du professeur**. Le nouveau lien compte/société et les cardinalités conditionnelles des mouvements sont détaillés dans [l’index des modèles](docs/modeles-reference.md) : ne pas revendiquer une correspondance exacte déjà validée avec ce MCD conservé.
+- [ ] [Use case corrigé](livrables/use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf) et Draw.io : rôles distincts, affectation et exécution séparées, portail transporteur.
+- [ ] [MCD Chen corrigé](docs/mcd-chen/BD70-MCD-CHEN.svg) et Draw.io. Le lien compte/société et les mouvements conditionnels correspondent au schéma courant. Voir [l’index des modèles](docs/modeles-reference.md).
 - [ ] [MLD](docs/diagrammes/mld-complet.svg), [dictionnaire](docs/dictionnaire-donnees.md), SQL et [normalisation](docs/normalisation-3nf.md) : PK, FK, types, nullabilités, 1:N/N:N, dépendances et contraintes. Les sorties projettent quantité/emplacement/fraction depuis le prélèvement ; les JSON d’audit sont des instantanés techniques intentionnels.
 - [ ] [Rapport](livrables/rapport/RAPPORT-PROJET-BD70.pdf) : introduction, sommaire, auteurs, objectif/travail réalisé/conclusion par domaine, captures et bilan. [Recueil](livrables/rapport/DIAGRAMMES-BD70.pdf) : use case corrigé, dernier MCD et MLD actuels.
 - [ ] [Performances](docs/performances.md) et JSON : requêtes, paramètres, volumes, mesures et plans. Le nombre de tables seul ne prouve pas la qualité du modèle. La [matrice CRUD](docs/matrice-crud-droits.md) détaille les opérations permises pour chaque relation.

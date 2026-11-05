@@ -13,5 +13,5 @@ putenv('BD70_NOW=2026-10-22 12:00:00');$db=new Database();$report=(new Reports($
 $results['DLC indépendantes de la période d’activité']=$report['reference']==='2026-10-22';
 $results['période vide sans exception']=$report['carriers']===[];
 echo json_encode($results,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE)."\n";
-file_put_contents(__DIR__.'/../livrables/preuves/heure-paris.json',json_encode($results,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/heure-paris.json',json_encode($results,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 exit(in_array(false,$results,true)?1:0);

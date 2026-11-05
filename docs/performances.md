@@ -1,6 +1,6 @@
 # Analyse des performances
 
-Mesures de la version corrigée du **3 novembre 2026**, incluant la projection normalisée des sorties. Preuve : livrables/preuves/corrections-rendu-2026-11-03/performances.json. Les temps SQL, réponses HTTP et navigations avec ressources sont mesurés séparément.
+Mesures de la version corrigée du **3 novembre 2026**, incluant la projection normalisée des sorties. Preuve : docs/preuves/corrections-rendu-2026-11-03/performances.json. Les temps SQL, réponses HTTP et navigations avec ressources sont mesurés séparément.
 
 Environnement : 10.4.32-MariaDB, PHP 8.2.12, Windows ; base isolée bd70_perf_corrections_20261103. Chauffe puis dix exécutions PDO avec récupération des résultats. Paramètres, EXPLAIN, index et observations dans performances.json.
 

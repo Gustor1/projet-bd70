@@ -2,7 +2,7 @@
 
 Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le dernier MCD (retour enseignant attendu) et les MLD courants.
 
-Tous les cas métier présupposent une session active et un rôle autorisé. Un refus ne modifie aucune donnée. Le diagramme UML de référence est dans `livrables/correction-prof-use-case/`.
+Tous les cas métier présupposent une session active et un rôle autorisé. Un refus ne modifie aucune donnée. Le diagramme UML de référence est dans `docs/correction-prof-use-case/`.
 
 | Cas | Objectif / acteur | Préconditions | Déroulement nominal | Variantes et erreurs | Postconditions et données |
 |---|---|---|---|---|---|

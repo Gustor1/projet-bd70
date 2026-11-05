@@ -1,26 +1,36 @@
-# Recette et preuves
+# Recette et preuves du rendu
 
-La recette courante après correction du retour enseignant est dans [CORRECTIONS-RENDU-2026-11-03.md](CORRECTIONS-RENDU-2026-11-03.md). La précédente recette du **3 novembre 2026** est détaillée dans [FINALISATION-2026-11-03.md](FINALISATION-2026-11-03.md), avec commandes, empreintes et nouvelles preuves séparées. Les chiffres ci-dessous sont les relevés antérieurs, conservés comme historique ; ils ne valident pas de nouvelles modifications.
+[COMMENT-TESTER.md](../COMMENT-TESTER.md) décrit les comptes, parcours et résultats attendus. Les cases de ce guide sont à compléter par le testeur.
 
-## Relevés antérieurs
+## Vérifications enregistrées
 
-Résultats exécutés par les scripts livrés. Bases mutantes dédiées ; démonstration riche consultée en lecture.
+Les preuves métier du 3 novembre 2026 sont conservées dans [corrections-rendu-2026-11-03](preuves/corrections-rendu-2026-11-03). Elles concernent la version avec droits corrigés, portail transporteur et sorties de stock normalisées.
 
-| Vérification | Réussis | Échecs | Preuve |
-|---|---:|---:|---|
-| Intégration métier/SQL | 64 | 0 | integration.json |
-| Nouveaux cas métier | 23 | 0 | completion.json |
-| Navigateur général | 71 | 0 | navigateur.json |
-| Parcours complet | 31 | 0 | parcours.json |
-| Parcours guidés ajoutés | 34 | 0 | completion-navigateur.json |
-| Base riche en lecture | 16 | 0 | navigateur-riche.json |
+| Vérification | Résultat |
+|---|---|
+| Intégration métier, SQL et concurrence | 64/64 |
+| Compléments métier | 23/23 |
+| Protection des faits | 14/14 |
+| Droits, isolation et normalisation | 18/18 |
+| Navigateur et portail transporteur | 32/32 |
+| Parcours complet avec changement de profils | 32/32 |
+| Horloge du site | 8/8 |
+| Import riche et intégrité | 83 contrôles sans anomalie |
 
-Horloge Paris : 8 contrôles. Intégrité riche : 82 contrôles métier/FK. Migration : 42 contrôles des colonnes préexistantes et allocations.
+Ce dossier contient aussi les résultats de migration, sauvegarde/restauration, performances, commandes exécutées et captures du rapport.
 
-Restauration : 41 tables comparées par comptes et checksums, 119 déclencheurs et 2 procédures. Une mutation vérifie l’audit dans la copie.
+Les compléments de comptes du 4 novembre sont dans [comptes-2026-11-04](preuves/comptes-2026-11-04). Ils couvrent 31 contrôles des comptes, 15 cas navigateur, ainsi que le rejeu ciblé des 18 contrôles métier et des 32 contrôles de droits.
 
-Installation propre : configuration et compte SQL neufs, trois refus de booléens invalides, CRUD d’une relation inutilisée et huit routes authentifiées.
+Les vérifications documentaires du MCD Chen sont dans [mcd-2026-11-04](preuves/mcd-2026-11-04). La cohérence couvre 61 FK métier et 214 colonnes métier. Les empreintes conservées dans les recettes datées décrivent leur version d’exécution.
 
-Les 64 assertions initiales incluent quatre courses entre deux connexions, la conservation du stock, les rollbacks et les oracles des indicateurs. Les 23 nouveaux cas couvrent réserves, restes, clôtures, ressources, modifications permises, reprise et colis. Les contrôles mobiles sont effectués dans Edge à 390 px, pas sur appareil physique.
+Ces résultats proviennent de recettes datées. Ils ne signifient pas qu’une recette globale a été rejouée après chaque modification documentaire. Les limites comprennent les appareils physiques, les lecteurs d’écran et une preuve formelle exhaustive de tous les entrelacements concurrents.
 
-Reproduction : installer une base neuve, charger scripts/seed.php. integration.php utilise BD70_TEST_DATABASE ; completion.php utilise BD70_DATABASE. Les tests fixent le 22/10/2026 à midi ; le serveur navigateur dédié doit recevoir BD70_NOW=2026-10-22 12:00:00 et une base bd70_test*. Ne jamais figer la démonstration.
+## Reproduire
+
+scripts/verify-finalisation.py crée des bases neuves et des serveurs de test dédiés. BD70_RUN_ID permet un identifiant unique. Les ports 8071 et 8072 doivent être libres. BD70_PHP, BD70_PYTHON, BD70_NODE et BD70_PLAYWRIGHT permettent de préciser l’outillage.
+
+Les suites navigateur courantes sont tests/corrections-browser.cjs, tests/parcours.cjs et tests/comptes-browser.cjs. Les tests de comptes nécessitent le jeu riche. Utiliser uniquement des bases de test distinctes pour les recettes qui modifient les données.
+
+scripts/validate-data.php réalise un contrôle d’intégrité en lecture. scripts/clean-install.py vérifie une installation depuis une copie neuve. scripts/backup-restore.py teste la restauration dans une nouvelle base.
+
+L’horloge fixe du 22 octobre 2026 est réservée aux scénarios reproductibles. La démonstration utilise l’heure réelle du site Europe/Paris.

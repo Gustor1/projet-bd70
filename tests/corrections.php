@@ -32,4 +32,4 @@ $portal->act('carrier_cancel',['id'=>$id]);check($db->scalar('SELECT status FROM
 $raw=$db->one("SELECT * FROM stock_movement WHERE kind='shipment' LIMIT 1");$projection=$db->one('SELECT * FROM v_stock_movement WHERE id=?',[$raw['id']]);
 check($raw['delta']===null&&$raw['location_id']===null&&$raw['receipt_item_id']===null,'Sortie sans duplication des faits du prélèvement');
 check($projection['delta']<0&&$projection['location_id']>0&&$projection['receipt_item_id']>0,'Projection reconstitue le mouvement pour stock et trace');
-$failed=count(array_filter($results,fn($r)=>!$r['ok']));file_put_contents(__DIR__.'/../livrables/preuves/corrections.json',json_encode(['passed'=>count($results)-$failed,'failed'=>$failed,'results'=>$results],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));exit($failed?1:0);
+$failed=count(array_filter($results,fn($r)=>!$r['ok']));file_put_contents(__DIR__.'/../docs/preuves/corrections.json',json_encode(['passed'=>count($results)-$failed,'failed'=>$failed,'results'=>$results],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));exit($failed?1:0);

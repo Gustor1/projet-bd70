@@ -137,5 +137,5 @@ $index=0;
 for($day=$days;$day>=1;$day--){$date=$reference->modify('-'.$day.' days');$db->transaction(1,function()use($dataset,$date,&$index){for($hour=8;$hour<18;$hour++)$dataset->cycle($index++,$date->setTime($hour,0));});if($day%10===0)echo ($days-$day+1)." jours générés\n";}
 $dataset->live();
 $counts=[];foreach($db->all('SHOW FULL TABLES WHERE Table_type="BASE TABLE"') as $row){$t=array_values($row)[0];$counts[$t]=(int)$db->scalar('SELECT COUNT(*) FROM `'.$t.'`');}
-file_put_contents(__DIR__.'/../livrables/preuves/donnees-riches.json',json_encode(['database'=>$name,'reference_date'=>$reference->format('Y-m-d'),'timezone'=>'Europe/Paris','seed'=>70,'days'=>$days,'historical_data'=>'Simulation fictive cohérente ; scénarios actifs créés par Warehouse','volumes'=>$counts],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/donnees-riches.json',json_encode(['database'=>$name,'reference_date'=>$reference->format('Y-m-d'),'timezone'=>'Europe/Paris','seed'=>70,'days'=>$days,'historical_data'=>'Simulation fictive cohérente ; scénarios actifs créés par Warehouse','volumes'=>$counts],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 echo json_encode($counts,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE)."\n";

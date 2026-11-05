@@ -1,7 +1,0 @@
-{
-  "report_links_resolve": true,
-  "missing_links": [],
-  "existing_run_refused": true,
-  "diff_check": "git diff --check exit 0",
-  "python_compile": true
-}
