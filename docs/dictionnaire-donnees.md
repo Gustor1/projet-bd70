@@ -1,5 +1,5 @@
 # Dictionnaire des données du schéma corrigé
-42 tables ; sorties projetées par v_stock_movement. appointment_archive reprend les colonnes de appointment plus archived_at (date d’historisation) ; elle est alimentée uniquement par la procédure archive_appointments (sql/08_historisation.sql). Schéma installé, 3 novembre 2026.
+43 tables ; sorties projetées par v_stock_movement. stock_balance (receipt_item_id, location_id, qty, reserved_qty ; clé primaire composée) garde le solde physique et la quantité réservée de chaque fraction par emplacement ; elle est écrite uniquement par les triggers de sql/09_optimisation.sql et contrôlée contre v_balance_controle. appointment_archive reprend les colonnes de appointment plus archived_at (date d’historisation) ; elle est alimentée uniquement par la procédure archive_appointments (sql/08_historisation.sql). Schéma installé, 3 novembre 2026.
 
 ## user_account
 

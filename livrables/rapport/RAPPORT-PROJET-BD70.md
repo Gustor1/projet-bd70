@@ -93,7 +93,7 @@ Le modèle complet est fourni en PDF et SVG vectoriels (texte et formes, aucune 
 
 Les tables de jointure ont une clé artificielle id en plus de la contrainte UNIQUE sur le couple : la clé candidate composée reste garantie, et l’interface générique de saisie manipule toutes les tables de la même façon.
 
-Le schéma compte **42 tables** : 34 issues des entités (le type de véhicule est un domaine ENUM), 5 tables de jointure, 2 tables techniques (journal d’audit et verrou du site) et la table d’historique appointment_archive (voir Implémentation de la base). Il comprend 239 colonnes, 66 clés étrangères, 38 contraintes UNIQUE et 21 contraintes CHECK.
+Le schéma compte **43 tables** : 34 issues des entités (le type de véhicule est un domaine ENUM), 5 tables de jointure, 3 tables techniques (journal d’audit, verrou du site et soldes de stock stock_balance) et la table d’historique appointment_archive (voir Implémentation de la base). Il comprend 243 colonnes, 68 clés étrangères, 38 contraintes UNIQUE et 22 contraintes CHECK.
 
 Notation : clé primaire soulignée, # clé étrangère (→ table référencée), [U] unique, [NULL] facultatif ; les autres colonnes sont NOT NULL.
 
@@ -113,25 +113,28 @@ Notation : clé primaire soulignée, # clé étrangère (→ table référencée
 
 **Deuxième forme normale.** Elle concerne les clés composées. Dans order_line, la clé candidate (order_id, article_id) détermine la quantité ; la désignation de l’article, qui ne dépend que de article_id, reste dans article. Même raisonnement pour notice_line, receipt_line et package_pick.
 
-**Troisième forme normale.** Aucune colonne non clé n’en détermine une autre. Exemples : la zone d’un emplacement est obtenue par jointure (emplacement → niveau → rack → allée → zone) et n’est pas recopiée ; aucun total quantité × prix n’est stocké ; le solde de stock et les temps d’attente sont calculés par des vues et non stockés ; une sortie de stock référence son prélèvement, qui détermine déjà la fraction, l’emplacement et la quantité (un déclencheur refuse toute valeur divergente).
+**Troisième forme normale.** Aucune colonne non clé n’en détermine une autre. Exemples : la zone d’un emplacement est obtenue par jointure (emplacement → niveau → rack → allée → zone) et n’est pas recopiée ; aucun total quantité × prix n’est stocké ; les temps d’attente sont calculés par une vue ; le solde de stock est conservé dans stock_balance pour la performance, comme redondance contrôlée (voir ci-dessous) ; une sortie de stock référence son prélèvement, qui détermine déjà la fraction, l’emplacement et la quantité (un déclencheur refuse toute valeur divergente).
 
 **Forme normale de Boyce-Codd.** Les déterminants rencontrés sont des clés candidates (code, référence, immatriculation, couple de jointure) ; aucune dépendance d’un attribut non clé vers une partie de clé n’a été identifiée.
 
-**Dénormalisations assumées.** Trois choix sont volontaires et documentés (docs/normalisation-3nf.md) :
+**Dénormalisations assumées.** Quatre choix sont volontaires et documentés (docs/normalisation-3nf.md) :
 
 | Colonne | Pourquoi elle n’est pas une redondance gênante |
 |---|---|
 | truck_visit.driver_id, vehicle_id, trailer_id, operation | Indispensables aux passages sans rendez-vous (27 % du jeu de démonstration). Pour un passage avec rendez-vous, ils sont recopiés à l’arrivée : c’est une dépendance conditionnelle assumée, sans anomalie de mise à jour car un rendez-vous utilisé ne peut plus être modifié. Le quai effectif (dock_id) est, lui, attribué à l’appel et peut différer du quai prévu. |
 | truck_visit.status, customer_order.status, receipt.status | Projection de l’état courant, mise à jour dans la même transaction que l’événement correspondant, pour éviter de recalculer la dernière étape à chaque affichage. |
 | receipt_line.expected_qty | Quantité attendue pour cette livraison : une ligne d’avis peut être livrée en plusieurs fois ; elle n’est donc pas déterminée par la ligne d’avis seule. |
+| stock_balance.qty, reserved_qty | Solde et réservations par fraction et emplacement, déductibles de l’historique des mouvements et des prélèvements. Conservés pour la performance (voir Données de démonstration et performances) : seuls des déclencheurs les écrivent, dans la même transaction que le mouvement ou la réservation ; le compte applicatif n’a aucun droit d’écriture ; un contrôle compare chaque solde au recalcul depuis l’historique (v_balance_controle). |
 
 ## Implémentation de la base
 
-**Scripts.** L’installation est reproductible sur une base vide : sql/01_schema.sql (tables et contraintes), 02_vues.sql, 03_procedures.sql, 04_triggers.sql, 05_index.sql, 08_historisation.sql ; le script scripts/install.php les exécute dans l’ordre et refuse une base non vide. Les droits sont décrits dans 06_privileges.example.sql et les données factices dans 07_donnees_demo_riches.sql.
+**Scripts.** L’installation est reproductible sur une base vide : sql/01_schema.sql (tables et contraintes), 02_vues.sql, 03_procedures.sql, 04_triggers.sql, 05_index.sql, 08_historisation.sql, 09_optimisation.sql ; le script scripts/install.php les exécute dans l’ordre et refuse une base non vide. Les droits sont décrits dans 06_privileges.example.sql et les données factices dans 07_donnees_demo_riches.sql.
 
-**Vues.** Dix vues isolent les calculs réutilisés : v_stock_movement et v_balance (solde par fraction et emplacement, SUM … GROUP BY), v_reserved et v_stock (disponible = solde − réservations, LEFT JOIN et COALESCE), v_location (jointures de la structure physique), v_location_usage (occupation en kg, m³ et palettes), v_visit (chronologie d’un passage par LEFT JOIN sur ses événements, temps d’attente et d’immobilisation), v_receipt_discrepancy et v_notice_line_progress (écarts de réception), v_appointment_all (rendez-vous courants et historisés, UNION ALL).
+**Vues.** Onze vues isolent les calculs réutilisés : v_stock_movement (sorties projetées depuis leur prélèvement), v_balance et v_reserved (solde et réservations lus dans stock_balance), v_balance_controle (même solde recalculé par SUM … GROUP BY sur tout l’historique, pour le contrôle), v_stock (disponible = solde − réservations, LEFT JOIN et COALESCE), v_location (jointures de la structure physique), v_location_usage (occupation en kg, m³ et palettes), v_visit (chronologie d’un passage par LEFT JOIN sur ses événements, temps d’attente et d’immobilisation), v_receipt_discrepancy et v_notice_line_progress (écarts de réception), v_appointment_all (rendez-vous courants et historisés, UNION ALL).
 
 **Procédures stockées.** lock_site verrouille la ligne du site (SELECT … FOR UPDATE) au début de chaque transaction d’écriture ; trace_lot renvoie l’historique paginé d’un lot (réception, mouvements, commande, expédition, camion) ; archive_appointments déplace les rendez-vous anciens vers l’historique.
+
+**Fonction stockée.** stock_disponible(article, date) renvoie la quantité disponible d’un article à une date : lots non bloqués et non périmés, réservations déduites (CREATE FUNCTION … RETURNS INT READS SQL DATA). La préparation de commande l’appelle pour refuser d’emblée une demande supérieure au stock disponible, avant toute réservation.
 
 **Transactions.** Toute opération qui touche plusieurs tables (valider une réception, transférer, préparer une commande, expédier) est exécutée dans une transaction : START TRANSACTION, appel de lock_site, contrôles, écritures, puis COMMIT ; à la moindre erreur, ROLLBACK annule toutes les écritures. Exemple : deux responsables réservent le même créneau. La première transaction prend le verrou, vérifie et enregistre ; la seconde attend, relit le planning, détecte le chevauchement et est annulée.
 
@@ -140,14 +143,15 @@ Notation : clé primaire soulignée, # clé étrangère (→ table référencée
 | Famille | Nombre | Rôle |
 |---|---:|---|
 | Cohérence métier | 3 | appointment_no_overlap_insert et _update refusent (SIGNAL) un chevauchement sur un quai même si l’écriture contourne l’application ; normalize_shipment refuse une sortie incohérente avec son prélèvement. |
-| Protection de l’historique | 10 | Refus de UPDATE et DELETE sur les faits immuables : mouvements, événements de passage, expéditions, réserves, journal. |
+| Protection de l’historique | 11 | Refus de UPDATE et DELETE sur les faits immuables : mouvements, événements de passage, expéditions, réserves, journal ; pick_shipped_frozen fige un prélèvement expédié. |
+| Calcul incrémental (performance) | 4 | balance_movement_insert ajoute la variation de chaque mouvement au solde de stock_balance (INSERT … ON DUPLICATE KEY UPDATE, coût constant) ; balance_pick_insert, _update et _delete tiennent à jour les quantités réservées. Même principe que la table de statistiques hebdomadaires du TD Automatisation. |
 | Journal d’audit | 109 | Un déclencheur AFTER INSERT, UPDATE ou DELETE par table métier écrit l’ancienne et la nouvelle valeur dans audit_log, avec l’auteur (sans jamais copier le mot de passe). Ils sont générés à partir du schéma (scripts/build_triggers.py) et ne font qu’un INSERT chacun. |
 
 **Historisation et évènement planifié.** Conformément au mécanisme présenté en cours, la procédure archive_appointments(p_days) déplace dans une transaction les rendez-vous terminés depuis p_days jours et n’ayant donné lieu à aucun passage (annulés ou non honorés) vers la table appointment_archive, puis les supprime de appointment : la table consultée par le planning reste légère. L’évènement ev_archive_appointments l’exécute chaque nuit avec un délai d’un an (CREATE EVENT … ON SCHEDULE EVERY 1 DAY, actif quand event_scheduler=ON). La vue v_appointment_all réunit les deux tables avec UNION ALL. Les mouvements de stock, eux, ne sont jamais modifiés : ils forment l’historique complet qui permet de recalculer tout solde.
 
 **Index.** Les clés primaires, UNIQUE et étrangères sont indexées automatiquement par InnoDB. Huit index composés ciblent les recherches fréquentes : créneaux d’un quai (dock_id, status, starts_at, ends_at), passages par état, événements par période, mouvements par fraction et emplacement, mouvements par date, lots pour FEFO, réservations, avis par date. Les index ont un coût en écriture : nous n’en avons pas créé d’autres sans mesure.
 
-**Sécurité.** Les mots de passe sont stockés hachés (password_hash) ; toutes les requêtes sont préparées (PDO, émulation désactivée), ce qui protège contre l’injection SQL ; les formulaires portent un jeton CSRF et chaque action vérifie le profil et l’objet concerné côté serveur. Côté SGBD, le principe du moindre privilège s’applique : l’application se connecte avec un compte dédié, limité à 127.0.0.1, qui n’a aucun droit de structure, seulement SELECT et EXECUTE, et INSERT seul sur les historiques ; il n’a aucun droit d’écriture sur le journal, le verrou et l’historique des rendez-vous. Le script d’exemple crée aussi un compte de reporting limité à des vues et un compte de sauvegarde, et montre un REVOKE. Aucun mot de passe réel n’est versionné : le secret applicatif est généré à l’installation dans un fichier exclu de Git.
+**Sécurité.** Les mots de passe sont stockés hachés (password_hash) ; toutes les requêtes sont préparées (PDO, émulation désactivée), ce qui protège contre l’injection SQL ; les formulaires portent un jeton CSRF et chaque action vérifie le profil et l’objet concerné côté serveur. Côté SGBD, le principe du moindre privilège s’applique : l’application se connecte avec un compte dédié, limité à 127.0.0.1, qui n’a aucun droit de structure, seulement SELECT et EXECUTE, et INSERT seul sur les historiques ; il n’a aucun droit d’écriture sur le journal, le verrou, l’historique des rendez-vous et les soldes de stock. Le script d’exemple crée aussi un compte de reporting limité à des vues et un compte de sauvegarde, et montre un REVOKE. Aucun mot de passe réel n’est versionné : le secret applicatif est généré à l’installation dans un fichier exclu de Git.
 
 ## Fonctionnalités du site et des quais
 
@@ -254,7 +258,7 @@ Chaque fonctionnalité est présentée sous la forme objectif, travail réalisé
 Les contrôles sont exécutés sur des bases de test neuves, jamais sur la base de démonstration. Le 7 novembre 2026, après les dernières modifications, nous avons obtenu les résultats suivants :
 
 - les scripts SQL s’exécutent sans erreur ni avertissement sur une base vide, et les données factices se chargent intégralement ;
-- 127 contrôles automatisés réussissent : 64 tests d’intégration, 7 tests de rapports, 19 tests de droits, 23 tests de complétude et 14 tests de finalisation ;
+- 136 contrôles automatisés réussissent : 64 tests d’intégration, 7 tests de rapports, 19 tests de droits, 23 tests de complétude, 14 tests de finalisation et 9 tests d’optimisation (soldes égaux au recalcul après réservation, annulation et transfert, fonction stock_disponible, prélèvement expédié figé, soldes non modifiables par l’application) ;
 - le déclencheur anti-chevauchement refuse un rendez-vous en conflit inséré directement en SQL ;
 - l’archivage a déplacé trois rendez-vous anciens sans passage vers l’historique, la vue UNION ALL a conservé le même total et le journal a enregistré les suppressions.
 
@@ -268,14 +272,22 @@ Chaque requête est exécutée une fois pour chauffer le cache, puis dix fois de
 
 {{PERFORMANCES}}
 
-L’index composé idx_appointment_slot(dock_id, status, starts_at, ends_at) fait passer la recherche de créneaux de {{INDEX_AVANT}} ms à {{INDEX_APRES}} ms : EXPLAIN montre un accès par plage (range) au lieu de la lecture de tous les rendez-vous du quai. La principale limite identifiée est le calcul du stock : la vue v_balance agrège tout l’historique des mouvements à chaque recherche (EXPLAIN : table dérivée, parcours complet). C’est le prix d’un solde jamais stocké ; si le volume l’exigeait, une table de soldes mise à jour dans la même transaction, ou l’historisation des mouvements anciens, réduirait ce coût.
+**Démarche d’optimisation (TD Optimisation).** Mesurer, lire le plan EXPLAIN, optimiser, puis mesurer à nouveau sur les mêmes données et calculer le gain absolu et relatif.
+
+**1. Index composé sur les créneaux.** idx_appointment_slot(dock_id, status, starts_at, ends_at) fait passer la recherche de créneaux de {{INDEX_AVANT}} ms à {{INDEX_APRES}} ms ({{INDEX_GAIN}}) : EXPLAIN montre un accès par plage (range) au lieu de la lecture de tous les rendez-vous du quai.
+
+**2. Table de soldes tenue à jour par déclencheurs.** Avant, la vue v_balance recalculait chaque solde par GROUP BY sur tout l’historique des mouvements, et v_reserved sur tous les prélèvements. EXPLAIN montrait des tables dérivées lues en entier (ALL) à chaque recherche de stock, sélection FEFO ou proposition d’emplacement : un coût qui croît avec l’historique. Après, stock_balance garde le solde et les réservations de chaque fraction par emplacement ; les déclencheurs le mettent à jour à chaque mouvement ou réservation, dans la même transaction ; v_balance et v_reserved lisent cette table par sa clé primaire et sont fusionnées dans la requête (plus de table dérivée). Mesures sur le jeu de démonstration, mêmes données, avant puis après (scripts/performance-optimisation.php) :
+
+{{OPTIMISATION}}
+
+Contrepartie : chaque écriture de mouvement exécute un déclencheur de plus ; l’écart mesuré ({{ECRITURE_AVANT}} ms avant, {{ECRITURE_APRES}} ms après) reste dans le bruit de mesure. Le solde devient une redondance contrôlée : l’historique immuable reste la référence et scripts/validate-data.php vérifie que chaque solde est égal à son recalcul.
 
 ## Conclusion
 
 Transit couvre les huit domaines du sujet avec une interface web, au-delà des cinq modules obligatoires. À partir d’un numéro de lot, l’application retrouve la livraison d’origine, les emplacements successifs et le camion d’expédition. Cette réponse repose sur trois décisions de conception : séparer l’attendu du réalisé, conserver la provenance des fractions et rattacher chaque sortie à un prélèvement identifié.
 
-La base respecte la troisième forme normale, à trois dénormalisations près, justifiées. Elle met en œuvre les notions du cours : clés et contraintes d’intégrité, jointures internes et externes, agrégations avec GROUP BY et HAVING, vues, procédures, déclencheurs de cohérence et d’historique, évènement planifié, transactions, index mesurés et droits limités.
+La base respecte la troisième forme normale, à quatre dénormalisations près, justifiées. Elle met en œuvre les notions du cours : clés et contraintes d’intégrité, jointures internes et externes, agrégations avec GROUP BY et HAVING, vues, procédures, fonction stockée, déclencheurs de cohérence, d’historique et de calcul incrémental, évènement planifié, transactions, index et optimisations mesurés avant et après, et droits limités.
 
-Les limites sont connues : un seul site, une expédition par commande, un verrou global qui simplifie la cohérence mais sérialise les écritures, et un calcul de stock dont le coût croît avec l’historique. Pour étendre le système, il faudrait des verrous par ressource, des expéditions partielles et une table de soldes.
+Les limites sont connues : un seul site, une expédition par commande, et un verrou global qui simplifie la cohérence mais sérialise les écritures. Pour étendre le système, il faudrait des verrous par ressource et des expéditions partielles.
 
 Le dossier livrables contient le diagramme de cas d’utilisation, le modèle de Chen et le schéma relationnel, chacun en PDF et SVG vectoriels et en source Draw.io modifiable, ainsi que les supports de soutenance. Le README explique comment installer Transit et charger le jeu fictif.

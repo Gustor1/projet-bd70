@@ -199,7 +199,8 @@ final class Warehouse
     }
     private function free(int $item,int $location): int
     {
-        return (int)$this->db->scalar('SELECT COALESCE((SELECT SUM(delta) FROM v_stock_movement WHERE receipt_item_id=? AND location_id=?),0)-COALESCE((SELECT SUM(qty) FROM pick WHERE receipt_item_id=? AND location_id=? AND status IN (\'planned\',\'confirmed\')),0)',[$item,$location,$item,$location]);
+        // Solde tenu à jour par trigger (sql/09_optimisation.sql) : une ligne lue par clé primaire.
+        return (int)$this->db->scalar('SELECT COALESCE((SELECT qty-reserved_qty FROM stock_balance WHERE receipt_item_id=? AND location_id=?),0)',[$item,$location]);
     }
     public function transfer(int $item,int $source,int $dest,int $qty,string $reason): void
     {
@@ -238,6 +239,9 @@ final class Warehouse
             foreach($lines as $line){
                 if($o['owner_id']!=$this->db->scalar('SELECT owner_id FROM article WHERE id=?',[$line['article_id']]))throw new DomainException('Article d’un autre propriétaire.');
                 $need=(int)$line['qty'];
+                // Fonction stockée stock_disponible : refus immédiat si le stock disponible de l'article ne suffit pas.
+                $available=(int)$this->db->scalar('SELECT stock_disponible(?,?)',[$line['article_id'],substr($this->now(),0,10)]);
+                if($available<$need)throw new DomainException('Stock FEFO disponible insuffisant : '.$available.' disponible(s) pour '.$need.' demandé(s), aucune ligne réservée.');
                 $stock=$this->db->all('SELECT s.*,qty-reserved_qty available_qty FROM v_stock s WHERE article_id=? AND qty-reserved_qty>0 AND blocked=0 AND (expires_on IS NULL OR expires_on>=?) ORDER BY expires_on IS NULL,expires_on,received_at,receipt_item_id,location_id',[$line['article_id'],substr($this->now(),0,10)]);
                 foreach($stock as $s){$take=min($need,(int)$s['available_qty']);$this->db->insert('pick',['order_line_id'=>$line['id'],'receipt_item_id'=>$s['receipt_item_id'],'location_id'=>$s['location_id'],'qty'=>$take]);$need-=$take;if(!$need)break;}
                 if($need>0)throw new DomainException('Stock FEFO disponible insuffisant : aucune ligne réservée.');
@@ -306,7 +310,7 @@ final class Warehouse
                 if($p['blocked']||($p['expires_on']&&$p['expires_on']<substr($this->now(),0,10)))throw new DomainException('Lot bloqué ou périmé.');
                 if((int)$this->db->scalar('SELECT COALESCE(SUM(pp.qty),0) FROM package_pick pp JOIN package c ON c.id=pp.package_id WHERE pp.pick_id=? AND c.order_id=?',[$p['id'],$order])!==(int)$p['qty'])throw new DomainException('Répartissez exactement chaque quantité prélevée entre les colis ou palettes.');
                 $this->goodsVehicle($v,$p);$kg+=$p['qty']*$p['unit_kg'];$pallets+=$p['qty']/$p['units_per_pallet'];
-                if((int)$this->db->scalar('SELECT COALESCE(SUM(delta),0) FROM v_stock_movement WHERE receipt_item_id=? AND location_id=?',[$p['receipt_item_id'],$p['location_id']])<$p['qty'])throw new DomainException('Stock physique insuffisant.');
+                if((int)$this->db->scalar('SELECT COALESCE((SELECT qty FROM stock_balance WHERE receipt_item_id=? AND location_id=?),0)',[$p['receipt_item_id'],$p['location_id']])<$p['qty'])throw new DomainException('Stock physique insuffisant.');
             }
             $this->truckCapacity($v,$kg,$pallets,true);$ref=$this->ref('EXP');
             $this->db->insert('shipment',['order_id'=>$order,'visit_id'=>$visit,'reference'=>$ref,'shipped_at'=>$this->now(),'actor_id'=>$this->actor]);

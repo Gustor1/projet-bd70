@@ -1,0 +1,18 @@
+{
+    "date": "2026-11-08T22:25:07+01:00",
+    "engine": "10.4.32-MariaDB",
+    "passed": 9,
+    "failed": 0,
+    "successes": [
+        "Soldes et réservations égaux au recalcul depuis l'historique après le jeu de test",
+        "Fonction stock_disponible égale à la somme disponible de v_stock",
+        "Préparation au-delà du disponible refusée par la fonction",
+        "Réservation : trigger sur pick, disponible diminué de 3, aucun écart",
+        "Annulation : réservations libérées par trigger",
+        "Transfert : deux soldes mis à jour dans la même transaction",
+        "Prélèvement expédié figé",
+        "Soldes non modifiables par le compte applicatif",
+        "Plan de v_stock sans table dérivée (vues fusionnées)"
+    ],
+    "failures": []
+}

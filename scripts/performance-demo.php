@@ -1,6 +1,7 @@
 <?php
 // Mesure en lecture seule des requêtes principales sur le jeu de démonstration riche.
 // BD70_DATABASE=bd70_test_xxx (copie chargée par import-demo.php) php scripts/performance-demo.php
+// BD70_PERF_OUT=chemin.json : fichier de sortie (défaut docs/preuves/performances-demo.json).
 declare(strict_types=1);
 require __DIR__.'/../src/bootstrap.php';
 $name=getenv('BD70_DATABASE')?:'';
@@ -33,4 +34,4 @@ foreach($queries as $key=>[$sql,$params]){
  $result['queries'][$key]=['sql'=>$sql,'params'=>$params,'raw_ms'=>$raw,'median_ms'=>($sorted[4]+$sorted[5])/2,'min_ms'=>$sorted[0],'max_ms'=>$sorted[9],'rows'=>count($rows),'explain'=>$planDb->all('EXPLAIN '.$sql,$params)];
  echo $key.' médiane '.round($result['queries'][$key]['median_ms'],3)." ms\n";
 }
-file_put_contents(__DIR__.'/../docs/preuves/performances-demo.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(getenv('BD70_PERF_OUT')?:__DIR__.'/../docs/preuves/performances-demo.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));

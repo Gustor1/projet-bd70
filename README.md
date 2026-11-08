@@ -71,7 +71,7 @@ PHP 8.2.12 avec PDO MySQL et mbstring, MariaDB 10.4.32, Windows et Edge/Chromium
 
 ## Recette et maintenance
 
-L’évènement d’archivage ne s’exécute que si le planificateur MariaDB est actif : `SET GLOBAL event_scheduler=ON;` avec le compte administrateur (ou `event_scheduler=ON` dans my.ini). La procédure peut aussi être lancée à la main : `CALL archive_appointments(365);`.
+L’évènement d’archivage ne s’exécute que si le planificateur MariaDB est actif : `scripts/start.ps1` lance MariaDB avec `--event-scheduler=ON` ; sur un autre serveur, `SET GLOBAL event_scheduler=ON;` avec le compte administrateur (ou `event_scheduler=ON` dans my.ini). La procédure peut aussi être lancée à la main : `CALL archive_appointments(365);`.
 
 
 Suivre COMMENT-TESTER.md pour les parcours et les bases de test séparées. scripts/verify-finalisation.py exécute une recette isolée. Les résultats livrés sont datés dans docs/recette.md.

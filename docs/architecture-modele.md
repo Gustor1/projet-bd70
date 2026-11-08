@@ -17,8 +17,8 @@ Les mutations prennent un verrou sur `site_lock` dans la transaction PHP ; il pr
 
 ## Extensions finalisées
 
-42 tables installées (dont appointment_archive, historique des rendez-vous). receipt_reserve porte un lien exclusif vers une réception ou une ligne (CHECK XOR). package_pick porte une quantité et l’unicité (package_id,pick_id), ce qui permet plusieurs colis par prélèvement. Les avis ont une clôture motivée ; les commandes une note de reprise. Les snapshots JSON du journal technique sont une dénormalisation volontaire, exclue de l’argumentation 3NF des relations métier.
+43 tables installées (dont appointment_archive, historique des rendez-vous, et stock_balance, soldes de stock tenus par triggers). receipt_reserve porte un lien exclusif vers une réception ou une ligne (CHECK XOR). package_pick porte une quantité et l’unicité (package_id,pick_id), ce qui permet plusieurs colis par prélèvement. Les avis ont une clôture motivée ; les commandes une note de reprise. Les snapshots JSON du journal technique sont une dénormalisation volontaire, exclue de l’argumentation 3NF des relations métier.
 
-v_visit joint les événements uniques (passage, état). v_location_usage agrège directement les quantités physiques et caractéristiques d’articles, sans utiliser les réservations et descriptions de v_stock. Ces vues ne stockent aucun solde supplémentaire.
+v_visit joint les événements uniques (passage, état). v_location_usage agrège directement les quantités physiques et caractéristiques d’articles, sans utiliser les réservations et descriptions de v_stock. Depuis sql/09_optimisation.sql, v_balance et v_reserved lisent stock_balance (solde et réservations par fraction et emplacement), mise à jour par triggers dans la même transaction que chaque mouvement ou prélèvement ; v_balance_controle conserve le recalcul complet depuis l’historique pour le contrôle.
 
 Convention des MCD : la cardinalité placée près d’une entité indique le nombre de participations de cette entité à l’association (exemple : un transporteur emploie 0..N chauffeurs ; un chauffeur dépend de 1 transporteur). Les MLD utilisent la multiplicité de l’extrémité de relation.

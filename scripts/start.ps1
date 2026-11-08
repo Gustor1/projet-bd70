@@ -17,7 +17,8 @@ if(!(Test-Path -LiteralPath (Join-Path $dataPath 'my.ini'))){
 }
 $listening=Get-NetTCPConnection -LocalPort $DbPort -State Listen -ErrorAction SilentlyContinue
 if(!$listening){
- $arguments=@(('"--defaults-file='+$dataPath+'/my.ini"'),'--bind-address=127.0.0.1',"--port=$DbPort",'--console')
+ # --event-scheduler=ON : l'évènement d'archivage nocturne s'exécute (équivaut à SET GLOBAL event_scheduler=ON du cours).
+ $arguments=@(('"--defaults-file='+$dataPath+'/my.ini"'),'--bind-address=127.0.0.1',"--port=$DbPort",'--event-scheduler=ON','--console')
  $dbProcess=Start-Process -FilePath (Join-Path $MariaPath 'mysqld.exe') -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/mariadb-out.log') -RedirectStandardError (Join-Path $projectRoot '.local/mariadb-error.log')
  $dbProcess.Id | Set-Content (Join-Path $projectRoot '.local/mariadb.pid')
  for($i=0;$i -lt 40;$i++){if(Get-NetTCPConnection -LocalPort $DbPort -State Listen -ErrorAction SilentlyContinue){break};Start-Sleep -Milliseconds 250}
@@ -31,10 +32,10 @@ if(!(Test-Path -LiteralPath (Join-Path $projectRoot 'config/local.php'))){
  $previousDatabase=$env:BD70_DATABASE
  try{& $PhpPath scripts/install.php bd70_demo;if($LASTEXITCODE -ne 0){throw 'Installation échouée.'};$env:BD70_DATABASE='bd70_demo';& $PhpPath scripts/import-demo.php;if($LASTEXITCODE -ne 0){throw 'Chargement du jeu riche échoué.'}}finally{$env:BD70_DATABASE=$previousDatabase;Pop-Location}
 }
-# Base déjà installée avant l'ajout de l'historisation : migration idempotente, sans modification des données.
+# Base déjà installée avant l'historisation ou l'optimisation du stock : migrations idempotentes, sans modification des données.
 $env:BD70_PORT="$DbPort"
 Push-Location $projectRoot
-try{& $PhpPath scripts/migrate-historisation.php;if($LASTEXITCODE -ne 0){throw 'Migration de l''historisation échouée.'}}finally{Pop-Location}
+try{& $PhpPath scripts/migrate-historisation.php;if($LASTEXITCODE -ne 0){throw 'Migration de l''historisation échouée.'};& $PhpPath scripts/migrate-optimisation.php;if($LASTEXITCODE -ne 0){throw 'Migration de l''optimisation du stock échouée.'}}finally{Pop-Location}
 $webListening=Get-NetTCPConnection -LocalPort $WebPort -State Listen -ErrorAction SilentlyContinue
 if(!$webListening){
  $webProcess=Start-Process -FilePath $PhpPath -ArgumentList @('-d',('"session.save_path='+$sessionPath+'"'),'-S',"127.0.0.1:$WebPort",'-t',('"'+$projectRoot+'/public"')) -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/php-out.log') -RedirectStandardError (Join-Path $projectRoot '.local/php-error.log')

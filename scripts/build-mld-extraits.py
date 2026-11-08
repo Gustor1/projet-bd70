@@ -16,7 +16,7 @@ os.chdir(root)
 spec.loader.exec_module(diagrams)
 DOMAINS = {
     'mld-1-transport-quais': ['carrier', 'carrier_contact', 'carrier_contract', 'driver', 'qualification', 'driver_qualification', 'vehicle', 'equipment', 'vehicle_equipment', 'dock', 'dock_equipment', 'dock_vehicle_type', 'dock_downtime', 'appointment', 'appointment_archive', 'truck_visit', 'visit_event'],
-    'mld-2-reception-stock': ['supplier', 'supplier_notice', 'notice_line', 'receipt', 'receipt_line', 'receipt_item', 'receipt_reserve', 'lot', 'article', 'owner', 'zone', 'aisle', 'rack', 'rack_level', 'location', 'stock_movement'],
+    'mld-2-reception-stock': ['supplier', 'supplier_notice', 'notice_line', 'receipt', 'receipt_line', 'receipt_item', 'receipt_reserve', 'lot', 'article', 'owner', 'zone', 'aisle', 'rack', 'rack_level', 'location', 'stock_movement', 'stock_balance'],
     'mld-3-commandes-comptes': ['customer_order', 'order_line', 'pick', 'package', 'package_pick', 'shipment', 'user_account', 'audit_log', 'site_lock'],
 }
 out = root / 'docs/diagrammes/extraits'

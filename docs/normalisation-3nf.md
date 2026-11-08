@@ -49,6 +49,7 @@ Pour chaque relation, chaque clé candidate totale ci-dessous détermine les aut
 | `audit_log` | (id) | — |
 | `receipt_reserve` | (id) | — |
 | `site_lock` | (id) | — |
+| `stock_balance` | (receipt_item_id, location_id) | — |
 
 ## Référentiels et structure physique
 
@@ -87,6 +88,15 @@ Pour chaque relation, chaque clé candidate totale ci-dessous détermine les aut
 `stock_movement` identifie un événement signé ; operation_ref regroupe les deux jambes d’un transfert et n’est pas unique. Pour les entrées, transferts et ajustements, la ligne porte fraction, emplacement et delta. Pour une sortie, elle porte seulement le prélèvement unique et les informations propres à l’événement (auteur, date, référence, motif) ; fraction, emplacement et delta sont NULL. Le CHECK impose ces deux structures exclusives et la FK relie le prélèvement. Les trois valeurs dérivées sont obtenues par la vue `v_stock_movement` depuis `pick`, sans stockage en double. Les services, stocks, statistiques et traces lisent cette projection.
 
 La dépendance conditionnelle pick_id → fraction, emplacement, quantité ne répète donc plus des valeurs non-clés dans la table des mouvements. Le trigger d’import contrôle les anciennes valeurs puis les retire ; une copie migrée compare toutes les valeurs originales à la projection obtenue. Les soldes restent des sommes calculées. Les statuts courants et les instantanés JSON d’audit sont des projections techniques documentées ; la normalisation des faits métier ne constitue pas une preuve formelle de toutes les dépendances imaginables.
+
+## Soldes de stock (dénormalisation contrôlée)
+
+`stock_balance` : (receipt_item_id, location_id) → qty, reserved_qty. Ces deux valeurs sont **déductibles** : qty est la somme des variations de `v_stock_movement` pour la fraction et l’emplacement, reserved_qty la somme des prélèvements `planned` ou `confirmed`. Les conserver est une redondance, assumée pour la performance (recherche de stock et FEFO : environ 70 ms → 2 ms, voir docs/performances.md) et contrôlée :
+
+- seuls les triggers de sql/09_optimisation.sql les écrivent, dans la même transaction que le mouvement ou la réservation ; aucune anomalie de mise à jour par oubli ;
+- le compte applicatif n’a aucun droit d’écriture sur la table ;
+- un prélèvement expédié est figé (`pick_shipped_frozen`), car sa quantité a déjà été soustraite ;
+- `v_balance_controle` recalcule le solde depuis l’historique immuable, qui reste la référence ; `scripts/validate-data.php` vérifie l’égalité (`soldes_egaux_historique`, `reservations_egales_prelevements`).
 
 ## Journal et garanties
 

@@ -1,6 +1,6 @@
 # Schéma relationnel du rendu
 
-[mld-complet.svg](mld-complet.svg) et [le PDF du rendu](../../livrables/schema-relationnel/mld-complet.pdf) représentent les 42 tables du schéma physique courant (dont la table d’historique appointment_archive). Le DOT est la source modifiable. schema.json et labels.json contiennent les métadonnées utilisées par le générateur.
+[mld-complet.svg](mld-complet.svg) et [le PDF du rendu](../../livrables/schema-relationnel/mld-complet.pdf) représentent les 43 tables du schéma physique courant (dont la table d’historique appointment_archive et la table de soldes stock_balance). Le DOT est la source modifiable. schema.json et labels.json contiennent les métadonnées utilisées par le générateur.
 
 Le schéma indique les colonnes, types, PK, FK, nullabilités et unicités. Les CHECK, procédures et déclencheurs sont définis dans sql/.
 

@@ -24,7 +24,7 @@ GRANT INSERT ON bd70_demo.stock_movement TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.visit_event TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.shipment TO 'bd70_app'@'127.0.0.1';
 GRANT INSERT ON bd70_demo.receipt_reserve TO 'bd70_app'@'127.0.0.1';
--- audit_log, site_lock et appointment_archive ne sont alimentés que par triggers et procédures
+-- audit_log, site_lock, appointment_archive et stock_balance ne sont alimentés que par triggers et procédures
 -- (SQL SECURITY DEFINER) : l'application n'a aucun droit d'écriture direct dessus.
 
 -- 2. Reporting : uniquement les vues d'indicateurs, aucune donnée personnelle des comptes.

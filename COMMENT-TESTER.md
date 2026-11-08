@@ -214,7 +214,7 @@ $env:BD70_TEST_DATABASE=$env:BD70_DATABASE
 Remove-Item Env:/BD70_DATABASE,Env:/BD70_TEST_DATABASE
 ```
 
-Répéter avec un autre nom neuf pour `tests/completion.php`, `tests/finalisation.php` et `tests/corrections.php`. Charger `seed.php` une seule fois par base. `tests/time.php` contrôle Paris et les transitions saisonnières.
+Répéter avec un autre nom neuf pour `tests/completion.php`, `tests/finalisation.php`, `tests/corrections.php` et `tests/optimisation.php` (soldes tenus par triggers égaux au recalcul, fonction `stock_disponible`, prélèvement expédié figé). Charger `seed.php` une seule fois par base. `tests/time.php` contrôle Paris et les transitions saisonnières.
 
 Pour l’ensemble de la recette isolée :
 
@@ -233,6 +233,7 @@ Les suites navigateur actuelles sont `tests/corrections-browser.cjs` et `tests/p
 
 - **Intégrité :** définir `BD70_DATABASE` vers la base voulue puis exécuter `scripts/validate-data.php`. Vérifie FK, stocks, capacités, allocations, colis, sorties, propriétaires, chronologie et audit en lecture.
 - **Performances :** installer une base neuve `bd70_perf*`, ne pas la seeder, définir `BD70_DATABASE` puis lancer `scripts/performance.php 10000`. Huit requêtes, chauffe puis dix exécutions et EXPLAIN ; comparer médianes/unités, en tenant compte de la machine et du cache.
+- **Optimisation avant/après :** sur une base de test neuve chargée par `import-demo.php`, lancer `scripts/performance-optimisation.php` (variable `BD70_DATABASE`). Le script mesure avec les anciennes vues GROUP BY, rétablit la table de soldes, mesure à nouveau et écrit gain absolu et relatif dans `docs/preuves/performances-optimisation.json` ; `python scripts/build-performances-md.py` régénère `docs/performances.md`. `scripts/validate-data.php` doit afficher 0 pour `soldes_egaux_historique`.
 - **Sauvegarde/restauration :** définir `BD70_BACKUP_SOURCE` vers la démonstration et `BD70_RESTORE_TARGET` vers une nouvelle base `bd70_restore*`, puis `python scripts/backup-restore.py`. Compare 41 tables et routines/triggers, puis vérifie l’audit dans la copie. Le dump reste dans `.local/`.
 - **Migration :** `php scripts/migrate-corrections.php source cible_neuve`, selon le README. Compare les faits et conserve la source ; la bascule du dbname est une étape distincte.
 

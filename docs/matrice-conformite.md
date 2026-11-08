@@ -89,10 +89,10 @@ Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Pre
 | Critère | Réalisation |
 |---|---|
 | UML, MCD, MLD | Cas d’utilisation V2 (une page, sans héritage), MCD Chen V2 (convention du cours, vectoriel), schéma relationnel complet et dictionnaire |
-| PK, types, 1:N, N:N, normalisation | 42 tables, 66 FK, 21 CHECK ; clés métier, dépendances et dénormalisations assumées documentées |
+| PK, types, 1:N, N:N, normalisation | 43 tables, 68 FK, 22 CHECK ; clés métier, dépendances et dénormalisations assumées documentées |
 | Ajout, édition, suppression | Formulaires de référentiels/brouillons ; correction et annulation métier des faits protégés |
 | Contrôle de saisie et recherches | Validation PHP/SQL, filtres multicritères, pagination et recherche des références |
 | Statistiques, graphiques et états | Six familles d’indicateurs, trois exports CSV et documents imprimables |
-| Multi-utilisateurs et automatisation | Cinq rôles ; courses à deux connexions ; 122 triggers (3 de cohérence, 10 de protection, 109 d’audit), trois procédures, un évènement d’historisation, vue UNION ALL |
+| Multi-utilisateurs et automatisation | Cinq rôles ; courses à deux connexions ; 127 triggers (3 de cohérence, 11 de protection, 4 de calcul incrémental des soldes, 109 d’audit), trois procédures, une fonction stockée, un évènement d’historisation, vue UNION ALL ; optimisation mesurée avant/après (docs/performances.md) |
 | Données factices en quantité | SQL riche, 90 jours simulés ; 82 contrôles métier/FK |
 | Rapport et performance | Auteurs, objectifs/travail/conclusion ; huit requêtes, dix mesures et EXPLAIN |

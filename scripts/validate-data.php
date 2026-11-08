@@ -3,6 +3,8 @@ declare(strict_types=1);
 require __DIR__.'/../src/bootstrap.php';$db=new Database();$checks=[];$details=[];
 $queries=[
  'stock_non_negatif'=>'SELECT COUNT(*) FROM v_balance WHERE qty<0',
+ 'soldes_egaux_historique'=>'SELECT COUNT(*) FROM (SELECT receipt_item_id,location_id FROM v_balance_controle UNION SELECT receipt_item_id,location_id FROM stock_balance) k LEFT JOIN v_balance_controle c USING(receipt_item_id,location_id) LEFT JOIN stock_balance b USING(receipt_item_id,location_id) WHERE COALESCE(c.qty,0)<>COALESCE(b.qty,0)',
+ 'reservations_egales_prelevements'=>"SELECT COUNT(*) FROM stock_balance b LEFT JOIN (SELECT receipt_item_id,location_id,SUM(qty) qty FROM pick WHERE status IN ('planned','confirmed') GROUP BY receipt_item_id,location_id) p USING(receipt_item_id,location_id) WHERE b.reserved_qty<>COALESCE(p.qty,0)",
  'reservations_couvertes'=>'SELECT COUNT(*) FROM v_stock WHERE reserved_qty>qty',
  'capacites_stock'=>'SELECT COUNT(*) FROM v_location l JOIN v_location_usage u ON u.id=l.id WHERE u.used_kg>l.max_kg+0.00001 OR u.used_m3>l.capacity_m3+0.00001 OR u.used_pallets>l.max_pallets+0.00001',
  'zones_compatibles'=>'SELECT COUNT(*) FROM v_stock_movement m JOIN receipt_item i ON i.id=m.receipt_item_id JOIN lot t ON t.id=i.lot_id JOIN article a ON a.id=t.article_id JOIN v_location l ON l.id=m.location_id WHERE a.storage<>l.storage',

@@ -7,6 +7,7 @@ Syntaxe Markdown prise en charge : ## section, paragraphes, **gras**, listes « 
 Marqueurs remplacés depuis les sources réelles :
   {{SCHEMA_RELATIONNEL}} -> docs/diagrammes/schema.json (notation textuelle du schéma relationnel)
   {{PERFORMANCES}}, {{INDEX_AVANT}}, {{INDEX_APRES}} -> docs/preuves/performances*.json
+  {{OPTIMISATION}}, {{INDEX_GAIN}}, {{ECRITURE_AVANT/APRES}} -> docs/preuves/performances-optimisation.json (avant/après, gain absolu et relatif)
 """
 from pathlib import Path
 import sys, re, html, json
@@ -96,6 +97,9 @@ def schema_relationnel():
 
 vol = json.loads((proof / 'performances.json').read_text(encoding='utf-8'))
 demo = json.loads((proof / 'performances-demo.json').read_text(encoding='utf-8'))
+opti = json.loads((proof / 'performances-optimisation.json').read_text(encoding='utf-8'))
+OPTI = [('recherche_stock', 'Recherche de stock'), ('selection_fefo', 'Sélection FEFO'), ('emplacements', 'Emplacements compatibles'),
+        ('remplissage_zone', 'Remplissage par zone'), ('stock_libre', 'Contrôle du stock libre (transfert)')]
 PERF = [('disponibilite_quai', 'Disponibilité d’un quai'), ('recherche_passages', 'Recherche de passages'), ('recherche_stock', 'Recherche de stock'),
         ('emplacements', 'Emplacements compatibles'), ('historique_lot', 'Historique d’un lot'), ('selection_fefo', 'Sélection FEFO'),
         ('statistiques_transporteur', 'Statistiques par transporteur (GROUP BY)'), ('transporteurs_lents', 'Transporteurs au-dessus du seuil (HAVING)'),
@@ -120,6 +124,9 @@ portrait_w = PW - 2 * M; portrait_h = PH - M - 53
 land_w = LW - 2 * M; land_h = LH - M - 53
 source = (out / 'RAPPORT-PROJET-BD70.md').read_text(encoding='utf-8-sig')
 source = source.replace('{{INDEX_AVANT}}', fr(vol['comparison']['before']['median_ms'])).replace('{{INDEX_APRES}}', fr(vol['comparison']['after']['median_ms']))
+_b, _a = vol['comparison']['before']['median_ms'], vol['comparison']['after']['median_ms']
+source = source.replace('{{INDEX_GAIN}}', f'gain absolu {fr(_b - _a)} ms, gain relatif {100 * (_b - _a) / _b:.0f} %')
+source = source.replace('{{ECRITURE_AVANT}}', fr(opti['mesures']['ecriture_mouvement']['avant_ms'])).replace('{{ECRITURE_APRES}}', fr(opti['mesures']['ecriture_mouvement']['apres_ms']))
 lines = source.splitlines(); story = []
 first_section = next(i for i, l in enumerate(lines) if l.startswith('## '))
 story += [Spacer(1, 75), paragraph('TRANSIT', 'Cover'), paragraph('Gestion d’un entrepôt logistique', 'CoverSubtitle'), Spacer(1, 25)]
@@ -151,6 +158,13 @@ while i < len(lines):
             story.append(KeepTogether(figure(m.group(2), m.group(1), portrait_w * .92, portrait_h * .42)))
         i += 1; continue
     if line == '{{SCHEMA_RELATIONNEL}}': story += schema_relationnel(); i += 1; continue
+    if line == '{{OPTIMISATION}}':
+        rows = [[paragraph(x, 'Cell') for x in ['Requête', 'Avant (ms)', 'Après (ms)', 'Gain absolu (ms)', 'Gain relatif']]]
+        for k, label in OPTI:
+            x = opti['mesures'][k]
+            rows.append([paragraph(label, 'Cell'), paragraph(fr(x['avant_ms']), 'Cell'), paragraph(fr(x['apres_ms']), 'Cell'),
+                         paragraph(fr(x['gain_absolu_ms']), 'Cell'), paragraph(f"{x['gain_relatif_pct']:.0f} %", 'Cell')])
+        story += [table(rows, portrait_w, [.40, .15, .15, .16, .14]), Spacer(1, 10)]; i += 1; continue
     if line == '{{PERFORMANCES}}':
         rows = [[paragraph(x, 'Cell') for x in ['Requête', 'Base de 10 000 passages (ms)', 'Jeu de démonstration (ms)']]]
         for k, label in PERF:
