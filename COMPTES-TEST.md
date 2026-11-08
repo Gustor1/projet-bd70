@@ -10,7 +10,7 @@ Ces comptes fictifs sont publics et réservés à une installation locale. Chaqu
 | admin2@bd70.test | Administrateur technique | Deuxième session d’administration. |
 | **manager@bd70.test** | Responsable / pilotage | Référentiels, quais, planning, commandes, affectation, indicateurs et états. |
 | pilotage@bd70.test | Responsable / pilotage | Deuxième responsable ; essais simultanés et conflits de réservation. |
-| **gate@bd70.test** | Accueil | Arrivée, documents, parking, appel à quai et départ des camions. |
+| **gate@bd70.test** | Accueil | Arrivée (avec ou sans rendez-vous), documents, parking, appel à quai et départ des camions. |
 | gate2@bd70.test | Accueil | Deuxième poste pour les essais simultanés. |
 | **warehouse@bd70.test** | Magasinier / préparateur | Réception, stock, début/fin à quai ; exécution des commandes affectées à ce compte. |
 | warehouse2@bd70.test | Magasinier / préparateur | Isolement des commandes et réaffectation par le responsable. |

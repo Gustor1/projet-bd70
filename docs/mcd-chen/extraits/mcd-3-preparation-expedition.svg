@@ -1,0 +1,888 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2521pt" height="1440pt" viewBox="0.00 0.00 2521.00 1440.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 1418.58)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-21.6,21.6 -21.6,-1418.58 2498.93,-1418.58 2498.93,21.6 -21.6,21.6" />
+<text xml:space="preserve" text-anchor="middle" x="563.74" y="-1376.78" font-family="Arial" font-size="18.00">Extrait du MCD (notation de Chen) : Préparation et expédition</text>
+<text xml:space="preserve" text-anchor="middle" x="563.74" y="-1355.18" font-family="Arial" font-size="18.00">Sous-ensemble exact du MCD complet ; identifiants soulignés ; cardinalités lues comme dans le cours (Client 1 — Possède — 0,N Facture).</text>
+
+<g id="edge1" class="edge">
+<title>truck_visit--truck_visit_attr0</title>
+<path fill="none" stroke="#627687" d="M575.33,-1194.96C598.29,-1171.95 640.85,-1133.12 685.01,-1112.39 707.99,-1101.6 735.83,-1095.63 758.3,-1092.34" />
+</g>
+
+<g id="edge2" class="edge">
+<title>truck_visit--truck_visit_attr1</title>
+<path fill="none" stroke="#627687" d="M576.74,-1232.02C600.15,-1253.98 642.19,-1289.93 685.01,-1309.39 708.77,-1320.19 737.52,-1326.19 760.27,-1329.49" />
+</g>
+
+<g id="edge3" class="edge">
+<title>truck_visit--truck_visit_attr2</title>
+<path fill="none" stroke="#627687" d="M601.36,-1232.17C625.65,-1242.13 656.64,-1254.01 685.01,-1262.39 711.21,-1270.13 741.48,-1276.36 764.32,-1280.53" />
+</g>
+
+<g id="edge4" class="edge">
+<title>truck_visit--truck_visit_attr3</title>
+<path fill="none" stroke="#627687" d="M620.69,-1220.15C670.48,-1225.51 737.48,-1232.72 773.68,-1236.61" />
+</g>
+
+<g id="edge5" class="edge">
+<title>truck_visit--truck_visit_attr4</title>
+<path fill="none" stroke="#627687" d="M595.43,-1194.64C620.34,-1182.85 654.01,-1168.09 685.01,-1158.39 702.52,-1152.91 721.96,-1148.43 739.78,-1144.93" />
+</g>
+
+<g id="edge69" class="edge">
+<title>truck_visit--R43</title>
+<path fill="none" stroke="#627687" d="M620.69,-1206.63C654.81,-1202.95 697.02,-1198.41 731.86,-1194.66" />
+<text xml:space="preserve" text-anchor="middle" x="649.81" y="-1209.91" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>owner--owner_attr0</title>
+<path fill="none" stroke="#627687" d="M154.37,-333.07C198.42,-341.52 251.76,-351.76 286.43,-358.42" />
+</g>
+
+<g id="edge7" class="edge">
+<title>owner--owner_attr1</title>
+<path fill="none" stroke="#627687" d="M154.37,-318.39C202.91,-318.39 262.73,-318.39 296.42,-318.39" />
+</g>
+
+<g id="edge8" class="edge">
+<title>owner--owner_attr2</title>
+<path fill="none" stroke="#627687" d="M154.37,-303.71C203.75,-294.23 264.81,-282.51 298.15,-276.11" />
+</g>
+
+<g id="edge9" class="edge">
+<title>owner--owner_attr3</title>
+<path fill="none" stroke="#627687" d="M109.99,-299.74C137.95,-284.16 180,-262.3 218.83,-248.39 242.71,-239.83 270.78,-233.56 291.73,-229.58" />
+</g>
+
+<g id="edge10" class="edge">
+<title>owner--owner_attr4</title>
+<path fill="none" stroke="#627687" d="M94.65,-299.86C119.25,-273.79 167.83,-226.66 218.83,-201.39 243.71,-189.06 275.11,-182.94 296.84,-179.98" />
+</g>
+
+<g id="edge53" class="edge">
+<title>owner--R17</title>
+<path fill="none" stroke="#627687" d="M110.99,-337.05C139.05,-352.34 180.71,-373.75 218.83,-388.39 243.66,-397.92 272.91,-405.8 294.04,-410.93" />
+<text xml:space="preserve" text-anchor="middle" x="130.92" y="-355.57" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge55" class="edge">
+<title>owner--R34</title>
+<path fill="none" stroke="#627687" d="M91.08,-337.04C134.18,-398.14 270.66,-591.58 311.24,-649.1" />
+<text xml:space="preserve" text-anchor="middle" x="98.94" y="-362.09" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>article--article_attr0</title>
+<path fill="none" stroke="#627687" d="M567.97,-262.6C586.58,-230.09 629.4,-163.62 685.01,-130.39 706.63,-117.47 734.17,-111.43 756.82,-108.65" />
+</g>
+
+<g id="edge12" class="edge">
+<title>article--article_attr1</title>
+<path fill="none" stroke="#627687" d="M564.08,-262.87C578.54,-223.1 618.22,-129.4 685.01,-83.39 700.57,-72.67 719.93,-66.58 738.28,-63.16" />
+</g>
+
+<g id="edge13" class="edge">
+<title>article--article_attr2</title>
+<path fill="none" stroke="#627687" d="M561.71,-262.83C572.44,-216.57 606.95,-95.65 685.01,-36.39 710.57,-16.99 748.19,-12.39 773.25,-11.72" />
+</g>
+
+<g id="edge14" class="edge">
+<title>article--article_attr3</title>
+<path fill="none" stroke="#627687" d="M564.85,-300.04C580.27,-338.26 620.91,-425.46 685.01,-468.39 697.67,-476.86 712.74,-482.43 727.71,-486.07" />
+</g>
+
+<g id="edge15" class="edge">
+<title>article--article_attr4</title>
+<path fill="none" stroke="#627687" d="M568.94,-299.77C588.41,-330.24 631.72,-390.88 685.01,-421.39 701.84,-431.02 722.05,-436.81 740.77,-440.28" />
+</g>
+
+<g id="edge16" class="edge">
+<title>article--article_attr5</title>
+<path fill="none" stroke="#627687" d="M577.69,-300.17C601.37,-321.48 643.03,-355.69 685.01,-374.39 707.55,-384.43 734.49,-390.34 756.57,-393.79" />
+</g>
+
+<g id="edge17" class="edge">
+<title>article--article_attr6</title>
+<path fill="none" stroke="#627687" d="M589.3,-294.17C614.8,-304.19 651.81,-317.95 685.01,-327.39 707.58,-333.8 733.08,-339.31 754.29,-343.43" />
+</g>
+
+<g id="edge18" class="edge">
+<title>article--article_attr7</title>
+<path fill="none" stroke="#627687" d="M588.92,-284.35C631.25,-288.38 707.22,-295.61 755.41,-300.19" />
+</g>
+
+<g id="edge19" class="edge">
+<title>article--article_attr8</title>
+<path fill="none" stroke="#627687" d="M588.92,-278.3C626.78,-274.54 691.58,-268.11 739.32,-263.36" />
+</g>
+
+<g id="edge20" class="edge">
+<title>article--article_attr9</title>
+<path fill="none" stroke="#627687" d="M574.37,-262.97C596.94,-239.08 639.76,-197.92 685.01,-176.39 702.31,-168.16 722.44,-162.87 740.95,-159.47" />
+</g>
+
+<g id="edge59" class="edge">
+<title>article--R37</title>
+<path fill="none" stroke="#627687" d="M589.38,-268.66C614.93,-258.62 651.96,-244.65 685.01,-234.39 712.04,-226 743.19,-218.23 766.18,-212.85" />
+<text xml:space="preserve" text-anchor="middle" x="619.38" y="-264.06" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge21" class="edge">
+<title>receipt_item--receipt_item_attr0</title>
+<path fill="none" stroke="#627687" d="M1117.79,-475.2C1163.87,-479.61 1226.02,-485.56 1266.49,-489.43" />
+</g>
+
+<g id="edge22" class="edge">
+<title>receipt_item--receipt_item_attr1</title>
+<path fill="none" stroke="#627687" d="M1117.79,-463.82C1151.85,-460.7 1194.67,-456.77 1231.04,-453.43" />
+</g>
+
+<g id="edge23" class="edge">
+<title>receipt_item--receipt_item_attr2</title>
+<path fill="none" stroke="#627687" d="M1109.21,-450.68C1135.15,-441.74 1167.12,-431.3 1196.2,-423.39 1216.86,-417.77 1239.95,-412.62 1259.75,-408.54" />
+</g>
+
+<g id="edge24" class="edge">
+<title>receipt_item--receipt_item_attr3</title>
+<path fill="none" stroke="#627687" d="M1079.18,-450.72C1105.4,-429.52 1151.26,-395.42 1196.2,-376.39 1211.99,-369.7 1229.85,-364.8 1246.58,-361.23" />
+</g>
+
+<g id="edge25" class="edge">
+<title>receipt_item--receipt_item_attr4</title>
+<path fill="none" stroke="#627687" d="M1069.71,-451.06C1091.67,-420.66 1139.98,-360.12 1196.2,-329.39 1214.64,-319.31 1236.94,-313.47 1256.75,-310.07" />
+</g>
+
+<g id="edge26" class="edge">
+<title>receipt_item--receipt_item_attr5</title>
+<path fill="none" stroke="#627687" d="M1069.7,-488.12C1091.64,-519.24 1139.92,-581.4 1196.2,-614.39 1212.09,-623.7 1230.98,-630.07 1248.65,-634.4" />
+</g>
+
+<g id="edge63" class="edge">
+<title>receipt_item--R39</title>
+<path fill="none" stroke="#627687" d="M1109.66,-488.14C1135.57,-497.13 1167.38,-507.79 1196.2,-516.39 1217.79,-522.83 1241.95,-529.21 1262.27,-534.34" />
+<text xml:space="preserve" text-anchor="middle" x="1132.95" y="-503.14" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge71" class="edge">
+<title>receipt_item--R45</title>
+<path fill="none" stroke="#627687" d="M1074.83,-488.05C1099.46,-512.62 1146.62,-554.96 1196.2,-574.39 1300.58,-615.28 1430.3,-622.2 1517.27,-621.21" />
+<text xml:space="preserve" text-anchor="middle" x="1087.82" y="-511.19" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge27" class="edge">
+<title>customer_order--customer_order_attr0</title>
+<path fill="none" stroke="#627687" d="M572.46,-753.78C594.12,-727.64 637.29,-680.56 685.01,-656.39 707.35,-645.08 734.78,-639.32 757.19,-636.4" />
+</g>
+
+<g id="edge28" class="edge">
+<title>customer_order--customer_order_attr1</title>
+<path fill="none" stroke="#627687" d="M566.89,-753.6C584.53,-719.25 626.85,-646.52 685.01,-610.39 707.01,-596.72 735.49,-590.72 758.55,-588.13" />
+</g>
+
+<g id="edge29" class="edge">
+<title>customer_order--customer_order_attr2</title>
+<path fill="none" stroke="#627687" d="M563.46,-753.8C577.03,-712.41 615.64,-612.43 685.01,-563.39 698.28,-554.01 714.43,-548.15 730.38,-544.52" />
+</g>
+
+<g id="edge30" class="edge">
+<title>customer_order--customer_order_attr3</title>
+<path fill="none" stroke="#627687" d="M561.71,-790.95C572.44,-837.21 606.95,-958.13 685.01,-1017.39 701.11,-1029.61 721.99,-1035.95 741.5,-1039.14" />
+</g>
+
+<g id="edge31" class="edge">
+<title>customer_order--customer_order_attr4</title>
+<path fill="none" stroke="#627687" d="M564.08,-790.91C578.54,-830.68 618.22,-924.38 685.01,-970.39 698.14,-979.43 713.98,-985.19 729.64,-988.82" />
+</g>
+
+<g id="edge32" class="edge">
+<title>customer_order--customer_order_attr5</title>
+<path fill="none" stroke="#627687" d="M567.97,-791.17C586.58,-823.69 629.4,-890.15 685.01,-923.39 712.21,-939.64 748.77,-945 773.19,-946.7" />
+</g>
+
+<g id="edge33" class="edge">
+<title>customer_order--customer_order_attr6</title>
+<path fill="none" stroke="#627687" d="M574.83,-790.97C597.57,-814.63 640.24,-854.98 685.01,-876.39 697.84,-882.52 712.21,-887.09 726.32,-890.5" />
+</g>
+
+<g id="edge34" class="edge">
+<title>customer_order--customer_order_attr7</title>
+<path fill="none" stroke="#627687" d="M593.12,-791.15C618.18,-803.79 652.92,-820 685.01,-830.39 701.12,-835.6 718.9,-839.86 735.55,-843.23" />
+</g>
+
+<g id="edge57" class="edge">
+<title>customer_order--R36</title>
+<path fill="none" stroke="#627687" d="M594.11,-753.72C619.17,-741.36 653.53,-725.45 685.01,-714.39 706.19,-706.94 730.2,-700.56 750.74,-695.7" />
+<text xml:space="preserve" text-anchor="middle" x="623.94" y="-746.66" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge65" class="edge">
+<title>customer_order--R41</title>
+<path fill="none" stroke="#627687" d="M600.47,-767.27C639.63,-762.57 698,-755.57 741.41,-750.36" />
+<text xml:space="preserve" text-anchor="middle" x="629.68" y="-770.2" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge67" class="edge">
+<title>customer_order--R42</title>
+<path fill="none" stroke="#627687" d="M600.47,-777.51C644.1,-782.74 711.58,-790.84 755.65,-796.13" />
+<text xml:space="preserve" text-anchor="middle" x="627.24" y="-787.15" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge35" class="edge">
+<title>order_line--order_line_attr0</title>
+<path fill="none" stroke="#627687" d="M1131.98,-204.19C1175.12,-203.51 1227.84,-202.66 1264.24,-202.08" />
+</g>
+
+<g id="edge36" class="edge">
+<title>order_line--order_line_attr1</title>
+<path fill="none" stroke="#627687" d="M1131.98,-190.16C1180.61,-180.26 1241.4,-167.9 1277.27,-160.6" />
+</g>
+
+<g id="edge61" class="edge">
+<title>order_line--R38</title>
+<path fill="none" stroke="#627687" d="M1131.98,-219.73C1176.86,-228.32 1232.09,-238.89 1268.54,-245.87" />
+<text xml:space="preserve" text-anchor="middle" x="1157.74" y="-231.2" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge37" class="edge">
+<title>pick--pick_attr0</title>
+<path fill="none" stroke="#627687" d="M1667.07,-520.62C1720.55,-515.62 1803.54,-507.86 1853.01,-503.24" />
+</g>
+
+<g id="edge38" class="edge">
+<title>pick--pick_attr1</title>
+<path fill="none" stroke="#627687" d="M1667.07,-512C1725.57,-496.65 1819.37,-472.03 1866,-459.79" />
+</g>
+
+<g id="edge39" class="edge">
+<title>pick--pick_attr2</title>
+<path fill="none" stroke="#627687" d="M1648.94,-506.6C1686.61,-485.65 1750.63,-451.77 1808.68,-429.39 1829.11,-421.51 1853.19,-414.99 1870.58,-410.74" />
+</g>
+
+<g id="edge40" class="edge">
+<title>pick--pick_attr3</title>
+<path fill="none" stroke="#627687" d="M1667.09,-540.19C1705.89,-551.39 1760.59,-567.06 1808.68,-580.39 1822.9,-584.33 1838.49,-588.55 1852.41,-592.29" />
+</g>
+
+<g id="edge73" class="edge">
+<title>pick--R47</title>
+<path fill="none" stroke="#627687" d="M1667.07,-530.16C1714.43,-534.58 1784.94,-541.18 1834.81,-545.84" />
+<text xml:space="preserve" text-anchor="middle" x="1694.18" y="-539.1" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge41" class="edge">
+<title>package--package_attr0</title>
+<path fill="none" stroke="#627687" d="M1088.4,-766.05C1115.95,-781.75 1157.58,-803.77 1196.2,-817.39 1219.85,-825.73 1247.38,-831.68 1269.18,-835.58" />
+</g>
+
+<g id="edge42" class="edge">
+<title>package--package_attr1</title>
+<path fill="none" stroke="#627687" d="M1114.93,-758.23C1168.15,-768.21 1244.51,-782.52 1283.25,-789.78" />
+</g>
+
+<g id="edge43" class="edge">
+<title>package--package_attr2</title>
+<path fill="none" stroke="#627687" d="M1114.93,-747.39C1167.28,-747.39 1242.03,-747.39 1281.33,-747.39" />
+</g>
+
+<g id="edge76" class="edge">
+<title>package--R55</title>
+<path fill="none" stroke="#627687" d="M1114.93,-735.39C1159.18,-726.22 1219.44,-713.72 1260.76,-705.15" />
+<text xml:space="preserve" text-anchor="middle" x="1144.62" y="-735.82" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge44" class="edge">
+<title>shipment--shipment_attr0</title>
+<path fill="none" stroke="#627687" d="M1099.63,-1055.42C1147.83,-1046.38 1225.6,-1031.8 1271.2,-1023.25" />
+</g>
+
+<g id="edge45" class="edge">
+<title>shipment--shipment_attr1</title>
+<path fill="none" stroke="#627687" d="M1099.63,-1071.36C1148.39,-1080.5 1227.4,-1095.31 1272.77,-1103.82" />
+</g>
+
+<g id="edge46" class="edge">
+<title>shipment--shipment_attr2</title>
+<path fill="none" stroke="#627687" d="M1099.63,-1063.39C1146.01,-1063.39 1219.78,-1063.39 1265.91,-1063.39" />
+</g>
+
+<g id="edge47" class="edge">
+<title>stock_movement--stock_movement_attr0</title>
+<path fill="none" stroke="#627687" d="M2152.62,-619.03C2180.25,-640.24 2228.44,-674.51 2274.91,-694.39 2294.65,-702.83 2317.9,-708.63 2337.04,-712.41" />
+</g>
+
+<g id="edge48" class="edge">
+<title>stock_movement--stock_movement_attr1</title>
+<path fill="none" stroke="#627687" d="M2183.97,-619.14C2211.16,-628.18 2244.61,-638.88 2274.91,-647.39 2291.88,-652.15 2310.62,-656.8 2327.27,-660.72" />
+</g>
+
+<g id="edge49" class="edge">
+<title>stock_movement--stock_movement_attr2</title>
+<path fill="none" stroke="#627687" d="M2210.48,-608.31C2237.75,-610.98 2268.13,-613.94 2295.29,-616.59" />
+</g>
+
+<g id="edge50" class="edge">
+<title>stock_movement--stock_movement_attr3</title>
+<path fill="none" stroke="#627687" d="M2210.48,-592.79C2257.61,-588.38 2314.02,-583.11 2347.08,-580.01" />
+</g>
+
+<g id="edge51" class="edge">
+<title>stock_movement--stock_movement_attr4</title>
+<path fill="none" stroke="#627687" d="M2185.38,-581.65C2212.32,-572.91 2245.15,-562.64 2274.91,-554.39 2300.77,-547.22 2330.73,-540.21 2351.11,-535.64" />
+</g>
+
+<g id="edge52" class="edge">
+<title>stock_movement--stock_movement_attr5</title>
+<path fill="none" stroke="#627687" d="M2152.9,-581.77C2180.61,-560.79 2228.67,-527.03 2274.91,-507.39 2298.13,-497.53 2326.17,-491.25 2346.68,-487.6" />
+</g>
+
+<g id="edge54" class="edge">
+<title>R17--article</title>
+<path fill="none" stroke="#627687" d="M356.5,-412.18C377.78,-407.83 405.94,-400.37 428.62,-388.39 473.02,-364.94 515.83,-323.94 538.69,-300.07" />
+<text xml:space="preserve" text-anchor="middle" x="511.67" y="-309.21" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge56" class="edge">
+<title>R34--customer_order</title>
+<path fill="none" stroke="#627687" d="M353.53,-678.72C394.3,-697.6 469.04,-732.21 515.37,-753.66" />
+<text xml:space="preserve" text-anchor="middle" x="494.09" y="-728.6" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge58" class="edge">
+<title>R36--order_line</title>
+<path fill="none" stroke="#627687" d="M873.52,-678.94C889.1,-674.55 904.36,-667.52 915.99,-656.39 988.43,-587.08 951.47,-536.2 980.99,-440.39 1005.87,-359.65 1036.47,-263.62 1049.15,-223.95" />
+<text xml:space="preserve" text-anchor="middle" x="1030.8" y="-243.78" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge60" class="edge">
+<title>R37--order_line</title>
+<path fill="none" stroke="#627687" d="M858.41,-205.39C894.48,-205.39 941.53,-205.39 980.56,-205.39" />
+<text xml:space="preserve" text-anchor="middle" x="952.37" y="-191.23" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge62" class="edge">
+<title>R38--pick</title>
+<path fill="none" stroke="#627687" d="M1357.36,-258.81C1378.29,-262.88 1402.38,-269.99 1421.42,-282.39 1513.44,-342.33 1581.13,-461.05 1604.83,-506.8" />
+<text xml:space="preserve" text-anchor="middle" x="1600.63" y="-473.2" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge64" class="edge">
+<title>R39--pick</title>
+<path fill="none" stroke="#627687" d="M1390.94,-540.06C1445.69,-536.46 1516.25,-531.82 1563.21,-528.73" />
+<text xml:space="preserve" text-anchor="middle" x="1534.4" y="-516.44" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge66" class="edge">
+<title>R41--package</title>
+<path fill="none" stroke="#627687" d="M889.13,-744.77C924.92,-745.34 965.33,-745.97 997.31,-746.48" />
+<text xml:space="preserve" text-anchor="middle" x="969.29" y="-731.87" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge68" class="edge">
+<title>R42--shipment</title>
+<path fill="none" stroke="#627687" d="M850.23,-805.27C872.06,-809.02 897.08,-816.3 915.99,-830.39 992.68,-887.53 1035.22,-1000.56 1049.54,-1044.91" />
+<text xml:space="preserve" text-anchor="middle" x="1050.24" y="-1011.02" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge70" class="edge">
+<title>R43--shipment</title>
+<path fill="none" stroke="#627687" d="M855.25,-1177.86C874.88,-1173.34 896.93,-1166.99 915.99,-1158.39 960.78,-1138.19 1006.69,-1103.59 1032.96,-1082.19" />
+<text xml:space="preserve" text-anchor="middle" x="1004.56" y="-1087.95" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge72" class="edge">
+<title>R45--stock_movement</title>
+<path fill="none" stroke="#627687" d="M1694.32,-623.75C1768.46,-629.49 1882.87,-635.14 1981.71,-626.39 2002.68,-624.53 2025.16,-621.2 2046.02,-617.52" />
+<text xml:space="preserve" text-anchor="middle" x="2016.49" y="-608.32" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge74" class="edge">
+<title>R47--stock_movement</title>
+<path fill="none" stroke="#627687" d="M1938.85,-560.43C1968.85,-566.79 2009.93,-575.5 2046.08,-583.17" />
+<text xml:space="preserve" text-anchor="middle" x="2020.63" y="-563.38" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge77" class="edge">
+<title>R55--pick</title>
+<path fill="none" stroke="#627687" d="M1367.7,-687.55C1385.89,-683.26 1405.39,-676.62 1421.42,-666.39 1459.74,-641.92 1450.71,-615.53 1486.42,-587.39 1509.45,-569.25 1538.65,-554.58 1563.3,-544.07" />
+<text xml:space="preserve" text-anchor="middle" x="1533.36" y="-542.02" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge75" class="edge">
+<title>R55--R55_attr0</title>
+<path fill="none" stroke="#627687" d="M1410.7,-695.39C1456.36,-695.39 1509,-695.39 1549.28,-695.39" />
+</g>
+
+<g id="node1" class="node">
+<title>truck_visit</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="620.01,-1231.39 493.62,-1231.39 493.62,-1195.39 620.01,-1195.39 620.01,-1231.39" />
+<text xml:space="preserve" text-anchor="middle" x="556.82" y="-1209.49" font-family="Arial" font-size="13.00">PASSAGE CAMION</text>
+</g>
+
+<g id="node2" class="node">
+<title>truck_visit_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1088.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="773.6" y="-1086.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="776.65" y="-1086.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="824.35" y="-1086.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="776.65" x2="824.35" y1="-1083.89" y2="-1083.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node3" class="node">
+<title>truck_visit_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1333.39" rx="41.99" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1330.09" font-family="Arial" font-size="11.00">Référence</text>
+</g>
+
+<g id="node4" class="node">
+<title>truck_visit_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1286.39" rx="40.26" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1283.09" font-family="Arial" font-size="11.00">Opération</text>
+</g>
+
+<g id="node5" class="node">
+<title>truck_visit_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1239.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1236.09" font-family="Arial" font-size="11.00">État</text>
+</g>
+
+<g id="node6" class="node">
+<title>truck_visit_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1135.39" rx="90.42" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1132.09" font-family="Arial" font-size="11.00">Contrôle des documents</text>
+</g>
+
+<g id="node7" class="node">
+<title>owner</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="153.83,-336.39 0,-336.39 0,-300.39 153.83,-300.39 153.83,-336.39" />
+<text xml:space="preserve" text-anchor="middle" x="76.91" y="-314.49" font-family="Arial" font-size="13.00">CLIENT PROPRIÉTAIRE</text>
+</g>
+
+<g id="node8" class="node">
+<title>owner_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="323.73" cy="-365.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="296.82" y="-363.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="299.88" y="-363.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="347.58" y="-363.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="299.88" x2="347.58" y1="-360.89" y2="-360.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node9" class="node">
+<title>owner_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="323.73" cy="-318.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-315.09" font-family="Arial" font-size="11.00">Code</text>
+</g>
+
+<g id="node10" class="node">
+<title>owner_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="323.73" cy="-271.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-268.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node11" class="node">
+<title>owner_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="323.73" cy="-224.39" rx="34.64" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-221.09" font-family="Arial" font-size="11.00">Adresse</text>
+</g>
+
+<g id="node12" class="node">
+<title>owner_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="323.73" cy="-177.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-174.09" font-family="Arial" font-size="11.00">Email</text>
+</g>
+
+<g id="node13" class="node">
+<title>article</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="588.59,-299.39 525.05,-299.39 525.05,-263.39 588.59,-263.39 588.59,-299.39" />
+<text xml:space="preserve" text-anchor="middle" x="556.82" y="-277.49" font-family="Arial" font-size="13.00">ARTICLE</text>
+</g>
+
+<g id="node14" class="node">
+<title>article_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-106.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="773.6" y="-104.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="776.65" y="-104.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="824.35" y="-104.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="776.65" x2="824.35" y1="-101.89" y2="-101.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node15" class="node">
+<title>article_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-59.39" rx="64.9" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-56.09" font-family="Arial" font-size="11.00">Référence article</text>
+</g>
+
+<g id="node16" class="node">
+<title>article_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-12.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-9.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node17" class="node">
+<title>article_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-492.39" rx="83.08" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-489.09" font-family="Arial" font-size="11.00">Condition de stockage</text>
+</g>
+
+<g id="node18" class="node">
+<title>article_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-445.39" rx="64.92" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-442.09" font-family="Arial" font-size="11.00">Conditionnement</text>
+</g>
+
+<g id="node19" class="node">
+<title>article_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-398.39" rx="46.74" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-395.09" font-family="Arial" font-size="11.00">Largeur (m)</text>
+</g>
+
+<g id="node20" class="node">
+<title>article_attr6</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-351.39" rx="58.41" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-348.09" font-family="Arial" font-size="11.00">Profondeur (m)</text>
+</g>
+
+<g id="node21" class="node">
+<title>article_attr7</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-304.39" rx="47.6" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-301.09" font-family="Arial" font-size="11.00">Hauteur (m)</text>
+</g>
+
+<g id="node22" class="node">
+<title>article_attr8</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-257.39" rx="68.79" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-254.09" font-family="Arial" font-size="11.00">Poids unitaire (kg)</text>
+</g>
+
+<g id="node23" class="node">
+<title>article_attr9</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-153.39" rx="67.07" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-150.09" font-family="Arial" font-size="11.00">Unités par palette</text>
+</g>
+
+<g id="node24" class="node">
+<title>receipt_item</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1117.12,-487.39 995.08,-487.39 995.08,-451.39 1117.12,-451.39 1117.12,-487.39" />
+<text xml:space="preserve" text-anchor="middle" x="1056.1" y="-465.49" font-family="Arial" font-size="13.00">FRACTION REÇUE</text>
+</g>
+
+<g id="node25" class="node">
+<title>receipt_item_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-493.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1281.91" y="-491.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1284.96" y="-491.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1332.66" y="-491.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1284.96" x2="1332.66" y1="-488.89" y2="-488.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node26" class="node">
+<title>receipt_item_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-446.39" rx="93.02" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-443.09" font-family="Arial" font-size="11.00">Code de fraction / palette</text>
+</g>
+
+<g id="node27" class="node">
+<title>receipt_item_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-399.39" rx="69.23" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-396.09" font-family="Arial" font-size="11.00">Quantité acceptée</text>
+</g>
+
+<g id="node28" class="node">
+<title>receipt_item_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-352.39" rx="85.23" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-349.09" font-family="Arial" font-size="11.00">Quantité endommagée</text>
+</g>
+
+<g id="node29" class="node">
+<title>receipt_item_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-305.39" rx="55.41" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-302.09" font-family="Arial" font-size="11.00">État de palette</text>
+</g>
+
+<g id="node30" class="node">
+<title>receipt_item_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-643.39" rx="84.36" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-640.09" font-family="Arial" font-size="11.00">Observation sur avarie</text>
+</g>
+
+<g id="node31" class="node">
+<title>customer_order</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="599.78,-790.39 513.86,-790.39 513.86,-754.39 599.78,-754.39 599.78,-790.39" />
+<text xml:space="preserve" text-anchor="middle" x="556.82" y="-768.49" font-family="Arial" font-size="13.00">COMMANDE</text>
+</g>
+
+<g id="node32" class="node">
+<title>customer_order_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-633.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="773.6" y="-631.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="776.65" y="-631.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="824.35" y="-631.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="776.65" x2="824.35" y1="-628.89" y2="-628.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node33" class="node">
+<title>customer_order_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-586.39" rx="41.99" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-583.09" font-family="Arial" font-size="11.00">Référence</text>
+</g>
+
+<g id="node34" class="node">
+<title>customer_order_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-539.39" rx="76.15" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-536.09" font-family="Arial" font-size="11.00">Adresse de livraison</text>
+</g>
+
+<g id="node35" class="node">
+<title>customer_order_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-1041.39" rx="59.71" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1038.09" font-family="Arial" font-size="11.00">Motif de reprise</text>
+</g>
+
+<g id="node36" class="node">
+<title>customer_order_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-994.39" rx="78.32" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-991.09" font-family="Arial" font-size="11.00">Expédition souhaitée</text>
+</g>
+
+<g id="node37" class="node">
+<title>customer_order_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-947.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-944.09" font-family="Arial" font-size="11.00">État</text>
+</g>
+
+<g id="node38" class="node">
+<title>customer_order_attr6</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-900.39" rx="115.49" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-897.09" font-family="Arial" font-size="11.00">Début de préparation (facultatif)</text>
+</g>
+
+<g id="node39" class="node">
+<title>customer_order_attr7</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="800.5" cy="-853.39" rx="105.54" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-850.09" font-family="Arial" font-size="11.00">Fin de préparation (facultatif)</text>
+</g>
+
+<g id="node40" class="node">
+<title>order_line</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1131.2,-223.39 980.99,-223.39 980.99,-187.39 1131.2,-187.39 1131.2,-223.39" />
+<text xml:space="preserve" text-anchor="middle" x="1056.1" y="-201.49" font-family="Arial" font-size="13.00">LIGNE DE COMMANDE</text>
+</g>
+
+<g id="node41" class="node">
+<title>order_line_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-201.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1281.91" y="-199.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1284.96" y="-199.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1332.66" y="-199.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1284.96" x2="1332.66" y1="-196.89" y2="-196.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node42" class="node">
+<title>order_line_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-154.39" rx="35.51" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-151.09" font-family="Arial" font-size="11.00">Quantité</text>
+</g>
+
+<g id="node43" class="node">
+<title>pick</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1666.33,-543.39 1563.78,-543.39 1563.78,-507.39 1666.33,-507.39 1666.33,-543.39" />
+<text xml:space="preserve" text-anchor="middle" x="1615.05" y="-521.49" font-family="Arial" font-size="13.00">PRÉLÈVEMENT</text>
+</g>
+
+<g id="node44" class="node">
+<title>pick_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1895.19" cy="-499.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1868.29" y="-497.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1871.34" y="-497.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1919.04" y="-497.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1871.34" x2="1919.04" y1="-494.89" y2="-494.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node45" class="node">
+<title>pick_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1895.19" cy="-452.39" rx="35.51" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1895.19" y="-449.09" font-family="Arial" font-size="11.00">Quantité</text>
+</g>
+
+<g id="node46" class="node">
+<title>pick_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1895.19" cy="-405.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1895.19" y="-402.09" font-family="Arial" font-size="11.00">État</text>
+</g>
+
+<g id="node47" class="node">
+<title>pick_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1895.19" cy="-603.39" rx="86.51" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1895.19" y="-600.09" font-family="Arial" font-size="11.00">Confirmation (facultatif)</text>
+</g>
+
+<g id="node48" class="node">
+<title>package</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1114.24,-765.39 997.96,-765.39 997.96,-729.39 1114.24,-729.39 1114.24,-765.39" />
+<text xml:space="preserve" text-anchor="middle" x="1056.1" y="-743.49" font-family="Arial" font-size="13.00">COLIS / PALETTE</text>
+</g>
+
+<g id="node49" class="node">
+<title>package_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-841.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1281.91" y="-839.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1284.96" y="-839.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1332.66" y="-839.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1284.96" x2="1332.66" y1="-836.89" y2="-836.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node50" class="node">
+<title>package_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-794.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-791.09" font-family="Arial" font-size="11.00">Code</text>
+</g>
+
+<g id="node51" class="node">
+<title>package_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-747.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-744.09" font-family="Arial" font-size="11.00">Type</text>
+</g>
+
+<g id="node52" class="node">
+<title>shipment</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1099.06,-1081.39 1013.13,-1081.39 1013.13,-1045.39 1099.06,-1045.39 1099.06,-1081.39" />
+<text xml:space="preserve" text-anchor="middle" x="1056.1" y="-1059.49" font-family="Arial" font-size="13.00">EXPÉDITION</text>
+</g>
+
+<g id="node53" class="node">
+<title>shipment_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-1016.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1281.91" y="-1014.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1284.96" y="-1014.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1332.66" y="-1014.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1284.96" x2="1332.66" y1="-1011.89" y2="-1011.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node54" class="node">
+<title>shipment_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-1110.39" rx="41.99" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-1107.09" font-family="Arial" font-size="11.00">Référence</text>
+</g>
+
+<g id="node55" class="node">
+<title>shipment_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1308.81" cy="-1063.39" rx="42.43" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-1060.09" font-family="Arial" font-size="11.00">Expédition</text>
+</g>
+
+<g id="node56" class="node">
+<title>stock_movement</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="2209.91,-618.39 2046.71,-618.39 2046.71,-582.39 2209.91,-582.39 2209.91,-618.39" />
+<text xml:space="preserve" text-anchor="middle" x="2128.31" y="-596.49" font-family="Arial" font-size="13.00">MOUVEMENT DE STOCK</text>
+</g>
+
+<g id="node57" class="node">
+<title>stock_movement_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-718.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="2349.21" y="-716.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="2352.27" y="-716.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="2399.97" y="-716.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="2352.27" x2="2399.97" y1="-713.89" y2="-713.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node58" class="node">
+<title>stock_movement_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-671.39" rx="87.39" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2376.12" y="-668.09" font-family="Arial" font-size="11.00">Référence d’opération</text>
+</g>
+
+<g id="node59" class="node">
+<title>stock_movement_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-624.39" rx="101.21" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2376.12" y="-621.09" font-family="Arial" font-size="11.00">Variation (unités) (facultatif)</text>
+</g>
+
+<g id="node60" class="node">
+<title>stock_movement_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-577.39" rx="29.46" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2376.12" y="-574.09" font-family="Arial" font-size="11.00">Nature</text>
+</g>
+
+<g id="node61" class="node">
+<title>stock_movement_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-530.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2376.12" y="-527.09" font-family="Arial" font-size="11.00">Motif</text>
+</g>
+
+<g id="node62" class="node">
+<title>stock_movement_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2376.12" cy="-483.39" rx="31.18" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2376.12" y="-480.09" font-family="Arial" font-size="11.00">Créé le</text>
+</g>
+
+<g id="node63" class="node">
+<title>R17</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="323.73,-435.39 279.02,-417.39 323.73,-399.39 368.43,-417.39 323.73,-435.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-413.79" font-family="Arial" font-size="12.00">possède</text>
+</g>
+
+<g id="node64" class="node">
+<title>R34</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="323.73,-683.39 218.83,-665.39 323.73,-647.39 428.62,-665.39 323.73,-683.39" />
+<text xml:space="preserve" text-anchor="middle" x="323.73" y="-661.79" font-family="Arial" font-size="12.00">passe une commande</text>
+</g>
+
+<g id="node65" class="node">
+<title>R36</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="800.5,-703.39 690.64,-685.39 800.5,-667.39 910.37,-685.39 800.5,-703.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-681.79" font-family="Arial" font-size="12.00">détaille une commande</text>
+</g>
+
+<g id="node66" class="node">
+<title>R37</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="800.5,-223.39 744.2,-205.39 800.5,-187.39 856.81,-205.39 800.5,-223.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-201.79" font-family="Arial" font-size="12.00">figure dans</text>
+</g>
+
+<g id="node67" class="node">
+<title>R38</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1308.81,-271.39 1242.03,-253.39 1308.81,-235.39 1375.59,-253.39 1308.81,-271.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-249.79" font-family="Arial" font-size="12.00">est servie par</text>
+</g>
+
+<g id="node68" class="node">
+<title>R39</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1308.81,-563.39 1196.2,-545.39 1308.81,-527.39 1421.42,-545.39 1308.81,-563.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-541.79" font-family="Arial" font-size="12.00">alimente le prélèvement</text>
+</g>
+
+<g id="node69" class="node">
+<title>R41</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="800.5,-761.39 707.19,-743.39 800.5,-725.39 893.81,-743.39 800.5,-761.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-739.79" font-family="Arial" font-size="12.00">est conditionnée en</text>
+</g>
+
+<g id="node70" class="node">
+<title>R42</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="800.5,-819.39 739.22,-801.39 800.5,-783.39 861.78,-801.39 800.5,-819.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-797.79" font-family="Arial" font-size="12.00">donne lieu à</text>
+</g>
+
+<g id="node71" class="node">
+<title>R43</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="800.5,-1205.39 689.53,-1187.39 800.5,-1169.39 911.48,-1187.39 800.5,-1205.39" />
+<text xml:space="preserve" text-anchor="middle" x="800.5" y="-1183.79" font-family="Arial" font-size="12.00">emporte une expédition</text>
+</g>
+
+<g id="node72" class="node">
+<title>R45</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1615.05,-634.39 1486.42,-616.39 1615.05,-598.39 1743.68,-616.39 1615.05,-634.39" />
+<text xml:space="preserve" text-anchor="middle" x="1615.05" y="-612.79" font-family="Arial" font-size="12.00">fait l’objet de mouvements</text>
+</g>
+
+<g id="node73" class="node">
+<title>R47</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1895.19,-569.39 1811.28,-551.39 1895.19,-533.39 1979.11,-551.39 1895.19,-569.39" />
+<text xml:space="preserve" text-anchor="middle" x="1895.19" y="-547.79" font-family="Arial" font-size="12.00">produit une sortie</text>
+</g>
+
+<g id="node74" class="node">
+<title>R55</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1308.81,-713.39 1209.43,-695.39 1308.81,-677.39 1408.2,-695.39 1308.81,-713.39" />
+<text xml:space="preserve" text-anchor="middle" x="1308.81" y="-691.79" font-family="Arial" font-size="12.00">contient une quantité</text>
+</g>
+
+<g id="node75" class="node">
+<title>R55_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1615.05" cy="-695.39" rx="65.34" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1615.05" y="-692.09" font-family="Arial" font-size="11.00">Quantité affectée</text>
+</g>
+</g>
+</svg>

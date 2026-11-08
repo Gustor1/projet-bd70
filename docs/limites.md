@@ -12,4 +12,4 @@ Les sélecteurs sont limités à 2 000 propositions, avec une recherche préalab
 
 Les documents consultent les libellés actuels ; ils ne constituent pas une archive réglementaire figée. GPS, EDI, facturation, signature électronique et chargement géométrique ne sont pas demandés ni réalisés.
 
-Auteurs : ELIOTT LE, SEMIH TASKIN et Thomas VUILLIN. Répartition individuelle non communiquée, donc non inventée. Date de remise et modalités de soutenance A26 à confirmer par le groupe.
+Auteurs : ELIOTT LE, SEMIH TASKIN et Thomas VUILLIN. Répartition individuelle non communiquée, donc non inventée. Soutenance de 20 minutes avec 5 minutes sur la BDD et le backend, 5 minutes dans l’application et 10 minutes de questions. La date de remise reste à confirmer par le groupe.

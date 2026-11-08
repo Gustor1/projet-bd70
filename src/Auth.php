@@ -6,6 +6,7 @@ final class Auth
     public const RIGHTS = [
         'admin'=>['accounts'],
         'manager'=>['catalog','planning','manage_orders','reports','trace','orders'],
+        // Sujet : planification des quais par le responsable ; l'accueil tient le poste de garde.
         'gate'=>['visits','trace'],
         'warehouse'=>['stock','orders','operations','trace'],
         'carrier'=>['carrier_portal'], 'pending'=>[],
@@ -23,7 +24,7 @@ final class Auth
         if($user['role']==='admin'){if(!in_array($table,['user_account','audit_log'],true))throw new RuntimeException('Accès métier interdit.',403);return;}
         if($user['role']==='carrier')throw new RuntimeException('Utilisez votre espace transporteur.',403);
         if(in_array($table,['user_account','audit_log'],true))throw new RuntimeException('Accès interdit pour ce profil.',403);
-        if($user['role']==='gate'&&!in_array($table,['carrier','driver','vehicle','equipment','qualification','driver_qualification','vehicle_equipment','dock','dock_equipment','dock_vehicle_type','appointment','truck_visit','visit_event','dock_downtime'],true))throw new RuntimeException('Accès interdit pour ce profil.',403);
+        if($user['role']==='gate'&&!in_array($table,['carrier','driver','vehicle','equipment','qualification','driver_qualification','vehicle_equipment','dock','dock_equipment','dock_vehicle_type','appointment','appointment_archive','truck_visit','visit_event','dock_downtime'],true))throw new RuntimeException('Accès interdit pour ce profil.',403);
         if($user['role']==='warehouse'&&in_array($table,['customer_order','order_line','pick','package','package_pick','shipment'],true))throw new RuntimeException('Utilisez vos commandes affectées.',403);
     }
     public static function catalogWrite(Database $db,array $user,string $table,?int $id,array $input): void

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Transit • Soutenance BD70</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#102a28;color:#f5f2de;font:clamp(16px,38.4px,32px)/1.35 "Segoe UI",sans-serif}main{height:1080.0px}section{display:none;height:100%;padding:75.6px 134.4px 97.2px;position:relative;overflow:auto;background:radial-gradient(ellipse at 95% 0,#24524a,transparent 65%)}section.active{display:flex;flex-direction:column;justify-content:center;animation:arrive .36s ease-out}small,footer,nav{font:600 .67em/1.5 Consolas,monospace;letter-spacing:.06em}small{color:#b1d7c4;text-transform:uppercase}h1,h2{font:normal clamp(38px,107.52px,88px)/1.02 Georgia,serif;letter-spacing:-.045em;margin:.25em 0 .4em}h1{font-size:clamp(80px,268.8px,190px)}p{max-width:48em;margin:.4em 0}em,strong{color:#ffd78c}em{font-style:normal}aside{display:flex;gap:19.2px;margin:32.4px 0;flex-wrap:wrap}aside b,article{border-top:2px solid #92b9a4;padding:.6em .25em;flex:1;min-width:6em}article span{display:block;color:#ffda98;font:1.65em Georgia}figure{margin:0;display:grid;grid-template-columns:.9fr 1.3fr;gap:57.6px;align-items:center}img{max-width:100%;max-height:529.2px;object-fit:contain;background:white;border-radius:4px}figcaption{font-size:.73em;color:#bfd9ca}footer{position:fixed;left:134.4px;bottom:21.6px;color:#acc9bd}nav{position:fixed;right:76.8px;bottom:19.44px;display:flex;gap:.4em}button{background:#193b34;border:1px solid #a4c0aa;color:white;padding:.35em .8em;font:inherit;cursor:pointer}progress{position:fixed;bottom:0;left:0;width:100%;height:4px;accent-color:#ffd78c}i{display:inline-block;width:2em;height:.8em;background:repeating-linear-gradient(90deg,#ffd78c 0 2px,transparent 2px 5px)}@keyframes arrive{from{opacity:.35;transform:translateX(12px)}}@media(prefers-reduced-motion:reduce){section.active{animation:none}}@media not all{figure{grid-template-columns:1fr}img{max-height:345.6px}footer{font-size:11px}nav{font-size:12px}}@page{size:320mm 180mm;margin:0}@media print{body{font-size:19pt;print-color-adjust:exact;-webkit-print-color-adjust:exact}main{height:auto}section,section.active{display:flex;flex-direction:column;justify-content:center;height:180mm;padding:12mm 20mm;break-after:page;overflow:hidden;animation:none;background-color:#102a28}section:last-child{break-after:auto}h2{font-size:44pt}img{max-height:99mm}nav,footer,progress{display:none}}
+
+@media screen{
+section{background:radial-gradient(ellipse at 96% 0%,#28584d,transparent 66%),linear-gradient(115deg,#102b29,#0e2523)}
+section:before{content:"";position:absolute;top:5%;right:5%;width:8%;height:7px;background:repeating-linear-gradient(120deg,#cfab67 0 5px,transparent 5px 12px);opacity:.55}
+section.active{animation:unload .48s ease-out}
+.active aside article,.active aside b{animation:pallet .58s backwards cubic-bezier(.2,.7,.2,1)}
+.active aside :nth-child(2){animation-delay:.11s}.active aside :nth-child(3){animation-delay:.22s}
+.road{position:fixed;left:7%;right:25%;bottom:6.2%;height:1px;border-bottom:2px dashed #618978;pointer-events:none}.rig{width:clamp(55px,111.36px,95px);position:absolute;left:var(--position,0%);bottom:-4px;transition:left .85s cubic-bezier(.32,.02,.21,1);filter:drop-shadow(0 1px 3px #08221b)}.rig svg{display:block}
+.shutters{position:fixed;inset:0;pointer-events:none;display:none;z-index:4;overflow:hidden}.shutters.open{display:flex}.shutters i{position:relative;width:50%;height:100%;background:repeating-linear-gradient(90deg,#2a4e46 0 4%,#193e36 4% 5%,#33584d 5% 8%);border:6px solid #294a40;animation:doorL .75s cubic-bezier(.42,0,.18,1) both}
+.shutters i:last-child{animation-name:doorR}.shutters i:after{content:"";position:absolute;right:12%;top:12%;height:76%;width:8px;background:#acb5a3;box-shadow:0 2px 5px #0b1915}.shutters i:last-child:after{left:12%}
+.dock h2{font-size:clamp(36px,80.64px,70px)}.dock{padding-top:43.2px;padding-bottom:129.6px}
+@keyframes unload{from{opacity:.35;transform:translateY(9px)}}@keyframes pallet{from{opacity:0;transform:translateX(-18px)}}@keyframes doorL{to{transform:translateX(-101%)}}@keyframes doorR{to{transform:translateX(101%)}}
+}
+.exhibit{display:flex;flex-direction:column;gap:21.6px}.brief{font-size:.8em}.brief p{margin:.13em 0}.evidence{display:grid;grid-template-columns:1.15fr 1fr;gap:30.72px}.evidence article{min-width:0;border:0;background:#f4f4e6;color:#19352d;padding:.65em;border-radius:5px}.evidence small{color:#446850}.evidence img{display:block;width:100%;max-height:none;margin:.45em 0}.evidence b{font-size:.77em;display:block}.shutters,.road{pointer-events:none}
+@media not all{.evidence{grid-template-columns:1fr}.road{display:none}.dock{justify-content:flex-start!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition:none!important}.shutters.open{display:none}}
+@media print{.shutters,.road{display:none!important}.dock h2{font-size:38pt}.evidence{grid-template-columns:1.15fr 1fr}}
+@media screen{.evidence{display:block}.evidence article[hidden]{display:none}.evidence article{padding:.45em .75em}.evidence img{width:100%;height:clamp(100px,259.2px,245px);object-fit:contain;background:#fff}.focusTabs{display:flex;gap:.45em}.focusTabs button{font-size:.73em}.focusTabs button[aria-pressed=true]{background:#ffda98;color:#183b31}.dock h2{margin:.2em 0}.exhibit{gap:12.96px}}@media print{.focusTabs{display:none}.evidence article[hidden]{display:block!important}}
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+/* === Projection canvas and transport controls === */
+:root{--slide-bg:#102b29;--stage-bg:#091715}
+body{font-size:32px}.slide,.slide.active{display:flex;flex-direction:column;justify-content:center;gap:0;padding:78px 135px 142px;background:radial-gradient(at 100% 0%,#28584d,transparent 68%),#102b29}
+main.deck-stage{height:1080px}nav,footer,.road,progress,.shutters{position:absolute;z-index:5}.shutters{z-index:8}.road{bottom:65px}.dock h2{font-size:72px}
+.scene{height:194px;flex:none;margin:8px 0 19px;background:linear-gradient(100deg,#193e36,#14342e);border-block:1px solid #507666;position:relative}
+.scene svg{display:block;width:100%;height:100%}.scene text{font:600 19px Consolas,monospace;fill:#e7e6cc;letter-spacing:1px}
+.scene .ink{stroke:#94b9a5;fill:none;stroke-width:3}.scene .gold{fill:#ffce79}.scene .dark{fill:#193b33}
+.scene .cargo{fill:#d7a858;stroke:#ffe0a2;stroke-width:2}.scene .entry,.scene .beam,.scene .grow,.scene .gate,.scene .unit,.scene .path,.scene .stamp{animation-play-state:paused}
+.active .entry{animation:deliver 1.6s cubic-bezier(.2,.68,.25,1) both}.active .path{stroke-dasharray:1;stroke-dashoffset:1;animation:trace 1.35s .15s ease-out forwards}
+.active .gate{animation:lift 1s .35s both;transform-box:fill-box;transform-origin:left center}
+.active .unit{animation:sortUnit 1.2s calc(var(--i)*55ms) cubic-bezier(.24,.7,.2,1) both;transform-box:fill-box}
+.active .grow{transform-box:fill-box;transform-origin:left;animation:meter .95s calc(var(--i)*140ms) both}
+.active .stamp{transform-box:fill-box;transform-origin:center;animation:seal .65s .75s both}
+.active .beam{animation:scan 1.45s .35s both}
+@keyframes deliver{from{transform:translateX(-225px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes trace{to{stroke-dashoffset:0}}@keyframes lift{from{transform:rotate(0deg)}to{transform:rotate(-68deg)}}
+@keyframes sortUnit{from{transform:translate(var(--dx),-32px);opacity:.15}to{transform:translate(0,0);opacity:1}}
+@keyframes meter{from{transform:scaleX(.01)}to{transform:scaleX(1)}}@keyframes seal{from{opacity:0;transform:scale(1.5) rotate(-8deg)}to{opacity:1;transform:scale(1)}}
+@keyframes scan{0%{opacity:0;transform:translateX(0)}15%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateX(1080px)}}
+.dock .evidence{position:relative}.dock.active .evidence:after{content:"";position:absolute;inset:8% auto 8% 1%;width:3px;background:#c48e25;box-shadow:0 0 12px #edc888;animation:scan 1.2s .78s both;pointer-events:none}
+.replay{position:absolute;right:135px;top:37px;font:20px Consolas,monospace;z-index:3;border-color:#678e78}.dock .replay{display:none}
+@media print{@page{size:1920px 1080px;margin:0}.slide,.slide.active{display:flex!important}.scene *{animation:none!important;opacity:1!important;stroke-dashoffset:0!important}.scene .beam,.replay,.road,footer,nav,progress,.shutters{display:none!important}main.deck-stage{height:auto}.evidence article{min-width:0}.evidence img{max-height:190px}.dock .evidence:after{display:none}}
+@media(prefers-reduced-motion:reduce){.slide.active *,.slide.active *:after{animation:none!important;stroke-dashoffset:0!important}.beam,.dock .evidence:after{display:none}}
+/*
+Animista CSS animations — https://animista.net/ — FreeBSD License
+Copyright 2017 Ana Travas
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}to{opacity:1}}
+@keyframes slide-in-left{0%{-webkit-transform:translateX(-1000px);transform:translateX(-1000px);opacity:0}to{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
+@keyframes scale-in-center{0%{-webkit-transform:scale(0);transform:scale(0);opacity:1}to{-webkit-transform:scale(1);transform:scale(1);opacity:1}}
+@keyframes focus-in-expand{0%{letter-spacing:-.5em;-webkit-filter:blur(12px);filter:blur(12px);opacity:0}to{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+@keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}to{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
+@keyframes fade-in{0%{opacity:0}to{opacity:1}}
+@keyframes heartbeat{0%{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:center center;transform-origin:center center;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}10%{-webkit-transform:scale(.91);transform:scale(.91);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}17%{-webkit-transform:scale(.98);transform:scale(.98);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}33%{-webkit-transform:scale(.87);transform:scale(.87);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}45%{-webkit-transform:scale(1);transform:scale(1);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}}
+@keyframes scale-in-hor-left{0%{-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:0% 0%;transform-origin:0% 0%;opacity:1}to{-webkit-transform:scaleX(1);transform:scaleX(1);-webkit-transform-origin:0% 0%;transform-origin:0% 0%;opacity:1}}
+@keyframes puff-in-center{0%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}to{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+@media screen and (prefers-reduced-motion:no-preference){
+.slide.active .ani-tracking-in-expand{animation:tracking-in-expand var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-slide-in-left{animation:slide-in-left var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-scale-in-center{animation:scale-in-center var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-focus-in-expand{animation:focus-in-expand var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-slide-in-bottom{animation:slide-in-bottom var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-fade-in{animation:fade-in var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-heartbeat{animation:heartbeat var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-scale-in-hor-left{animation:scale-in-hor-left var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .ani-puff-in-center{animation:puff-in-center var(--ani-duration,.7s) var(--ani-easing,ease) var(--ani-delay,0s) both}
+.slide.active .scene .ani-heartbeat,.slide.active .scene .ani-puff-in-center,.slide.active .scene .ani-scale-in-hor-left{transform-box:fill-box;transform-origin:center}.slide.active .scene .ani-scale-in-hor-left{transform-origin:left center}
+}
+@media screen{.evidence article{overflow:clip}} </style><div class="deck-viewport"><main class="deck-stage">
+<section class="slide"><small>Architecture BDD · Problème à résoudre</small><h1>Transit</h1><div class="scene"><svg role="img" aria-label="Arrivée du camion au quai" viewBox="0 0 1560 180"><path d="M15 140H1545" stroke="#587e6c" stroke-dasharray="7 9"/><g transform="translate(160 56) scale(1.48)"><g class="entry"><path fill="#f6c45d" d="M7 8h86v31H7zM98 16h23l15 15v9H98z"/><path fill="#174239" d="M102 20h16l9 11h-25z"/><path stroke="#977844" stroke-width="2" d="M18 12v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22"/><path stroke="#d5dcbe" stroke-width="4" d="M5 40h133"/><g fill="#102723" stroke="#c3d7bd" stroke-width="3"><circle cx="23" cy="43" r="7"/><circle cx="42" cy="43" r="7"/><circle cx="116" cy="43" r="7"/></g></g></g><path class="ink path" pathLength="1" d="M425 106H1150" /><g transform="translate(1210 28)" class="ink"><path d="M0 102V10l78-16 84 16v92M20 100V38h117v62M20 50h117M20 64h117M20 78h117"/></g><text x="55" y="170">ENTRÉE DU SITE</text><text x="1210" y="170">QUAI 01</text></svg></div><p><strong>Formulaire → PHP / PDO → MariaDB.</strong> Comment relier chaque sortie de stock à sa réception d’origine ?</p><p>Eliott Le · Semih Taskin · Thomas Vuillin</p></section>
+<section class="slide"><small>Architecture BDD · Modèle Chen</small><h2>Où stocker la quantité mise en colis ?</h2><div class="scene"><svg role="img" aria-label="Douze unités réparties entre deux colis" viewBox="0 0 1560 180"><path d="M15 140H1545" stroke="#587e6c" stroke-dasharray="7 9"/><text x="50" y="95">12 UNITÉS</text><path class="ink path" pathLength="1" d="M206 91H430" /><g class="unit" style="--i:0;--dx:-350px"><rect class="cargo" x="520" y="78" width="41" height="40"/><path d="M537 78v10h8V78" class="ink"/></g><g class="unit" style="--i:1;--dx:-402px"><rect class="cargo" x="572" y="78" width="41" height="40"/><path d="M589 78v10h8V78" class="ink"/></g><g class="unit" style="--i:2;--dx:-454px"><rect class="cargo" x="624" y="78" width="41" height="40"/><path d="M641 78v10h8V78" class="ink"/></g><g class="unit" style="--i:3;--dx:-506px"><rect class="cargo" x="676" y="78" width="41" height="40"/><path d="M693 78v10h8V78" class="ink"/></g><g class="unit" style="--i:4;--dx:-558px"><rect class="cargo" x="728" y="78" width="41" height="40"/><path d="M745 78v10h8V78" class="ink"/></g><g class="unit" style="--i:5;--dx:-610px"><rect class="cargo" x="780" y="78" width="41" height="40"/><path d="M797 78v10h8V78" class="ink"/></g><g class="unit" style="--i:6;--dx:-662px"><rect class="cargo" x="832" y="78" width="41" height="40"/><path d="M849 78v10h8V78" class="ink"/></g><g class="unit" style="--i:7;--dx:-890px"><rect class="cargo" x="1060" y="78" width="41" height="40"/><path d="M1077 78v10h8V78" class="ink"/></g><g class="unit" style="--i:8;--dx:-942px"><rect class="cargo" x="1112" y="78" width="41" height="40"/><path d="M1129 78v10h8V78" class="ink"/></g><g class="unit" style="--i:9;--dx:-994px"><rect class="cargo" x="1164" y="78" width="41" height="40"/><path d="M1181 78v10h8V78" class="ink"/></g><g class="unit" style="--i:10;--dx:-1046px"><rect class="cargo" x="1216" y="78" width="41" height="40"/><path d="M1233 78v10h8V78" class="ink"/></g><g class="unit" style="--i:11;--dx:-1098px"><rect class="cargo" x="1268" y="78" width="41" height="40"/><path d="M1285 78v10h8V78" class="ink"/></g><text x="520" y="168">COLIS A   /   7</text><text x="1060" y="168">COLIS B   /   5</text></svg></div><aside><b>COLIS</b><b>0,N &nbsp; ◇ &nbsp; 0,N</b><b>PRÉLÈVEMENT</b></aside><p>Un prélèvement de <strong>12 unités</strong> est réparti entre deux colis. Le premier en reçoit 7, le second 5.</p><p>La quantité appartient au couple <em>(colis, prélèvement)</em>.</p></section>
+<section class="slide"><small>Architecture BDD · Schéma relationnel</small><h2>Une association devient une table.</h2><div class="scene"><svg role="img" aria-label="Deux clés étrangères relient les colis et les prélèvements" viewBox="0 0 1560 180"><path d="M15 140H1545" stroke="#587e6c" stroke-dasharray="7 9"/><text x="90" y="96">package.id</text><path class="ink path" pathLength="1" d="M260 90H610" /><text x="645" y="96">package_pick</text><path class="ink path" pathLength="1" d="M850 90H1185" /><text x="1220" y="96">pick.id</text><text x="650" y="165">QUANTITÉ ALLOUÉE</text></svg></div><p><strong>package_pick</strong> relie un colis à un prélèvement par deux clés étrangères. Le couple est unique et porte la quantité affectée.</p><aside><article><span>1:N</span>Une société emploie plusieurs chauffeurs.</article><article><span>N:N</span>Un colis peut réunir plusieurs prélèvements.</article><article><span>41 tables</span>Dont deux tables techniques pour le journal et le verrou.</article></aside></section>
+<section class="slide"><small>Architecture BDD · Automatisation</small><h2>Que fait la base sans qu’on le lui demande ?</h2><p>Trois mécanismes du cours, chacun pour un besoin précis.</p><aside><article><span>BEFORE INSERT</span>Un trigger refuse par <strong>SIGNAL</strong> un rendez-vous qui chevauche un autre sur le même quai, même en SQL direct.</article><article><span>AFTER UPDATE</span>Le trigger lit OLD et NEW, puis écrit l’ancienne et la nouvelle valeur dans <strong>audit_log</strong>.</article><article><span>EVENT</span>Chaque nuit, <strong>archive_appointments</strong> déplace les vieux rendez-vous vers <strong>appointment_archive</strong> ; une vue UNION ALL réunit les deux.</article></aside><p>Le stock disponible n’est jamais stocké : des vues le calculent depuis les mouvements.</p></section>
+<section class="slide"><small>Architecture BDD · Transactions</small><h2>Deux utilisateurs demandent le même quai.</h2><div class="scene"><svg role="img" aria-label="La seconde demande attend la libération du verrou" viewBox="0 0 1560 180"><path d="M15 140H1545" stroke="#587e6c" stroke-dasharray="7 9"/><g transform="translate(115 55) scale(1.48)"><g class="entry"><path fill="#f6c45d" d="M7 8h86v31H7zM98 16h23l15 15v9H98z"/><path fill="#174239" d="M102 20h16l9 11h-25z"/><path stroke="#977844" stroke-width="2" d="M18 12v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22"/><path stroke="#d5dcbe" stroke-width="4" d="M5 40h133"/><g fill="#102723" stroke="#c3d7bd" stroke-width="3"><circle cx="23" cy="43" r="7"/><circle cx="42" cy="43" r="7"/><circle cx="116" cy="43" r="7"/></g></g></g><g transform="translate(410 55) scale(1.48)"><g class="entry"><path fill="#f6c45d" d="M7 8h86v31H7zM98 16h23l15 15v9H98z"/><path fill="#174239" d="M102 20h16l9 11h-25z"/><path stroke="#977844" stroke-width="2" d="M18 12v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22"/><path stroke="#d5dcbe" stroke-width="4" d="M5 40h133"/><g fill="#102723" stroke="#c3d7bd" stroke-width="3"><circle cx="23" cy="43" r="7"/><circle cx="42" cy="43" r="7"/><circle cx="116" cy="43" r="7"/></g></g></g><g transform="translate(755 105)"><rect x="-7" y="-10" width="14" height="43" fill="#99baa4"/><path class="gate" d="M0 0h115" stroke="#ffd587" stroke-width="10"/></g><g transform="translate(1210 28)" class="ink"><path d="M0 102V10l78-16 84 16v92M20 100V38h117v62M20 50h117M20 64h117M20 78h117"/></g><text x="100" y="168">DEMANDE 02</text><text x="435" y="168">DEMANDE 01</text><text x="1200" y="168">QUAI OCCUPÉ</text></svg></div><aside><article><span>1 · Verrouiller</span>La première transaction prend le verrou du site.</article><article><span>2 · Vérifier</span>Elle contrôle le créneau et enregistre le rendez-vous.</article><article><span>3 · Relire</span>La seconde voit le conflit et sa demande est refusée.</article></aside><p>Ce choix simplifie la cohérence des écritures. Il limite le débit quand plusieurs utilisateurs écrivent simultanément.</p></section>
+<section class="slide"><small>Architecture BDD · Normalisation et sécurité</small><h2>Peut-on faire confiance aux données ?</h2><p>Une information à un seul endroit, et un accès au strict nécessaire.</p><aside><article><span>3NF</span>La zone d’un emplacement se retrouve par jointure (niveau, rack, allée), jamais recopiée. Aucun total calculé n’est stocké.</article><article><span>GRANT</span>Le compte de l’application : SELECT, EXECUTE, INSERT seul sur les historiques, aucun droit de structure.</article><article><span>REVOKE</span>On retire un droit devenu inutile ; requêtes préparées et mots de passe hachés côté PHP.</article></aside><p>Trois dénormalisations sont assumées et justifiées dans le rapport, comme l’état courant d’un passage.</p></section>
+<section class="slide"><small>Architecture BDD · Optimisation</small><h2>Combien coûte une recherche ?</h2><div class="scene"><svg role="img" aria-label="Comparaison des médianes sur une échelle commune" viewBox="0 0 1560 180"><path d="M15 140H1545" stroke="#587e6c" stroke-dasharray="7 9"/><text x="85" y="42">QUAI     0,50 ms</text><rect class="grow gold" style="--i:0" x="470" y="22" width="13" height="21" rx="3"/><text x="85" y="87">LOT     23,38 ms</text><rect class="grow gold" style="--i:1" x="470" y="67" width="607" height="21" rx="3"/><text x="85" y="132">FEFO    34,64 ms</text><rect class="grow gold" style="--i:2" x="470" y="112" width="900" height="21" rx="3"/></svg></div><aside><article><span>4,00 → 0,90 ms</span>Index composé sur les créneaux : EXPLAIN passe de ref à range</article><article><span>23,38 ms</span>Historique d’un lot</article><article><span>34,64 ms</span>Sélection FEFO</article></aside><p>Médianes de dix exécutions après chauffe, sur 10 000 passages. Dix requêtes et leurs plans EXPLAIN sont dans le rapport.</p></section>
+<div class="road" aria-hidden="true"><div class="rig"><svg viewBox="0 0 150 55" aria-hidden="true"><path fill="#f6c45d" d="M7 8h86v31H7zM98 16h23l15 15v9H98z"/><path fill="#174239" d="M102 20h16l9 11h-25z"/><path stroke="#977844" stroke-width="2" d="M18 12v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22m9-22v22"/><path stroke="#d5dcbe" stroke-width="4" d="M5 40h133"/><g fill="#102723" stroke="#c3d7bd" stroke-width="3"><circle cx="23" cy="43" r="7"/><circle cx="42" cy="43" r="7"/><circle cx="116" cy="43" r="7"/></g></svg></div></div><div class="shutters" aria-hidden="true"><i></i><i></i></div><footer>TRANSIT &nbsp; / &nbsp; <span id="count"></span></footer><nav aria-label="Navigation"><button id="prev" aria-label="Page précédente">←</button><button id="next" aria-label="Page suivante">→</button><button id="full">Plein écran</button></nav><progress></progress></main></div>
+<script>
+/* === One projection canvas, fitted uniformly on every screen === */
+const stage=document.querySelector('.deck-stage');
+function fitStage(){const scale=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate('+((innerWidth-1920*scale)/2)+'px,'+((innerHeight-1080*scale)/2)+'px) scale('+scale+')'}
+addEventListener('resize',fitStage);fitStage();
+document.querySelectorAll('.scene').forEach(scene=>{const button=document.createElement('button');button.className='replay';button.textContent='↻ Rejouer';button.onclick=()=>{const slide=scene.parentElement;slide.classList.remove('active');void slide.offsetWidth;slide.classList.add('active')};scene.parentElement.append(button)});
+const slides=[...document.querySelectorAll('section')],bar=document.querySelector('progress');let n=0;
+let doorTimer;
+function show(index){const previous=n;n=Math.max(0,Math.min(index,slides.length-1));slides.forEach((s,i)=>s.classList.toggle('active',i===n));count.textContent=(n+1)+' / '+slides.length;bar.max=slides.length;bar.value=n+1;document.documentElement.style.setProperty('--position',(n/(slides.length-1)*95)+'%');const doors=document.querySelector('.shutters');clearTimeout(doorTimer);doors.classList.remove('open');if(previous!==n&&slides[n].classList.contains('dock')){void doors.offsetWidth;doors.classList.add('open');doorTimer=setTimeout(()=>doors.classList.remove('open'),790)}prev.disabled=n===0;next.disabled=n===slides.length-1}
+prev.onclick=()=>show(n-1);next.onclick=()=>show(n+1);full.onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+document.onkeydown=e=>{if(['ArrowRight','PageDown','ArrowLeft','PageUp','Home','End'].includes(e.key)){e.preventDefault();show(e.key==='Home'?0:e.key==='End'?slides.length-1:n+(['ArrowRight','PageDown'].includes(e.key)?1:-1))}};document.querySelectorAll('.evidence').forEach(group=>{
+ const panels=[...group.children],tabs=document.createElement('div');tabs.className='focusTabs';group.before(tabs);
+ function select(i){panels.forEach((el,j)=>{el.hidden=i!==j;tabs.children[j].setAttribute('aria-pressed',String(i===j))})}
+ panels.forEach((el,i)=>{const btn=document.createElement('button');btn.textContent=el.querySelector('small').textContent;btn.onclick=()=>select(i);tabs.append(btn)});select(0);
+});
+/* === Animista catalogue cues, in presentation order === */
+const catalogueCues = [
+  ['h1', 'tracking-in-expand', 700, 0],
+  ['aside b', 'scale-in-center', 400, 110],
+  ['.scene text', 'focus-in-expand', 480, 100],
+  ['aside article', 'slide-in-left', 480, 120],
+  ['.scene text:last-child', 'heartbeat', 900, 0],
+  ['.scene .grow', 'scale-in-hor-left', 850, 150],
+];
+catalogueCues.forEach(([selector, effect, duration, stagger], index) => {
+  // Both demonstration tabs receive their cue when revealed.
+  slides[index].querySelectorAll(selector.replace(':not([hidden])','')).forEach((element, order) => {
+    element.classList.add('ani-' + effect);
+    element.style.setProperty('--ani-duration', duration + 'ms');
+    element.style.setProperty('--ani-delay', (index === 8 ? 550 : order * stagger) + 'ms');
+  });
+});
+
+show(0);
+</script></html>

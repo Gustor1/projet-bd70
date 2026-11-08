@@ -1,8 +1,8 @@
 # Cas d'utilisation
 
-Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le dernier MCD (retour enseignant attendu) et les MLD courants.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le diagramme de cas d’utilisation V2 (corrigé après les remarques sur la V1, nouvelle relecture attendue), le dernier MCD et les MLD courants.
 
-Tous les cas métier présupposent une session active et un rôle autorisé. Un refus ne modifie aucune donnée. Le diagramme UML de référence est dans `livrables/correction-prof-use-case/`.
+Tous les cas métier présupposent une session active et un rôle autorisé. Un refus ne modifie aucune donnée. Le diagramme UML (V2) est dans `livrables/use-case/` ; la V1, les remarques du professeur et l’historique sont dans `docs/correction-prof-use-case/`.
 
 | Cas | Objectif / acteur | Préconditions | Déroulement nominal | Variantes et erreurs | Postconditions et données |
 |---|---|---|---|---|---|

@@ -2,6 +2,12 @@ param([string]$PhpPath='C:/xampp2/php/php.exe',[string]$MariaPath='C:/xampp2/mys
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path $PSScriptRoot -Parent
 $dataPath=Join-Path $projectRoot '.local/mariadb'
+$env:BD70_PORT="$DbPort"
+$sessionPath=Join-Path $projectRoot '.local/sessions'
+New-Item -ItemType Directory -Force $sessionPath | Out-Null
+$sessionProbe=Join-Path $sessionPath ([guid]::NewGuid().ToString())
+try { [IO.File]::WriteAllText($sessionProbe,'test'); Remove-Item -LiteralPath $sessionProbe }
+catch { throw 'Le dossier privé de sessions PHP est inaccessible en écriture.' }
 if(!(Test-Path -LiteralPath $PhpPath)){throw 'PHP introuvable : préciser -PhpPath.'}
 if(!(Test-Path -LiteralPath (Join-Path $MariaPath 'mysqld.exe'))){throw 'MariaDB introuvable : préciser -MariaPath.'}
 New-Item -ItemType Directory -Force (Join-Path $projectRoot '.local') | Out-Null
@@ -25,9 +31,13 @@ if(!(Test-Path -LiteralPath (Join-Path $projectRoot 'config/local.php'))){
  $previousDatabase=$env:BD70_DATABASE
  try{& $PhpPath scripts/install.php bd70_demo;if($LASTEXITCODE -ne 0){throw 'Installation échouée.'};$env:BD70_DATABASE='bd70_demo';& $PhpPath scripts/import-demo.php;if($LASTEXITCODE -ne 0){throw 'Chargement du jeu riche échoué.'}}finally{$env:BD70_DATABASE=$previousDatabase;Pop-Location}
 }
+# Base déjà installée avant l'ajout de l'historisation : migration idempotente, sans modification des données.
+$env:BD70_PORT="$DbPort"
+Push-Location $projectRoot
+try{& $PhpPath scripts/migrate-historisation.php;if($LASTEXITCODE -ne 0){throw 'Migration de l''historisation échouée.'}}finally{Pop-Location}
 $webListening=Get-NetTCPConnection -LocalPort $WebPort -State Listen -ErrorAction SilentlyContinue
 if(!$webListening){
- $webProcess=Start-Process -FilePath $PhpPath -ArgumentList @('-S',"127.0.0.1:$WebPort",'-t',('"'+$projectRoot+'/public"')) -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/php-out.log') -RedirectStandardError (Join-Path $projectRoot '.local/php-error.log')
+ $webProcess=Start-Process -FilePath $PhpPath -ArgumentList @('-d',('"session.save_path='+$sessionPath+'"'),'-S',"127.0.0.1:$WebPort",'-t',('"'+$projectRoot+'/public"')) -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/php-out.log') -RedirectStandardError (Join-Path $projectRoot '.local/php-error.log')
  $webProcess.Id | Set-Content (Join-Path $projectRoot '.local/php.pid')
 }
 Write-Output "Application : http://127.0.0.1:$WebPort"

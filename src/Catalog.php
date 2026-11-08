@@ -7,7 +7,7 @@ final class Catalog
       'user_account'=>'Utilisateurs','carrier'=>'Transporteurs','carrier_contact'=>'Contacts transporteurs','carrier_contract'=>'Contrats',
       'qualification'=>'Habilitations','driver'=>'Chauffeurs','driver_qualification'=>'Habilitations des chauffeurs','equipment'=>'Équipements',
       'vehicle'=>'Véhicules','vehicle_equipment'=>'Équipements des véhicules','dock'=>'Quais','dock_equipment'=>'Équipements des quais','dock_vehicle_type'=>'Compatibilités des quais',
-      'dock_downtime'=>'Indisponibilités','appointment'=>'Rendez-vous','truck_visit'=>'Passages camions','visit_event'=>'Chronologie des passages',
+      'dock_downtime'=>'Indisponibilités','appointment'=>'Rendez-vous','appointment_archive'=>'Rendez-vous historisés','truck_visit'=>'Passages camions','visit_event'=>'Chronologie des passages',
       'owner'=>'Clients propriétaires','supplier'=>'Fournisseurs','article'=>'Articles','zone'=>'Zones','aisle'=>'Allées','rack'=>'Racks','rack_level'=>'Niveaux','location'=>'Emplacements',
       'lot'=>'Lots','supplier_notice'=>'Avis fournisseurs','notice_line'=>'Lignes attendues','receipt'=>'Réceptions','receipt_line'=>'Lignes de réception','receipt_item'=>'Palettes reçues',
       'customer_order'=>'Commandes','order_line'=>'Lignes de commande','pick'=>'Prélèvements','package'=>'Colis et palettes de sortie','package_pick'=>'Contenu des colis',
@@ -24,14 +24,14 @@ final class Catalog
       'owner_id'=>'Propriétaire','sku'=>'Référence article','storage'=>'Condition de stockage','packaging'=>'Conditionnement','width_m'=>'Largeur (m)','depth_m'=>'Profondeur (m)','height_m'=>'Hauteur (m)',
       'unit_kg'=>'Poids unitaire (kg)','units_per_pallet'=>'Unités par palette','zone_id'=>'Zone','aisle_id'=>'Allée','rack_id'=>'Rack','level_id'=>'Niveau',
       'article_id'=>'Article','blocked'=>'Lot bloqué','block_reason'=>'Motif du blocage','supplier_id'=>'Fournisseur','expected_on'=>'Livraison prévue','notice_id'=>'Avis fournisseur','expected_qty'=>'Quantité attendue',
-      'validated_at'=>'Validation','receipt_id'=>'Réception','notice_line_id'=>'Ligne attendue','line_id'=>'Ligne de réception','lot_id'=>'Lot','pallet_code'=>'Code palette / fraction',
+      'archived_at'=>'Historisé le','validated_at'=>'Validation','receipt_id'=>'Réception','notice_line_id'=>'Ligne attendue','line_id'=>'Ligne de réception','lot_id'=>'Lot','pallet_code'=>'Code palette / fraction',
       'accepted_qty'=>'Quantité acceptée','damaged_qty'=>'Quantité endommagée','pallet_state'=>'État de palette','reservation'=>'Réserve transporteur','location_id'=>'Emplacement',
       'destination'=>'Adresse de livraison','desired_on'=>'Expédition souhaitée','preparer_id'=>'Préparateur','picking_at'=>'Début de préparation','ready_at'=>'Fin de préparation',
       'order_id'=>'Commande','qty'=>'Quantité','order_line_id'=>'Ligne de commande','receipt_item_id'=>'Palette reçue / fraction','confirmed_at'=>'Confirmation','package_id'=>'Colis / palette','pick_id'=>'Prélèvement',
       'shipped_at'=>'Expédition','operation_ref'=>'Opération liée','delta'=>'Variation (unités)','kind'=>'Nature','entity'=>'Entité','entity_id'=>'Référence technique d’audit','details'=>'Description',
     ];
     public const VALUES=['admin'=>'Administrateur','manager'=>'Responsable','gate'=>'Accueil','carrier'=>'Transporteur','warehouse'=>'Magasinier','pending'=>'En attente','draft'=>'Brouillon','validated'=>'Validée','active'=>'Actif','cancelled'=>'Annulé','arrived'=>'Arrivé','checked'=>'Documents contrôlés','parking'=>'En attente parking','called'=>'Appelé à quai','working'=>'En opération','finished'=>'Opération terminée','departed'=>'Parti','rejected'=>'Refusé','picking'=>'En préparation','ready'=>'Prête','shipped'=>'Expédié','planned'=>'À prélever','confirmed'=>'Prélevé','entry'=>'Entrée','transfer'=>'Transfert','shipment'=>'Sortie expédition','adjustment'=>'Ajustement'];
-    public const READONLY=['truck_visit','visit_event','pick','shipment','stock_movement','audit_log','receipt_reserve'];
+    public const READONLY=['appointment_archive','truck_visit','visit_event','pick','shipment','stock_movement','audit_log','receipt_reserve'];
     private array $columns=[];
     private array $foreign=[];
     private array $referencing=[];

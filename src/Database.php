@@ -14,6 +14,12 @@ final class Database
             if (!preg_match('/^bd70_[a-z0-9_]+$/', $name)) throw new RuntimeException('Base de test non autorisée.');
             $config['dsn'] = preg_replace('/dbname=[^;]+/', 'dbname=' . $name, $config['dsn']);
         }
+        if (getenv('BD70_PORT')) {
+            $port = filter_var(getenv('BD70_PORT'), FILTER_VALIDATE_INT, ['options'=>['min_range'=>1,'max_range'=>65535]]);
+            if ($port === false) throw new RuntimeException('Port MariaDB invalide.');
+            $config['dsn'] = preg_replace('/;port=[^;]+/', '', $config['dsn']);
+            $config['dsn'] .= ';port='.$port;
+        }
         date_default_timezone_set('Europe/Paris');
         $this->pdo = new PDO($config['dsn'], $config['user'], $config['password'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

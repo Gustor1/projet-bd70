@@ -3,5 +3,5 @@ config/local.php
 __pycache__/
 node_modules/
 *.log
-livrables/preuves/*.sql
+docs/preuves/*.sql
 tmp/

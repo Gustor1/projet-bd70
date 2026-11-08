@@ -8,7 +8,7 @@ import json,sys,re,hashlib
 root=Path(__file__).resolve().parents[1]
 actual=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
 snapshot=json.loads((root/'docs/diagrammes/schema.json').read_text(encoding='utf-8'))
-mcd=json.loads((root/'livrables/mcd-final/sources/modele.json').read_text(encoding='utf-8'))
+mcd=json.loads((root/'docs/mcd-chen/modele.json').read_text(encoding='utf-8'))
 checks={}
 def canonical(v):
     cols=[{k:c[k] for k in ['Field','Type','Null','Default','Extra']} for c in v['columns']]
@@ -17,7 +17,7 @@ def canonical(v):
     return cols,indexes,foreign
 checks['tables']=set(actual)==set(snapshot)
 for t,v in actual.items():checks['schema_'+t]=t in snapshot and canonical(v)==canonical(snapshot[t])
-technical={'audit_log','site_lock'};joins={'driver_qualification','vehicle_equipment','dock_equipment','dock_vehicle_type','package_pick'}
+technical={'audit_log','site_lock','appointment_archive'};joins={'driver_qualification','vehicle_equipment','dock_equipment','dock_vehicle_type','package_pick'}
 represented={field for r in mcd['associations'] for field in r['fields']}
 attrs={t+'.'+a['key'] for t,e in mcd['entities'].items() if e['table'] for a in e['attrs']}
 attrs|={a['key'] for r in mcd['associations'] for a in r['attrs']}
@@ -46,10 +46,15 @@ for r in mcd['associations']:
         a=r['ca'];b=r['cb']
         if table==r['a']:checks['cardinality_'+r['id']]=a==child_card and b==parent_card
         else:checks['cardinality_'+r['id']]=b==child_card and (a==parent_card or (table=='visit_event' and a=='1,N'))
+chen=(root/'docs/mcd-chen/BD70-MCD-CHEN.dot').read_text(encoding='utf-8')
+# Convention du cours : du côté de l'entité a figure la cardinalité de b, et inversement.
+for relation in mcd['associations']:
+    checks['chen_'+relation['id']+'_a']=f'{relation["a"]} -- {relation["id"]} [taillabel="{relation["cb"]}"' in chen
+    checks['chen_'+relation['id']+'_b']=f'{relation["id"]} -- {relation["b"]} [headlabel="{relation["ca"]}"' in chen
 dot=(root/'docs/diagrammes/mld-complet.dot').read_text(encoding='utf-8')
 for t,v in actual.items():
     checks['mld_'+t]=all(c['Field'] in dot for c in v['columns']) and all(f'{t} -> {f["REFERENCED_TABLE_NAME"]}' in dot for f in v['foreign'])
-files=['sql/01_schema.sql','docs/diagrammes/schema.json','docs/diagrammes/mld-complet.dot','docs/diagrammes/mld-complet.svg','livrables/mcd-final/BD70-MCD-FINAL.pdf','livrables/mcd-final/sources/modele.json','livrables/use-case-v2/BD70-USE-CASE-V2.pdf']
+files=['sql/01_schema.sql','docs/diagrammes/schema.json','docs/diagrammes/mld-complet.dot','docs/diagrammes/mld-complet.svg','docs/mcd-chen/BD70-MCD-CHEN.svg','docs/mcd-chen/modele.json','livrables/use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf']
 result={'checks':checks,'passed':all(checks.values()),'missing_mcd_columns':sorted(expected_attrs-(represented|attrs)),'missing_mcd_fk':sorted(expected_fk-represented),'business_fk':len(expected_fk),'business_columns':len(expected_attrs),'sha256':{f:hashlib.sha256((root/f).read_bytes()).hexdigest() for f in files}}
 Path(sys.argv[2]).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({'passed':result['passed'],'failed':[k for k,v in checks.items() if not v],'business_fk':len(expected_fk),'business_columns':len(expected_attrs)},ensure_ascii=False))

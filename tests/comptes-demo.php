@@ -26,4 +26,4 @@ prepareAccounts(['--reinitialiser']);$u=$db->one('SELECT * FROM user_account WHE
 check($other===$db->one('SELECT * FROM user_account WHERE id=?',[$extra]),'Compte hors liste préservé');
 $businessBefore=$before;unset($businessBefore['user_account'],$businessBefore['audit_log']);$after=snapshot();unset($after['user_account'],$after['audit_log']);check($businessBefore===$after,'Données métier inchangées après création et rétablissement de comptes');
 $failed=count(array_filter($results,fn($r)=>!$r['ok']));$out=['database'=>$name,'passed'=>count($results)-$failed,'failed'=>$failed,'results'=>$results];
-$path=__DIR__.'/../livrables/preuves/comptes-2026-11-04';if(!is_dir($path))mkdir($path,0777,true);file_put_contents($path.'/comptes.json',json_encode($out,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo $out['passed']." contrôles réussis, $failed échecs\n";exit($failed?1:0);
+$path=__DIR__.'/../docs/preuves/comptes-2026-11-04';if(!is_dir($path))mkdir($path,0777,true);file_put_contents($path.'/comptes.json',json_encode($out,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo $out['passed']." contrôles réussis, $failed échecs\n";exit($failed?1:0);

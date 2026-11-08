@@ -1,0 +1,835 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2899pt" height="1155pt" viewBox="0.00 0.00 2899.00 1155.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 1133.19)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-21.6,21.6 -21.6,-1133.19 2876.94,-1133.19 2876.94,21.6 -21.6,21.6" />
+<text xml:space="preserve" text-anchor="middle" x="563.74" y="-1091.39" font-family="Arial" font-size="18.00">Extrait du MCD (notation de Chen) : Quais, rendez-vous et passages</text>
+<text xml:space="preserve" text-anchor="middle" x="563.74" y="-1069.79" font-family="Arial" font-size="18.00">Sous-ensemble exact du MCD complet ; identifiants soulignés ; cardinalités lues comme dans le cours (Client 1 — Possède — 0,N Facture).</text>
+
+<g id="edge1" class="edge">
+<title>carrier--carrier_attr0</title>
+<path fill="none" stroke="#627687" d="M557.18,-891.13C593.17,-912.11 654.79,-945.86 711.44,-966.39 733.13,-974.25 758.3,-980.12 778.5,-984.09" />
+</g>
+
+<g id="edge2" class="edge">
+<title>carrier--carrier_attr1</title>
+<path fill="none" stroke="#627687" d="M583.61,-887.33C620.17,-896.74 668.52,-909.02 711.44,-919.39 739.11,-926.07 771,-933.34 792.19,-938.11" />
+</g>
+
+<g id="edge3" class="edge">
+<title>carrier--carrier_attr2</title>
+<path fill="none" stroke="#627687" d="M583.69,-877.16C646.41,-882.35 743.92,-890.43 790.03,-894.25" />
+</g>
+
+<g id="edge4" class="edge">
+<title>carrier--carrier_attr3</title>
+<path fill="none" stroke="#627687" d="M583.69,-867.82C643.27,-863.09 734.26,-855.87 782.74,-852.02" />
+</g>
+
+<g id="edge5" class="edge">
+<title>carrier--carrier_attr4</title>
+<path fill="none" stroke="#627687" d="M583.63,-857.83C620.2,-848.65 668.55,-836.64 711.44,-826.39 734.96,-820.77 761.52,-814.67 781.97,-810.02" />
+</g>
+
+<g id="edge6" class="edge">
+<title>carrier--carrier_attr5</title>
+<path fill="none" stroke="#627687" d="M557.53,-853.68C593.6,-832.92 655.04,-799.69 711.44,-779.39 737.87,-769.88 769.45,-763.24 790.91,-759.39" />
+</g>
+
+<g id="edge41" class="edge">
+<title>carrier--R03</title>
+<path fill="none" stroke="#627687" d="M545.23,-890.99C577.12,-920.99 644.26,-980.05 711.44,-1013.39 728.72,-1021.96 748.9,-1028.32 766.89,-1032.86" />
+<text xml:space="preserve" text-anchor="middle" x="558.93" y="-913.79" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge43" class="edge">
+<title>carrier--R04</title>
+<path fill="none" stroke="#627687" d="M545.52,-853.68C577.54,-823.83 644.55,-765.43 711.44,-732.39 729.15,-723.64 749.9,-717.19 768.22,-712.62" />
+<text xml:space="preserve" text-anchor="middle" x="573.22" y="-838.27" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge7" class="edge">
+<title>driver--driver_attr0</title>
+<path fill="none" stroke="#627687" d="M1113.46,-867.07C1144.16,-882.9 1190.62,-905.08 1233.37,-918.39 1263.75,-927.85 1299.27,-934.02 1325.98,-937.73" />
+</g>
+
+<g id="edge8" class="edge">
+<title>driver--driver_attr1</title>
+<path fill="none" stroke="#627687" d="M1122.83,-855.58C1184.06,-865.58 1292.91,-883.36 1341.67,-891.33" />
+</g>
+
+<g id="edge9" class="edge">
+<title>driver--driver_attr2</title>
+<path fill="none" stroke="#627687" d="M1122.83,-848.39C1177.61,-848.39 1270.49,-848.39 1324.38,-848.39" />
+</g>
+
+<g id="edge10" class="edge">
+<title>driver--driver_attr3</title>
+<path fill="none" stroke="#627687" d="M1122.83,-841.2C1174.38,-832.78 1259.68,-818.84 1314.46,-809.89" />
+</g>
+
+<g id="edge49" class="edge">
+<title>driver--R07</title>
+<path fill="none" stroke="#627687" d="M1099.78,-829.66C1128.12,-805.25 1181.17,-762.82 1233.37,-738.39 1262.05,-724.96 1296.71,-716.06 1323.47,-710.59" />
+<text xml:space="preserve" text-anchor="middle" x="1127.91" y="-815.34" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge57" class="edge">
+<title>driver--R11</title>
+<path fill="none" stroke="#627687" d="M1110.71,-829.66C1141.1,-812.87 1188.72,-789.25 1233.37,-778.39 1368.67,-745.46 1532.71,-746.21 1623.92,-750.06" />
+<text xml:space="preserve" text-anchor="middle" x="1140.38" y="-834.97" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>equipment--equipment_attr0</title>
+<path fill="none" stroke="#627687" d="M1742,-84.25C1794.08,-66.09 1877,-37.17 1920.06,-22.16" />
+</g>
+
+<g id="edge12" class="edge">
+<title>equipment--equipment_attr1</title>
+<path fill="none" stroke="#627687" d="M1742,-101.49C1794.79,-102.74 1879.27,-104.75 1921.8,-105.76" />
+</g>
+
+<g id="edge13" class="edge">
+<title>equipment--equipment_attr2</title>
+<path fill="none" stroke="#627687" d="M1742,-92.87C1795.36,-84.2 1881.1,-70.27 1923.16,-63.43" />
+</g>
+
+<g id="edge14" class="edge">
+<title>vehicle--vehicle_attr0</title>
+<path fill="none" stroke="#627687" d="M1096.94,-424.77C1124.03,-451.1 1177.89,-499.07 1233.37,-523.39 1262.08,-535.98 1297.06,-541.96 1323.95,-544.81" />
+</g>
+
+<g id="edge15" class="edge">
+<title>vehicle--vehicle_attr1</title>
+<path fill="none" stroke="#627687" d="M1113.46,-425.07C1144.16,-440.9 1190.62,-463.08 1233.37,-476.39 1259.94,-484.66 1290.44,-490.42 1315.54,-494.22" />
+</g>
+
+<g id="edge16" class="edge">
+<title>vehicle--vehicle_attr2</title>
+<path fill="none" stroke="#627687" d="M1114.68,-412.25C1167.7,-420.91 1266.84,-437.11 1323.63,-446.38" />
+</g>
+
+<g id="edge17" class="edge">
+<title>vehicle--vehicle_attr3</title>
+<path fill="none" stroke="#627687" d="M1114.68,-406.39C1156.48,-406.39 1226.94,-406.39 1282.72,-406.39" />
+</g>
+
+<g id="edge51" class="edge">
+<title>vehicle--R08</title>
+<path fill="none" stroke="#627687" d="M1114.68,-399.91C1163.78,-391.03 1252.45,-375.01 1310.39,-364.53" />
+<text xml:space="preserve" text-anchor="middle" x="1144.25" y="-401.09" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge53" class="edge">
+<title>vehicle--R09</title>
+<path fill="none" stroke="#627687" d="M1090.72,-425.08C1113.75,-459.65 1167.99,-533.41 1233.37,-570.39 1250.97,-580.35 1271.67,-586.89 1291.43,-591.18" />
+<text xml:space="preserve" text-anchor="middle" x="1098.13" y="-450.25" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge59" class="edge">
+<title>vehicle--R12</title>
+<path fill="none" stroke="#627687" d="M1105.19,-387.71C1134.77,-367.94 1184.98,-337.92 1233.37,-325.39 1367.06,-290.78 1529.95,-297.87 1621.74,-306.14" />
+<text xml:space="preserve" text-anchor="middle" x="1134.39" y="-376.93" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge61" class="edge">
+<title>vehicle--R13</title>
+<path fill="none" stroke="#627687" d="M1101.26,-387.78C1136.72,-358.78 1204.63,-305.03 1233.37,-294.39 1360.83,-247.17 1521.32,-245.82 1615.22,-250.3" />
+<text xml:space="preserve" text-anchor="middle" x="1129.62" y="-360.42" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge67" class="edge">
+<title>vehicle--R53</title>
+<path fill="none" stroke="#627687" d="M1104.68,-387.62C1123.45,-373.33 1148.86,-352.57 1168.37,-331.39 1202.29,-294.56 1192.23,-267.92 1233.37,-239.39 1257.92,-222.36 1290.23,-213.62 1316.88,-209.13" />
+<text xml:space="preserve" text-anchor="middle" x="1133.28" y="-347.36" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge18" class="edge">
+<title>dock--dock_attr0</title>
+<path fill="none" stroke="#627687" d="M32.93,-474.16C42.98,-508.52 69.19,-581.36 119,-618.39 137.79,-632.36 163.14,-638.49 184.65,-641.06" />
+</g>
+
+<g id="edge19" class="edge">
+<title>dock--dock_attr1</title>
+<path fill="none" stroke="#627687" d="M37.22,-473.94C51.18,-500 80.21,-547 119,-571.39 144.23,-587.25 178.5,-592.72 201.81,-594.55" />
+</g>
+
+<g id="edge20" class="edge">
+<title>dock--dock_attr2</title>
+<path fill="none" stroke="#627687" d="M47.31,-474.04C64.69,-489.79 91.64,-511.75 119,-524.39 145.88,-536.81 179.52,-542.96 202.23,-545.89" />
+</g>
+
+<g id="edge21" class="edge">
+<title>dock--dock_attr3</title>
+<path fill="none" stroke="#627687" d="M54.54,-461.5C93.72,-470.52 166.46,-487.25 204.03,-495.9" />
+</g>
+
+<g id="edge45" class="edge">
+<title>dock--R05</title>
+<path fill="none" stroke="#627687" d="M54.54,-448.48C87.78,-439.84 145.15,-424.91 184.73,-414.61" />
+<text xml:space="preserve" text-anchor="middle" x="84.41" y="-447.42" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge47" class="edge">
+<title>dock--R06</title>
+<path fill="none" stroke="#627687" d="M54.6,-454.65C108.81,-453.73 235.69,-454.6 338.74,-478.39 399.34,-492.38 466.08,-523.13 500.56,-540.26" />
+<text xml:space="preserve" text-anchor="middle" x="82.9" y="-460.7" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge63" class="edge">
+<title>dock--R14</title>
+<path fill="none" stroke="#627687" d="M42.39,-436.66C58.62,-417.16 86.95,-387.65 119,-374.39 284.22,-306.04 744.61,-348.36 922.29,-328.39 958.93,-324.27 1000.07,-317.23 1030.69,-311.51" />
+<text xml:space="preserve" text-anchor="middle" x="68.49" y="-417.97" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge69" class="edge">
+<title>dock--R54</title>
+<path fill="none" stroke="#627687" d="M31.26,-436.78C38.99,-398.69 62.23,-311.91 119,-270.39 414.56,-54.24 900.31,-101.61 1038.86,-120.6" />
+<text xml:space="preserve" text-anchor="middle" x="47.32" y="-407.54" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge71" class="edge">
+<title>dock--R56</title>
+<path fill="none" stroke="#627687" d="M37.11,-436.98C51.12,-410.5 80.45,-361.82 119,-334.39 138.25,-320.69 163.13,-312.16 184.24,-306.96" />
+<text xml:space="preserve" text-anchor="middle" x="59.59" y="-385.92" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge22" class="edge">
+<title>dock_downtime--dock_downtime_attr0</title>
+<path fill="none" stroke="#627687" d="M582.3,-453.51C639.91,-462.85 727.9,-477.12 777.82,-485.22" />
+</g>
+
+<g id="edge23" class="edge">
+<title>dock_downtime--dock_downtime_attr1</title>
+<path fill="none" stroke="#627687" d="M582.3,-444.39C644.68,-444.39 742.69,-444.39 789.4,-444.39" />
+</g>
+
+<g id="edge24" class="edge">
+<title>dock_downtime--dock_downtime_attr2</title>
+<path fill="none" stroke="#627687" d="M582.3,-435.27C645.34,-425.05 744.76,-408.92 790.86,-401.44" />
+</g>
+
+<g id="edge25" class="edge">
+<title>dock_downtime--dock_downtime_attr3</title>
+<path fill="none" stroke="#627687" d="M570.45,-463.08C607.64,-478.28 662.38,-499.56 711.44,-514.39 738.51,-522.57 770.25,-529.5 791.57,-533.77" />
+</g>
+
+<g id="edge26" class="edge">
+<title>appointment--appointment_attr0</title>
+<path fill="none" stroke="#627687" d="M1713.48,-580.75C1745.64,-547.89 1816.76,-479.09 1887.79,-436.39 1897.44,-430.58 1908.75,-425.65 1918.95,-421.8" />
+</g>
+
+<g id="edge27" class="edge">
+<title>appointment--appointment_attr1</title>
+<path fill="none" stroke="#627687" d="M1747.08,-609.16C1796.51,-618.56 1869.92,-632.52 1912.99,-640.72" />
+</g>
+
+<g id="edge28" class="edge">
+<title>appointment--appointment_attr2</title>
+<path fill="none" stroke="#627687" d="M1747.08,-599.59C1794.78,-599.78 1864.81,-600.06 1908.36,-600.23" />
+</g>
+
+<g id="edge29" class="edge">
+<title>appointment--appointment_attr3</title>
+<path fill="none" stroke="#627687" d="M1747.08,-590.02C1800.84,-580.23 1882.94,-565.26 1923.55,-557.86" />
+</g>
+
+<g id="edge30" class="edge">
+<title>appointment--appointment_attr4</title>
+<path fill="none" stroke="#627687" d="M1746.48,-580.68C1801.89,-560.26 1887.95,-528.54 1927.24,-514.06" />
+</g>
+
+<g id="edge31" class="edge">
+<title>appointment--appointment_attr5</title>
+<path fill="none" stroke="#627687" d="M1723.52,-580.59C1760.16,-556.3 1827.08,-513.55 1887.79,-483.39 1900.4,-477.12 1915.06,-471.25 1926.77,-466.89" />
+</g>
+
+<g id="edge55" class="edge">
+<title>appointment--R10</title>
+<path fill="none" stroke="#627687" d="M1742.88,-618.08C1795.67,-639 1879.31,-672.14 1921.65,-688.92" />
+<text xml:space="preserve" text-anchor="middle" x="1765.31" y="-634.1" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge32" class="edge">
+<title>truck_visit--truck_visit_attr0</title>
+<path fill="none" stroke="#627687" d="M2159.52,-333.07C2183.3,-354.32 2225.05,-388.63 2266.73,-408.39 2284.48,-416.8 2305.55,-422.51 2323.29,-426.25" />
+</g>
+
+<g id="edge33" class="edge">
+<title>truck_visit--truck_visit_attr1</title>
+<path fill="none" stroke="#627687" d="M2186.55,-333.1C2210.37,-342.24 2239.87,-353.04 2266.73,-361.39 2286.94,-367.67 2309.95,-373.54 2328.2,-377.9" />
+</g>
+
+<g id="edge34" class="edge">
+<title>truck_visit--truck_visit_attr2</title>
+<path fill="none" stroke="#627687" d="M2202.48,-321.2C2241.65,-325.44 2290.71,-330.75 2323.85,-334.34" />
+</g>
+
+<g id="edge35" class="edge">
+<title>truck_visit--truck_visit_attr3</title>
+<path fill="none" stroke="#627687" d="M2202.48,-307.86C2246.52,-303.29 2303.05,-297.43 2335.41,-294.07" />
+</g>
+
+<g id="edge36" class="edge">
+<title>truck_visit--truck_visit_attr4</title>
+<path fill="none" stroke="#627687" d="M2187.78,-295.67C2211.4,-286.84 2240.36,-276.49 2266.73,-268.39 2282.11,-263.67 2299.09,-259.15 2314.36,-255.33" />
+</g>
+
+<g id="edge65" class="edge">
+<title>truck_visit--R15</title>
+<path fill="none" stroke="#627687" d="M2160.16,-295.9C2184.21,-275.2 2225.89,-241.85 2266.73,-221.39 2282.69,-213.39 2301.28,-207.11 2317.73,-202.46" />
+<text xml:space="preserve" text-anchor="middle" x="2188.29" y="-281.56" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge37" class="edge">
+<title>visit_event--visit_event_attr0</title>
+<path fill="none" stroke="#627687" d="M2689.42,-211.17C2718.86,-218.2 2750.76,-225.82 2773.99,-231.37" />
+</g>
+
+<g id="edge38" class="edge">
+<title>visit_event--visit_event_attr1</title>
+<path fill="none" stroke="#627687" d="M2697.39,-192.39C2727.71,-192.39 2759.54,-192.39 2781.15,-192.39" />
+</g>
+
+<g id="edge39" class="edge">
+<title>visit_event--visit_event_attr2</title>
+<path fill="none" stroke="#627687" d="M2689.42,-173.61C2718.32,-166.71 2749.6,-159.24 2772.71,-153.72" />
+</g>
+
+<g id="edge40" class="edge">
+<title>vehicle_type--vehicle_type_attr0</title>
+<path fill="none" stroke="#627687" d="M630.7,-280.62C681.93,-271.42 740.46,-260.92 777.76,-254.23" />
+</g>
+
+<g id="edge73" class="edge">
+<title>vehicle_type--R57</title>
+<path fill="none" stroke="#627687" d="M646.88,-299.39C667.38,-299.39 688.54,-299.39 708.66,-299.39" />
+<text xml:space="preserve" text-anchor="middle" x="675.07" y="-305.75" font-family="Arial" font-size="13.00" fill="#17324d">1,1</text>
+</g>
+
+<g id="edge42" class="edge">
+<title>R03--driver</title>
+<path fill="none" stroke="#627687" d="M870.88,-1033.6C888.1,-1029.23 906.76,-1022.79 922.29,-1013.39 986.58,-974.46 1041.16,-901.44 1064.59,-867.12" />
+<text xml:space="preserve" text-anchor="middle" x="1040.04" y="-880.47" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge44" class="edge">
+<title>R04--vehicle</title>
+<path fill="none" stroke="#627687" d="M831.42,-687.84C875.24,-637.59 1012.92,-479.68 1060.48,-425.14" />
+<text xml:space="preserve" text-anchor="middle" x="1034.22" y="-435.74" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge46" class="edge">
+<title>R05--dock_downtime</title>
+<path fill="none" stroke="#627687" d="M290.12,-411.78C342.24,-419.05 417.01,-429.47 467.91,-436.56" />
+<text xml:space="preserve" text-anchor="middle" x="441.4" y="-418.61" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge48" class="edge">
+<title>R06--appointment</title>
+<path fill="none" stroke="#627687" d="M566.97,-560.05C700.98,-584.21 1139.12,-655.6 1501.64,-628.39 1549.73,-624.78 1604.03,-616.15 1642.59,-609.24" />
+<text xml:space="preserve" text-anchor="middle" x="1613.05" y="-600.13" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge50" class="edge">
+<title>R07--appointment</title>
+<path fill="none" stroke="#627687" d="M1405.48,-694.59C1432.34,-687.98 1469.46,-678.38 1501.64,-668.39 1551.05,-653.05 1606.57,-632.77 1645.17,-618.16" />
+<text xml:space="preserve" text-anchor="middle" x="1615.17" y="-614.59" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge52" class="edge">
+<title>R08--appointment</title>
+<path fill="none" stroke="#627687" d="M1442.04,-361.89C1462.32,-366.17 1483.67,-372.88 1501.64,-383.39 1588.71,-434.31 1657.46,-538.43 1682.98,-580.81" />
+<text xml:space="preserve" text-anchor="middle" x="1676.89" y="-547.54" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge54" class="edge">
+<title>R09--appointment</title>
+<path fill="none" stroke="#627687" d="M1505.01,-599.39C1553.68,-599.39 1605.55,-599.39 1642.57,-599.39" />
+<text xml:space="preserve" text-anchor="middle" x="1614.38" y="-585.23" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge56" class="edge">
+<title>R10--truck_visit</title>
+<path fill="none" stroke="#627687" d="M1980.35,-690.22C1991.02,-685.71 2002.34,-679.28 2010.35,-670.39 2103.42,-566.96 2129.57,-390.69 2135.81,-333.16" />
+<text xml:space="preserve" text-anchor="middle" x="2122.21" y="-356" font-family="Arial" font-size="13.00" fill="#17324d">0,1</text>
+</g>
+
+<g id="edge58" class="edge">
+<title>R11--truck_visit</title>
+<path fill="none" stroke="#627687" d="M1737.46,-764.33C1803.26,-777.34 1931.67,-791.7 2010.35,-728.39 2074.93,-676.42 2122.62,-406.83 2134.61,-333.07" />
+<text xml:space="preserve" text-anchor="middle" x="2119.81" y="-341.61" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge60" class="edge">
+<title>R12--truck_visit</title>
+<path fill="none" stroke="#627687" d="M1826.18,-314.39C1908.13,-314.39 2010.16,-314.39 2074.59,-314.39" />
+<text xml:space="preserve" text-anchor="middle" x="2046.4" y="-300.23" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge62" class="edge">
+<title>R13--truck_visit</title>
+<path fill="none" stroke="#627687" d="M1759.49,-264.76C1843.73,-275.82 1991.17,-295.17 2074.86,-306.16" />
+<text xml:space="preserve" text-anchor="middle" x="2048.24" y="-274.77000000000004" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge64" class="edge">
+<title>R14--truck_visit</title>
+<path fill="none" stroke="#627687" d="M1091.21,-286.76C1115.05,-258.07 1170.6,-197.87 1233.37,-175.39 1554.46,-60.38 1973.11,-236.14 2099.69,-295.77" />
+<text xml:space="preserve" text-anchor="middle" x="2078.23" y="-270.9" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge66" class="edge">
+<title>R15--visit_event</title>
+<path fill="none" stroke="#627687" d="M2460.29,-192.39C2480.67,-192.39 2502.03,-192.39 2522,-192.39" />
+<text xml:space="preserve" text-anchor="middle" x="2493.81" y="-178.23" font-family="Arial" font-size="13.00" fill="#17324d">1,N</text>
+</g>
+
+<g id="edge68" class="edge">
+<title>R53--equipment</title>
+<path fill="none" stroke="#627687" d="M1399.39,-194.51C1456.79,-176.16 1580.15,-136.7 1647.51,-115.16" />
+<text xml:space="preserve" text-anchor="middle" x="1617.53" y="-110.08" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge70" class="edge">
+<title>R54--equipment</title>
+<path fill="none" stroke="#627687" d="M1128.11,-124.3C1244.38,-119.39 1534.51,-107.12 1647.58,-102.34" />
+<text xml:space="preserve" text-anchor="middle" x="1618.98" y="-89.38" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge72" class="edge">
+<title>R56--vehicle_type</title>
+<path fill="none" stroke="#627687" d="M304.87,-299.39C334.75,-299.39 369.91,-299.39 403.2,-299.39" />
+<text xml:space="preserve" text-anchor="middle" x="375.01" y="-285.23" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="edge74" class="edge">
+<title>R57--vehicle</title>
+<path fill="none" stroke="#627687" d="M849.1,-312.3C897.53,-332.31 990.44,-370.69 1041.34,-391.72" />
+<text xml:space="preserve" text-anchor="middle" x="1019.2" y="-367.58" font-family="Arial" font-size="13.00" fill="#17324d">0,N</text>
+</g>
+
+<g id="node1" class="node">
+<title>carrier</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="583.22,-890.39 466.96,-890.39 466.96,-854.39 583.22,-854.39 583.22,-890.39" />
+<text xml:space="preserve" text-anchor="middle" x="525.09" y="-868.49" font-family="Arial" font-size="13.00">TRANSPORTEUR</text>
+</g>
+
+<g id="node2" class="node">
+<title>carrier_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-990.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="789.96" y="-988.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="793.02" y="-988.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="840.72" y="-988.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="793.02" x2="840.72" y1="-985.89" y2="-985.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node3" class="node">
+<title>carrier_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-943.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-940.09" font-family="Arial" font-size="11.00">Code</text>
+</g>
+
+<g id="node4" class="node">
+<title>carrier_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-896.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-893.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node5" class="node">
+<title>carrier_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-849.39" rx="34.64" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-846.09" font-family="Arial" font-size="11.00">Adresse</text>
+</g>
+
+<g id="node6" class="node">
+<title>carrier_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-802.39" rx="42.86" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-799.09" font-family="Arial" font-size="11.00">Téléphone</text>
+</g>
+
+<g id="node7" class="node">
+<title>carrier_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-755.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-752.09" font-family="Arial" font-size="11.00">Email</text>
+</g>
+
+<g id="node8" class="node">
+<title>driver</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1122.23,-866.39 1033.43,-866.39 1033.43,-830.39 1122.23,-830.39 1122.23,-866.39" />
+<text xml:space="preserve" text-anchor="middle" x="1077.83" y="-844.49" font-family="Arial" font-size="13.00">CHAUFFEUR</text>
+</g>
+
+<g id="node9" class="node">
+<title>driver_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-942.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1340.6" y="-940.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1343.65" y="-940.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1391.35" y="-940.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1343.65" x2="1391.35" y1="-937.89" y2="-937.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node10" class="node">
+<title>driver_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-895.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-892.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node11" class="node">
+<title>driver_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-848.39" rx="42.86" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-845.09" font-family="Arial" font-size="11.00">Téléphone</text>
+</g>
+
+<g id="node12" class="node">
+<title>driver_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-801.39" rx="70.08" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-798.09" font-family="Arial" font-size="11.00">Numéro de permis</text>
+</g>
+
+<g id="node13" class="node">
+<title>equipment</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1741.29,-118.39 1648.14,-118.39 1648.14,-82.39 1741.29,-82.39 1741.29,-118.39" />
+<text xml:space="preserve" text-anchor="middle" x="1694.71" y="-96.49" font-family="Arial" font-size="13.00">ÉQUIPEMENT</text>
+</g>
+
+<g id="node14" class="node">
+<title>equipment_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-12.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1922.16" y="-10.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1925.22" y="-10.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1972.92" y="-10.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1925.22" x2="1972.92" y1="-7.89" y2="-7.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node15" class="node">
+<title>equipment_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-106.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-103.09" font-family="Arial" font-size="11.00">Code</text>
+</g>
+
+<g id="node16" class="node">
+<title>equipment_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-59.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-56.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node17" class="node">
+<title>vehicle</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1113.94,-424.39 1041.72,-424.39 1041.72,-388.39 1113.94,-388.39 1113.94,-424.39" />
+<text xml:space="preserve" text-anchor="middle" x="1077.83" y="-402.49" font-family="Arial" font-size="13.00">VÉHICULE</text>
+</g>
+
+<g id="node18" class="node">
+<title>vehicle_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-547.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1340.6" y="-545.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1343.65" y="-545.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1391.35" y="-545.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1343.65" x2="1391.35" y1="-542.89" y2="-542.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node19" class="node">
+<title>vehicle_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-500.39" rx="58.84" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-497.09" font-family="Arial" font-size="11.00">Immatriculation</text>
+</g>
+
+<g id="node20" class="node">
+<title>vehicle_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-453.39" rx="52.36" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-450.09" font-family="Arial" font-size="11.00">Capacité (kg)</text>
+</g>
+
+<g id="node21" class="node">
+<title>vehicle_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1367.5" cy="-406.39" rx="84.36" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-403.09" font-family="Arial" font-size="11.00">Capacité (éq. palettes)</text>
+</g>
+
+<g id="node22" class="node">
+<title>dock</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="54,-473.39 0,-473.39 0,-437.39 54,-437.39 54,-473.39" />
+<text xml:space="preserve" text-anchor="middle" x="27" y="-451.49" font-family="Arial" font-size="13.00">QUAI</text>
+</g>
+
+<g id="node23" class="node">
+<title>dock_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="228.87" cy="-642.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="201.96" y="-640.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="205.02" y="-640.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="252.72" y="-640.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="205.02" x2="252.72" y1="-637.89" y2="-637.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node24" class="node">
+<title>dock_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="228.87" cy="-595.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="228.87" y="-592.09" font-family="Arial" font-size="11.00">Code</text>
+</g>
+
+<g id="node25" class="node">
+<title>dock_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="228.87" cy="-548.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="228.87" y="-545.09" font-family="Arial" font-size="11.00">Nom</text>
+</g>
+
+<g id="node26" class="node">
+<title>dock_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="228.87" cy="-501.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="228.87" y="-498.09" font-family="Arial" font-size="11.00">Type</text>
+</g>
+
+<g id="node27" class="node">
+<title>dock_downtime</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="581.78,-462.39 468.4,-462.39 468.4,-426.39 581.78,-426.39 581.78,-462.39" />
+<text xml:space="preserve" text-anchor="middle" x="525.09" y="-440.49" font-family="Arial" font-size="13.00">INDISPONIBILITÉ</text>
+</g>
+
+<g id="node28" class="node">
+<title>dock_downtime_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-491.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="789.96" y="-489.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="793.02" y="-489.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="840.72" y="-489.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="793.02" x2="840.72" y1="-486.89" y2="-486.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node29" class="node">
+<title>dock_downtime_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-444.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-441.09" font-family="Arial" font-size="11.00">Début</text>
+</g>
+
+<g id="node30" class="node">
+<title>dock_downtime_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-397.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-394.09" font-family="Arial" font-size="11.00">Fin</text>
+</g>
+
+<g id="node31" class="node">
+<title>dock_downtime_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-538.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-535.09" font-family="Arial" font-size="11.00">Motif</text>
+</g>
+
+<g id="node32" class="node">
+<title>appointment</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="1746.34,-617.39 1643.08,-617.39 1643.08,-581.39 1746.34,-581.39 1746.34,-617.39" />
+<text xml:space="preserve" text-anchor="middle" x="1694.71" y="-595.49" font-family="Arial" font-size="13.00">RENDEZ-VOUS</text>
+</g>
+
+<g id="node33" class="node">
+<title>appointment_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-412.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="1922.16" y="-410.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="1925.22" y="-410.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="1972.92" y="-410.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="1925.22" x2="1972.92" y1="-407.89" y2="-407.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node34" class="node">
+<title>appointment_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-647.39" rx="41.99" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-644.09" font-family="Arial" font-size="11.00">Référence</text>
+</g>
+
+<g id="node35" class="node">
+<title>appointment_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-600.39" rx="40.26" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-597.09" font-family="Arial" font-size="11.00">Opération</text>
+</g>
+
+<g id="node36" class="node">
+<title>appointment_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-553.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-550.09" font-family="Arial" font-size="11.00">Début</text>
+</g>
+
+<g id="node37" class="node">
+<title>appointment_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-506.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-503.09" font-family="Arial" font-size="11.00">Fin</text>
+</g>
+
+<g id="node38" class="node">
+<title>appointment_attr5</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="1949.07" cy="-459.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-456.09" font-family="Arial" font-size="11.00">État</text>
+</g>
+
+<g id="node39" class="node">
+<title>truck_visit</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="2201.73,-332.39 2075.35,-332.39 2075.35,-296.39 2201.73,-296.39 2201.73,-332.39" />
+<text xml:space="preserve" text-anchor="middle" x="2138.54" y="-310.49" font-family="Arial" font-size="13.00">PASSAGE CAMION</text>
+</g>
+
+<g id="node40" class="node">
+<title>truck_visit_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2362.25" cy="-432.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="2335.34" y="-430.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="2338.4" y="-430.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="2386.1" y="-430.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="2338.40" x2="2386.10" y1="-427.89" y2="-427.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node41" class="node">
+<title>truck_visit_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2362.25" cy="-385.39" rx="41.99" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2362.25" y="-382.09" font-family="Arial" font-size="11.00">Référence</text>
+</g>
+
+<g id="node42" class="node">
+<title>truck_visit_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2362.25" cy="-338.39" rx="40.26" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2362.25" y="-335.09" font-family="Arial" font-size="11.00">Opération</text>
+</g>
+
+<g id="node43" class="node">
+<title>truck_visit_attr3</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2362.25" cy="-291.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2362.25" y="-288.09" font-family="Arial" font-size="11.00">État</text>
+</g>
+
+<g id="node44" class="node">
+<title>truck_visit_attr4</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2362.25" cy="-244.39" rx="90.42" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2362.25" y="-241.09" font-family="Arial" font-size="11.00">Contrôle des documents</text>
+</g>
+
+<g id="node45" class="node">
+<title>visit_event</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="2696.82,-210.39 2522.76,-210.39 2522.76,-174.39 2696.82,-174.39 2696.82,-210.39" />
+<text xml:space="preserve" text-anchor="middle" x="2609.79" y="-188.49" font-family="Arial" font-size="13.00">ÉVÉNEMENT DE PASSAGE</text>
+</g>
+
+<g id="node46" class="node">
+<title>visit_event_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2808.58" cy="-239.39" rx="44.16" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="2781.67" y="-237.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="2784.73" y="-237.09" font-family="Arial" text-decoration="underline" font-size="11.00">Identifiant</text>
+<text xml:space="preserve" text-anchor="start" x="2832.43" y="-237.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="2784.73" x2="2832.43" y1="-234.89" y2="-234.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node47" class="node">
+<title>visit_event_attr1</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2808.58" cy="-192.39" rx="27" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2808.58" y="-189.09" font-family="Arial" font-size="11.00">Étape</text>
+</g>
+
+<g id="node48" class="node">
+<title>visit_event_attr2</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="2808.58" cy="-145.39" rx="46.76" ry="12.39" />
+<text xml:space="preserve" text-anchor="middle" x="2808.58" y="-142.09" font-family="Arial" font-size="11.00">Horodatage</text>
+</g>
+
+<g id="node49" class="node">
+<title>vehicle_type</title>
+<polygon fill="#dceaf4" stroke="#425c72" stroke-width="1.6" points="646.44,-317.39 403.74,-317.39 403.74,-281.39 646.44,-281.39 646.44,-317.39" />
+<text xml:space="preserve" text-anchor="middle" x="525.09" y="-295.49" font-family="Arial" font-size="13.00">TYPE DE VÉHICULE\n(domaine ENUM)</text>
+</g>
+
+<g id="node50" class="node">
+<title>vehicle_type_attr0</title>
+<ellipse fill="#ffffff" stroke="#425c72" cx="816.87" cy="-247.39" rx="45.89" ry="12.39" />
+<text xml:space="preserve" text-anchor="start" x="788.74" y="-245.09" font-family="Arial" font-size="11.00"> </text>
+<text xml:space="preserve" text-anchor="start" x="791.79" y="-245.09" font-family="Arial" text-decoration="underline" font-size="11.00">Code type</text>
+<text xml:space="preserve" text-anchor="start" x="841.94" y="-245.09" font-family="Arial" font-size="11.00"> </text>
+<line x1="791.79" x2="841.89" y1="-242.89" y2="-242.89" stroke="#17324d" stroke-width="0.9" /></g>
+
+<g id="node51" class="node">
+<title>R03</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="816.87,-1060.39 715.83,-1042.39 816.87,-1024.39 917.9,-1042.39 816.87,-1060.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-1038.79" font-family="Arial" font-size="12.00">rattache un chauffeur</text>
+</g>
+
+<g id="node52" class="node">
+<title>R04</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="816.87,-721.39 722.46,-703.39 816.87,-685.39 911.27,-703.39 816.87,-721.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-699.79" font-family="Arial" font-size="12.00">exploite un véhicule</text>
+</g>
+
+<g id="node53" class="node">
+<title>R05</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="228.87,-421.39 119,-403.39 228.87,-385.39 338.74,-403.39 228.87,-421.39" />
+<text xml:space="preserve" text-anchor="middle" x="228.87" y="-399.79" font-family="Arial" font-size="12.00">subit une indisponibilité</text>
+</g>
+
+<g id="node54" class="node">
+<title>R06</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="525.09,-570.39 454.44,-552.39 525.09,-534.39 595.74,-552.39 525.09,-570.39" />
+<text xml:space="preserve" text-anchor="middle" x="525.09" y="-548.79" font-family="Arial" font-size="12.00">est prévu pour</text>
+</g>
+
+<g id="node55" class="node">
+<title>R07</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1367.5,-721.39 1296.85,-703.39 1367.5,-685.39 1438.16,-703.39 1367.5,-721.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-699.79" font-family="Arial" font-size="12.00">est prévu pour</text>
+</g>
+
+<g id="node56" class="node">
+<title>R08</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1367.5,-372.39 1244.41,-354.39 1367.5,-336.39 1490.6,-354.39 1367.5,-372.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-350.79" font-family="Arial" font-size="12.00">est prévu comme principal</text>
+</g>
+
+<g id="node57" class="node">
+<title>R09</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1367.5,-617.39 1233.37,-599.39 1367.5,-581.39 1501.64,-599.39 1367.5,-617.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-595.79" font-family="Arial" font-size="12.00">est prévue comme remorque</text>
+</g>
+
+<g id="node58" class="node">
+<title>R10</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1949.07,-717.39 1887.79,-699.39 1949.07,-681.39 2010.35,-699.39 1949.07,-717.39" />
+<text xml:space="preserve" text-anchor="middle" x="1949.07" y="-695.79" font-family="Arial" font-size="12.00">donne lieu à</text>
+</g>
+
+<g id="node59" class="node">
+<title>R11</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1694.71,-772.39 1604.72,-754.39 1694.71,-736.39 1784.71,-754.39 1694.71,-772.39" />
+<text xml:space="preserve" text-anchor="middle" x="1694.71" y="-750.79" font-family="Arial" font-size="12.00">conduit le passage</text>
+</g>
+
+<g id="node60" class="node">
+<title>R12</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1694.71,-332.39 1566.64,-314.39 1694.71,-296.39 1822.79,-314.39 1694.71,-332.39" />
+<text xml:space="preserve" text-anchor="middle" x="1694.71" y="-310.79" font-family="Arial" font-size="12.00">effectue (véhicule principal)</text>
+</g>
+
+<g id="node61" class="node">
+<title>R13</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1694.71,-274.39 1578.79,-256.39 1694.71,-238.39 1810.64,-256.39 1694.71,-274.39" />
+<text xml:space="preserve" text-anchor="middle" x="1694.71" y="-252.79" font-family="Arial" font-size="12.00">accompagne (remorque)</text>
+</g>
+
+<g id="node62" class="node">
+<title>R14</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1077.83,-320.39 987.29,-302.39 1077.83,-284.39 1168.37,-302.39 1077.83,-320.39" />
+<text xml:space="preserve" text-anchor="middle" x="1077.83" y="-298.79" font-family="Arial" font-size="12.00">dessert le passage</text>
+</g>
+
+<g id="node63" class="node">
+<title>R15</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="2362.25,-210.39 2266.73,-192.39 2362.25,-174.39 2457.76,-192.39 2362.25,-210.39" />
+<text xml:space="preserve" text-anchor="middle" x="2362.25" y="-188.79" font-family="Arial" font-size="12.00">comporte une étape</text>
+</g>
+
+<g id="node64" class="node">
+<title>R53</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1367.5,-222.39 1300.71,-204.39 1367.5,-186.39 1434.3,-204.39 1367.5,-222.39" />
+<text xml:space="preserve" text-anchor="middle" x="1367.5" y="-200.79" font-family="Arial" font-size="12.00">est équipé de</text>
+</g>
+
+<g id="node65" class="node">
+<title>R54</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="1077.83,-144.39 1022.63,-126.39 1077.83,-108.39 1133.03,-126.39 1077.83,-144.39" />
+<text xml:space="preserve" text-anchor="middle" x="1077.83" y="-122.79" font-family="Arial" font-size="12.00">dispose de</text>
+</g>
+
+<g id="node66" class="node">
+<title>R56</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="228.87,-317.39 154.89,-299.39 228.87,-281.39 302.84,-299.39 228.87,-317.39" />
+<text xml:space="preserve" text-anchor="middle" x="228.87" y="-295.79" font-family="Arial" font-size="12.00">accepte le type</text>
+</g>
+
+<g id="node67" class="node">
+<title>R57</title>
+<polygon fill="#fff0cf" stroke="#425c72" points="816.87,-317.39 711.44,-299.39 816.87,-281.39 922.29,-299.39 816.87,-317.39" />
+<text xml:space="preserve" text-anchor="middle" x="816.87" y="-295.79" font-family="Arial" font-size="12.00">caractérise le véhicule</text>
+</g>
+</g>
+</svg>

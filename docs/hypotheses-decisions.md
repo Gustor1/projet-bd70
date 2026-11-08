@@ -14,7 +14,7 @@
 12. L'état courant est une projection des événements conservée pour piloter les transitions. Les dates et indicateurs restent calculés depuis les faits. Les documents imprimés sont pédagogiques, sans revendication de conformité réglementaire.
 13. PHP/PDO, MariaDB/InnoDB testés uniquement dans les versions indiquées. Pas d'ORM, CDN, API payante ni service extérieur nécessaire. Serveur PHP local réservé à la démonstration sur boucle locale.
 
-Sources : S (sujet A26), E (grille non pondérée), C et W (cours A25). Les modalités de groupe et de soutenance de C sont anciennes : 10 minutes préparées à titre indicatif ; date de remise inconnue.
+Sources : S (sujet A26), E (grille non pondérée), C et W (cours A25). La consigne de soutenance transmise par le groupe prévoit 5 minutes sur la BDD et le backend, 5 minutes dans l’application, puis 10 minutes de questions. La date de remise reste à confirmer.
 
 
 ## Décisions complémentaires après audit

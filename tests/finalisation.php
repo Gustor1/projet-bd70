@@ -34,5 +34,5 @@ check(!$db->scalar('SELECT COUNT(*) FROM supplier_notice WHERE id=?',[$draft]),'
 check($cat->restrictions('carrier',$db->one('SELECT * FROM carrier WHERE id=1'))['delete']!==null,'Fiche référencée sans suppression proposée');
 check($before===$db->one('SELECT COUNT(*) n,SUM(delta) qty FROM v_stock_movement'),'Corrections sans altération des mouvements historiques');
 $result=['executed_at'=>gmdate(DATE_ATOM),'database'=>getenv('BD70_DATABASE'),'fixed_clock'=>Clock::now(),'passed'=>count(array_filter($checks)),'failed'=>count(array_filter($checks,fn($v)=>!$v)),'checks'=>$checks];
-file_put_contents(__DIR__.'/../livrables/preuves/finalisation.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/finalisation.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 exit($result['failed']?1:0);

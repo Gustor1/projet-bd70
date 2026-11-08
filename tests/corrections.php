@@ -10,6 +10,7 @@ check(Auth::can($users['admin'],'accounts')&&!Auth::can($users['admin'],'orders'
 check(Auth::can($users['manager'],'manage_orders')&&!Auth::can($users['warehouse'],'manage_orders'),'Affectation réservée au responsable');
 check(Auth::transitionAllowed($users['warehouse'],'working')&&!Auth::transitionAllowed($users['gate'],'working'),'Début opération réservé au magasinier');
 check(Auth::transitionAllowed($users['gate'],'departed')&&!Auth::transitionAllowed($users['warehouse'],'departed'),'Départ réservé à accueil');
+check(Auth::can($users['manager'],'planning')&&!Auth::can($users['gate'],'planning')&&!Auth::can($users['warehouse'],'planning'),'Planification des quais réservée au responsable (sujet et use case)');
 $other=$db->insert('user_account',['email'=>'other@bd70.test','name'=>'Autre magasinier','role'=>'warehouse','active'=>1,'password_hash'=>password_hash('Entrepot2026!',PASSWORD_DEFAULT)]);
 $order=$db->insert('customer_order',['reference'=>'CORR-AFFECTEE','owner_id'=>1,'destination'=>'Test','desired_on'=>'2026-10-22','preparer_id'=>$users['warehouse']['id']]);
 (new Warehouse($db,(int)$users['manager']['id']))->assignPreparer($order,(int)$users['warehouse']['id']);check((int)$db->scalar('SELECT preparer_id FROM customer_order WHERE id=?',[$order])===(int)$users['warehouse']['id'],'Responsable affecte sans réserver le stock');
@@ -32,4 +33,4 @@ $portal->act('carrier_cancel',['id'=>$id]);check($db->scalar('SELECT status FROM
 $raw=$db->one("SELECT * FROM stock_movement WHERE kind='shipment' LIMIT 1");$projection=$db->one('SELECT * FROM v_stock_movement WHERE id=?',[$raw['id']]);
 check($raw['delta']===null&&$raw['location_id']===null&&$raw['receipt_item_id']===null,'Sortie sans duplication des faits du prélèvement');
 check($projection['delta']<0&&$projection['location_id']>0&&$projection['receipt_item_id']>0,'Projection reconstitue le mouvement pour stock et trace');
-$failed=count(array_filter($results,fn($r)=>!$r['ok']));file_put_contents(__DIR__.'/../livrables/preuves/corrections.json',json_encode(['passed'=>count($results)-$failed,'failed'=>$failed,'results'=>$results],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));exit($failed?1:0);
+$failed=count(array_filter($results,fn($r)=>!$r['ok']));file_put_contents(__DIR__.'/../docs/preuves/corrections.json',json_encode(['passed'=>count($results)-$failed,'failed'=>$failed,'results'=>$results],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));exit($failed?1:0);

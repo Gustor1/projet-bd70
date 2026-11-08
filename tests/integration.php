@@ -58,7 +58,7 @@ rejects(fn()=>$w->appointment([...$ap,'reference'=>'TEST-RDV-HS','dock_id'=>$ids
 rejects(fn()=>$cat->save('dock_downtime',null,['dock_id'=>$ids['docks'][0],'starts_at'=>$ap['starts_at'],'ends_at'=>$ap['ends_at'],'reason'=>'Test conflit'],$ids['admin']),'R02 indisponibilité sur réservation refusée');
 $raceAp=[...$ap,'starts_at'=>'2026-10-24 11:00:00','ends_at'=>'2026-10-24 12:00:00'];
 $rr=race('appointment',[[...$raceAp,'reference'=>'RACE-A'],[...$raceAp,'reference'=>'RACE-B']]);check(count(array_filter($rr,fn($x)=>$x['ok']))===1,'R01 deux connexions : une seule réservation');
-file_put_contents(__DIR__.'/../livrables/preuves/concurrence.json',json_encode(['reservation'=>$rr],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/concurrence.json',json_encode(['reservation'=>$rr],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 // Flux et occupation sans rendez-vous.
 $v1=$w->arrive(['reference'=>'TEST-V1','driver_id'=>$ids['drivers'][0],'vehicle_id'=>$ids['vehicles'][0],'trailer_id'=>null,'operation'=>'reception']);
 $v2=$w->arrive(['reference'=>'TEST-V2','driver_id'=>$ids['drivers'][1],'vehicle_id'=>$ids['vehicles'][1],'trailer_id'=>null,'operation'=>'reception']);
@@ -97,5 +97,5 @@ foreach(['admin','manager','gate','warehouse'] as $role){$u=$db->one('SELECT * F
 Auth::register($db,['name'=>'Compte Test','email'=>'pending-test@bd70.test','password'=>'TestInscription2026!','role'=>'admin','active'=>1]);$u=$db->one('SELECT * FROM user_account WHERE email=?',['pending-test@bd70.test']);check($u['role']==='pending'&&!$u['active'],'F01 inscription sans élévation de privilèges');
 check((new Reports($db))->stock(['article_id'=>$ids['articles'][0],'owner_id'=>$ids['owners'][0],'zone_id'=>1,'q'=>'LOT-A'])['total']>0,'F06 filtres stock combinés');
 check((new Reports($db))->stock(['q'=>'INEXISTANT-TEST'])['total']===0,'F06 aucun résultat');
-$e=json_decode(file_get_contents(__DIR__.'/../livrables/preuves/concurrence.json'),true);$e+=['occupation'=>$rr,'capacite'=>$rr2,'reservation_stock'=>$rr3];file_put_contents(__DIR__.'/../livrables/preuves/concurrence.json',json_encode($e,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
-$result=['date'=>date(DATE_ATOM),'engine'=>$db->scalar('SELECT VERSION()'),'passed'=>count($passed),'failed'=>count($failures),'successes'=>$passed,'failures'=>$failures];file_put_contents(__DIR__.'/../livrables/preuves/integration.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo count($passed).' réussis, '.count($failures)." échecs\n";exit($failures?1:0);
+$e=json_decode(file_get_contents(__DIR__.'/../docs/preuves/concurrence.json'),true);$e+=['occupation'=>$rr,'capacite'=>$rr2,'reservation_stock'=>$rr3];file_put_contents(__DIR__.'/../docs/preuves/concurrence.json',json_encode($e,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+$result=['date'=>date(DATE_ATOM),'engine'=>$db->scalar('SELECT VERSION()'),'passed'=>count($passed),'failed'=>count($failures),'successes'=>$passed,'failures'=>$failures];file_put_contents(__DIR__.'/../docs/preuves/integration.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo count($passed).' réussis, '.count($failures)." échecs\n";exit($failures?1:0);

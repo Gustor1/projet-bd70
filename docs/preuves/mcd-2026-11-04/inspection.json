@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-04",
+  "model_check": "modeles.json",
+  "visual_review": {
+    "renderer": "pypdfium2",
+    "pages": [
+      2,
+      9
+    ],
+    "result": "Lien compte/societe, cardinalites et notes lisibles. Aucun chevauchement visible sur les vues modifiees."
+  },
+  "scope": "Alignement documentaire du MCD et des recueils sur le schema SQL courant."
+}

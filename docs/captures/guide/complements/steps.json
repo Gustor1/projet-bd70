@@ -1,0 +1,65 @@
+[
+  {
+    "id": "01",
+    "title": "Connexion au compte warehouse",
+    "note": "Saisir warehouse@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": null,
+    "fields": [
+      [
+        "Email",
+        "warehouse@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "02",
+    "title": "Ouvrir le formulaire de création",
+    "note": "Menu Référentiels → rubrique Avis fournisseurs → Afficher → Ajouter une fiche.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=catalog&t=supplier_notice"
+  },
+  {
+    "id": "03",
+    "title": "Connexion au compte manager",
+    "note": "Saisir manager@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Email",
+        "manager@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "04",
+    "title": "Rechercher le lot",
+    "note": "Choisir ORAL-CAFE-LOT / ART-CAFE, puis cliquer sur Retracer le lot.",
+    "role": "manager",
+    "fields": [
+      [
+        "Lot",
+        "ORAL-CAFE-LOT / ART-CAFE"
+      ]
+    ],
+    "url": "/?page=trace"
+  },
+  {
+    "id": "05",
+    "title": "Origine de la réception",
+    "note": "Lire la réception, les 18 unités acceptées et les 2 endommagées.",
+    "role": "manager",
+    "fields": [],
+    "url": "/?page=trace&lot_id=7"
+  },
+  {
+    "id": "06",
+    "title": "Indicateurs du site",
+    "note": "Ouvrir Indicateurs & états et sélectionner une période qui contient ces opérations.",
+    "role": "manager",
+    "fields": [],
+    "url": "/?page=reports&from=2026-10-22&to=2026-10-22"
+  }
+]

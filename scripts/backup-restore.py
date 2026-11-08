@@ -6,7 +6,7 @@ source=os.environ.get('BD70_BACKUP_SOURCE','bd70_demo_final');target=os.environ.
 import re
 assert re.fullmatch(r'bd70_(demo|test)[a-z0-9_]*',source)
 assert re.fullmatch(r'bd70_restore[a-z0-9_]*',target)
-common=['--host=127.0.0.1','--port=3307','--user='+os.environ.get('BD70_ADMIN_USER','root'),'--default-character-set=utf8mb4']
+common=['--host=127.0.0.1','--port='+os.environ.get('BD70_PORT','3307'),'--user='+os.environ.get('BD70_ADMIN_USER','root'),'--default-character-set=utf8mb4']
 # Un éventuel secret est transmis via l'environnement du client, jamais dans la commande ou le rapport.
 env=os.environ.copy()
 if os.environ.get('BD70_ADMIN_PASSWORD'):env['MYSQL_PWD']=os.environ['BD70_ADMIN_PASSWORD']
@@ -32,6 +32,6 @@ sql("SET @actor_id=1; UPDATE carrier SET phone='000-RESTORE-TEST' WHERE id=1",ta
 automatic=int(sql('SELECT COUNT(*) FROM audit_log',target))==old_audit+1
 checks={'data':all(x['ok'] for x in results),'triggers_restored':triggers>0,'procedures_restored':procedures==2,'historisation_after_restore':automatic}
 report={'date':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':source,'target':target,'tables':results,'triggers':triggers,'procedures':procedures,'checks':checks,'backup_bytes':file.stat().st_size}
-Path('livrables/preuves/restauration.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+Path('docs/preuves/restauration.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(f'{len(results)} tables restaurées, {triggers} déclencheurs, {procedures} procédures. Contrôles : {checks}')
 assert all(checks.values())

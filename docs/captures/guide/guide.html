@@ -1,0 +1,315 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Transit — Guide de test et de démonstration</title><style>
+@page{size:A4;margin:14mm 13mm 16mm}
+body{font:10pt/1.42 "Segoe UI",Arial,sans-serif;color:#17324d;margin:0}
+h1{font-size:30pt;color:#137c82;margin:0 0 4mm}h2{font-size:17pt;color:#137c82;margin:0 0 3mm;break-after:avoid}h2.part{break-before:page;border-bottom:2px solid #137c82;padding-bottom:2mm}
+h2.sub{font-size:13pt;margin:5mm 0 2mm;break-after:avoid}h3{font-size:11.5pt;margin:1mm 0}
+.cover{height:250mm;display:flex;flex-direction:column;justify-content:center}.cover p{font-size:12pt;margin:1mm 0}
+.box{border:1px solid #c9d8e4;border-radius:3mm;padding:3mm 4mm;margin:3mm 0;background:#f5f8fb;break-inside:avoid}
+.warn{border-color:#e7b56a;background:#fff6e6}.ok{border-color:#8cc5a2;background:#eef8f1}
+pre{font:8.6pt/1.35 Consolas,monospace;white-space:pre-wrap;word-break:break-all;margin:1.5mm 0;padding:2mm 3mm;border-radius:2mm;break-inside:avoid}
+pre.cmd{background:#0f2537;color:#f4f4e6}pre.cmd:before{content:"PS> ";color:#8fb6cf}pre.out{background:#eef3f7;color:#17324d;border-left:3px solid #8fa8be}
+table{border-collapse:collapse;width:100%;margin:2mm 0;break-inside:avoid}td,th{border:1px solid #d4e0ea;padding:1.2mm 2mm;text-align:left;vertical-align:top;font-size:9pt}th{background:#e4eef5}
+ol li,ul li{margin:.8mm 0}
+.step{break-inside:avoid;border-top:1px solid #c9d8e4;padding-top:2mm;margin-top:2mm}
+.step .head{display:flex;gap:4mm;align-items:center;font-size:8.6pt;color:#4f6b82}.num{background:#137c82;color:#fff;font-weight:700;border-radius:2mm;padding:.5mm 2mm}
+.step img,figure img{width:100%;max-height:86mm;object-fit:contain;object-position:left top;border:1px solid #c9d8e4;border-radius:1.5mm;display:block;margin:1.5mm 0}
+.todo{margin:1mm 0}.say{background:#dceade;border-radius:2mm;padding:1.5mm 3mm;margin:1mm 0;font-size:9.3pt}
+table.vals{width:auto;min-width:60%}table.vals td{font-size:8.8pt;padding:.8mm 2mm}
+figure{margin:2mm 0;break-inside:avoid}figcaption{font-size:8.6pt;font-style:italic;color:#4f6b82}
+.toc li{margin:1.2mm 0}.small{font-size:8.8pt;color:#4f6b82}
+</style></head><body>
+
+<div class="cover"><h1>Transit</h1><h2>Guide de test et de démonstration, de A à Z</h2>
+<p>Projet BD70 · Gestion d’un entrepôt logistique</p><p>Eliott LE · Semih TASKIN · Thomas VUILLIN</p>
+<p class="small" style="margin-top:12mm">Captures réalisées le 7 novembre 2026 sur la version corrigée (historisation, indicateur HAVING, planification réservée au responsable), sur une base de test neuve. Les références ORAL-CAFE et les noms affichés proviennent du jeu de test (graine 70) : ils peuvent différer légèrement sur le jeu riche de démonstration.</p></div>
+
+<h2 class="part">Sommaire</h2>
+<ol class="toc"><li><b>A · Préparer le poste</b> : prérequis, comptes, conseils.</li><li><b>B · Démarrer et arrêter l’application</b> : commandes PowerShell et résultats attendus.</li><li><b>C · Vérifier la base en SQL</b> : évènement, trigger, historisation, nombre d’objets.</li><li><b>D · Vérifier les nouveautés dans l’application</b> : planification par le responsable, refus du chevauchement, HAVING, historique.</li><li><b>E · Scénario complet ORAL-CAFE</b>, de l’annonce fournisseur au camion de sortie, avec les phrases à dire au professeur.</li><li><b>F · Lancer les tests automatisés</b>.</li><li><b>G · Vérifier les livrables</b>.</li><li><b>H · Le jour de la soutenance</b> : préparation, déroulé minuté, plan de secours.</li></ol>
+<div class="box">Convention : <b>PS&gt;</b> = commande à taper dans PowerShell. Un bloc gris clair = ce qui doit s’afficher. Un cadre orange sur une capture = l’élément sur lequel cliquer.</div>
+
+<h2 class="part">A · Préparer le poste</h2>
+<ul><li>XAMPP installé dans <b>C:\xampp2</b> (MariaDB 10.4 dans C:\xampp2\mysql\bin, PHP 8.2 dans C:\xampp2\php). Ailleurs : ajouter <code>-PhpPath</code> et <code>-MariaPath</code> à la commande de démarrage.</li>
+<li>Le projet dans <b>C:\Users\eliot\Documents\GitHub\projet-bd70</b>, avec <b>config/local.php</b> (créé à la première installation, jamais dans Git).</li>
+<li>Un navigateur récent (Edge ou Chrome). Pour la démo, préparer <b>un profil de navigateur par compte</b> : deux onglets d’un même profil partagent la session.</li>
+<li>Python et Node ne servent qu’aux tests automatisés et à la reconstruction des documents, pas à l’application.</li></ul>
+<h3>Comptes de démonstration</h3><p>Mot de passe commun : <b>Entrepot2026!</b></p>
+<table><tr><th>Compte</th><th>Profil</th><th>Ce qu’il peut faire</th></tr>
+<tr><td>admin@bd70.test</td><td>Administrateur</td><td>Comptes, activation, profils, journal. Aucun écran métier.</td></tr>
+<tr><td>manager@bd70.test</td><td>Responsable</td><td>Référentiels, planning, commandes, affectation des préparateurs, indicateurs.</td></tr>
+<tr><td>gate@bd70.test</td><td>Accueil</td><td>Arrivée (avec ou sans rendez-vous), documents, parking, appel à quai, départ. Consulte le planning sans le modifier.</td></tr>
+<tr><td>warehouse@bd70.test</td><td>Magasinier</td><td>Début/fin à quai, réception, rangement, transferts, préparation des commandes affectées.</td></tr>
+<tr><td>carrier1@bd70.test</td><td>Transporteur</td><td>Rendez-vous de sa société uniquement.</td></tr>
+<tr><td>pending@bd70.test / inactive@bd70.test</td><td>—</td><td>Connexion refusée (compte en attente ou désactivé) : utile pour montrer le contrôle d’accès.</td></tr></table>
+
+<h2 class="part">B · Démarrer et arrêter l’application</h2>
+<h3>B1. Ouvrir PowerShell à la racine du projet</h3><pre class="cmd">Set-Location "C:\Users\eliot\Documents\GitHub\projet-bd70"</pre>
+<h3>B2. Démarrer MariaDB et le serveur PHP</h3><pre class="cmd">powershell -ExecutionPolicy Bypass -File scripts/start.ps1</pre>
+<p>Premier lancement après les corrections : la base de démonstration reçoit les objets d’historisation (aucune donnée modifiée).</p>
+<pre class="out">Historisation ajoutée à bd70_demo_corrige_20261103b : appointment_archive, v_appointment_all, 2 triggers, archive_appointments, ev_archive_appointments.
+Pour exécuter l'évènement automatiquement : SET GLOBAL event_scheduler=ON (compte administrateur).
+Application : http://127.0.0.1:8070</pre>
+<p>Lancements suivants :</p><pre class="out">Historisation déjà installée dans bd70_demo_corrige_20261103b.
+Application : http://127.0.0.1:8070</pre>
+<h3>B3. Ouvrir l’application</h3><p>Aller sur <b>http://127.0.0.1:8070</b>. La page de connexion s’affiche.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n00-connexion.png"><figcaption>Page de connexion : Email, Mot de passe, bouton Se connecter. Le formulaire d’inscription crée un compte en attente.</figcaption></figure>
+<h3>B4. Arrêter</h3><pre class="cmd">powershell -ExecutionPolicy Bypass -File scripts/stop.ps1</pre>
+<div class="box warn"><b>En cas de problème.</b><br>• « MariaDB introuvable » : ajouter <code>-MariaPath "chemin\mysql\bin"</code>.<br>• « Port occupé par un autre serveur » : arrêter l’autre MariaDB, ou lancer avec <code>-DbPort 3308</code>.<br>• « Migration de l’historisation échouée » : lire le message au-dessus ; la base n’est pas modifiée si la migration échoue avant la création des objets.<br>• Page blanche ou erreur PHP : consulter <b>.local/php-error.log</b>.</div>
+<h3>B5. Base de répétition (pour refaire le scénario E sans toucher à la démo)</h3>
+<p>MariaDB doit tourner (étape B2). Choisir un nom de base jamais utilisé, puis, dans une <b>nouvelle</b> fenêtre PowerShell à la racine du projet :</p>
+<pre class="cmd">$env:BD70_PORT='3307'; $env:BD70_DATABASE='bd70_test_repetition_01'</pre><pre class="cmd">&amp; C:/xampp2/php/php.exe scripts/install.php $env:BD70_DATABASE</pre><pre class="cmd">&amp; C:/xampp2/php/php.exe scripts/seed.php</pre><pre class="cmd">&amp; C:/xampp2/php/php.exe scripts/comptes-demo.php</pre><pre class="cmd">$env:BD70_NOW='2026-10-22 12:00:00'; &amp; C:/xampp2/php/php.exe -S 127.0.0.1:18079 -t public</pre>
+<pre class="out">Base bd70_test_repetition_01 prête ; configuration locale exclue de Git.
+Jeu BD70, graine 70, référence 2026-10-22 chargé.
+carrier1 : TR-1 / Nord Transit
+carrier2 : TR-2 / Froid Express</pre>
+<p>Ouvrir <b>http://127.0.0.1:18079</b> et garder la fenêtre ouverte. BD70_NOW fixe la date au 22/10/2026 pour que les DLC et le FEFO soient reproductibles. Fermer la fenêtre arrête ce serveur ; la démo du port 8070 n’est pas touchée.</p>
+
+<h2 class="part">C · Vérifier la base en SQL</h2>
+<p>Ouvrir la console MariaDB sur la base de démonstration (ou sur la base de répétition) :</p><pre class="cmd">C:\xampp2\mysql\bin\mysql.exe -h127.0.0.1 -P3307 -uroot bd70_demo_corrige_20261103b</pre>
+<table><tr><th>Taper dans la console</th><th>Résultat attendu</th></tr>
+<tr><td><code>SHOW EVENTS\G</code></td><td>Name : ev_archive_appointments · Type : RECURRING · Interval : 1 DAY · Status : ENABLED</td></tr>
+<tr><td><code>SELECT COUNT(*) FROM information_schema.triggers WHERE trigger_schema=DATABASE();</code></td><td>122 (3 de cohérence, 10 de protection, 109 d’audit)</td></tr>
+<tr><td><code>SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_type='BASE TABLE';</code></td><td>42</td></tr>
+<tr><td><code>SELECT origine, COUNT(*) FROM v_appointment_all GROUP BY origine;</code></td><td>une ligne « courant » (et « historique » après un archivage)</td></tr>
+<tr><td><code>INSERT INTO appointment(reference,dock_id,driver_id,vehicle_id,operation,starts_at,ends_at) SELECT 'TEST-CHEV',dock_id,driver_id,vehicle_id,operation,starts_at,ends_at FROM appointment WHERE status='active' LIMIT 1;</code></td><td>ERROR 1644 (45000) : Ce créneau chevauche un rendez-vous actif sur ce quai. Rien n’est inséré.</td></tr>
+<tr><td><code>SHOW GRANTS FOR CURRENT_USER;</code> puis <code>exit</code></td><td>Droits du compte connecté ; le compte de l’application est décrit dans sql/06_privileges.example.sql.</td></tr></table>
+<h3>Tester l’archivage — uniquement sur une base de test</h3>
+<div class="box warn"><b>Ne pas lancer <code>CALL archive_appointments(...)</code> sur la base de démonstration</b> : la procédure déplace réellement des rendez-vous. Sur la base de répétition (B5), créer deux rendez-vous anciens puis archiver :</div>
+<pre class="cmd">INSERT INTO appointment(reference,dock_id,driver_id,vehicle_id,operation,starts_at,ends_at,status) VALUES ('RDV-ANCIEN-01',1,1,1,'reception','2025-06-02 08:00','2025-06-02 09:00','cancelled'),('RDV-ANCIEN-02',1,1,1,'reception','2025-06-03 08:00','2025-06-03 09:00','active');</pre>
+<pre class="cmd">CALL archive_appointments(30);  SELECT origine, status, COUNT(*) FROM v_appointment_all GROUP BY origine, status;</pre><pre class="out">rendez_vous_archives  total_historique
+2                     2
+origine     status     COUNT(*)
+courant     active     1
+historique  active     1
+historique  cancelled  1</pre>
+<p class="small">Un délai inférieur à 30 jours est refusé (« Délai d archivage minimal : 30 jours »). Seuls les rendez-vous sans passage camion sont déplacés.</p>
+
+<h2 class="part">D · Vérifier les nouveautés dans l’application</h2>
+<h3>D1. Le responsable planifie les quais</h3><p>Se connecter avec <b>manager@bd70.test</b> → menu <b>Quais & rendez-vous</b> → choisir la journée → le bouton <b>Nouveau rendez-vous</b> est visible. Avec <b>gate@bd70.test</b>, le même écran s’affiche en consultation, sans ce bouton : le sujet réserve la planification au responsable, l’accueil tient le poste de garde.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n01-manager-planning.png"><figcaption>Planning vu par le responsable, bouton Nouveau rendez-vous encadré.</figcaption></figure><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n01b-gate-planning.png"><figcaption>Le même planning vu par l’agent d’accueil : aucun bouton de création.</figcaption></figure>
+<h3>D2. Créer un rendez-vous</h3><p>Avec le responsable, cliquer sur <b>Nouveau rendez-vous</b>. Remplir : Référence <b>VERIF-01</b>, un quai, un chauffeur et un véhicule compatibles, l’opération, un début et une fin sur un créneau libre (ici le 24/10/2026 de 07:00 à 07:30). Cliquer sur <b>Enregistrer</b>.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n02-manager-rdv-saisie.png"><figcaption>Formulaire rempli.</figcaption></figure><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n03-manager-rdv-enregistre.png"><figcaption>Message « Opération enregistrée ».</figcaption></figure>
+<h3>D3. Refus du chevauchement</h3><p>Refaire exactement la même saisie avec la référence <b>VERIF-02</b>. Le refus s’affiche ; la base le refuserait aussi par trigger (partie C). Ensuite, dans le planning, <b>annuler VERIF-01</b> pour garder la démo propre.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n04-manager-rdv-conflit.png"><figcaption>Message « Ce créneau chevauche un rendez-vous actif ».</figcaption></figure>
+<h3>D4. Indicateur avec HAVING</h3><p>Se connecter avec <b>manager@bd70.test</b> → <b>Indicateurs & états</b> → choisir la période et un <b>Seuil d’attente (min)</b> → <b>Filtrer</b>. Sur le jeu riche : période 01/08/2026 – 29/10/2026, seuil <b>8</b> = les transporteurs apparaissent ; seuil <b>20</b> = tableau vide.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n05-indicateurs-seuil.png"><figcaption>Champ Seuil d’attente encadré.</figcaption></figure><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n06-having.png"><figcaption>Tableau « Transporteurs au-dessus du seuil d’attente » : GROUP BY puis HAVING AVG(wait_minutes) &gt; seuil.</figcaption></figure>
+<h3>D5. Rendez-vous historisés</h3><p>Toujours en responsable → <b>Référentiels</b> → rubrique <b>Rendez-vous historisés</b> → <b>Afficher</b>. Lecture seule : aucun bouton de modification. Sur la démo, la liste est vide tant que l’évènement n’a rien archivé (rendez-vous de plus d’un an).</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n07-historique.png"><figcaption>Rendez-vous déplacés par archive_appointments, avec la date d’historisation.</figcaption></figure>
+<h3>D6. Transporteur limité à sa société</h3><p>Se connecter avec <b>carrier1@bd70.test</b> : seuls ses rendez-vous apparaissent ; il peut en demander, modifier ou annuler.</p><figure><img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/nouveautes/n08-transporteur.png"><figcaption>Espace transporteur.</figcaption></figure>
+
+<h2 class="part">E · Scénario complet ORAL-CAFE</h2>
+<p>Ce parcours suit un lot de café de bout en bout : le fournisseur annonce 20 unités, le magasinier en accepte 18 et en déclare 2 endommagées, transfère 3 unités, puis 10 unités sont préparées en FEFO, mises en colis et chargées dans le camion ORAL-CAFE-SORTIE ; la traçabilité retrouve ce camion à partir du lot.</p>
+<div class="box"><b>Où le faire ?</b> Sur la base de répétition (B5, http://127.0.0.1:18079) pour <b>refaire</b> les saisies. Pour l’oral, <b>montrer</b> les fiches déjà créées (rechercher ORAL-CAFE dans chaque écran) plutôt que tout saisir en direct. Chaque étape indique le compte à utiliser : se déconnecter (en haut à droite) puis se reconnecter, ou utiliser un profil de navigateur par compte.</div>
+<h2 class="sub">E1 · Comptes, transporteur et planning</h2><section class="step"><div class="head"><span class="num">E.01</span><span class="role">Administrateur · admin@bd70.test</span></div>
+<h3>Se connecter : Administrateur</h3><p class="todo"><b>À faire.</b> Saisir admin@bd70.test et le mot de passe pédagogique Entrepot2026!.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/01.png">
+<p class="say"><b>À dire :</b> « Je commence par le compte administrateur, parce que c’est lui qui donne accès à l’entrepôt. Son rôle porte sur les comptes et les droits. »</p></section><section class="step"><div class="head"><span class="num">E.02</span><span class="role">Administrateur · admin@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Comptes et profils</h3><p class="todo"><b>À faire.</b> Dans Référentiels, ouvrir les utilisateurs. Montrer les profils et les comptes actifs.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/02.png">
+<p class="say"><b>À dire :</b> « Ici, deux personnes peuvent utiliser la même application et avoir des responsabilités différentes. Le profil détermine les écrans et les opérations accessibles. »</p></section><section class="step"><div class="head"><span class="num">E.03</span><span class="role">Administrateur · admin@bd70.test</span></div>
+<h3>Se connecter : Transporteur</h3><p class="todo"><b>À faire.</b> Saisir carrier1@bd70.test et le mot de passe pédagogique Entrepot2026!.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/03.png">
+<p class="say"><b>À dire :</b> « Je passe du côté de la société de transport. On va voir quelles informations un partenaire extérieur peut consulter. »</p></section><section class="step"><div class="head"><span class="num">E.04</span><span class="role">Transporteur · carrier1@bd70.test</span><span class="menu">Menu : Mes rendez-vous</span></div>
+<h3>Portail du transporteur</h3><p class="todo"><b>À faire.</b> Montrer les rendez-vous et les ressources de sa société.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/04.png">
+<p class="say"><b>À dire :</b> « Ce transporteur retrouve les rendez-vous de sa société. Même s’il connaît la référence d’un autre transporteur, le serveur contrôle à quelle société appartient le rendez-vous. »</p></section><section class="step"><div class="head"><span class="num">E.05</span><span class="role">Transporteur · carrier1@bd70.test</span></div>
+<h3>Se connecter : Responsable</h3><p class="todo"><b>À faire.</b> Saisir manager@bd70.test et le mot de passe pédagogique Entrepot2026!.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/05.png">
+<p class="say"><b>À dire :</b> « Je me connecte comme responsable d’exploitation. C’est lui qui coordonne les quais et affecte les commandes aux préparateurs. »</p></section><section class="step"><div class="head"><span class="num">E.06</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Quais &amp; rendez-vous</span></div>
+<h3>Planning des quais</h3><p class="todo"><b>À faire.</b> Ouvrir Quais &amp; rendez-vous. Choisir la journée du jeu de test.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/06.png">
+<p class="say"><b>À dire :</b> « Le planning répond à une question concrète : à quelle heure et sur quel quai peut-on recevoir ce véhicule ? La réservation vérifie la compatibilité et les chevauchements. »</p></section><h2 class="sub">E2 · Le fournisseur annonce la livraison</h2><section class="step"><div class="head"><span class="num">E.07</span><span class="role">Responsable · manager@bd70.test</span></div>
+<h3>Se connecter : Magasinier</h3><p class="todo"><b>À faire.</b> Saisir warehouse@bd70.test et le mot de passe pédagogique Entrepot2026!.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/07.png">
+<p class="say"><b>À dire :</b> « Je passe au compte du magasinier. C’est la personne qui constate ce qui arrive réellement et qui valide les quantités à ranger. »</p></section><section class="step"><div class="head"><span class="num">E.08</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Réceptions</span></div>
+<h3>Entrée dans les réceptions</h3><p class="todo"><b>À faire.</b> Ouvrir Réceptions puis le lien Avis fournisseurs.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/08.png">
+<p class="say"><b>À dire :</b> « On distingue ici ce que le fournisseur a annoncé de ce que le magasinier va compter. Il faut garder les deux pour pouvoir expliquer un écart. »</p></section><section class="step"><div class="head"><span class="num">E.09</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Ouvrir le formulaire de création</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique Avis fournisseurs → Afficher → Ajouter une fiche.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/complements/02.png">
+<p class="say"><b>À dire :</b> « J’ouvre la fiche depuis le référentiel des avis fournisseurs. C’est ici que l’on crée l’annonce qui servira de point de comparaison à la réception. »</p></section><section class="step"><div class="head"><span class="num">E.10</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Avis fournisseurs</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Avis fournisseurs » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Référence</td><td><b>ORAL-CAFE-AVIS</b></td></tr><tr><td>Fournisseur</td><td><b>Manufacture Démo</b></td></tr><tr><td>Livraison prévue</td><td><b>2026-10-22</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/09.png">
+<p class="say"><b>À dire :</b> « J’enregistre ORAL-CAFE-AVIS avec son fournisseur et sa date prévue. Cet avis sert de référence quand le camion se présente. »</p></section><section class="step"><div class="head"><span class="num">E.11</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Lignes attendues</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Lignes attendues » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Avis fournisseur</td><td><b>ORAL-CAFE-AVIS</b></td></tr><tr><td>Article</td><td><b>ART-CAFE / Café en cartons</b></td></tr><tr><td>Quantité attendue</td><td><b>20</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/10.png">
+<p class="say"><b>À dire :</b> « Le fournisseur annonce vingt unités de café. C’est cette quantité attendue que nous comparerons au comptage sur le quai. »</p></section><section class="step"><div class="head"><span class="num">E.12</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Lots</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Lots » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Article</td><td><b>ART-CAFE / Café en cartons</b></td></tr><tr><td>Code</td><td><b>ORAL-CAFE-LOT</b></td></tr><tr><td>Date limite / validité</td><td><b>2026-10-23</b></td></tr><tr><td>Lot bloqué</td><td><b>Non</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/11.png">
+<p class="say"><b>À dire :</b> « Je donne une référence et une date limite au lot. On pourra ainsi retrouver le café après ses déplacements et tenir compte de son échéance à la préparation. »</p></section><h2 class="sub">E3 · Le camion arrive et se met à quai</h2><section class="step"><div class="head"><span class="num">E.13</span><span class="role">Magasinier · warehouse@bd70.test</span></div>
+<h3>Se connecter : Accueil</h3><p class="todo"><b>À faire.</b> Saisir gate@bd70.test et le mot de passe pédagogique Entrepot2026!.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/12.png">
+<p class="say"><b>À dire :</b> « Je passe à l’accueil. Le poste de garde suit le camion sur le site, tandis que le magasinier prend en charge les marchandises. »</p></section><section class="step"><div class="head"><span class="num">E.14</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>Arrivée · ORAL-CAFE-ENTREE</h3><p class="todo"><b>À faire.</b> Passages camions → Enregistrer une arrivée. Sélectionner chauffeur, véhicule et opération.</p>
+<table class="vals"><tr><td>Référence du passage</td><td><b>ORAL-CAFE-ENTREE</b></td></tr><tr><td>Chauffeur sans rendez-vous</td><td><b>Marc Démo / PERMIS-DEMO-1</b></td></tr><tr><td>Véhicule sans rendez-vous</td><td><b>DEMO-001</b></td></tr><tr><td>Opération</td><td><b>Réception</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/13.png">
+<p class="say"><b>À dire :</b> « Ce camion arrive sans rendez-vous. On ouvre quand même un passage avec son chauffeur et son véhicule pour conserver l’heure réelle d’arrivée. »</p></section><section class="step"><div class="head"><span class="num">E.15</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Contrôle des documents</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+<table class="vals"><tr><td>Résultat documentaire</td><td><b>Documents contrôlés depuis le navigateur</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/14.png">
+<p class="say"><b>À dire :</b> « L’accueil consigne le résultat du contrôle documentaire. On pourra retrouver ce qui a été vérifié avant d’envoyer le camion au quai. »</p></section><section class="step"><div class="head"><span class="num">E.16</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Mise en attente sur le parking</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/15.png">
+<p class="say"><b>À dire :</b> « Le camion attend sur le parking. Enregistrer cette étape permet ensuite de distinguer l’attente du temps de déchargement. »</p></section><section class="step"><div class="head"><span class="num">E.17</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Appel à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+<table class="vals"><tr><td>Quai</td><td><b>Q-Ambiant</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/16.png">
+<p class="say"><b>À dire :</b> « L’accueil appelle le camion au quai Q-Ambiant. On sait maintenant où le magasinier doit prendre en charge la livraison. »</p></section><section class="step"><div class="head"><span class="num">E.18</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Début de l’opération à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/17.png">
+<p class="say"><b>À dire :</b> « Le magasinier signale le début du déchargement. Ce nouvel horaire permet de mesurer le temps réellement passé en opération. »</p></section><h2 class="sub">E4 · Réception, rangement, transfert, départ</h2><section class="step"><div class="head"><span class="num">E.19</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Réceptions</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Réceptions » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Référence</td><td><b>ORAL-CAFE-REC</b></td></tr><tr><td>Avis fournisseur</td><td><b>ORAL-CAFE-AVIS</b></td></tr><tr><td>Passage camion</td><td><b>ORAL-CAFE-ENTREE</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/18.png">
+<p class="say"><b>À dire :</b> « Je relie la réception au passage du camion et à l’avis fournisseur. On peut ainsi retrouver à la fois qui a livré et ce qui était annoncé. »</p></section><section class="step"><div class="head"><span class="num">E.20</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Lignes de réception</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Lignes de réception » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Réception</td><td><b>ORAL-CAFE-REC</b></td></tr><tr><td>Ligne attendue</td><td><b>ORAL-CAFE-AVIS / ART-CAFE</b></td></tr><tr><td>Quantité attendue</td><td><b>20</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/19.png">
+<p class="say"><b>À dire :</b> « Cette réception reprend la ligne des vingt unités de café. Si un avis est livré en plusieurs fois, chaque réception ne porte que sur la part qui lui revient. »</p></section><section class="step"><div class="head"><span class="num">E.21</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Palettes reçues</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Palettes reçues » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Ligne de réception</td><td><b>ORAL-CAFE-REC / ART-CAFE</b></td></tr><tr><td>Lot</td><td><b>ORAL-CAFE-LOT / ART-CAFE</b></td></tr><tr><td>Code palette / fraction</td><td><b>ORAL-CAFE-PAL</b></td></tr><tr><td>Quantité acceptée</td><td><b>18</b></td></tr><tr><td>Quantité endommagée</td><td><b>2</b></td></tr><tr><td>État de palette</td><td><b>abime</b></td></tr><tr><td>Réserve transporteur</td><td><b>Deux cartons endommagés, réserve émise</b></td></tr><tr><td>Emplacement</td><td><b>EMP-1-1</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/20.png">
+<p class="say"><b>À dire :</b> « Sur vingt unités, j’en accepte dix-huit et j’en signale deux endommagées. La réserve explique l’écart et l’emplacement indique où ranger les unités utilisables. »</p></section><section class="step"><div class="head"><span class="num">E.22</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Réceptions</span></div>
+<h3>Valider la réception</h3><p class="todo"><b>À faire.</b> Réceptions → ouvrir la réception ORAL-CAFE-REC → cliquer sur le bouton encadré pour la valider.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/21.png">
+<p class="say"><b>À dire :</b> « En validant, je transforme le constat du quai en entrée de stock. Seules les dix-huit unités acceptées alimentent le stock. »</p></section><section class="step"><div class="head"><span class="num">E.23</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Réceptions</span></div>
+<h3>Réception validée</h3><p class="todo"><b>À faire.</b> Vérifier le message de confirmation et les quantités : 18 acceptées, 2 endommagées.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/22.png">
+<p class="say"><b>À dire :</b> « La réception apparaît maintenant dans l’historique. On pourra retrouver la quantité acceptée et les deux unités endommagées après le départ du camion. »</p></section><section class="step"><div class="head"><span class="num">E.24</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Stocks &amp; rangement</span></div>
+<h3>Transférer</h3><p class="todo"><b>À faire.</b> Stocks &amp; rangement → formulaire de transfert. Saisir les valeurs ci-dessous puis cliquer sur le bouton encadré.</p>
+<table class="vals"><tr><td>Palette reçue / provenance</td><td><b>ORAL-CAFE-PAL</b></td></tr><tr><td>Emplacement source</td><td><b>EMP-1-1</b></td></tr><tr><td>Destination</td><td><b>EMP-1-2</b></td></tr><tr><td>Quantité entière</td><td><b>3</b></td></tr><tr><td>Motif du déplacement</td><td><b>Transfert de démonstration navigateur</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/23.png">
+<p class="say"><b>À dire :</b> « Je déplace trois unités de EMP-1-1 vers EMP-1-2. Le premier emplacement en perd trois, le second en gagne trois, et le total de l’entrepôt reste le même. »</p></section><section class="step"><div class="head"><span class="num">E.25</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Fin de l’opération à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/24.png">
+<p class="say"><b>À dire :</b> « Le déchargement est terminé. Cette heure, comparée à celle du début, donne la durée de l’opération au quai. »</p></section><section class="step"><div class="head"><span class="num">E.26</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-ENTREE : Départ du site</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/25.png">
+<p class="say"><b>À dire :</b> « L’accueil enregistre le départ. On peut maintenant calculer la durée totale du passage sur le site, y compris l’attente. »</p></section><h2 class="sub">E5 · Commande, affectation, préparation FEFO, colis</h2><section class="step"><div class="head"><span class="num">E.27</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Commandes</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Commandes » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Référence</td><td><b>ORAL-CAFE-CMD</b></td></tr><tr><td>Propriétaire</td><td><b>Atlas Distribution</b></td></tr><tr><td>Adresse de livraison</td><td><b>Client fictif, Belfort</b></td></tr><tr><td>Expédition souhaitée</td><td><b>2026-10-22</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/26.png">
+<p class="say"><b>À dire :</b> « Le responsable ouvre une commande pour Atlas Distribution. Elle identifie le propriétaire de la marchandise et la destination à livrer. »</p></section><section class="step"><div class="head"><span class="num">E.28</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Référentiels</span></div>
+<h3>Créer une fiche : Lignes de commande</h3><p class="todo"><b>À faire.</b> Menu Référentiels → rubrique « Lignes de commande » → Afficher → déplier « Ajouter une fiche ». Remplir les champs ci-dessous puis cliquer sur Enregistrer (encadré).</p>
+<table class="vals"><tr><td>Commande</td><td><b>ORAL-CAFE-CMD</b></td></tr><tr><td>Article</td><td><b>ART-CAFE / Café en cartons</b></td></tr><tr><td>Quantité</td><td><b>10</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/27.png">
+<p class="say"><b>À dire :</b> « Le client demande dix unités de café. Cette ligne fixe la quantité que le préparateur devra servir et que le contrôle de chargement devra retrouver. »</p></section><section class="step"><div class="head"><span class="num">E.29</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Affecter le préparateur</h3><p class="todo"><b>À faire.</b> Préparation &amp; expédition → commande ORAL-CAFE-CMD → choisir le préparateur ci-dessous → bouton encadré.</p>
+<table class="vals"><tr><td>Affecter à</td><td><b>Noah Bernard / warehouse</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/28.png">
+<p class="say"><b>À dire :</b> « Le responsable confie la commande à Noah Bernard. L’affectation désigne qui doit la préparer. La réservation de stock interviendra à l’étape suivante. »</p></section><section class="step"><div class="head"><span class="num">E.30</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Lancer le prélèvement FEFO</h3><p class="todo"><b>À faire.</b> Se connecter avec le préparateur affecté (warehouse) → Préparation &amp; expédition → ORAL-CAFE-CMD → bouton encadré (réservation FEFO).</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/29.png">
+<p class="say"><b>À dire :</b> « Le magasinier lance la préparation. FEFO privilégie le lot utilisable dont la date limite est la plus proche et réserve la quantité pour cette commande. »</p></section><section class="step"><div class="head"><span class="num">E.31</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Confirmer tous les prélèvements</h3><p class="todo"><b>À faire.</b> Dans la même commande, confirmer les prélèvements avec le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/30.png">
+<p class="say"><b>À dire :</b> « Le préparateur confirme les unités réellement prélevées. On garde ainsi un lien entre la ligne de commande, le lot et l’emplacement d’origine. »</p></section><section class="step"><div class="head"><span class="num">E.32</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Créer le conditionnement</h3><p class="todo"><b>À faire.</b> Dans le détail de la commande, section colis : saisir le code et le type → bouton encadré.</p>
+<table class="vals"><tr><td>Code de colis/palette</td><td><b>ORAL-CAFE-COLIS</b></td></tr><tr><td>Conditionnement</td><td><b>Colis</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/31.png">
+<p class="say"><b>À dire :</b> « Je crée le colis qui partira au client. Sa référence nous permet de suivre ensemble les unités qu’il contient. »</p></section><section class="step"><div class="head"><span class="num">E.33</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Affecter cette quantité</h3><p class="todo"><b>À faire.</b> Répartir le prélèvement dans le colis : saisir la quantité ci-dessous → bouton encadré.</p>
+<table class="vals"><tr><td>Prélèvement à répartir</td><td><b>ART-CAFE / ORAL-CAFE-LOT / EMP-1-1 : 10 unités restantes</b></td></tr><tr><td>Quantité dans ce colis</td><td><b>10</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/32.png">
+<p class="say"><b>À dire :</b> « J’affecte dix unités de ce prélèvement au colis. C’est l’exemple concret de l’association colis–prélèvement expliquée dans le diaporama. »</p></section><h2 class="sub">E6 · Camion de sortie, expédition, traçabilité, bon de livraison</h2><section class="step"><div class="head"><span class="num">E.34</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>Arrivée · ORAL-CAFE-SORTIE</h3><p class="todo"><b>À faire.</b> Passages camions → Enregistrer une arrivée. Sélectionner chauffeur, véhicule et opération.</p>
+<table class="vals"><tr><td>Référence du passage</td><td><b>ORAL-CAFE-SORTIE</b></td></tr><tr><td>Chauffeur sans rendez-vous</td><td><b>Marc Démo / PERMIS-DEMO-1</b></td></tr><tr><td>Véhicule sans rendez-vous</td><td><b>DEMO-001</b></td></tr><tr><td>Opération</td><td><b>Expédition</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/33.png">
+<p class="say"><b>À dire :</b> « Voici le camion qui vient chercher la commande. Son passage de sortie est distinct du passage qui avait livré le café. »</p></section><section class="step"><div class="head"><span class="num">E.35</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-SORTIE : Contrôle des documents</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+<table class="vals"><tr><td>Résultat documentaire</td><td><b>Documents contrôlés depuis le navigateur</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/34.png">
+<p class="say"><b>À dire :</b> « L’accueil vérifie les documents du camion sortant. Le résultat du contrôle reste attaché à ce passage précis. »</p></section><section class="step"><div class="head"><span class="num">E.36</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-SORTIE : Appel à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+<table class="vals"><tr><td>Quai</td><td><b>Q-Sortie</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/35.png">
+<p class="say"><b>À dire :</b> « Le camion est appelé au quai d’expédition. Le chargement sera rattaché au passage présent sur ce quai. »</p></section><section class="step"><div class="head"><span class="num">E.37</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-SORTIE : Début de l’opération à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/36.png">
+<p class="say"><b>À dire :</b> « Le magasinier démarre les opérations à quai. C’est pendant cette phase que l’on peut confirmer le chargement de la commande. »</p></section><section class="step"><div class="head"><span class="num">E.38</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Confirmer l’expédition</h3><p class="todo"><b>À faire.</b> Préparation &amp; expédition → ORAL-CAFE-CMD → choisir le camion au chargement ORAL-CAFE-SORTIE → bouton encadré.</p>
+<table class="vals"><tr><td>Camion au chargement</td><td><b>ORAL-CAFE-SORTIE</b></td></tr></table>
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/37.png">
+<p class="say"><b>À dire :</b> « Je confirme le chargement des dix unités dans ORAL-CAFE-SORTIE. La sortie de stock est désormais reliée au prélèvement, à la commande et à ce camion. »</p></section><section class="step"><div class="head"><span class="num">E.39</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Traçabilité des lots</span></div>
+<h3>Trace du lot jusqu’au camion</h3><p class="todo"><b>À faire.</b> Traçabilité des lots → choisir ORAL-CAFE-LOT → Retracer le lot. Lire la réception, le transfert et le camion de sortie.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/38.png">
+<p class="say"><b>À dire :</b> « Avec le seul numéro de lot, je retrouve la réception, le déplacement et le camion qui a emporté les dix unités. C’est la réponse à la question posée au début. »</p></section><section class="step"><div class="head"><span class="num">E.40</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Traçabilité des lots</span></div>
+<h3>Origine de la réception</h3><p class="todo"><b>À faire.</b> Lire la réception, les 18 unités acceptées et les 2 endommagées.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/complements/05.png">
+<p class="say"><b>À dire :</b> « Cette ligne donne l’origine du lot : le fournisseur, le passage entrant et la réception avec dix-huit unités acceptées et deux endommagées. »</p></section><section class="step"><div class="head"><span class="num">E.41</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Préparation &amp; expédition</span></div>
+<h3>Bon de livraison</h3><p class="todo"><b>À faire.</b> Depuis la commande expédiée, ouvrir le bon de livraison (bouton encadré).</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/39.png">
+<p class="say"><b>À dire :</b> « Le bon de livraison reprend la commande réellement expédiée. Les informations déjà saisies pendant la préparation servent directement à produire le document. »</p></section><section class="step"><div class="head"><span class="num">E.42</span><span class="role">Magasinier · warehouse@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-SORTIE : Fin de l’opération à quai</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/40.png">
+<p class="say"><b>À dire :</b> « Le magasinier enregistre la fin du chargement. On distingue ainsi l’heure où les opérations se terminent de celle où le véhicule quitte le site. »</p></section><section class="step"><div class="head"><span class="num">E.43</span><span class="role">Accueil · gate@bd70.test</span><span class="menu">Menu : Passages camions</span></div>
+<h3>ORAL-CAFE-SORTIE : Départ du site</h3><p class="todo"><b>À faire.</b> Menu Passages camions → retrouver la carte du passage → remplir si besoin les champs ci-dessous → cliquer sur le bouton encadré.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/scenario/41.png">
+<p class="say"><b>À dire :</b> « Le départ clôt le passage du camion sortant. Même après son départ, on peut toujours retrouver quelles unités il a transportées. »</p></section><section class="step"><div class="head"><span class="num">E.44</span><span class="role">Responsable · manager@bd70.test</span><span class="menu">Menu : Indicateurs &amp; états</span></div>
+<h3>Indicateurs du site</h3><p class="todo"><b>À faire.</b> Ouvrir Indicateurs &amp; états et sélectionner une période qui contient ces opérations.</p>
+
+<img src="file:///C:/Users/eliot/Documents/GitHub/projet-bd70/docs/captures/guide/complements/06.png">
+<p class="say"><b>À dire :</b> « Le responsable peut exploiter les horaires saisis par l’accueil et le magasinier pour comparer les temps d’attente des transporteurs sur la période choisie. »</p></section>
+
+<h2 class="part">F · Lancer les tests automatisés</h2>
+<p>MariaDB doit tourner (B2). Toujours sur une <b>base de test neuve</b>, jamais sur la démo. Dans une nouvelle fenêtre PowerShell à la racine du projet :</p>
+<pre class="cmd">$env:BD70_PORT='3307'; $env:BD70_DATABASE='bd70_test_verif1'; $env:BD70_TEST_DATABASE='bd70_test_verif1'</pre><pre class="cmd">&amp; C:/xampp2/php/php.exe scripts/install.php $env:BD70_DATABASE; &amp; C:/xampp2/php/php.exe scripts/seed.php</pre><pre class="cmd">&amp; C:/xampp2/php/php.exe tests/integration.php</pre><pre class="out">OK ...
+64 réussis, 0 échecs</pre>
+<p>Pour chaque autre suite, recommencer les deux premières commandes avec un nouveau nom (bd70_test_verif2, 3…) puis lancer le test :</p>
+<table><tr><th>Commande</th><th>Attendu</th></tr><tr><td><code>tests/reports.php</code></td><td>7 lignes OK</td></tr><tr><td><code>tests/corrections.php</code></td><td>19 lignes OK, aucune ECHEC (dont « Rendez-vous gérés par accueil et responsable »)</td></tr><tr><td><code>tests/completion.php</code></td><td>23 lignes OK</td></tr><tr><td><code>tests/finalisation.php</code></td><td>14 lignes OK</td></tr></table>
+<p>Cohérence MCD / schéma relationnel / SQL :</p><pre class="cmd">python scripts/verify-models.py docs/diagrammes/schema.json .local/verif-modeles.json</pre><pre class="out">{"passed": true, "failed": [], "business_fk": 61, "business_columns": 214}</pre>
+<p>Fermer ensuite la fenêtre (ou <code>Remove-Item Env:BD70_DATABASE, Env:BD70_TEST_DATABASE</code>) pour que l’application reprenne la base de config/local.php. Les bases de test peuvent être supprimées avec <code>DROP DATABASE bd70_test_verif1;</code>.</p>
+
+<h2 class="part">G · Vérifier les livrables</h2>
+<table><tr><th>Fichier</th><th>Ce qu’il faut vérifier</th></tr>
+<tr><td>livrables/rapport/RAPPORT-PROJET-BD70.pdf</td><td>Couverture avec les trois noms, table des matières, cahier des charges, cas d’utilisation, MCD (extraits + complet), schéma relationnel (texte + figures), normalisation, implémentation, 8 fonctionnalités objectif / travail réalisé / conclusion avec captures, vérification, performances, conclusion. Relire l’orthographe.</td></tr>
+<tr><td>livrables/rapport/DIAGRAMMES-BD70.pdf</td><td>Cas d’utilisation (1 page), MCD, MLD, 6 extraits. Zoomer fort : le texte reste net (vectoriel).</td></tr>
+<tr><td>livrables/use-case, entite-association, schema-relationnel</td><td>Chaque diagramme en PDF, SVG et .drawio. Ouvrir un .drawio sur app.diagrams.net : chaque objet doit être modifiable.</td></tr>
+<tr><td>docs/performances.md</td><td>10 requêtes, médianes sur la base volumétrique et sur la démo, EXPLAIN avant/après index (4,00 → 0,90 ms).</td></tr>
+<tr><td>sql/01 à 08</td><td>01 schéma, 02 vues, 03 procédures, 04 triggers, 05 index, 06 droits (GRANT/REVOKE), 07 données, 08 historisation.</td></tr>
+<tr><td>livrables/soutenance/</td><td>Transit-diapo.html (7 diapos), Guide-oral.md, Questions-prof.md, ce guide.</td></tr></table>
+
+<h2 class="part">H · Le jour de la soutenance</h2>
+<h3>H1. Avant d’entrer (15 minutes)</h3><ol>
+<li>Lancer <b>scripts/start.ps1</b> (B2) et vérifier « Application : http://127.0.0.1:8070 ».</li>
+<li>Si la démo se fait sur la base de soutenance préparée (avec ORAL-CAFE déjà enregistré), la mettre à jour une fois puis lancer son serveur :</li></ol>
+<pre class="cmd">$env:BD70_PORT='3307'; &amp; C:/xampp2/php/php.exe scripts/migrate-historisation.php bd70_test_soutenance_20261105153225</pre><pre class="cmd">$env:BD70_DATABASE='bd70_test_soutenance_20261105153225'; $env:BD70_NOW='2026-10-22 12:00:00'; &amp; C:/xampp2/php/php.exe -S 127.0.0.1:18079 -t public</pre>
+<ol start="3"><li>Ouvrir un profil de navigateur par compte déjà connecté : admin, manager, gate, warehouse (et carrier1).</li>
+<li>Ouvrir <b>livrables/soutenance/Transit-diapo.html</b>, cliquer sur « Plein écran ». Avoir docs/soutenance/Transit.pdf en secours.</li>
+<li>Garder ouverts : sql/08_historisation.sql, sql/02_vues.sql, docs/performances.md, Questions-prof.md.</li></ol>
+<h3>H2. Déroulé minuté</h3>
+<table><tr><th>Temps</th><th>Quoi</th><th>Où</th></tr>
+<tr><td>0:00 – 5:00</td><td>Backend : 7 diapositives (texte dans Guide-oral.md)</td><td>Transit-diapo.html</td></tr>
+<tr><td>5:00 – 5:40</td><td>Comptes puis planning du responsable, bouton Nouveau rendez-vous</td><td>Étapes E.01–E.06, D1</td></tr>
+<tr><td>5:40 – 6:35</td><td>Avis ORAL-CAFE-AVIS et sa ligne de 20 unités</td><td>Étapes E.08–E.12</td></tr>
+<tr><td>6:35 – 7:25</td><td>Réception : 18 acceptées, 2 endommagées, transfert de 3</td><td>Étapes E.19–E.24</td></tr>
+<tr><td>7:25 – 8:30</td><td>Commande de 10, affectation, FEFO, colis, bon de livraison</td><td>Étapes E.27–E.33, E.41</td></tr>
+<tr><td>8:30 – 9:45</td><td>Traçabilité ORAL-CAFE-LOT jusqu’à ORAL-CAFE-SORTIE</td><td>Étapes E.39–E.40</td></tr>
+<tr><td>9:45 – 10:00</td><td>Conclure, laisser la trace à l’écran</td><td>—</td></tr>
+<tr><td>10:00 – 20:00</td><td>Questions individuelles</td><td>Questions-prof.md</td></tr></table>
+<h3>H3. Plan de secours</h3><ul>
+<li>L’application ne démarre pas : montrer ce guide (partie E) et le rapport, puis docs/soutenance/Transit.pdf.</li>
+<li>Une saisie échoue en direct : lire le message (il est fait pour l’utilisateur), puis montrer la fiche déjà créée.</li>
+<li>Question SQL : ouvrir le fichier sql/ correspondant ; pour un EXPLAIN, docs/performances.md.</li></ul>
+<div class="box ok">Phrase de conclusion : « Nous sommes partis de la structure de la base et nous venons de retrouver la chaîne complète dans l’application. Nous sommes prêts pour vos questions. »</div>
+</body></html>

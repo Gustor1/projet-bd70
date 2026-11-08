@@ -41,9 +41,11 @@ $queries=[
  'historique_lot'=>['SELECT m.operation_ref,m.created_at,m.delta,l.code FROM v_stock_movement m JOIN receipt_item i ON i.id=m.receipt_item_id JOIN location l ON l.id=m.location_id WHERE i.lot_id=? ORDER BY m.created_at,m.id LIMIT 20',[7]],
  'selection_fefo'=>['SELECT receipt_item_id,location_id,available_qty,expires_on FROM v_stock WHERE article_id=? AND available_qty>0 AND blocked=0 AND (expires_on IS NULL OR expires_on>=?) ORDER BY expires_on IS NULL,expires_on,received_at,receipt_item_id,location_id LIMIT 20',[1,'2026-10-22']],
  'statistiques_transporteur'=>['SELECT carrier_name,COUNT(*) passages,AVG(wait_minutes),AVG(immobilized_minutes) FROM v_visit WHERE arrived_at>=? AND arrived_at<? GROUP BY carrier_id,carrier_name',['2025-05-01','2025-06-01']],
+ 'transporteurs_lents'=>['SELECT carrier_name,COUNT(*) passages,AVG(wait_minutes) attente FROM v_visit WHERE arrived_at>=? AND arrived_at<? AND wait_minutes IS NOT NULL GROUP BY carrier_id,carrier_name HAVING AVG(wait_minutes)>? ORDER BY attente DESC',['2025-05-01','2025-06-01',10]],
+ 'historique_rendez_vous'=>["SELECT reference,origine,starts_at FROM v_appointment_all WHERE dock_id=? AND starts_at>=? AND starts_at<? ORDER BY starts_at LIMIT 20",[1,'2025-05-01','2025-06-01']],
  'remplissage_zone'=>['SELECT l.zone_name,SUM(u.used_kg),SUM(l.max_kg),SUM(u.used_pallets),SUM(l.max_pallets) FROM v_location l JOIN v_location_usage u ON u.id=l.id GROUP BY l.zone_id,l.zone_name',[]],
 ];
-$planDb=new Database(['dsn'=>'mysql:host=127.0.0.1;port=3307;dbname='.$name.';charset=utf8mb4','user'=>getenv('BD70_ADMIN_USER')?:'root','password'=>getenv('BD70_ADMIN_PASSWORD')?:'','timezone'=>'Europe/Paris']);
+$planDb=new Database(['dsn'=>'mysql:host=127.0.0.1;port='.(getenv('BD70_PORT')?:3307).';dbname='.$name.';charset=utf8mb4','user'=>getenv('BD70_ADMIN_USER')?:'root','password'=>getenv('BD70_ADMIN_PASSWORD')?:'','timezone'=>'Europe/Paris']);
 function measure(Database $db,string $sql,array $params): array {
  global $planDb;
  $db->all($sql,$params);$raw=[];for($i=0;$i<10;$i++){$start=hrtime(true);$rows=$db->all($sql,$params);$raw[]=(hrtime(true)-$start)/1e6;}
@@ -63,7 +65,7 @@ $volumes=[];$indexes=[];foreach($db->all('SHOW FULL TABLES WHERE Table_type="BAS
 $checks=['stock_non_negatif'=>(int)$db->scalar('SELECT COUNT(*) FROM v_balance WHERE qty<0')===0,'capacites'=>(int)$db->scalar('SELECT COUNT(*) FROM v_location l JOIN v_location_usage u ON u.id=l.id WHERE u.used_kg>l.max_kg OR u.used_pallets>l.max_pallets OR u.used_m3>l.capacity_m3')===0,'transferts_conserves'=>(int)$db->scalar("SELECT COUNT(*) FROM (SELECT operation_ref FROM v_stock_movement WHERE kind='transfer' GROUP BY operation_ref HAVING SUM(delta)<>0) x")===0];
 $cfg=$db->one('SELECT @@innodb_buffer_pool_size buffer_pool_bytes,@@max_connections max_connections,@@tx_isolation isolation_level');
 // Comparaison contrôlée sur la seule base volumétrique, avec le compte d'installation.
-$admin=new PDO('mysql:host=127.0.0.1;port=3307;dbname='.$name.';charset=utf8mb4',getenv('BD70_ADMIN_USER')?:'root',getenv('BD70_ADMIN_PASSWORD')?:'',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+$admin=new PDO('mysql:host=127.0.0.1;port='.(getenv('BD70_PORT')?:3307).';dbname='.$name.';charset=utf8mb4',getenv('BD70_ADMIN_USER')?:'root',getenv('BD70_ADMIN_PASSWORD')?:'',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
 // Un index FK de remplacement maintient les contraintes pendant le retrait du composé.
 $admin->exec('CREATE INDEX IF NOT EXISTS idx_appt_dock_baseline ON appointment(dock_id)');
 $admin->exec('ALTER TABLE appointment DROP INDEX idx_appointment_slot');
@@ -71,6 +73,6 @@ try{$before=measure($db,...$queries['disponibilite_quai']);$writeBefore=measureW
 $after=measure($db,...$queries['disponibilite_quai']);
 $writeAfter=measureWrite($db);
 $result=['date'=>date(DATE_ATOM),'database'=>$name,'engine'=>$db->scalar('SELECT VERSION()'),'php'=>PHP_VERSION,'os'=>php_uname(),'config'=>$cfg,'seed'=>70,'reference_date'=>'2026-10-22','volumes'=>$volumes,'indexes'=>$indexes,'checks'=>$checks,'queries'=>$measurements,'comparison'=>['changed'=>'idx_appointment_slot uniquement ; index FK simple maintenu','before'=>$before,'after'=>$after,'write_before'=>$writeBefore,'write_after'=>$writeAfter]];
-file_put_contents(__DIR__.'/../livrables/preuves/performances.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents(__DIR__.'/../docs/preuves/performances.json',json_encode($result,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 $text="-- Requêtes réellement mesurées, paramètres dans performances.json.\n";foreach($queries as $key=>[$sql,$p])$text.="\n-- $key\n$sql;\n";file_put_contents(__DIR__.'/../sql/requetes_metier.sql',$text);
 if(in_array(false,$checks,true))throw new RuntimeException('Jeu volumétrique incohérent.');

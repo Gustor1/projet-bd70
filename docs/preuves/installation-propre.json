@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-04T22:21:27",
+  "database": "bd70_test_nettoyage_final_20261104_r3",
+  "new_config_generated": true,
+  "isolated_sql_account_generated": true,
+  "boolean_sql_and_server_rejections": [
+    true,
+    true,
+    true
+  ],
+  "unused_driver_qualification_crud": true,
+  "authenticated_routes": [
+    {
+      "role": "manager",
+      "route": "planning",
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "route": "orders",
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "route": "reports",
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "route": "trace&lot_id=1",
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "route": "catalog&t=carrier",
+      "ok": true
+    },
+    {
+      "role": "gate",
+      "route": "visits",
+      "ok": true
+    },
+    {
+      "role": "warehouse",
+      "route": "receipts",
+      "ok": true
+    },
+    {
+      "role": "warehouse",
+      "route": "stock",
+      "ok": true
+    }
+  ],
+  "passed": true
+}

@@ -27,18 +27,23 @@ assert all(checks),'Domaines booléens ou CRUD de référence inutilisée non va
 log=(target/'.local/web.log').open('wb');creationflags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0
 server=subprocess.Popen([php,'-S','127.0.0.1:8072','-t','public'],cwd=target,env=env,stdout=log,stderr=log,creationflags=creationflags)
 try:
- opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
  origin='http://127.0.0.1:8072'
- for _ in range(30):
-  try:content=opener.open(origin).read().decode('utf-8');break
-  except OSError:time.sleep(.2)
- token=re.search(r'name="csrf" value="([a-f0-9]+)"',content).group(1)
- login=urllib.parse.urlencode({'csrf':token,'action':'login','email':'admin@bd70.test','password':'Entrepot2026!'}).encode()
- content=opener.open(origin+'/',login).read().decode('utf-8');assert 'Vue d’ensemble' in content
  results=[]
- for route in ['planning','visits','receipts','stock','orders','reports','trace&lot_id=1','catalog&t=carrier']:
-  res=opener.open(origin+'/?page='+route);body=res.read().decode('utf-8');assert res.status==200 and 'role="alert"' not in body;results.append({'route':route,'ok':True})
+ for role,routes in [
+     ('manager',['planning','orders','reports','trace&lot_id=1','catalog&t=carrier']),
+     ('gate',['visits']),
+     ('warehouse',['receipts','stock'])
+ ]:
+  opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+  for _ in range(30):
+   try:content=opener.open(origin).read().decode('utf-8');break
+   except OSError:time.sleep(.2)
+  token=re.search(r'name="csrf" value="([a-f0-9]+)"',content).group(1)
+  login=urllib.parse.urlencode({'csrf':token,'action':'login','email':role+'@bd70.test','password':'Entrepot2026!'}).encode()
+  content=opener.open(origin+'/',login).read().decode('utf-8');assert 'Vue d’ensemble' in content
+  for route in routes:
+   res=opener.open(origin+'/?page='+route);body=res.read().decode('utf-8');assert res.status==200 and 'role="alert"' not in body;results.append({'role':role,'route':route,'ok':True})
  result={'date':time.strftime('%Y-%m-%dT%H:%M:%S'),'database':name,'new_config_generated':True,'isolated_sql_account_generated':True,'boolean_sql_and_server_rejections':checks[:3],'unused_driver_qualification_crud':checks[3],'authenticated_routes':results,'passed':True}
- (project/'livrables/preuves/installation-propre.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+ (project/'docs/preuves/installation-propre.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
  print('Installation propre : configuration neuve, connexion active et huit routes authentifiées réussies.')
 finally:server.terminate();server.wait(timeout=10);log.close()

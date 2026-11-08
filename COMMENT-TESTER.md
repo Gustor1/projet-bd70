@@ -1,6 +1,6 @@
 # Comment tester toute l’application Transit — BD70
 
-Ce guide couvre les fonctionnalités du sujet A26 et les critères de la grille. Chaque scénario donne le compte, les actions et le résultat attendu. Cocher seulement après exécution réelle : ce document ne prouve pas à lui seul la réussite sur un autre poste. Les originaux du sujet et de la grille sont dans `document projet/` ; leurs extractions lisibles dans `docs/sources/`.
+Ce guide couvre les fonctionnalités du sujet A26 et les critères de la grille. Chaque scénario donne le compte, les actions et le résultat attendu. Cocher seulement après exécution réelle : ce document ne prouve pas à lui seul la réussite sur un autre poste. Les originaux du sujet et de la grille sont dans `document projet/`.
 
 ## 1. Démarrer et préparer les tests
 
@@ -225,9 +225,9 @@ python scripts/verify-finalisation.py
 Remove-Item Env:/BD70_RUN_ID
 ```
 
-Cet outillage exige Python, Node, Playwright/Edge et les dépendances des scripts. L’application PHP fonctionne sans ces outils. Les ports de recette 8071/8072 doivent être libres. Le script crée ses bases et serveurs dédiés ; lire tous les codes de sortie et le manifeste dans `livrables/preuves/<identifiant>/`.
+Cet outillage exige Python, Node, Playwright/Edge et les dépendances des scripts. L’application PHP fonctionne sans ces outils. Les ports de recette 8071/8072 doivent être libres. Le script crée ses bases et serveurs dédiés ; lire tous les codes de sortie et le manifeste dans `docs/preuves/<identifiant>/`.
 
-Les suites navigateur actuelles sont `tests/corrections-browser.cjs` et `tests/parcours.cjs`. Le premier utilise les comptes créés par `tests/corrections.php` sur le jeu réduit. Les anciennes suites fondées sur un administrateur métier sont historiques ; ne pas confondre leurs preuves avec une validation des droits actuels.
+Les suites navigateur actuelles sont `tests/corrections-browser.cjs` et `tests/parcours.cjs`. Le premier utilise les comptes créés par `tests/corrections.php` sur le jeu réduit.
 
 ### Intégrité, performances, sauvegarde et migration
 
@@ -241,10 +241,10 @@ Employer de nouveaux noms pour rejouer les essais, sans supprimer de bases exist
 ## 14. Vérifier la conception et le rapport
 
 - [ ] [Cahier des charges](docs/01-cahier-des-charges.md) et [scénarios](docs/02-cas-utilisation.md) cohérents avec les actions testées.
-- [ ] [Use case corrigé](livrables/correction-prof-use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf) et Draw.io : rôles distincts, affectation et exécution séparées, portail transporteur.
-- [ ] [Dernier MCD](livrables/mcd-final/BD70-MCD-FINAL.pdf) et Draw.io conservés **en attendant le retour du professeur**. Le nouveau lien compte/société et les cardinalités conditionnelles des mouvements sont détaillés dans [l’index des modèles](docs/modeles-reference.md) : ne pas revendiquer une correspondance exacte déjà validée avec ce MCD conservé.
+- [ ] [Diagramme de cas d’utilisation V2](livrables/use-case/UML-CAS-UTILISATION-BD70-CORRIGE.pdf) et Draw.io : une page, chaque acteur dessiné une fois, aucun héritage, planification par le responsable, affectation et exécution séparées, transporteur limité à sa société, cas éclatés avec include/extend.
+- [ ] [MCD Chen V2](livrables/entite-association/BD70-MCD-CHEN.pdf) et Draw.io : attributs en ovales, identifiants soulignés (visibles dans le PDF), cardinalités placées comme dans le cours (« Client 1 — Possède — 0,N Facture »). Le lien compte/société et les mouvements conditionnels correspondent au schéma courant. Voir [l’index des modèles](docs/modeles-reference.md).
 - [ ] [MLD](docs/diagrammes/mld-complet.svg), [dictionnaire](docs/dictionnaire-donnees.md), SQL et [normalisation](docs/normalisation-3nf.md) : PK, FK, types, nullabilités, 1:N/N:N, dépendances et contraintes. Les sorties projettent quantité/emplacement/fraction depuis le prélèvement ; les JSON d’audit sont des instantanés techniques intentionnels.
-- [ ] [Rapport](livrables/rapport/RAPPORT-PROJET-BD70.pdf) : introduction, sommaire, auteurs, objectif/travail réalisé/conclusion par domaine, captures et bilan. [Recueil](livrables/rapport/DIAGRAMMES-BD70.pdf) : use case corrigé, dernier MCD et MLD actuels.
+- [ ] [Rapport](livrables/rapport/RAPPORT-PROJET-BD70.pdf) : introduction, sommaire, auteurs, objectif/travail réalisé/conclusion par domaine, captures et bilan. [Recueil](livrables/rapport/DIAGRAMMES-BD70.pdf) : cas d’utilisation V2, MCD V2, MLD et six extraits par domaine.
 - [ ] [Performances](docs/performances.md) et JSON : requêtes, paramètres, volumes, mesures et plans. Le nombre de tables seul ne prouve pas la qualité du modèle. La [matrice CRUD](docs/matrice-crud-droits.md) détaille les opérations permises pour chaque relation.
 
 ## 15. Correspondance avec le sujet et la grille
@@ -267,6 +267,15 @@ Employer de nouveaux noms pour rejouer les essais, sans supprimer de bases exist
 | Ergonomie et finition générale | 11–12 ; rapport en 14 |
 
 Le minimum web du sujet porte sur cinq domaines ; ce guide couvre aussi les commandes/expéditions et le portail transporteur réalisés en complément. La validation du MCD, les modalités de remise/soutenance et la note restent du ressort de l’enseignant.
+
+
+## Contrôles ajoutés (historisation, HAVING, droits de l’accueil)
+
+- [ ] **manager** → Quais & rendez-vous → « Nouveau rendez-vous » : créer un rendez-vous sur un créneau libre, puis tenter le même quai et le même horaire : refus « Ce créneau chevauche un rendez-vous actif ». Avec **gate**, le bouton n’apparaît pas (planification réservée au responsable).
+- [ ] **manager** → Indicateurs : champ « Seuil d’attente (min) » ; le tableau « Transporteurs au-dessus du seuil d’attente » utilise GROUP BY … HAVING. Avec le jeu riche, un seuil de 8 affiche les transporteurs ; un seuil de 20 n’en affiche aucun.
+- [ ] **manager** → Référentiels → rubrique « Rendez-vous historisés » : consultation en lecture seule (aucun bouton de modification).
+- [ ] En SQL, sur une base de test uniquement : `CALL archive_appointments(30);` puis `SELECT origine, COUNT(*) FROM v_appointment_all GROUP BY origine;` ; `SHOW EVENTS;` affiche ev_archive_appointments.
+- [ ] En SQL, sur une base de test : insérer un rendez-vous actif chevauchant un autre sur le même quai → erreur 45000 levée par le trigger.
 
 ## 16. Consigner sa recette
 

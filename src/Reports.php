@@ -7,7 +7,9 @@ final class Reports
     public function period(array $input): array
     {
         $from=Warehouse::date((string)($input['from']??Clock::today()));$to=Warehouse::date((string)($input['to']??$from));
-        if($to<$from||strtotime($to)-strtotime($from)>366*86400)throw new DomainException('Choisissez une période de 366 jours au maximum.');
+        $utc=new DateTimeZone('UTC');
+        $days=(new DateTimeImmutable($from,$utc))->diff(new DateTimeImmutable($to,$utc))->days+1;
+        if($to<$from||$days>366)throw new DomainException('Choisissez une période de 366 jours au maximum.');
         return [$from.' 00:00:00',(new DateTimeImmutable($to))->modify('+1 day')->format('Y-m-d').' 00:00:00'];
     }
     public function stock(array $f,bool $export=false): array
@@ -41,11 +43,16 @@ final class Reports
     }
     public function dashboard(array $f): array
     {
-        [$from,$to]=$this->period($f);$period=(new DateTimeImmutable($to))->getTimestamp()-(new DateTimeImmutable($from))->getTimestamp();
+        [$from,$to]=$this->period($f);// Les DATETIME SQL mesurent des secondes civiles, y compris aux changements d’heure.
+        $utc=new DateTimeZone('UTC');
+        $period=(new DateTimeImmutable($to,$utc))->getTimestamp()-(new DateTimeImmutable($from,$utc))->getTimestamp();
         $occupied=(float)$this->db->scalar("SELECT COALESCE(SUM(GREATEST(0,TIMESTAMPDIFF(SECOND,GREATEST(working_at,?),LEAST(COALESCE(finished_at,NOW()),?)))),0) FROM v_visit WHERE working_at<? AND COALESCE(finished_at,NOW())>?",[$from,$to,$to,$from]);
         $down=(float)$this->db->scalar('SELECT COALESCE(SUM(TIMESTAMPDIFF(SECOND,GREATEST(starts_at,?),LEAST(ends_at,?))),0) FROM dock_downtime WHERE starts_at<? AND ends_at>?',[$from,$to,$to,$from]);
         $capacity=(int)$this->db->scalar('SELECT COUNT(*) FROM dock')*$period-$down;
         $carriers=$this->db->all("SELECT carrier_name transporteur,COUNT(*) passages,SUM(departed_at IS NULL) ouverts,AVG(wait_minutes) attente_min,AVG(immobilized_minutes) immobilisation_min,COUNT(wait_minutes) attentes_mesurees,COUNT(immobilized_minutes) departs_mesures FROM v_visit WHERE arrived_at>=? AND arrived_at<? GROUP BY carrier_id,carrier_name ORDER BY carrier_name",[$from,$to]);
+        // HAVING filtre les groupes après agrégation : seuls les transporteurs dont l'attente moyenne dépasse le seuil.
+        $threshold=max(0,min(1440,(int)($f['seuil']??30)));
+        $slow=$this->db->all('SELECT carrier_name transporteur,COUNT(*) passages_mesures,ROUND(AVG(wait_minutes),1) attente_moyenne_min,ROUND(MAX(wait_minutes),1) attente_max_min FROM v_visit WHERE arrived_at>=? AND arrived_at<? AND wait_minutes IS NOT NULL GROUP BY carrier_id,carrier_name HAVING AVG(wait_minutes)>? ORDER BY AVG(wait_minutes) DESC',[$from,$to,$threshold]);
         $zones=$this->db->all('SELECT z.name zone,COALESCE(SUM(u.used_kg),0) kg,COALESCE(SUM(l.max_kg),0) capacite_kg,COALESCE(SUM(u.used_m3),0) m3,COALESCE(SUM(l.capacity_m3),0) capacite_m3,COALESCE(SUM(u.used_pallets),0) palettes,COALESCE(SUM(l.max_pallets),0) capacite_palettes FROM zone z LEFT JOIN v_location l ON l.zone_id=z.id LEFT JOIN v_location_usage u ON u.id=l.id GROUP BY z.id,z.name ORDER BY z.id');
         $gaps=$this->db->one('SELECT COUNT(*) lignes,COALESCE(SUM(d.missing_qty>0 OR d.excess_qty>0 OR d.damaged_qty>0),0) lignes_ecart,COALESCE(SUM(d.missing_qty),0) manquant,COALESCE(SUM(d.excess_qty),0) excedent,COALESCE(SUM(d.damaged_qty),0) endommage FROM v_receipt_discrepancy d JOIN receipt r ON r.id=d.receipt_id WHERE r.validated_at>=? AND r.validated_at<?',[$from,$to]);
         // Agrégation préalable par commande : aucune multiplication de la durée par le nombre de picks.
@@ -53,7 +60,7 @@ final class Reports
         $reference=Clock::today();$horizon=max(0,min(365,(int)($f['horizon']??14)));$until=(new DateTimeImmutable($reference))->modify('+'.$horizon.' days')->format('Y-m-d');
         $dlc=$this->db->all('SELECT sku,lot_code,expires_on,SUM(available_qty) disponible FROM v_stock WHERE blocked=0 AND available_qty>0 AND expires_on>=? AND expires_on<=? GROUP BY article_id,lot_id,sku,lot_code,expires_on ORDER BY expires_on',[$reference,$until]);
         $expiry=$this->db->one('SELECT COALESCE(SUM(CASE WHEN expires_on<? THEN qty-reserved_qty ELSE 0 END),0) perime,COALESCE(SUM(CASE WHEN expires_on IS NULL THEN qty-reserved_qty ELSE 0 END),0) sans_dlc FROM v_stock WHERE blocked=0',[$reference]);
-        return compact('from','to','occupied','capacity','down','carriers','zones','gaps','productivity','dlc','expiry','horizon','reference');
+        return compact('from','to','occupied','capacity','down','carriers','slow','threshold','zones','gaps','productivity','dlc','expiry','horizon','reference');
     }
     public function docks(string $day): array
     {

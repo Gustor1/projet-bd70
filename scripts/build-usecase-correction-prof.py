@@ -1,4 +1,4 @@
-"""Corrected business model after teacher feedback; does not edit application rights."""
+"""ANCIENNE correction intermédiaire du use case (4 novembre 2026). Remplacée par scripts/build-usecase.py (V2).
 import importlib.util
 from pathlib import Path
 from copy import deepcopy
@@ -10,9 +10,9 @@ from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
 from pypdf import PdfReader
 
-spec=importlib.util.spec_from_file_location('renderer',Path(__file__).with_name('build-usecase-v2.py'))
+spec=importlib.util.spec_from_file_location('renderer',Path(__file__).with_name('usecase_layout.py'))
 r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
-OUT=r.ROOT/'livrables'/'correction-prof-use-case'
+OUT=r.ROOT/'livrables'/'use-case'
 OUT.mkdir(parents=True,exist_ok=True)
 STEM='UML-CAS-UTILISATION-BD70-CORRIGE'
 p=deepcopy(r.p)
@@ -107,13 +107,11 @@ svgs=[r.svg(z) for z in r.PAGES]
 pw,ph=landscape(A3);c=canvas.Canvas(str(OUT/(STEM+'.pdf')),pagesize=(pw,ph))
 c.setTitle('BD70 - Cas d’utilisation corrigés après retour enseignant')
 for z,svg in zip(r.PAGES,svgs):
-    (OUT/(z.slug+'.svg')).write_text(svg,encoding='utf-8')
     drawing=svg2rlg(BytesIO(svg.encode()));drawing.scale(r.W/drawing.width,r.H/drawing.height)
     scale=min((pw-24)/r.W,(ph-24)/r.H)
     c.saveState();c.translate((pw-r.W*scale)/2,(ph-r.H*scale)/2);c.scale(scale,scale)
     renderPDF.draw(drawing,c,0,0);c.restoreState();c.showPage()
 c.save()
-(OUT/(STEM+'.html')).write_text('<!doctype html><html lang="fr"><meta charset="utf-8"><title>BD70 corrigé</title><style>body{margin:0}.diagram-container{overflow-x:auto}svg{min-width:2400px;width:100%;height:auto}</style>'+''.join('<div class="diagram-container">'+v+'</div>' for v in svgs)+'</html>',encoding='utf-8')
 assert len(PdfReader(OUT/(STEM+'.pdf')).pages)==5
 tree=ET.parse(OUT/(STEM+'.drawio'))
 for diag in tree.findall('diagram'):

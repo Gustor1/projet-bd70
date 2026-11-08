@@ -21,5 +21,11 @@ SELECT receipt_item_id,location_id,available_qty,expires_on FROM v_stock WHERE a
 -- statistiques_transporteur
 SELECT carrier_name,COUNT(*) passages,AVG(wait_minutes),AVG(immobilized_minutes) FROM v_visit WHERE arrived_at>=? AND arrived_at<? GROUP BY carrier_id,carrier_name;
 
+-- transporteurs_lents
+SELECT carrier_name,COUNT(*) passages,AVG(wait_minutes) attente FROM v_visit WHERE arrived_at>=? AND arrived_at<? AND wait_minutes IS NOT NULL GROUP BY carrier_id,carrier_name HAVING AVG(wait_minutes)>? ORDER BY attente DESC;
+
+-- historique_rendez_vous
+SELECT reference,origine,starts_at FROM v_appointment_all WHERE dock_id=? AND starts_at>=? AND starts_at<? ORDER BY starts_at LIMIT 20;
+
 -- remplissage_zone
 SELECT l.zone_name,SUM(u.used_kg),SUM(l.max_kg),SUM(u.used_pallets),SUM(l.max_pallets) FROM v_location l JOIN v_location_usage u ON u.id=l.id GROUP BY l.zone_id,l.zone_name;
