@@ -1527,6 +1527,228 @@
             }
         ]
     },
+    "appointment_archive": {
+        "title": "Rendez-vous historisés",
+        "columns": [
+            {
+                "Field": "id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "reference",
+                "Type": "varchar(40)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "dock_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "driver_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "vehicle_id",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "trailer_id",
+                "Type": "int(11)",
+                "Null": "YES",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "operation",
+                "Type": "enum('reception','expedition')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "starts_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "ends_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "enum('active','cancelled')",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "archived_at",
+                "Type": "datetime",
+                "Null": "NO",
+                "Key": "",
+                "Default": "current_timestamp()",
+                "Extra": ""
+            }
+        ],
+        "indexes": [
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 0,
+                "Key_name": "PRIMARY",
+                "Seq_in_index": 1,
+                "Column_name": "id",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 0,
+                "Key_name": "reference",
+                "Seq_in_index": 1,
+                "Column_name": "reference",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 1,
+                "Key_name": "dock_id",
+                "Seq_in_index": 1,
+                "Column_name": "dock_id",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 1,
+                "Key_name": "driver_id",
+                "Seq_in_index": 1,
+                "Column_name": "driver_id",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 1,
+                "Key_name": "vehicle_id",
+                "Seq_in_index": 1,
+                "Column_name": "vehicle_id",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 1,
+                "Key_name": "trailer_id",
+                "Seq_in_index": 1,
+                "Column_name": "trailer_id",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "YES",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            },
+            {
+                "Table": "appointment_archive",
+                "Non_unique": 1,
+                "Key_name": "idx_archive_period",
+                "Seq_in_index": 1,
+                "Column_name": "starts_at",
+                "Collation": "A",
+                "Cardinality": 0,
+                "Sub_part": null,
+                "Packed": null,
+                "Null": "",
+                "Index_type": "BTREE",
+                "Comment": "",
+                "Index_comment": ""
+            }
+        ],
+        "foreign": [
+            {
+                "COLUMN_NAME": "dock_id",
+                "REFERENCED_TABLE_NAME": "dock",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "driver_id",
+                "REFERENCED_TABLE_NAME": "driver",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "vehicle_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            },
+            {
+                "COLUMN_NAME": "trailer_id",
+                "REFERENCED_TABLE_NAME": "vehicle",
+                "REFERENCED_COLUMN_NAME": "id"
+            }
+        ]
+    },
     "truck_visit": {
         "title": "Passages camions",
         "columns": [

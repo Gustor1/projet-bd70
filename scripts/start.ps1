@@ -31,6 +31,10 @@ if(!(Test-Path -LiteralPath (Join-Path $projectRoot 'config/local.php'))){
  $previousDatabase=$env:BD70_DATABASE
  try{& $PhpPath scripts/install.php bd70_demo;if($LASTEXITCODE -ne 0){throw 'Installation échouée.'};$env:BD70_DATABASE='bd70_demo';& $PhpPath scripts/import-demo.php;if($LASTEXITCODE -ne 0){throw 'Chargement du jeu riche échoué.'}}finally{$env:BD70_DATABASE=$previousDatabase;Pop-Location}
 }
+# Base déjà installée avant l'ajout de l'historisation : migration idempotente, sans modification des données.
+$env:BD70_PORT="$DbPort"
+Push-Location $projectRoot
+try{& $PhpPath scripts/migrate-historisation.php;if($LASTEXITCODE -ne 0){throw 'Migration de l''historisation échouée.'}}finally{Pop-Location}
 $webListening=Get-NetTCPConnection -LocalPort $WebPort -State Listen -ErrorAction SilentlyContinue
 if(!$webListening){
  $webProcess=Start-Process -FilePath $PhpPath -ArgumentList @('-d',('"session.save_path='+$sessionPath+'"'),'-S',"127.0.0.1:$WebPort",'-t',('"'+$projectRoot+'/public"')) -WorkingDirectory $projectRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $projectRoot '.local/php-out.log') -RedirectStandardError (Join-Path $projectRoot '.local/php-error.log')

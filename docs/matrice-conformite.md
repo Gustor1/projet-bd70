@@ -1,6 +1,6 @@
 # Matrice de conformité après réalisation
 
-Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le MCD aligné sur le schéma courant le 4 novembre 2026 et le schéma relationnel complet.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le diagramme de cas d’utilisation V2, le MCD aligné sur le schéma courant le 4 novembre 2026 et le schéma relationnel complet.
 
 Les huit domaines obligatoires sont présents dans l’interface. Les preuves couvrent des scénarios ciblés ; charger une rubrique ne prouve pas tous ses CRUD.
 
@@ -88,11 +88,11 @@ Implémentation : Reports.php ; templates/trace.php ; templates/reports.php. Pre
 
 | Critère | Réalisation |
 |---|---|
-| UML, MCD, MLD | Use case corrigé, MCD Chen, schéma relationnel complet et dictionnaire |
-| PK, types, 1:N, N:N, normalisation | 41 tables ; FK, CHECK, clés métier et dépendances documentées |
+| UML, MCD, MLD | Cas d’utilisation V2 (une page, sans héritage), MCD Chen V2 (convention du cours, vectoriel), schéma relationnel complet et dictionnaire |
+| PK, types, 1:N, N:N, normalisation | 42 tables, 66 FK, 21 CHECK ; clés métier, dépendances et dénormalisations assumées documentées |
 | Ajout, édition, suppression | Formulaires de référentiels/brouillons ; correction et annulation métier des faits protégés |
 | Contrôle de saisie et recherches | Validation PHP/SQL, filtres multicritères, pagination et recherche des références |
 | Statistiques, graphiques et états | Six familles d’indicateurs, trois exports CSV et documents imprimables |
-| Multi-utilisateurs et automatisation | Cinq rôles ; courses à deux connexions ; 120 triggers et deux procédures |
+| Multi-utilisateurs et automatisation | Cinq rôles ; courses à deux connexions ; 122 triggers (3 de cohérence, 10 de protection, 109 d’audit), trois procédures, un évènement d’historisation, vue UNION ALL |
 | Données factices en quantité | SQL riche, 90 jours simulés ; 82 contrôles métier/FK |
 | Rapport et performance | Auteurs, objectifs/travail/conclusion ; huit requêtes, dix mesures et EXPLAIN |

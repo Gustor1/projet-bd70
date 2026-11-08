@@ -1,5 +1,5 @@
 # Dictionnaire des données du schéma corrigé
-41 tables ; sorties projetées par v_stock_movement. Schéma installé, 3 novembre 2026.
+42 tables ; sorties projetées par v_stock_movement. appointment_archive reprend les colonnes de appointment plus archived_at (date d’historisation) ; elle est alimentée uniquement par la procédure archive_appointments (sql/08_historisation.sql). Schéma installé, 3 novembre 2026.
 
 ## user_account
 

@@ -1,4 +1,4 @@
-"""Corrected business model after teacher feedback; does not edit application rights."""
+"""ANCIENNE correction intermédiaire du use case (4 novembre 2026). Remplacée par scripts/build-usecase.py (V2).
 import importlib.util
 from pathlib import Path
 from copy import deepcopy

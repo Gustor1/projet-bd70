@@ -1,0 +1,590 @@
+[
+  {
+    "id": "01",
+    "title": "Connexion au compte admin",
+    "note": "Saisir admin@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": null,
+    "fields": [
+      [
+        "Email",
+        "admin@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "02",
+    "title": "Comptes et profils",
+    "note": "Dans Référentiels, ouvrir les utilisateurs. Montrer les profils et les comptes actifs.",
+    "role": "admin",
+    "fields": [],
+    "url": "/?page=catalog&t=user_account"
+  },
+  {
+    "id": "03",
+    "title": "Connexion au compte carrier1",
+    "note": "Saisir carrier1@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": "admin",
+    "fields": [
+      [
+        "Email",
+        "carrier1@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "04",
+    "title": "Portail du transporteur",
+    "note": "Montrer les rendez-vous et les ressources de sa société.",
+    "role": "carrier1",
+    "fields": [],
+    "url": "/?page=carrier_portal"
+  },
+  {
+    "id": "05",
+    "title": "Connexion au compte manager",
+    "note": "Saisir manager@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": "carrier1",
+    "fields": [
+      [
+        "Email",
+        "manager@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "06",
+    "title": "Planning des quais",
+    "note": "Ouvrir Quais & rendez-vous. Choisir la journée du jeu de test.",
+    "role": "manager",
+    "fields": [],
+    "url": "/?page=planning&day=2026-10-22"
+  },
+  {
+    "id": "07",
+    "title": "Connexion au compte warehouse",
+    "note": "Saisir warehouse@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": "manager",
+    "fields": [
+      [
+        "Email",
+        "warehouse@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "08",
+    "title": "Entrée dans les réceptions",
+    "note": "Ouvrir Réceptions puis le lien Avis fournisseurs.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=receipts"
+  },
+  {
+    "id": "09",
+    "title": "Créer · supplier_notice",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Référence",
+        "ORAL-CAFE-AVIS"
+      ],
+      [
+        "Fournisseur",
+        "Manufacture Démo"
+      ],
+      [
+        "Livraison prévue",
+        "2026-10-22"
+      ]
+    ],
+    "url": "/?page=catalog&t=supplier_notice&new=1"
+  },
+  {
+    "id": "10",
+    "title": "Créer · notice_line",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Avis fournisseur",
+        "ORAL-CAFE-AVIS"
+      ],
+      [
+        "Article",
+        "ART-CAFE / Café en cartons"
+      ],
+      [
+        "Quantité attendue",
+        "20"
+      ]
+    ],
+    "url": "/?page=catalog&t=notice_line&new=1"
+  },
+  {
+    "id": "11",
+    "title": "Créer · lot",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Article",
+        "ART-CAFE / Café en cartons"
+      ],
+      [
+        "Code",
+        "ORAL-CAFE-LOT"
+      ],
+      [
+        "Date limite / validité",
+        "2026-10-23"
+      ],
+      [
+        "Lot bloqué",
+        "Non"
+      ]
+    ],
+    "url": "/?page=catalog&t=lot&new=1"
+  },
+  {
+    "id": "12",
+    "title": "Connexion au compte gate",
+    "note": "Saisir gate@bd70.test et le mot de passe pédagogique Entrepot2026!.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Email",
+        "gate@bd70.test"
+      ]
+    ],
+    "url": "/"
+  },
+  {
+    "id": "13",
+    "title": "Arrivée · ORAL-CAFE-ENTREE",
+    "note": "Passages camions → Enregistrer une arrivée. Sélectionner chauffeur, véhicule et opération.",
+    "role": "gate",
+    "fields": [
+      [
+        "Référence du passage",
+        "ORAL-CAFE-ENTREE"
+      ],
+      [
+        "Chauffeur sans rendez-vous",
+        "Marc Démo / PERMIS-DEMO-1"
+      ],
+      [
+        "Véhicule sans rendez-vous",
+        "DEMO-001"
+      ],
+      [
+        "Opération",
+        "Réception"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "14",
+    "title": "ORAL-CAFE-ENTREE · checked",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [
+      [
+        "Résultat documentaire",
+        "Documents contrôlés depuis le navigateur"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "15",
+    "title": "ORAL-CAFE-ENTREE · parking",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "16",
+    "title": "ORAL-CAFE-ENTREE · called",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [
+      [
+        "Quai",
+        "Q-Ambiant"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "17",
+    "title": "ORAL-CAFE-ENTREE · working",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "18",
+    "title": "Créer · receipt",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Référence",
+        "ORAL-CAFE-REC"
+      ],
+      [
+        "Avis fournisseur",
+        "ORAL-CAFE-AVIS"
+      ],
+      [
+        "Passage camion",
+        "ORAL-CAFE-ENTREE"
+      ]
+    ],
+    "url": "/?page=catalog&t=receipt&new=1"
+  },
+  {
+    "id": "19",
+    "title": "Créer · receipt_line",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Réception",
+        "ORAL-CAFE-REC"
+      ],
+      [
+        "Ligne attendue",
+        "ORAL-CAFE-AVIS / ART-CAFE"
+      ],
+      [
+        "Quantité attendue",
+        "20"
+      ]
+    ],
+    "url": "/?page=catalog&t=receipt_line&new=1"
+  },
+  {
+    "id": "20",
+    "title": "Créer · receipt_item",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Ligne de réception",
+        "ORAL-CAFE-REC / ART-CAFE"
+      ],
+      [
+        "Lot",
+        "ORAL-CAFE-LOT / ART-CAFE"
+      ],
+      [
+        "Code palette / fraction",
+        "ORAL-CAFE-PAL"
+      ],
+      [
+        "Quantité acceptée",
+        "18"
+      ],
+      [
+        "Quantité endommagée",
+        "2"
+      ],
+      [
+        "État de palette",
+        "abime"
+      ],
+      [
+        "Réserve transporteur",
+        "Deux cartons endommagés, réserve émise"
+      ],
+      [
+        "Emplacement",
+        "EMP-1-1"
+      ]
+    ],
+    "url": "/?page=catalog&t=receipt_item&new=1"
+  },
+  {
+    "id": "21",
+    "title": "Valider la réception",
+    "note": "",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=receipts"
+  },
+  {
+    "id": "22",
+    "title": "Réception validée",
+    "note": "",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=receipts"
+  },
+  {
+    "id": "23",
+    "title": "Transférer",
+    "note": "",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Palette reçue / provenance",
+        "ORAL-CAFE-PAL"
+      ],
+      [
+        "Emplacement source",
+        "EMP-1-1"
+      ],
+      [
+        "Destination",
+        "EMP-1-2"
+      ],
+      [
+        "Quantité entière",
+        "3"
+      ],
+      [
+        "Motif du déplacement",
+        "Transfert de démonstration navigateur"
+      ]
+    ],
+    "url": "/?page=stock"
+  },
+  {
+    "id": "24",
+    "title": "ORAL-CAFE-ENTREE · finished",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "25",
+    "title": "ORAL-CAFE-ENTREE · departed",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "26",
+    "title": "Créer · customer_order",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "manager",
+    "fields": [
+      [
+        "Référence",
+        "ORAL-CAFE-CMD"
+      ],
+      [
+        "Propriétaire",
+        "Atlas Distribution"
+      ],
+      [
+        "Adresse de livraison",
+        "Client fictif, Belfort"
+      ],
+      [
+        "Expédition souhaitée",
+        "2026-10-22"
+      ]
+    ],
+    "url": "/?page=catalog&t=customer_order&new=1"
+  },
+  {
+    "id": "27",
+    "title": "Créer · order_line",
+    "note": "Dans Référentiels, sélectionner la rubrique puis ouvrir le formulaire de création. Renseigner les valeurs affichées et cliquer sur Enregistrer.",
+    "role": "manager",
+    "fields": [
+      [
+        "Commande",
+        "ORAL-CAFE-CMD"
+      ],
+      [
+        "Article",
+        "ART-CAFE / Café en cartons"
+      ],
+      [
+        "Quantité",
+        "10"
+      ]
+    ],
+    "url": "/?page=catalog&t=order_line&new=1"
+  },
+  {
+    "id": "28",
+    "title": "Affecter le préparateur",
+    "note": "",
+    "role": "manager",
+    "fields": [
+      [
+        "Affecter à",
+        "Noah Bernard / warehouse"
+      ]
+    ],
+    "url": "/?page=orders"
+  },
+  {
+    "id": "29",
+    "title": "Lancer le prélèvement FEFO",
+    "note": "",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=orders"
+  },
+  {
+    "id": "30",
+    "title": "Confirmer tous les prélèvements",
+    "note": "",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=orders"
+  },
+  {
+    "id": "31",
+    "title": "Créer le conditionnement",
+    "note": "",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Code de colis/palette",
+        "ORAL-CAFE-COLIS"
+      ],
+      [
+        "Conditionnement",
+        "Colis"
+      ]
+    ],
+    "url": "/?page=order_detail&id=4"
+  },
+  {
+    "id": "32",
+    "title": "Affecter cette quantité",
+    "note": "",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Prélèvement à répartir",
+        "ART-CAFE / ORAL-CAFE-LOT / EMP-1-1 : 10 unités restantes"
+      ],
+      [
+        "Quantité dans ce colis",
+        "10"
+      ]
+    ],
+    "url": "/?page=order_detail&id=4"
+  },
+  {
+    "id": "33",
+    "title": "Arrivée · ORAL-CAFE-SORTIE",
+    "note": "Passages camions → Enregistrer une arrivée. Sélectionner chauffeur, véhicule et opération.",
+    "role": "gate",
+    "fields": [
+      [
+        "Référence du passage",
+        "ORAL-CAFE-SORTIE"
+      ],
+      [
+        "Chauffeur sans rendez-vous",
+        "Marc Démo / PERMIS-DEMO-1"
+      ],
+      [
+        "Véhicule sans rendez-vous",
+        "DEMO-001"
+      ],
+      [
+        "Opération",
+        "Expédition"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "34",
+    "title": "ORAL-CAFE-SORTIE · checked",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [
+      [
+        "Résultat documentaire",
+        "Documents contrôlés depuis le navigateur"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "35",
+    "title": "ORAL-CAFE-SORTIE · called",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [
+      [
+        "Quai",
+        "Q-Sortie"
+      ]
+    ],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "36",
+    "title": "ORAL-CAFE-SORTIE · working",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "37",
+    "title": "Confirmer l’expédition",
+    "note": "",
+    "role": "warehouse",
+    "fields": [
+      [
+        "Camion au chargement",
+        "ORAL-CAFE-SORTIE"
+      ]
+    ],
+    "url": "/?page=orders"
+  },
+  {
+    "id": "38",
+    "title": "Trace du lot jusqu’au camion",
+    "note": "",
+    "role": "manager",
+    "fields": [],
+    "url": "/?page=trace&lot_id=7"
+  },
+  {
+    "id": "39",
+    "title": "Bon de livraison",
+    "note": "",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=document&kind=delivery&id=4"
+  },
+  {
+    "id": "40",
+    "title": "ORAL-CAFE-SORTIE · finished",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "warehouse",
+    "fields": [],
+    "url": "/?page=visits"
+  },
+  {
+    "id": "41",
+    "title": "ORAL-CAFE-SORTIE · departed",
+    "note": "Dans Passages camions, retrouver la carte de ce passage et utiliser le bouton encadré.",
+    "role": "gate",
+    "fields": [],
+    "url": "/?page=visits"
+  }
+]

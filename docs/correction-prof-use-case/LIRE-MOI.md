@@ -1,22 +1,33 @@
-# Correction après retour du professeur
+# Diagramme de cas d’utilisation : V1, remarques et V2
 
-Le PDF et le Draw.io corrigés contiennent cinq pages A3 : vue d'ensemble, passages des camions, commandes et préparation, expédition, traçabilité. Ouvrir le Draw.io dans diagrams.net ; chaque objet et connecteur est modifiable. Cette version constitue le use case du rendu final.
+## Historique
 
-## Réponses aux remarques
+| Version | Fichier | État |
+|---|---|---|
+| V1 | [V1-rendue-au-professeur.pdf](V1-rendue-au-professeur.pdf) | Rendue au professeur, commentée (remarques ci-dessous). |
+| Correction intermédiaire (4 novembre 2026) | [version-precedente-2026-11-04/](version-precedente-2026-11-04/) | Répondait aux remarques mais dupliquait chaque acteur à côté de chacun de ses cas. Conservée pour comparaison. |
+| **V2 (8 novembre 2026)** | [livrables/use-case/](../../livrables/use-case/) : une page, PDF et SVG vectoriels, Draw.io modifiable | Version du rendu. **Pas encore relue par le professeur.** |
 
-1. Suppression des héritages entre métiers. Le responsable ne récupère plus les tâches du préparateur ; l'administrateur gère les comptes et les droits, sans accès métier implicite. Personnel désigne les fonctions de session communes. Les occurrences répétées d'un même acteur désignent le même rôle.
-2. Ajout du Transporteur, limité aux demandes de rendez-vous de sa société (création, modification, annulation). Le portail transporteur correspondant est implémenté. Son accès suppose un compte autorisé.
-3. Gestion des commandes et affectation/réaffectation des préparateurs réservées au responsable. Le préparateur exécute les commandes affectées, prélève les articles et constitue les colis. Le sujet regroupe magasinier/préparateur ; ces fonctions restent rassemblées dans la vue générale.
-4. Les quatre cas signalés sont détaillés : arrivée et contrôles, appel à quai, opérations et départ ; commandes, affectation et préparation ; contrôles du chargement, confirmation et sortie de stock ; identification, provenance, mouvements et destinations d'un lot. Les inclusions sont orientées vers les traitements nécessaires. L'arrivée sans rendez-vous est une extension conditionnelle de l'enregistrement de l'arrivée. Les résultats vides sont possibles en traçabilité.
+## Remarques du professeur sur la V1
 
-Le suivi du passage est un regroupement de cas réalisés à différents moments, et non un cas exécutant obligatoirement toutes les étapes en une seule action. La mise en attente, les retards, les écarts et autres variantes doivent être décrits dans les scénarios textuels. L'impression des documents reste une action indépendante, après expédition.
+1. Revoir les relations d’héritage entre acteurs (le responsable d’exploitation n’est pas un préparateur, l’administrateur a trop de rôles).
+2. Le transporteur n’est pas mentionné (même si son rôle est minime).
+3. Le préparateur a pour use-case d’affecter un préparateur : la répartition des rôles est à affiner.
+4. Certains use-cases doivent être éclatés en plusieurs sous-cas avec relations entre eux (par exemple : « suivre le passage d’un camion », « gérer et préparer les commandes », « expédier les commandes », « tracer un lot »).
 
-## Portée
+## Réponses apportées dans la V2
 
-Ce modèle est désormais la référence du logiciel corrigé. Les comptes et leurs rattachements, l’affectation des commandes, les étapes de passage et le portail transporteur sont contrôlés côté serveur. Voir docs/recette.md pour les preuves de cette mise en cohérence.
+1. **Aucun héritage.** Chaque acteur est dessiné une seule fois et relié uniquement aux cas qu’il réalise. L’administrateur ne gère que les comptes, les profils et le journal.
+2. **Transporteur ajouté** : il planifie uniquement les rendez-vous de sa société (portail transporteur de l’application).
+3. **Commandes réparties** : le responsable gère les commandes clients et affecte un préparateur ; le magasinier / préparateur prépare, expédie et édite les documents des seules commandes qui lui sont affectées.
+4. **Cas éclatés** : sur la même page, « Suivre le passage d’un camion », « Gérer et préparer les commandes », « Expédier une commande » et « Tracer un lot » sont remplacés par leurs sous-cas, reliés par « include » et « extend » (15 include, 2 extend).
 
-## Modification et reconstruction
+Correction supplémentaire, non demandée mais imposée par le sujet : la planification des quais et des rendez-vous, rattachée à l’agent d’accueil dans la V1, revient au **responsable d’exploitation** (« responsable d’exploitation (planification des quais), agent d’accueil (poste de garde) »). L’application applique la même règle.
 
-Conserver une copie du Draw.io avant modification manuelle : `python scripts/build-usecase-correction-prof.py` reconstruit uniquement ce dossier. Le générateur utilise les primitives de `scripts/usecase_layout.py` sans en exécuter le programme principal.
+## Reconstruction
 
-Contrôles effectués : cinq pages PDF, objets Draw.io natifs, identifiants et extrémités des connecteurs, géométrie et largeur des textes, inspection des aperçus PDF. Le Draw.io n'a pas été ouvert dans l'éditeur lors de cette vérification. Aucun push GitHub n'est inclus.
+```
+python scripts/build-usecase.py
+```
+
+À lancer avec le Python des dépendances PDF (voir le README). Le script régénère le PDF (une page A3 paysage), le SVG et le Draw.io, puis vérifie : une seule page, aucun héritage, six acteurs dessinés chacun une seule fois, aucun chevauchement de cas, textes contenus dans leurs ellipses, connecteurs Draw.io valides. Conserver une copie du Draw.io avant toute retouche manuelle : une reconstruction l’écrase.

@@ -1,6 +1,6 @@
 # Contrat de conception avant implémentation
 
-Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le use case corrigé, le MCD Chen corrigé et le schéma relationnel complet.
+Références techniques consolidées : [index des modèles](modeles-reference.md). Le recueil PDF actualisé réunit le diagramme de cas d’utilisation V2, le MCD Chen V2 et le schéma relationnel complet.
 
 Le modèle comporte cinq sous-domaines reliés : personnel/référentiels, quais/passages, avis/réception, rangement/mouvements, commandes/prélèvement/expédition. Les noms SQL sont anglais pour éviter les identifiants accentués ; l'interface utilise les termes français.
 
@@ -17,7 +17,7 @@ Les mutations prennent un verrou sur `site_lock` dans la transaction PHP ; il pr
 
 ## Extensions finalisées
 
-41 tables installées. receipt_reserve porte un lien exclusif vers une réception ou une ligne (CHECK XOR). package_pick porte une quantité et l’unicité (package_id,pick_id), ce qui permet plusieurs colis par prélèvement. Les avis ont une clôture motivée ; les commandes une note de reprise. Les snapshots JSON du journal technique sont une dénormalisation volontaire, exclue de l’argumentation 3NF des relations métier.
+42 tables installées (dont appointment_archive, historique des rendez-vous). receipt_reserve porte un lien exclusif vers une réception ou une ligne (CHECK XOR). package_pick porte une quantité et l’unicité (package_id,pick_id), ce qui permet plusieurs colis par prélèvement. Les avis ont une clôture motivée ; les commandes une note de reprise. Les snapshots JSON du journal technique sont une dénormalisation volontaire, exclue de l’argumentation 3NF des relations métier.
 
 v_visit joint les événements uniques (passage, état). v_location_usage agrège directement les quantités physiques et caractéristiques d’articles, sans utiliser les réservations et descriptions de v_stock. Ces vues ne stockent aucun solde supplémentaire.
 

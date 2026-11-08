@@ -61,6 +61,7 @@
     "expected_on": "Livraison prévue",
     "notice_id": "Avis fournisseur",
     "expected_qty": "Quantité attendue",
+    "archived_at": "Historisé le",
     "validated_at": "Validation",
     "receipt_id": "Réception",
     "notice_line_id": "Ligne attendue",

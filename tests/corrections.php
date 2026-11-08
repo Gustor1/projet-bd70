@@ -10,6 +10,7 @@ check(Auth::can($users['admin'],'accounts')&&!Auth::can($users['admin'],'orders'
 check(Auth::can($users['manager'],'manage_orders')&&!Auth::can($users['warehouse'],'manage_orders'),'Affectation réservée au responsable');
 check(Auth::transitionAllowed($users['warehouse'],'working')&&!Auth::transitionAllowed($users['gate'],'working'),'Début opération réservé au magasinier');
 check(Auth::transitionAllowed($users['gate'],'departed')&&!Auth::transitionAllowed($users['warehouse'],'departed'),'Départ réservé à accueil');
+check(Auth::can($users['manager'],'planning')&&!Auth::can($users['gate'],'planning')&&!Auth::can($users['warehouse'],'planning'),'Planification des quais réservée au responsable (sujet et use case)');
 $other=$db->insert('user_account',['email'=>'other@bd70.test','name'=>'Autre magasinier','role'=>'warehouse','active'=>1,'password_hash'=>password_hash('Entrepot2026!',PASSWORD_DEFAULT)]);
 $order=$db->insert('customer_order',['reference'=>'CORR-AFFECTEE','owner_id'=>1,'destination'=>'Test','desired_on'=>'2026-10-22','preparer_id'=>$users['warehouse']['id']]);
 (new Warehouse($db,(int)$users['manager']['id']))->assignPreparer($order,(int)$users['warehouse']['id']);check((int)$db->scalar('SELECT preparer_id FROM customer_order WHERE id=?',[$order])===(int)$users['warehouse']['id'],'Responsable affecte sans réserver le stock');

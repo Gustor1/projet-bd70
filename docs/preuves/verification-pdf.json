@@ -2,15 +2,16 @@
   "files": [
     {
       "file": "livrables\\rapport\\RAPPORT-PROJET-BD70.pdf",
-      "pages": 10,
+      "pages": 36,
       "all_pages_have_text": true
     },
     {
       "file": "livrables\\rapport\\DIAGRAMMES-BD70.pdf",
-      "pages": 7,
+      "pages": 9,
       "all_pages_have_text": true
     }
   ],
+  "figures": 23,
   "authors_present": true,
-  "visual_review": "Rendus Poppler à inspecter séparément"
+  "visual_review": "Rendus à inspecter séparément"
 }
