@@ -17,7 +17,7 @@ def canonical(v):
     return cols,indexes,foreign
 checks['tables']=set(actual)==set(snapshot)
 for t,v in actual.items():checks['schema_'+t]=t in snapshot and canonical(v)==canonical(snapshot[t])
-technical={'audit_log','site_lock','appointment_archive'};joins={'driver_qualification','vehicle_equipment','dock_equipment','dock_vehicle_type','package_pick'}
+technical={'audit_log','site_lock','appointment_archive','stock_balance'};joins={'driver_qualification','vehicle_equipment','dock_equipment','dock_vehicle_type','package_pick'}
 represented={field for r in mcd['associations'] for field in r['fields']}
 attrs={t+'.'+a['key'] for t,e in mcd['entities'].items() if e['table'] for a in e['attrs']}
 attrs|={a['key'] for r in mcd['associations'] for a in r['attrs']}
