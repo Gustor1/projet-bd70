@@ -16,7 +16,7 @@ foreach($expected as $local=>[$role,$active]){
  check($u['role']===$role&&(int)$u['active']===$active&&password_verify('Entrepot2026!',$u['password_hash']),'Compte '.$local.' conforme après import');
  $carrier=match($local){'carrier1'=>$carriers[0],'carrier2'=>$carriers[1],default=>null};check($u['carrier_id']==$carrier,'Rattachement '.$local);
 }
-$before=snapshot();prepareAccounts();check($before===snapshot(),'Deuxième passage sans écriture dans les 41 tables');
+$before=snapshot();prepareAccounts();check($before===snapshot(),'Deuxième passage sans écriture dans les tables');
 $admin=(int)$db->scalar("SELECT id FROM user_account WHERE email='admin@bd70.test'");$id=(int)$db->scalar("SELECT id FROM user_account WHERE email='warehouse2@bd70.test'");
 $extra=$db->transaction($admin,fn()=>$db->insert('user_account',['email'=>'personnel-preserve@bd70.test','name'=>'Compte à préserver','role'=>'gate','active'=>1,'password_hash'=>password_hash('AutreMotDePasse2026!',PASSWORD_DEFAULT)]));
 $other=$db->one('SELECT * FROM user_account WHERE id=?',[$extra]);

@@ -52,9 +52,9 @@ Le passage dure 20 minutes. Les cinq premières minutes sont consacrées à la B
 
 | Support actuel | Usage |
 |---|---|
-| [Transit-diapo.html](livrables/soutenance/Transit-diapo.html) | Sept diapositives animées : modèle, N:N, automatisation, transactions, normalisation et droits, performances |
-| [Transit.pdf](docs/soutenance/Transit.pdf) | Copie PDF vectorielle des sept diapositives (scripts/export-diapo-pdf.cjs) |
-| [Guide-oral.md](livrables/soutenance/Guide-oral.md) | Discours aligné sur les sept diapositives et minutage de la démonstration |
+| [Transit-diapo.html](livrables/soutenance/Transit-diapo.html) | Onze diapositives animées : architecture (front, back, base), démarche et modèle, choix, normalisation 1NF à 3NF, automatisation, triggers, procédures et fonction, évènement, vues et calculs, fonctions PHP, optimisation ; captures phpMyAdmin dans [captures-phpmyadmin](livrables/soutenance/captures-phpmyadmin) |
+| [Transit.pdf](docs/soutenance/Transit.pdf) | Copie PDF vectorielle des onze diapositives (scripts/export-diapo-pdf.cjs) |
+| [Guide-oral.md](livrables/soutenance/Guide-oral.md) | Discours aligné sur les onze diapositives et minutage de la démonstration |
 | [GUIDE-TEST-ET-DEMO.pdf](livrables/soutenance/GUIDE-TEST-ET-DEMO.pdf) | Guide de A à Z avec captures : démarrage, vérifications SQL, nouveautés, scénario ORAL-CAFE complet avec phrases pour le professeur, tests automatisés, livrables, déroulé du jour J (généré par scripts/build-guide-test.cjs) |
 | [Parcours-application.pdf](livrables/soutenance/Parcours-application.pdf) | Démarrage, connexions, saisies et captures ordonnées. Page 3 pour le parcours de cinq minutes |
 | [Questions-prof.md](livrables/soutenance/Questions-prof.md) | Compréhension du projet, SQL, choix et limites |

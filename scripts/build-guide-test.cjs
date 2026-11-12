@@ -168,19 +168,19 @@ ${code(`$env:BD70_PORT='3307'; $env:BD70_DATABASE='bd70_test_verif1'; $env:BD70_
 <tr><td>livrables/use-case, entite-association, schema-relationnel</td><td>Chaque diagramme en PDF, SVG et .drawio. Ouvrir un .drawio sur app.diagrams.net : chaque objet doit être modifiable.</td></tr>
 <tr><td>docs/performances.md</td><td>10 requêtes, médianes sur la base volumétrique et sur la démo, EXPLAIN avant/après index (4,00 → 0,90 ms).</td></tr>
 <tr><td>sql/01 à 08</td><td>01 schéma, 02 vues, 03 procédures, 04 triggers, 05 index, 06 droits (GRANT/REVOKE), 07 données, 08 historisation.</td></tr>
-<tr><td>livrables/soutenance/</td><td>Transit-diapo.html (7 diapos), Guide-oral.md, Questions-prof.md, ce guide.</td></tr></table>
+<tr><td>livrables/soutenance/</td><td>Transit-diapo.html (11 diapos), Guide-oral.md, Questions-prof.md, ce guide.</td></tr></table>
 
 <h2 class="part">H · Le jour de la soutenance</h2>
 <h3>H1. Avant d’entrer (15 minutes)</h3><ol>
 <li>Lancer <b>scripts/start.ps1</b> (B2) et vérifier « Application : http://127.0.0.1:8070 ».</li>
 <li>Si la démo se fait sur la base de soutenance préparée (avec ORAL-CAFE déjà enregistré), la mettre à jour une fois puis lancer son serveur :</li></ol>
-${code('$env:BD70_PORT=\'3307\'; & C:/xampp2/php/php.exe scripts/migrate-historisation.php bd70_test_soutenance_20261105153225')}${code(`$env:BD70_DATABASE='bd70_test_soutenance_20261105153225'; $env:BD70_NOW='2026-10-22 12:00:00'; & C:/xampp2/php/php.exe -S 127.0.0.1:18079 -t public`)}
+${code('$env:BD70_PORT=\'3307\'; & C:/xampp2/php/php.exe scripts/migrate-historisation.php bd70_test_soutenance_20261105153225')}${code('& C:/xampp2/php/php.exe scripts/migrate-optimisation.php bd70_test_soutenance_20261105153225')}${code(`$env:BD70_DATABASE='bd70_test_soutenance_20261105153225'; $env:BD70_NOW='2026-10-22 12:00:00'; & C:/xampp2/php/php.exe -S 127.0.0.1:18079 -t public`)}
 <ol start="3"><li>Ouvrir un profil de navigateur par compte déjà connecté : admin, manager, gate, warehouse (et carrier1).</li>
 <li>Ouvrir <b>livrables/soutenance/Transit-diapo.html</b>, cliquer sur « Plein écran ». Avoir docs/soutenance/Transit.pdf en secours.</li>
 <li>Garder ouverts : sql/08_historisation.sql, sql/02_vues.sql, docs/performances.md, Questions-prof.md.</li></ol>
 <h3>H2. Déroulé minuté</h3>
 <table><tr><th>Temps</th><th>Quoi</th><th>Où</th></tr>
-<tr><td>0:00 – 5:00</td><td>Backend : 7 diapositives (texte dans Guide-oral.md)</td><td>Transit-diapo.html</td></tr>
+<tr><td>0:00 – 5:00</td><td>Architecture, base et back-end : 11 diapositives (texte dans Guide-oral.md)</td><td>Transit-diapo.html</td></tr>
 <tr><td>5:00 – 5:40</td><td>Comptes puis planning du responsable, bouton Nouveau rendez-vous</td><td>Étapes E.01–E.06, D1</td></tr>
 <tr><td>5:40 – 6:35</td><td>Avis ORAL-CAFE-AVIS et sa ligne de 20 unités</td><td>Étapes E.08–E.12</td></tr>
 <tr><td>6:35 – 7:25</td><td>Réception : 18 acceptées, 2 endommagées, transfert de 3</td><td>Étapes E.19–E.24</td></tr>
