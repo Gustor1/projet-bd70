@@ -5,3 +5,5 @@ node_modules/
 *.log
 docs/preuves/*.sql
 tmp/
+# page intermédiaire du guide PDF (chemins locaux absolus)
+docs/captures/guide/guide.html
