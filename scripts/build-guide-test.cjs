@@ -3,7 +3,7 @@
 // Sources : docs/captures/guide/{scenario,complements,nouveautes}/ (captures Playwright sur une base de test neuve),
 // docs/captures/guide/narration.json (phrases pour le professeur). Sortie : livrables/soutenance/GUIDE-TEST-ET-DEMO.pdf
 const fs=require('fs');const path=require('path');const url=require('url');
-const {chromium}=require(process.env.BD70_PLAYWRIGHT||'C:/Users/eliot/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {chromium}=require(process.env.BD70_PLAYWRIGHT||'playwright');
 const root=path.resolve(__dirname,'..');const G=path.join(root,'docs/captures/guide');
 const img=p=>url.pathToFileURL(path.join(G,p)).href;
 const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -53,7 +53,7 @@ ${phrase?`<p class="say"><b>À dire :</b> « ${esc(phrase)} »</p>`:''}</section
 }
 const code=(c,out)=>`<pre class="cmd">${esc(c)}</pre>${out?`<pre class="out">${esc(out)}</pre>`:''}`;
 const shot=(f,cap)=>`<figure><img src="${img('nouveautes/'+f+'.png')}"><figcaption>${esc(cap)}</figcaption></figure>`;
-const P='C:\\Users\\eliot\\Documents\\GitHub\\projet-bd70';
+const P='C:/chemin/vers/projet-bd70';
 
 let scenario='';let n=0;
 const groups=[[1,6,'E1 · Comptes, transporteur et planning'],[7,11,'E2 · Le fournisseur annonce la livraison'],[12,17,'E3 · Le camion arrive et se met à quai'],[18,25,'E4 · Réception, rangement, transfert, départ'],[26,32,'E5 · Commande, affectation, préparation FEFO, colis'],[33,41,'E6 · Camion de sortie, expédition, traçabilité, bon de livraison']];
@@ -95,7 +95,7 @@ figure{margin:2mm 0;break-inside:avoid}figcaption{font-size:8.6pt;font-style:ita
 
 <h2 class="part">A · Préparer le poste</h2>
 <ul><li>XAMPP installé dans <b>C:\\xampp2</b> (MariaDB 10.4 dans C:\\xampp2\\mysql\\bin, PHP 8.2 dans C:\\xampp2\\php). Ailleurs : ajouter <code>-PhpPath</code> et <code>-MariaPath</code> à la commande de démarrage.</li>
-<li>Le projet dans <b>${esc(P)}</b>, avec <b>config/local.php</b> (créé à la première installation, jamais dans Git).</li>
+<li>Le projet dans son dossier (par exemple <b>${esc(P)}</b>), avec <b>config/local.php</b> (créé à la première installation, jamais dans Git).</li>
 <li>Un navigateur récent (Edge ou Chrome). Pour la démo, préparer <b>un profil de navigateur par compte</b> : deux onglets d’un même profil partagent la session.</li>
 <li>Python et Node ne servent qu’aux tests automatisés et à la reconstruction des documents, pas à l’application.</li></ul>
 <h3>Comptes de démonstration</h3><p>Mot de passe commun : <b>Entrepot2026!</b></p>

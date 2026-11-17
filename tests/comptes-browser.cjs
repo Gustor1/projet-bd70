@@ -1,4 +1,4 @@
-const fs=require('fs');const {chromium}=require(process.env.BD70_PLAYWRIGHT||'C:/Users/eliot/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs');const {chromium}=require(process.env.BD70_PLAYWRIGHT||'playwright');
 const origin=process.env.BD70_URL||'http://127.0.0.1:8070';const results=[];
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
  const page=await browser.newPage();

@@ -35,7 +35,9 @@ Dans l’Explorateur Windows, ouvrir le dossier du projet, cliquer dans sa barre
 Get-ChildItem README.md,scripts/start.ps1
 ```
 
-Ne pas recopier le chemin personnel `C:/Users/eliot/...` du poste de développement : utiliser son propre dossier téléchargé/cloné.
+Utiliser son propre dossier téléchargé ou cloné : aucun chemin du poste de développement n’est nécessaire.
+
+Les scripts Node facultatifs (captures, export PDF du diaporama, rendu des diagrammes) utilisent Playwright et @viz-js/viz : `npm install playwright @viz-js/viz` dans le dossier du projet, ou indiquer leur emplacement avec les variables `BD70_PLAYWRIGHT` et `BD70_VIZ`. L’application elle-même n’en a pas besoin.
 
 ## 4. Lancer l’installation automatique
 
